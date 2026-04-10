@@ -1,0 +1,39 @@
+<!-- Diese Datei ist NUR eine Referenz fuer Claude Code / Maggy.
+     Wird nicht vom Server ausgeliefert. Dient dazu, den wiederverwendeten
+     Nav/Footer-HTML-Block an einer Stelle nachlesen zu koennen. -->
+
+<!-- === NAV (auf jeder Seite identisch) === -->
+<header class="nav" role="banner">
+  <div class="nav__inner">
+    <a class="nav__brand" href="index.html">i.appear</a>
+    <nav class="nav__links" aria-label="Hauptnavigation">
+      <a href="index.html#features">Features</a>
+      <a href="index.html#kategorien">Kategorien</a>
+      <a href="workflow.html">Leistungen</a>
+      <a href="index.html#ueber">Ueber uns</a>
+      <a href="kontakt.html">Kontakt</a>
+      <a href="index.html#vitrine">Vitrine</a>
+      <a href="user-guide.html">User Guide</a>
+    </nav>
+    <button class="nav__burger" data-menu-toggle aria-label="Menue oeffnen"><span></span></button>
+  </div>
+</header>
+<div id="menu" class="menu" role="dialog" aria-modal="true" aria-label="Menue">
+  <button class="menu__close" data-menu-close aria-label="Menue schliessen">&times;</button>
+  <ul class="menu__list">
+    <li><a href="index.html">Startseite</a></li>
+    <li><a href="i-history.html" class="c-history">i.history – Zeitreisen</a></li>
+    <li><a href="i-dentity.html" class="c-dentity">i.dentity – Erlebnisse</a></li>
+    <li><a href="i-grow.html"    class="c-grow">i.grow – Medienbildung</a></li>
+    <li><a href="workflow.html">Leistungen / Workflow</a></li>
+    <li><a href="user-guide.html">User Guide</a></li>
+    <li><a href="kontakt.html">Kontakt</a></li>
+    <li><a href="faqs.html">FAQs</a></li>
+    <li><a href="agb.html">AGB</a></li>
+    <li><a href="impressum.html">Impressum</a></li>
+    <li><a href="datenschutz.html">Datenschutz</a></li>
+  </ul>
+</div>
+
+<!-- === FOOTER (auf jeder Seite identisch) === -->
+<footer class="footer">... siehe index.html ...</footer>

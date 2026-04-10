@@ -1,0 +1,66 @@
+/* ==========================================================================
+   iappear.at – layout.css
+   Grid, Flex, Sektionen, Responsive Breakpoints
+   ========================================================================== */
+
+.section {
+  padding: var(--sp-6) 0;
+  border-top: 1px solid rgba(255,255,255,.08);
+}
+.section:first-of-type { border-top: 0; }
+
+.grid { display: grid; gap: var(--sp-4); }
+.grid-2 { grid-template-columns: 1fr; }
+.grid-3 { grid-template-columns: 1fr; }
+.grid-4 { grid-template-columns: 1fr; }
+
+@media (min-width: 720px) {
+  .grid-2 { grid-template-columns: 1fr 1fr; }
+  .grid-3 { grid-template-columns: repeat(3, 1fr); }
+  .grid-4 { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1080px) {
+  .grid-4 { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* Hero */
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-4);
+  padding: var(--sp-6) 0 var(--sp-5);
+  align-items: center;
+}
+@media (min-width: 960px) {
+  .hero { grid-template-columns: 1fr 1.4fr 1fr; }
+}
+.hero__left  { display: flex; flex-direction: column; gap: var(--sp-3); }
+.hero__mid   { display: flex; flex-direction: column; align-items: center; text-align: center; gap: var(--sp-2); }
+.hero__right { display: flex; flex-direction: column; gap: var(--sp-3); }
+
+.phones {
+  display: flex; gap: var(--sp-2); justify-content: center; margin-top: var(--sp-3);
+}
+
+/* Über uns / Netzwerk */
+.network {
+  display: grid; gap: var(--sp-4);
+  grid-template-columns: 1fr;
+}
+@media (min-width: 960px) { .network { grid-template-columns: 1fr 1fr; } }
+
+/* Features-Sektion: 3 Spalten (Liste | Phone | Text) */
+.features {
+  display: grid; gap: var(--sp-4);
+  grid-template-columns: 1fr;
+}
+@media (min-width: 960px) {
+  .features { grid-template-columns: 1fr 1fr 1.2fr; align-items: center; }
+}
+
+/* Vitrine */
+.vitrine-grid {
+  display: grid; gap: var(--sp-3);
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+}
