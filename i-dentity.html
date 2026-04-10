@@ -9,13 +9,24 @@
   <link rel="stylesheet" href="css/layout.css" />
   <link rel="stylesheet" href="css/components.css" />
   <link rel="stylesheet" href="css/animations.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet" />
 </head>
 <body>
   <header class="nav"><div class="nav__inner">
     <a class="nav__brand" href="index.html">i.appear</a>
-    <nav class="nav__links"><a href="index.html#features">Features</a><a href="index.html#kategorien">Kategorien</a><a href="workflow.html">Leistungen</a><a href="index.html#ueber">Ueber uns</a><a href="kontakt.html">Kontakt</a><a href="index.html#vitrine">Vitrine</a><a href="user-guide.html">User Guide</a></nav>
-    <button class="nav__burger" data-menu-toggle><span></span></button>
+    <nav class="nav__links">
+      <a href="index.html#features">Features</a>
+      <a href="index.html#kategorien">Kategorien</a>
+      <a href="workflow.html">Leistungen</a>
+      <a href="index.html#ueber-uns">Ueber uns</a>
+      <a href="kontakt.html">Kontakt</a>
+      <a href="index.html#vitrine">Vitrine</a>
+      <a href="user-guide.html">User Guide</a>
+    </nav>
+    <button class="nav__burger" data-menu-toggle aria-label="Menue oeffnen"><span></span></button>
   </div></header>
+
   <div id="menu" class="menu"><button class="menu__close" data-menu-close>&times;</button>
     <ul class="menu__list">
       <li><a href="index.html">Startseite</a></li>
@@ -36,37 +47,47 @@
     <header class="page-header container">
       <p class="eyebrow">i.dentity</p>
       <h1 class="c-dentity">Regionale Erlebnisse</h1>
-      <p class="muted">Kultur. Tourismus. Wirtschaft.</p>
+      <p class="muted">Kultur, Tourismus, Wirtschaft</p>
     </header>
 
     <section class="section container">
-      <div class="grid grid-2">
-        <div class="prose">
-          <h2>Was einen Ort ausmacht</h2>
-          <p>i.dentity-Rundgaenge erzaehlen, was eine Region, eine Stadt oder ein Stadtteil einzigartig macht. Fuer Gaeste, fuer Einheimische, fuer Partner aus Kultur, Tourismus und Wirtschaft. Jeder Rundgang ist eine Einladung, die vertraute Umgebung neu zu entdecken.</p>
-        </div>
-        <div class="ph ph--wide">Bild: i.dentity Hero</div>
+      <h2>Region Dornbirn</h2>
+      <div class="grid grid-2" style="margin-top:var(--sp-3)">
+
+        <article class="card">
+          <div class="ph ph--wide">Bild: Sprechender Baum</div>
+          <h3 class="c-dentity">Messepark &ndash; Der sprechende Baum</h3>
+          <p>Der sprechende Baum im Messepark Dornbirn ist eine Kindheitserinnerung fuer viele Menschen in Dornbirn. Ueber Jahre war er verschwunden, einsam in einem Lager, bis er wiedergefunden und neu aufgestellt wurde. Doch die Zeit hatte ihre Spuren hinterlassen, der Baum war zu alt geworden, um sich zu bewegen und zu sprechen wie frueher. Deshalb haben wir ihn als 3D-Modell in die Augmented Reality geholt.</p>
+          <p>Jetzt bewegt er sich wieder, laechelt, erzaehlt seine alten Geschichten und bringt ein Stueck gemeinsamer Erinnerung zurueck in den Alltag. Fuer Kinder gibt es alle Geschichten von frueher auch im Audioguide, ergaenzt durch ein Quiz, das zum Zuhoeren, Mitdenken und Entdecken einlaedt.</p>
+          <a href="https://iappear.app" class="btn btn--dentity">Zum Rundgang &rarr;</a>
+        </article>
+
+        <article class="card">
+          <div class="ph ph--wide">Bild: Innenstadt erleben</div>
+          <h3 class="c-dentity">Innenstadt erleben</h3>
+          <p>An 11 Stationen bekommst du kompakte, gut zugaengliche Einblicke in die Stadt, ihre Geschichte und ihre Besonderheiten, ideal fuer eine erste Stadttour und fuer Tourist:innen oder fuer alle, die i.appear erstmal kennenlernen wollen. Der Rundgang fuehrt dich zu den Hotspots von Dornbirn und verbindet digitales Erkunden mit dem echten Stadterlebnis.</p>
+          <p>Gleichzeitig ist er mit vier weiteren Rundgaengen verknuepft und laedt dazu ein, an manchen Stellen abzubiegen und noch tiefer in einzelne Geschichten hinein-zu-stoebern. Du wechselst spielerisch zwischen App und Strasse, zwischen Zuhoeren und Schauen, zwischen Entdecken, Kaffeetrinken und Bummeln.</p>
+          <a href="https://iappear.app" class="btn btn--dentity">Zum Rundgang &rarr;</a>
+        </article>
+
+        <article class="card">
+          <div class="ph ph--wide">Bild: Oberdorf entdecken</div>
+          <h3 class="c-dentity">Oberdorf entdecken</h3>
+          <p>Mit dem Rundgang &bdquo;Oberdorf entdecken&ldquo; lernst du eine andere, ruhigere Seite von Dornbirn kennen. Aehnlich wie bei &bdquo;Innenstadt erleben&ldquo; fuehrt dich der Rundgang durch den Bezirk, diesmal durch das Oberdorf, einem Stadtteil voller Villen, Geschichten und kleinen Geheimnissen.</p>
+          <p>Du gehst vorbei an einem laengst vergessenen Wehrturm, den du in der Augmented Reality in alter Pracht erlebst. Du bleibst stehen am aeltesten Haus Dornbirns, in dessen Garten heute wie vor hunderten Jahren wieder Wein angebaut wird. Eine Verbindung zu einem anderen Rundgang laedt dich sogleich auf den Zanzenberg ein &mdash; dem besten Aussichtspunkt Dornbirns mit Blick bis zum Bodensee.</p>
+          <a href="https://iappear.app" class="btn btn--dentity">Zum Rundgang &rarr;</a>
+        </article>
+
       </div>
     </section>
 
     <section class="section container">
-      <h2>Region Dornbirn</h2>
+      <h2>Weitere Regionen</h2>
+      <p class="muted">In unseren Regionen findest du an allen Standorten, an denen Rundgaenge angeboten werden, ein uebersichtliches Menue mit Ideen fuer alles, was es rundherum noch zu entdecken gibt. Wir praesentieren die Hotspots der Region! Angefangen bei Seilbahnen und Badeseen ueber Museen bis hin zu Eventlocations oder saisonalen Specials wie Weihnachtsmaerkten und Stadtfesten.</p>
       <div class="grid grid-3" style="margin-top:var(--sp-3)">
-        <article class="card">
-          <div class="ph ph--wide">Bild: Oberdorf</div>
-          <h3>Oberdorf Entdecken</h3>
-          <p class="muted">Das Dornbirner Oberdorf neu erleben – Geschichten, Hoefe, verborgene Ecken.</p>
-        </article>
-        <article class="card">
-          <div class="ph ph--wide">Bild: Innenstadt</div>
-          <h3>Innenstadt Erleben</h3>
-          <p class="muted">Die Dornbirner Innenstadt interaktiv entdecken – Handel, Architektur, Leben.</p>
-        </article>
-        <article class="card">
-          <div class="ph ph--wide">Bild: Buntes Dornbirn</div>
-          <h3>Buntes Dornbirn</h3>
-          <p class="muted">Dornbirn in seinen vielen Facetten – eine Stadt, viele Perspektiven.</p>
-        </article>
+        <article class="card"><h3 class="c-dentity">Bregenz / Hard</h3><p class="muted">Coming soon</p></article>
+        <article class="card"><h3 class="c-dentity">Bregenzerwald / Au</h3><p class="muted">Coming soon</p></article>
+        <article class="card"><h3 class="c-dentity">Feldkirch</h3><p class="muted">Coming soon</p></article>
       </div>
     </section>
 
@@ -76,13 +97,10 @@
   </main>
 
   <footer class="footer"><div class="container">
-    <div class="footer__grid">
-      <div><h4>i.appear</h4><p class="muted">Die Plattform fuer digitale Erlebnisse.</p></div>
-      <div><h4>Kategorien</h4><ul class="stack"><li><a href="i-history.html">i.history</a></li><li><a href="i-dentity.html">i.dentity</a></li><li><a href="i-grow.html">i.grow</a></li></ul></div>
-      <div><h4>Unternehmen</h4><ul class="stack"><li><a href="workflow.html">Workflow</a></li><li><a href="user-guide.html">User Guide</a></li><li><a href="kontakt.html">Kontakt</a></li><li><a href="faqs.html">FAQs</a></li></ul></div>
-      <div><h4>Rechtliches</h4><ul class="stack"><li><a href="impressum.html">Impressum</a></li><li><a href="agb.html">AGB</a></li><li><a href="datenschutz.html">Datenschutz</a></li></ul></div>
+    <div class="footer__bottom">
+      <small>&copy; Marilena Tumler e.U. &ndash; Mozartstrasse 5 | 16, 6850 Dornbirn</small>
+      <a href="index.html" class="back-up-inline">zurueck zur Startseite &rarr;</a>
     </div>
-    <div class="footer__bottom"><small>&copy; Marilena Tumler e.U. – Dornbirn</small></div>
   </div></footer>
 
   <a href="#" class="back-up" data-back-up>&uarr;</a>

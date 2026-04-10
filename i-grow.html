@@ -4,18 +4,29 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>i.grow – Medienbildung | i.appear</title>
-  <meta name="description" content="i.grow – Medienbildung durch eigene Gestaltung. Vom Konsumieren zum Gestalten." />
+  <meta name="description" content="i.grow – Medienbildung mit i.appear: Vom Konsumieren zum Gestalten." />
   <link rel="stylesheet" href="css/global.css" />
   <link rel="stylesheet" href="css/layout.css" />
   <link rel="stylesheet" href="css/components.css" />
   <link rel="stylesheet" href="css/animations.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet" />
 </head>
 <body>
   <header class="nav"><div class="nav__inner">
     <a class="nav__brand" href="index.html">i.appear</a>
-    <nav class="nav__links"><a href="index.html#features">Features</a><a href="index.html#kategorien">Kategorien</a><a href="workflow.html">Leistungen</a><a href="index.html#ueber">Ueber uns</a><a href="kontakt.html">Kontakt</a><a href="index.html#vitrine">Vitrine</a><a href="user-guide.html">User Guide</a></nav>
-    <button class="nav__burger" data-menu-toggle><span></span></button>
+    <nav class="nav__links">
+      <a href="index.html#features">Features</a>
+      <a href="index.html#kategorien">Kategorien</a>
+      <a href="workflow.html">Leistungen</a>
+      <a href="index.html#ueber-uns">Ueber uns</a>
+      <a href="kontakt.html">Kontakt</a>
+      <a href="index.html#vitrine">Vitrine</a>
+      <a href="user-guide.html">User Guide</a>
+    </nav>
+    <button class="nav__burger" data-menu-toggle aria-label="Menue oeffnen"><span></span></button>
   </div></header>
+
   <div id="menu" class="menu"><button class="menu__close" data-menu-close>&times;</button>
     <ul class="menu__list">
       <li><a href="index.html">Startseite</a></li>
@@ -40,40 +51,76 @@
     </header>
 
     <section class="section container">
-      <div class="grid grid-2">
-        <div class="prose">
-          <h2>Selbst gestalten statt nur konsumieren</h2>
-          <p>Bei i.grow werden junge Menschen selbst zu Autor*innen digitaler Rundgaenge. Sie recherchieren, schreiben, fotografieren, vertonen und veroeffentlichen ihre eigene Geschichte ueber ihren Ort. Medienbildung entsteht dabei nicht als Theorie, sondern als praktisches Tun – mit einem Ergebnis, das bleibt.</p>
-          <p>Wir begleiten Schulen, Jugendgruppen und Bildungseinrichtungen durch den gesamten Prozess: von der ersten Idee bis zum fertigen Rundgang auf der i.appear-Plattform.</p>
-        </div>
-        <div class="ph ph--wide">Bild: i.grow Hero</div>
+      <div class="prose">
+        <p>i.grow ist die Bildungsschiene von i.appear und bietet zwei zentrale Ansaetze, um digitale Lernwelten in den Schulalltag zu integrieren und junge Menschen aktiv in Gestaltungsprozesse einzubinden: <strong>Kuratierte Rundgaenge</strong> und <strong>Partizipative Workshops</strong>.</p>
+        <p>Einerseits umfasst i.grow jene Rundgaenge, die direkt von i.appear professionell erstellt wurden und auf Wunsch erstellt werden koennen. Diese digitalen Touren sind speziell fuer den Einsatz im Schulunterricht konzipiert und ermoeglichen einen innovativen Wissenserwerb direkt vor Ort. Um Lehrkraefte bei der Integration in den Lehrplan zu unterstuetzen, werden diese Rundgaenge durch didaktisches Begleitmaterial ergaenzt. So wird die App zu einem mobilen Klassenzimmer.</p>
+        <p>Darueber hinaus bietet i.grow Workshops an, in denen Schuelerinnen und Schueler selbst zu Gestalterinnen und Gestaltern werden. In einem projektbasierten Prozess entwickeln sie eigene Rundgaenge und setzen sich intensiv mit Themen aus ihrem Umfeld auseinander. Schueler:innen erleben Technologie nicht als abstraktes Werkzeug, sondern als Medium, um ihre eigene Perspektive sichtbar zu machen.</p>
       </div>
     </section>
 
     <section class="section container">
-      <h2>Schulprojekte</h2>
-      <div class="grid grid-3" style="margin-top:var(--sp-3)">
+      <h2>Prinzipien Workshops</h2>
+      <div class="grid grid-2" style="margin-top:var(--sp-3)">
+        <article class="card"><h3 class="c-grow">Projektbasierte Workshops</h3><p>Schueler:innen werden hier selbst zu Gestalter:innen. In einem begleiteten Prozess entwickeln sie eigene Rundgaenge und setzen sich intensiv mit Themen aus ihrem unmittelbaren Umfeld auseinander.</p></article>
+        <article class="card"><h3 class="c-grow">Interdisziplinaere Begleitung</h3><p>Das i.appear-Team begleitet diese Prozesse nicht nur gestalterisch, sondern auch fachlich fundiert. Disziplinen: Geografie, Geschichte, Ethik, Philosophie, Psychologie.</p></article>
+        <article class="card"><h3 class="c-grow">Aktive Content-Erstellung</h3><p>In Teams produzieren die Teilnehmenden eigene Inhalte wie Audio-Beitraege, Videos oder AR-Elemente.</p></article>
+        <article class="card"><h3 class="c-grow">Nachhaltige Ergebnissicherung</h3><p>Am Ende steht ein digitaler Rundgang, der dauerhaft fuer Peers und die Oeffentlichkeit zugaenglich bleibt.</p></article>
+      </div>
+    </section>
+
+    <section class="section container">
+      <h2>Prinzipien Rundgaenge</h2>
+      <div class="grid grid-2" style="margin-top:var(--sp-3)">
+        <article class="card"><h3 class="c-grow">Multimediale Tiefe &amp; Immersion</h3><p>3D-Modelle, AR-Elemente und exklusive Audio-Interviews schaffen eine Erlebnisebene, die herkoemmliche Exkursionen nicht bieten koennen.</p></article>
+        <article class="card"><h3 class="c-grow">Fachlich kuratiertes Wissen</h3><p>Saemtliche Inhalte werden von Expert:innen fachlich geprueft.</p></article>
+        <article class="card"><h3 class="c-grow">Nahtlose Integration in den Schulalltag</h3><p>Ohne grossen organisatorischen Vorlauf lassen sich die Rundgaenge direkt in Doppelstunden oder Projekttage integrieren.</p></article>
+        <article class="card"><h3 class="c-grow">Zugang zu verborgenen Orten</h3><p>Die digitale Aufbereitung ermoeglicht den Besuch von Orten, die physisch schwer erreichbar sind.</p></article>
+      </div>
+    </section>
+
+    <section class="section container">
+      <h2>Dornbirn</h2>
+      <div class="grid grid-2" style="margin-top:var(--sp-3)">
         <article class="card">
-          <div class="ph ph--wide">Bild: Platzhalter Projekt</div>
-          <h3>Platzhalter-Projekt</h3>
-          <p class="muted">Beschreibung eines Medienbildungs-Projekts. Details folgen.</p>
+          <div class="ph ph--wide">Bild: hist.appear Schulversion</div>
+          <h3 class="c-grow">hist.appear (Schulversion)</h3>
+          <p>Sende deine Schueler:innen auf eine Zeitreise durch das historische Dornbirn. Entlang einer interaktiven Karte und einem farblich codierten Zeitstrahl kann in unterschiedliche Epochen eingetaucht werden. In den 11 interaktiven Stationen werden die Inhalte multimedial und immersiv erlebbar, direkt dort, wo die Geschichte geschah. Inhaltlich spannt hist.appear einen Bogen von Hexenverfolgungen ueber das Buergertum der spaeten Neuzeit und Industriegeschichte bis hin zu Migration im 20. und 21. Jahrhundert. Ergaenzend stehen Begleitmaterialien zur Verfuegung.</p>
+        </article>
+        <article class="card">
+          <div class="ph ph--wide">Bild: Buntes Dornbirn</div>
+          <h3 class="c-grow">Buntes Dornbirn</h3>
+          <p>Der Ethik-Rundgang &bdquo;Buntes Dornbirn&ldquo; bietet ein Komplettpaket zum Thema der pluralen Gesellschaft. Schueler:innen begegnen Menschen aus unterschiedlichen Generationen und Lebenswelten, hoeren Stimmen aus verschiedenen Bubbles und lernen Geschichten kennen. Der Rundgang laedt dazu ein, Perspektiven zu wechseln. Der Rundgang ist lehrplanbezogen aufgebaut und wird durch ausgearbeitete Stundenbilder und Arbeitsblaetter ergaenzt.</p>
+          <p><em>Wichtig: Nimm Kontakt mit uns auf, damit wir zentrale Stationen fuer dich und deine Schueler:innen freischalten koennen.</em></p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section container">
+      <h2>Feldkirch</h2>
+      <div class="grid grid-2" style="margin-top:var(--sp-3)">
+        <article class="card">
+          <div class="ph ph--wide">Bild: Zusammenwachsen</div>
+          <h3 class="c-grow">Zusammenwachsen</h3>
+          <p>Im Projekt &bdquo;Zusammenwachsen&ldquo; arbeiteten die Schueler:innen der MS Levis rund um die Frage: Was haelt uns zusammen? Und welche Werte teilen wir? Gemeinsam erarbeiteten die Jugendlichen ihre persoenlichen Werte, erzaehlten in Interviews davon, schrieben Geschichten dazu und uebersetzten diese in Bilder, Animationen, Fotos und kurze Filme. So entstand ein Rundgang mit vielen bunten Facetten, getragen von den Stimmen und Erfahrungen der Schueler:innen. Ermoeglicht durch &bdquo;Kunst ist Klasse&ldquo; des Bundesministeriums fuer Kunst und Kultur.</p>
+        </article>
+        <article class="card">
+          <div class="ph ph--wide">Bild: Ein Oktobertag</div>
+          <h3 class="c-grow">Ein Oktobertag</h3>
+          <p>Im i.grow-Projekt &bdquo;Ein Oktobertag&ldquo; arbeiteten die Schueler:innen der MS Oberau zu den Bombenabwuerfen ueber Feldkirch im Jahr 1943. Gemeinsam naeherten wir uns dem Thema des Zweiten Weltkriegs ueber Fragen, Gespraeche, Recherche und kreative Methoden. Fuenf Stationen fuehren nun jung und alt von der Feldkircher Innenstadt zum Antoniushaus. Ermoeglicht durch &bdquo;Kunst ist Klasse&ldquo; des Bundesministeriums fuer Kunst und Kultur und in Zusammenarbeit mit Erika Kronabitter sowie einem Beitrag von Klangkuenstler Arno Oeri.</p>
         </article>
       </div>
     </section>
 
     <section class="section container center">
-      <a href="kontakt.html" class="btn btn--grow">Projekt anfragen &rarr;</a>
+      <a href="kontakt.html" class="btn btn--grow">Workshop anfragen &rarr;</a>
     </section>
   </main>
 
   <footer class="footer"><div class="container">
-    <div class="footer__grid">
-      <div><h4>i.appear</h4><p class="muted">Die Plattform fuer digitale Erlebnisse.</p></div>
-      <div><h4>Kategorien</h4><ul class="stack"><li><a href="i-history.html">i.history</a></li><li><a href="i-dentity.html">i.dentity</a></li><li><a href="i-grow.html">i.grow</a></li></ul></div>
-      <div><h4>Unternehmen</h4><ul class="stack"><li><a href="workflow.html">Workflow</a></li><li><a href="user-guide.html">User Guide</a></li><li><a href="kontakt.html">Kontakt</a></li><li><a href="faqs.html">FAQs</a></li></ul></div>
-      <div><h4>Rechtliches</h4><ul class="stack"><li><a href="impressum.html">Impressum</a></li><li><a href="agb.html">AGB</a></li><li><a href="datenschutz.html">Datenschutz</a></li></ul></div>
+    <div class="footer__bottom">
+      <small>&copy; Marilena Tumler e.U. &ndash; Mozartstrasse 5 | 16, 6850 Dornbirn</small>
+      <a href="index.html" class="back-up-inline">zurueck zur Startseite &rarr;</a>
     </div>
-    <div class="footer__bottom"><small>&copy; Marilena Tumler e.U. – Dornbirn</small></div>
   </div></footer>
 
   <a href="#" class="back-up" data-back-up>&uarr;</a>

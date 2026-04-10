@@ -4,18 +4,29 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>FAQs | i.appear</title>
-  <meta name="description" content="FAQs – i.appear" />
+  <meta name="description" content="Freundlich gefragte Fragen zu i.appear: Nutzung, Technik, Inhalte und Partner." />
   <link rel="stylesheet" href="css/global.css" />
   <link rel="stylesheet" href="css/layout.css" />
   <link rel="stylesheet" href="css/components.css" />
   <link rel="stylesheet" href="css/animations.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet" />
 </head>
 <body>
   <header class="nav"><div class="nav__inner">
     <a class="nav__brand" href="index.html">i.appear</a>
-    <nav class="nav__links"><a href="index.html#features">Features</a><a href="index.html#kategorien">Kategorien</a><a href="workflow.html">Leistungen</a><a href="index.html#ueber">Ueber uns</a><a href="kontakt.html">Kontakt</a><a href="index.html#vitrine">Vitrine</a><a href="user-guide.html">User Guide</a></nav>
-    <button class="nav__burger" data-menu-toggle><span></span></button>
+    <nav class="nav__links">
+      <a href="index.html#features">Features</a>
+      <a href="index.html#kategorien">Kategorien</a>
+      <a href="workflow.html">Leistungen</a>
+      <a href="index.html#ueber-uns">Ueber uns</a>
+      <a href="kontakt.html">Kontakt</a>
+      <a href="index.html#vitrine">Vitrine</a>
+      <a href="user-guide.html">User Guide</a>
+    </nav>
+    <button class="nav__burger" data-menu-toggle aria-label="Menue oeffnen"><span></span></button>
   </div></header>
+
   <div id="menu" class="menu"><button class="menu__close" data-menu-close>&times;</button>
     <ul class="menu__list">
       <li><a href="index.html">Startseite</a></li>
@@ -34,42 +45,90 @@
 
   <main>
     <header class="page-header container">
-      <p class="eyebrow">Fragen & Antworten</p>
       <h1>FAQs</h1>
+      <p class="muted">Freundlich gefragte Fragen</p>
     </header>
 
-    <section class="section container prose" style="max-width:820px">
-      
-      <h2>Haeufig gestellte Fragen</h2>
+    <section class="section container">
+      <h2>Allgemein</h2>
 
-      <h3>Muss ich eine App herunterladen?</h3>
-      <p>Nein. i.appear laeuft direkt im Browser – keine App, keine Registrierung, kein Konto.</p>
+      <details class="info-card" style="margin-bottom:var(--sp-2)">
+        <summary><strong>Was genau ist i.appear?</strong></summary>
+        <p>i.appear ist eine Plattform fuer digitale Stadttouren. Wir verbinden die physische Welt mit digitalen Inhalten, um Orte erlebbar zu machen. Jeder Rundgang besteht aus verschiedenen Stationen mit 3D-Modellen, AR, Audio-Guides, Videos und vielem mehr!</p>
+      </details>
 
-      <h3>Fallen Kosten fuer die Nutzung an?</h3>
-      <p>Nein. Fuer Besucherinnen und Besucher sind alle Rundgaenge kostenlos.</p>
+      <details class="info-card" style="margin-bottom:var(--sp-2)">
+        <summary><strong>Muss ich eine App im Store herunterladen?</strong></summary>
+        <p>Nein. i.appear ist eine progressive Web-App. Du kannst sie direkt ueber den Browser deines Smartphones oeffnen (z.B. via QR-Code vor Ort), ohne Speicherplatz fuer einen Download zu verbrauchen.</p>
+      </details>
 
-      <h3>Funktioniert i.appear auch ohne Internet?</h3>
-      <p>Die Inhalte werden beim ersten Aufruf geladen. Fuer ein fluessiges Erlebnis empfehlen wir eine stabile Internetverbindung.</p>
+      <details class="info-card" style="margin-bottom:var(--sp-2)">
+        <summary><strong>Ist die Nutzung fuer mich kostenlos?</strong></summary>
+        <p>Ja. Fuer Endnutzer ist der Zugang zu den Touren komplett kostenfrei. Die Finanzierung erfolgt durch die jeweiligen Kommunen, Museen oder Unternehmen.</p>
+      </details>
 
-      <h3>Wie entsteht ein eigener Rundgang?</h3>
-      <p>Siehe <a href="workflow.html">Workflow &amp; Leistungen</a>. Von der Idee bis zum fertigen Rundgang begleiten wir den gesamten Prozess.</p>
+      <details class="info-card" style="margin-bottom:var(--sp-2)">
+        <summary><strong>Wo gibt es ueberall Rundgaenge?</strong></summary>
+        <p>Derzeit ueber ganz Vorarlberg verteilt, aber mit Stationen in Deutschland und der Schweiz. Die App ist skalierbar &ndash; wir planen derzeit unsere erste Station auf der Mondrueckseite.</p>
+      </details>
+    </section>
 
-      <h3>Wer steckt hinter i.appear?</h3>
-      <p>Marilena Tumler e.U. in Dornbirn – siehe <a href="impressum.html">Impressum</a>.</p>
+    <section class="section container">
+      <h2>Nutzung &amp; Technik</h2>
 
-      <p class="muted"><em>Platzhalter: Weitere Fragen &amp; Antworten folgen oder werden 1:1 aus der Readymag-Seite uebernommen.</em></p>
+      <details class="info-card" style="margin-bottom:var(--sp-2)">
+        <summary><strong>Warum sind manche Stationen gesperrt?</strong></summary>
+        <p>i.appear ist ortsbasiert. Um eine Station freizuschalten, musst du dich physisch an diesem Ort befinden. Dein GPS erkennt deinen Standort und gibt den Inhalt frei. Einmal entdeckt, kannst du die Inhalte oft auch spaeter von ueberall ansehen.</p>
+      </details>
 
+      <details class="info-card" style="margin-bottom:var(--sp-2)">
+        <summary><strong>Welche Voraussetzungen gibt es?</strong></summary>
+        <p>Du benoetigst lediglich ein Smartphone mit Internetverbindung und aktiviertem GPS. Fuer AR-Inhalte sollte dein Browser Zugriff auf die Kamera und einen integrierten AR-Core haben (eine <a href="https://developers.google.com/ar/devices?hl=de">Liste von Google</a> listet aktuelle Smartphones mit AR-Core auf).</p>
+      </details>
+
+      <details class="info-card" style="margin-bottom:var(--sp-2)">
+        <summary><strong>Was passiert mit meinen Standortdaten?</strong></summary>
+        <p>Dein Standort wird nur verwendet, um Stationen vor Ort freizuschalten. Wir erstellen keine Bewegungsprofile und nutzen die Daten ausschliesslich fuer die Funktionalitaet der Tour. Wir speichern nichts.</p>
+      </details>
+    </section>
+
+    <section class="section container">
+      <h2>Inhalte</h2>
+
+      <details class="info-card" style="margin-bottom:var(--sp-2)">
+        <summary><strong>Was sind die drei Kategorien?</strong></summary>
+        <ul>
+          <li><strong class="c-history">i.history:</strong> Historische Fakten und Rekonstruktionen.</li>
+          <li><strong class="c-dentity">i.dentity:</strong> Kultur, Region, Identitaet.</li>
+          <li><strong class="c-grow">i.grow:</strong> Medienbildung und Demokratie, Bildungsworkshops.</li>
+        </ul>
+      </details>
+
+      <details class="info-card" style="margin-bottom:var(--sp-2)">
+        <summary><strong>Fuer welche Zielgruppe ist i.appear gedacht?</strong></summary>
+        <ul>
+          <li><strong class="c-history">i.history:</strong> Fuer Tourist:innen und interessierte Lokal-Pionier:innen.</li>
+          <li><strong class="c-dentity">i.dentity:</strong> Gleiche Zielgruppe, aber keine Bildungsinhalte, sondern Highlights der Region.</li>
+          <li><strong class="c-grow">i.grow:</strong> Als Schnittstelle fuer Lehrer:innen und Schueler:innen im Bildungskontext.</li>
+        </ul>
+      </details>
+    </section>
+
+    <section class="section container">
+      <h2>Fuer Partner</h2>
+
+      <details class="info-card" style="margin-bottom:var(--sp-2)">
+        <summary><strong>Wie kommt i.appear in unsere Stadt?</strong></summary>
+        <p>Wir bieten Full-Service-Loesungen an &ndash; von der Konzeption ueber 3D-Inhalte bis zur Bereitstellung der Web-App. Kontaktiere uns einfach fuer ein Beratungsgespraech.</p>
+      </details>
     </section>
   </main>
 
   <footer class="footer"><div class="container">
-    <div class="footer__grid">
-      <div><h4>i.appear</h4><p class="muted">Die Plattform fuer digitale Erlebnisse.</p></div>
-      <div><h4>Kategorien</h4><ul class="stack"><li><a href="i-history.html">i.history</a></li><li><a href="i-dentity.html">i.dentity</a></li><li><a href="i-grow.html">i.grow</a></li></ul></div>
-      <div><h4>Unternehmen</h4><ul class="stack"><li><a href="workflow.html">Workflow</a></li><li><a href="user-guide.html">User Guide</a></li><li><a href="kontakt.html">Kontakt</a></li><li><a href="faqs.html">FAQs</a></li></ul></div>
-      <div><h4>Rechtliches</h4><ul class="stack"><li><a href="impressum.html">Impressum</a></li><li><a href="agb.html">AGB</a></li><li><a href="datenschutz.html">Datenschutz</a></li></ul></div>
+    <div class="footer__bottom">
+      <small>&copy; Marilena Tumler e.U. &ndash; Mozartstrasse 5 | 16, 6850 Dornbirn</small>
+      <a href="index.html" class="back-up-inline">zurueck zur Startseite &rarr;</a>
     </div>
-    <div class="footer__bottom"><small>&copy; Marilena Tumler e.U. – Dornbirn</small></div>
   </div></footer>
 
   <a href="#" class="back-up" data-back-up>&uarr;</a>

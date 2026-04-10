@@ -9,13 +9,24 @@
   <link rel="stylesheet" href="css/layout.css" />
   <link rel="stylesheet" href="css/components.css" />
   <link rel="stylesheet" href="css/animations.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet" />
 </head>
 <body>
   <header class="nav"><div class="nav__inner">
     <a class="nav__brand" href="index.html">i.appear</a>
-    <nav class="nav__links"><a href="index.html#features">Features</a><a href="index.html#kategorien">Kategorien</a><a href="workflow.html">Leistungen</a><a href="index.html#ueber">Ueber uns</a><a href="kontakt.html">Kontakt</a><a href="index.html#vitrine">Vitrine</a><a href="user-guide.html">User Guide</a></nav>
+    <nav class="nav__links">
+      <a href="index.html#features">Features</a>
+      <a href="index.html#kategorien">Kategorien</a>
+      <a href="workflow.html">Leistungen</a>
+      <a href="index.html#ueber-uns">Ueber uns</a>
+      <a href="kontakt.html">Kontakt</a>
+      <a href="index.html#vitrine">Vitrine</a>
+      <a href="user-guide.html">User Guide</a>
+    </nav>
     <button class="nav__burger" data-menu-toggle aria-label="Menue oeffnen"><span></span></button>
   </div></header>
+
   <div id="menu" class="menu"><button class="menu__close" data-menu-close>&times;</button>
     <ul class="menu__list">
       <li><a href="index.html">Startseite</a></li>
@@ -40,51 +51,66 @@
     </header>
 
     <section class="section container">
-      <div class="grid grid-2">
-        <div class="prose">
-          <h2>Geschichte direkt am Ort</h2>
-          <p>i.history-Rundgaenge verbinden historische Bilder, Zeitzeugeninterviews, Audio-Guides und Vorher-Nachher-Ansichten zu einem vielschichtigen Erlebnis. Wer einen Ort besucht, taucht direkt in seine Vergangenheit ein – ohne App-Download, einfach im Browser.</p>
-        </div>
-        <div class="ph ph--wide">Bild: i.history Hero</div>
-      </div>
-    </section>
-
-    <!-- Region: Dornbirn -->
-    <section class="section container">
       <h2>Region Dornbirn</h2>
-      <div class="grid grid-3" style="margin-top:var(--sp-3)">
+      <div class="grid grid-2" style="margin-top:var(--sp-3)">
+
         <article class="card">
           <div class="ph ph--wide">Bild: hist.appear</div>
-          <h3>hist.appear</h3>
-          <p class="muted">Historische Rundgaenge durch Dornbirn – Plaetze, Gebaeude und Menschen, die die Stadt gepraegt haben.</p>
+          <h3 class="c-history">hist.appear</h3>
+          <p>Im Rundgang hist.appear begibst du dich auf eine Zeitreise durch das historische Dornbirn. Entlang einer interaktiven Karte und eines farblich codierten Zeitstrahls bewegst du dich durch unterschiedliche Epochen, vom Mittelalter bis in die Gegenwart. An den Stationen oeffnen sich Inhalte auf deinem Smartphone oder Tablet und verbinden Augmented Reality, Bilder, Audio, Zeitzeug:innenberichte, historische Quellen und den realen Stadtraum zu einem immersiven Geschichtserlebnis.</p>
+          <p>hist.appear war der erste Rundgang von i.appear und die Initialzuendung der Plattform. Das didaktische Konzept basiert auf den wissenschaftlichen Erkenntnissen einer Masterarbeit an der Universitaet Wien und verbindet aktuelle AR- und VR-Forschung mit Bildungsansaetzen. Der Rundgang wurde vom Bundesministerium fuer Kunst, Kultur, oeffentlichen Dienst und Sport gefoerdert und in Zusammenarbeit mit der Dornbirner Geschichtswerkstatt umgesetzt.</p>
+          <a href="https://iappear.app" class="btn btn--history">Zum Rundgang &rarr;</a>
         </article>
+
         <article class="card">
           <div class="ph ph--wide">Bild: Stadtspuren</div>
-          <h3>Stadtspuren</h3>
-          <p class="muted">Auf den Spuren der Dornbirner Stadtgeschichte – von den Anfaengen bis heute.</p>
+          <h3 class="c-history">Stadtspuren</h3>
+          <p>Im Rundgang Stadtspuren entdeckst du entlang der Dornbirner Ach und des Muellerbachs die Industrie- und Stadtgeschichte Dornbirns. Als zweiter historischer Rundgang in i.appear ist Stadtspuren mit hist.appear vernetzt und teilt an manchen Orten Stationen, dort, wo sich Raum, Zeit und Themen ueberschneiden. Die Stationen sind digital und physisch im Stadtraum verankert, mit Tafeln, Sitzgelegenheiten und Fahrradabstellplaetzen. Gestaltet von den Saegenvier.</p>
+          <p>Pro Station oeffnen sich zwei Perspektiven: Industrie und Gesellschaft. Die Route fuehrt meist dem Wasser entlang vom Guetle bis ins Forach, vorbei an historischen Bauwerken, restaurierten Maschinen und lebensgrossen Illustrationen von Nikolay Uzunov. Inhaltlich wurde der Rundgang vom Dornbirner Stadtarchiv ausgearbeitet, insbesondere von Werner Matt und Klaus Fessler. Zum Rundgang ist auch ein gleichnamiges Buch erschienen, das es im Stadtarchiv Dornbirn zu erwerben gibt.</p>
+          <a href="https://iappear.app" class="btn btn--history">Zum Rundgang &rarr;</a>
         </article>
-        <article class="card">
-          <div class="ph ph--wide">Bild: 125 Jahre</div>
-          <h3>125 Jahre 125 Bilder</h3>
-          <p class="muted">Ein Bild pro Jahr – 125 Jahre Dornbirn in 125 kuratierten Fotografien.</p>
-        </article>
+
         <article class="card">
           <div class="ph ph--wide">Bild: Frauenspuren</div>
-          <h3>Frauenspuren</h3>
-          <p class="muted">Frauen, die Dornbirn gepraegt haben – oft vergessen, jetzt wieder sichtbar.</p>
+          <h3 class="c-history">Frauenspuren</h3>
+          <p>Ab Mai 2026 erzaehlt der Rundgang Frauenspuren die Frauengeschichte der letzten 300 Jahre in Dornbirn. An jeder Station begegnest du einer Frau, die stellvertretend fuer viele andere steht &ndash; von der Widerstandskaempferin ueber die erste Aerztin Vorarlbergs bis hin zur Sozialdemokratin und zur NS-Taeterin. So werden sehr unterschiedliche Lebensrealitaeten sichtbar.</p>
+          <p>Die Inhalte basieren auf dem Buch Frauenspuren von Roswitha Fessler aus der Reihe &bdquo;Dornbirner Schriften&ldquo;. Die portraetierten Frauen sind jeweils mit den Haeusern verbunden, vor denen die Stationen platziert sind, und ihre Geschichten werden direkt im Stadtraum verankert. Die Illustrationen stammen von Lisa Althaus, der Audioguide ist auf Deutsch und Englisch verfuegbar.</p>
+          <span class="btn">Coming soon</span>
+        </article>
+
+        <article class="card">
+          <div class="ph ph--wide">Bild: 125 Jahre 125 Bilder</div>
+          <h3 class="c-history">125 Jahre &ndash; 125 Bilder</h3>
+          <p>2026 feiert Dornbirn sein 125-jaehriges Stadterhebungsjubilaeum. Im Mai erscheint der Rundgang &bdquo;125 Jahre &ndash; 125 Bilder&ldquo;. Ueber das gesamte Stadtgebiet verteilt erzaehlen 125 Bilder Geschichten aus dem Alltag der Menschen und machen sichtbar, wie sich Dornbirn in den letzten 125 Jahren veraendert hat.</p>
+          <p>Im Mittelpunkt stehen Nachbarschaften, Orte und persoenliche Perspektiven jenseits der Innenstadt. Du begegnest Geschichten dort, wo du sie vielleicht nicht erwartet haettest, und erfaehrst, welche Menschen hier gelebt haben und leben und welche Ereignisse die Stadt gepraegt haben. Der Rundgang ist mit den anderen i.appear-Rundgaengen vernetzt und wird Teil eines wachsenden Netzwerks.</p>
+          <span class="btn">Coming soon</span>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="section container">
+      <h2>Au im Bregenzerwald</h2>
+      <div class="grid grid-2" style="margin-top:var(--sp-3)">
+        <article class="card">
+          <div class="ph ph--wide">Bild: Barockbaumeister</div>
+          <h3 class="c-history">Barockbaumeister</h3>
+          <p>Barockbaumeister Franz Beer fuehrt dich auf einem Spaziergang von Au im Bregenzerwald ueber Bregenz, Konstanz und Rheinau bis zurueck nach Bezau, wo sein Leben vor rund 300 Jahren endete. Als Erzaehler begleitet er dich durch den Rundgang und erzaehlt von seiner Herkunft, seiner Lehrzeit, seinen Reisen und seinem Wirken im Bodenseeraum. So entsteht eine Reise durch Baukultur, Biografien und Orte, die Geschichte persoenlich erfahrbar macht.</p>
+          <p>Der Rundgang entstand im Rahmen des Forschungsprojekts Digital In&amp;Out. In Zusammenarbeit mit dem vorarlberg museum, der Universitaet Konstanz, dem Barockbaumeister Museum in Au und dem Fachbereich Gestaltung der Fachhochschule Vorarlberg wurde er als Vermittlungskontext entwickelt.</p>
+          <a href="https://iappear.app" class="btn btn--history">Zum Rundgang &rarr;</a>
         </article>
       </div>
     </section>
 
-    <!-- Region: Au / Bregenzerwald -->
     <section class="section container">
-      <h2>Weitere Regionen</h2>
-      <p class="muted">Weitere Rundgaenge in Au, im Bregenzerwald und anderen Regionen folgen.</p>
-      <div class="grid grid-3" style="margin-top:var(--sp-3)">
+      <h2>Hard am Bodensee</h2>
+      <div class="grid grid-2" style="margin-top:var(--sp-3)">
         <article class="card">
-          <div class="ph ph--wide">Bild: Platzhalter</div>
-          <h3>Platzhalter-Rundgang</h3>
-          <p class="muted">Beschreibung folgt.</p>
+          <div class="ph ph--wide">Bild: See Runde</div>
+          <h3 class="c-history">See Runde</h3>
+          <p>In der See Runde in Hard begibst du dich entlang des Bodenseeufers auf eine Reise durch die letzten zwei Jahrhunderte der Gemeinde. Acht Stationen fuehren durch den Ort, ergaenzt durch unsichtbare Stationen, die erst in deiner Naehe sichtbar werden. Erzaehlt wird vom ehemaligen Armenhaus mit Gehoeft, vom Alltag der Aermsten, von Geburtenstation und Sezierhaus &ndash; begleitet vom Strassenkehrer Fiffi, einem echten Harder Original.</p>
+          <p>Die See Runde verbindet reale Schauplaetze mit digitalen Erzaehlungen und macht lokale Geschichte im Stadtraum erfahrbar. Entstanden ist ein Rundgang, der Vergangenheit und Gegenwart zusammenfuehrt und zeigt, wie Erinnerung lebendig bleibt &ndash; generationenuebergreifend und nah an den Menschen.</p>
+          <a href="https://iappear.app" class="btn btn--history">Zum Rundgang &rarr;</a>
         </article>
       </div>
     </section>
@@ -95,13 +121,10 @@
   </main>
 
   <footer class="footer"><div class="container">
-    <div class="footer__grid">
-      <div><h4>i.appear</h4><p class="muted">Die Plattform fuer digitale Erlebnisse.</p></div>
-      <div><h4>Kategorien</h4><ul class="stack"><li><a href="i-history.html">i.history</a></li><li><a href="i-dentity.html">i.dentity</a></li><li><a href="i-grow.html">i.grow</a></li></ul></div>
-      <div><h4>Unternehmen</h4><ul class="stack"><li><a href="workflow.html">Workflow</a></li><li><a href="user-guide.html">User Guide</a></li><li><a href="kontakt.html">Kontakt</a></li><li><a href="faqs.html">FAQs</a></li></ul></div>
-      <div><h4>Rechtliches</h4><ul class="stack"><li><a href="impressum.html">Impressum</a></li><li><a href="agb.html">AGB</a></li><li><a href="datenschutz.html">Datenschutz</a></li></ul></div>
+    <div class="footer__bottom">
+      <small>&copy; Marilena Tumler e.U. &ndash; Mozartstrasse 5 | 16, 6850 Dornbirn</small>
+      <a href="index.html" class="back-up-inline">zurueck zur Startseite &rarr;</a>
     </div>
-    <div class="footer__bottom"><small>&copy; Marilena Tumler e.U. – Dornbirn</small></div>
   </div></footer>
 
   <a href="#" class="back-up" data-back-up>&uarr;</a>

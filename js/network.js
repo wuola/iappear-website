@@ -98,21 +98,45 @@
     }
     viz.appendChild(svg);
 
-    // Nodes als DIV oben drauf
+    // Nodes als quadratische Kachel mit Hintergrundbild + Target-Icon + Name
     nodes.forEach((n, i) => {
       const node = document.createElement('div');
       node.className = 'network-viz__node';
-      node.textContent = n.titel;
-      node.style.left = (points[i].x - 46) + 'px';
-      node.style.top  = (points[i].y - 46) + 'px';
+      node.style.left = (points[i].x - 55) + 'px';
+      node.style.top  = (points[i].y - 55) + 'px';
       node.style.borderColor = n.farbe;
-      node.style.color = n.farbe;
+      // Hintergrundbild (Platzhalter via dashed pattern bleibt sonst bestehen)
+      if (n.bild) {
+        node.style.backgroundImage = 'url(' + n.bild + ')';
+        node.style.backgroundSize = 'cover';
+        node.style.backgroundPosition = 'center';
+      }
+      // Target-Icon oben
+      const icon = document.createElement('img');
+      icon.src = 'assets/svg/targets/target-weiss.svg';
+      icon.alt = '';
+      icon.className = 'network-viz__node-icon';
+      node.appendChild(icon);
+      // Name unten
+      const label = document.createElement('span');
+      label.className = 'network-viz__node-label';
+      label.textContent = n.titel;
+      label.style.color = '#fff';
+      node.appendChild(label);
       if (!reduceMotion) {
         node.style.animationDelay = (i * 0.35) + 's';
         node.classList.add('is-floating');
       }
       viz.appendChild(node);
     });
+
+    // Mittel-Label "BEISPIEL DORNBIRN"
+    const center = document.createElement('div');
+    center.className = 'network-viz__center';
+    center.textContent = 'Beispiel Dornbirn';
+    center.style.left = (cx - 100) + 'px';
+    center.style.top  = (cy - 16) + 'px';
+    viz.appendChild(center);
   }
 
   render();

@@ -4,18 +4,29 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>User Guide | i.appear</title>
-  <meta name="description" content="So funktionieren i.appear Rundgaenge – kurz erklaert." />
+  <meta name="description" content="So nutzt du i.appear: Schritt fuer Schritt durch die Web-App." />
   <link rel="stylesheet" href="css/global.css" />
   <link rel="stylesheet" href="css/layout.css" />
   <link rel="stylesheet" href="css/components.css" />
   <link rel="stylesheet" href="css/animations.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet" />
 </head>
 <body>
   <header class="nav"><div class="nav__inner">
     <a class="nav__brand" href="index.html">i.appear</a>
-    <nav class="nav__links"><a href="index.html#features">Features</a><a href="index.html#kategorien">Kategorien</a><a href="workflow.html">Leistungen</a><a href="index.html#ueber">Ueber uns</a><a href="kontakt.html">Kontakt</a><a href="index.html#vitrine">Vitrine</a><a href="user-guide.html">User Guide</a></nav>
-    <button class="nav__burger" data-menu-toggle><span></span></button>
+    <nav class="nav__links">
+      <a href="index.html#features">Features</a>
+      <a href="index.html#kategorien">Kategorien</a>
+      <a href="workflow.html">Leistungen</a>
+      <a href="index.html#ueber-uns">Ueber uns</a>
+      <a href="kontakt.html">Kontakt</a>
+      <a href="index.html#vitrine">Vitrine</a>
+      <a href="user-guide.html">User Guide</a>
+    </nav>
+    <button class="nav__burger" data-menu-toggle aria-label="Menue oeffnen"><span></span></button>
   </div></header>
+
   <div id="menu" class="menu"><button class="menu__close" data-menu-close>&times;</button>
     <ul class="menu__list">
       <li><a href="index.html">Startseite</a></li>
@@ -34,52 +45,42 @@
 
   <main>
     <header class="page-header container">
-      <p class="eyebrow">So geht i.appear</p>
       <h1>User Guide</h1>
+      <p class="muted">Wie funktioniert i.appear?</p>
     </header>
 
-    <section class="section container">
-      <h2>Short Guide</h2>
-      <div class="grid grid-4" style="margin-top:var(--sp-3)">
-        <article class="card">
-          <h3>1. Rundgang oeffnen</h3>
-          <p class="muted">Link oder QR-Code scannen. Kein App-Download noetig.</p>
-        </article>
-        <article class="card">
-          <h3>2. Station waehlen</h3>
-          <p class="muted">Auf der Karte eine Station antippen oder einfach vor Ort starten.</p>
-        </article>
-        <article class="card">
-          <h3>3. Inhalt erleben</h3>
-          <p class="muted">Lesen, hoeren, schauen – alles laeuft direkt im Browser.</p>
-        </article>
-        <article class="card">
-          <h3>4. Weiterziehen</h3>
-          <p class="muted">Zur naechsten Station – bis alle Stationen erkundet sind.</p>
-        </article>
-      </div>
-    </section>
-
     <section class="section container prose">
-      <h2>Ausfuehrlicher Guide</h2>
-      <h3>Technik-Voraussetzungen</h3>
-      <p>i.appear laeuft auf jedem aktuellen Smartphone mit Browser. Fuer AR-Features wird die Kamera benoetigt, fuer Audio-Features ein Kopfhoerer oder Lautsprecher. Eine stabile Internetverbindung macht das Erlebnis fluessiger.</p>
-      <h3>Ohne App, ohne Konto</h3>
-      <p>Es gibt bewusst keine App und keine Registrierung. Alles laeuft direkt im Browser – ohne Werbung, ohne Tracking, ohne Huerden.</p>
-      <h3>Tipps vor Ort</h3>
-      <p>Bei Sonnenlicht hilft ein Sonnenschutz fuer den Bildschirm. Fuer Audio-Inhalte empfehlen wir Kopfhoerer. Wer nicht vor Ort ist, kann viele Inhalte auch von zuhause aus erkunden.</p>
-      <p class="muted"><em>Platzhalter: Hier kommt der ausfuehrliche Text von der Readymag-Seite.</em></p>
+      <h2>Short Guide</h2>
+      <p>Zuerst besuchst du die Web-App <a href="https://www.iappear.app">www.iappear.app</a>. Es gibt zwei Wege, die du gehen kannst: ueber die <strong>Karte</strong> oder ueber den <strong>Koffer-Modus</strong>.</p>
+
+      <ol class="grid grid-2" style="list-style:none; padding:0; margin-top:var(--sp-3); gap:var(--sp-3)">
+        <li class="card">
+          <h3>1. Region oder Standort auswaehlen</h3>
+          <p>Waehle die Region, in der du dich gerade befindest, oder lass i.appear deinen Standort erkennen.</p>
+        </li>
+        <li class="card">
+          <h3>2. Zwischen Karte und Station navigieren</h3>
+          <p>Auf der Karte siehst du alle Stationen rund um dich. Tippe eine Station an, um sie zu oeffnen.</p>
+        </li>
+        <li class="card">
+          <h3>3. Station auswaehlen</h3>
+          <p>An der Station angekommen, wird sie automatisch freigeschaltet. Du kannst nun die Inhalte erleben.</p>
+        </li>
+        <li class="card">
+          <h3>4. Inhalt auswaehlen</h3>
+          <p>Audio, Bilder, Videos, 3D-Modelle, AR &ndash; tippe auf das Element, das dich interessiert, und tauche ein.</p>
+        </li>
+      </ol>
+
+      <p style="margin-top:var(--sp-4)">Du brauchst ein Smartphone mit Internetverbindung und aktiviertem GPS. Fuer AR-Inhalte: Kamera-Zugriff im Browser erlauben.</p>
     </section>
   </main>
 
   <footer class="footer"><div class="container">
-    <div class="footer__grid">
-      <div><h4>i.appear</h4><p class="muted">Die Plattform fuer digitale Erlebnisse.</p></div>
-      <div><h4>Kategorien</h4><ul class="stack"><li><a href="i-history.html">i.history</a></li><li><a href="i-dentity.html">i.dentity</a></li><li><a href="i-grow.html">i.grow</a></li></ul></div>
-      <div><h4>Unternehmen</h4><ul class="stack"><li><a href="workflow.html">Workflow</a></li><li><a href="user-guide.html">User Guide</a></li><li><a href="kontakt.html">Kontakt</a></li><li><a href="faqs.html">FAQs</a></li></ul></div>
-      <div><h4>Rechtliches</h4><ul class="stack"><li><a href="impressum.html">Impressum</a></li><li><a href="agb.html">AGB</a></li><li><a href="datenschutz.html">Datenschutz</a></li></ul></div>
+    <div class="footer__bottom">
+      <small>&copy; Marilena Tumler e.U. &ndash; Mozartstrasse 5 | 16, 6850 Dornbirn</small>
+      <a href="index.html" class="back-up-inline">zurueck zur Startseite &rarr;</a>
     </div>
-    <div class="footer__bottom"><small>&copy; Marilena Tumler e.U. – Dornbirn</small></div>
   </div></footer>
 
   <a href="#" class="back-up" data-back-up>&uarr;</a>
