@@ -139,6 +139,7 @@
 
 /* --- Feature-Liste -------------------------------------------------------- */
 .feature-list li {
+  display: flex; align-items: center; gap: .8em;
   padding: .6em 0;
   border-bottom: 1px solid rgba(255,255,255,.1);
   cursor: pointer;
@@ -148,6 +149,26 @@
 .feature-list li.is-active,
 .feature-list li:hover { opacity: 1; padding-left: .4em; }
 .feature-list li.is-active { border-left: 2px solid var(--c-text); padding-left: .6em; }
+.feature-list__icon {
+  flex: 0 0 auto;
+  width: 32px; height: 32px;
+  display: inline-block;
+  opacity: .85;
+}
+img.feature-list__icon { object-fit: contain; }
+span.feature-list__icon {
+  border: 1px dashed rgba(255,255,255,.25);
+  border-radius: 50%;
+}
+
+/* --- Hero-Logo ------------------------------------------------------------ */
+.hero__logo {
+  width: 100%;
+  max-width: 120px;
+  height: auto;
+  display: block;
+  margin: 0 auto var(--sp-2);
+}
 
 /* --- Netzwerk-Visualisierung (Grob-Platzhalter) --------------------------- */
 .network-viz {
