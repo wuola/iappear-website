@@ -1,7 +1,8 @@
 🌐 iappear.at – Website Rebuild Projektdokumentation
 
-Status: Setup läuft
+Status: In Arbeit (Grundgerüst steht, Inhalte gefüllt)
 Gestartet: März 2026
+Stand: April 2026
 Ziel: Vollständiger Rebuild der iappear.at Website als statisches HTML/CSS/JS-Projekt mit GitHub Pages Hosting
 
 ## 🧩 Ausgangslage & Problem
@@ -16,150 +17,174 @@ Die aktuelle Website iappear.at wurde mit Readymag (Personal Plan) gebaut. Ready
 **Lösung:**
 Rebuild als statisches HTML/CSS/JS Projekt → Hosting auf GitHub Pages (kostenlos)
 
-## 🗂️ Seitenstruktur (korrekt!)
+## 🔒 Hard Constraints
+
+- KEIN Publish auf iappear.at — die Domain bleibt vorerst beim Readymag-Original
+- Die bestehende Readymag-Seite NICHT anfassen
+- Innerhalb des Repos volle Autonomie für alle anderen Entscheidungen
+
+## 🗂️ Seitenstruktur
 
 **Startseite (index.html) – EINE lange Scroll-Seite mit folgenden Sektionen:**
-- Hero (Logo, Claim, App-Mockup, Kategorie-Links)
-- Über uns / Was macht i.appear besonders?
-- Netzwerk-Visualisierung (verbundene Rundgang-Nodes)
-- Kategorien (i.history, i.identity, i.grow – als Teaser)
-- Features (Liste der App-Features)
-- Vitrine (Kacheln – ✏️ wird regelmäßig erweitert)
+1. Navigation (fixiert)
+2. Hero (Target-Icon + i.appear-Serif + Lorbeerzweige + Phones + Awards + Kategorie-Links)
+3. Über uns / Netzwerk-Visualisierung
+4. Kategorien (i.history, i.dentity, i.grow – Teaser mit Target-Icons + Langtext)
+5. Features (14 Multimedia-Features mit Phone-Preview)
+6. Vitrine (14 Kacheln – ✏️ wird regelmäßig erweitert)
+7. Über uns Sektion (Bios + Kontaktformular)
+8. Footer (Quicklinks + Kontakt + Partner-Logos)
 
 **Unterseiten (je eigene HTML-Datei):**
 
-| Seite | Datei | ✏️ Editierbar? |
-|-------|-------|----------------|
-| i.history | i-history.html | ✅ Rundgänge werden erweitert |
-| i.identity | i-identity.html | ✅ Rundgänge werden erweitert |
-| i.grow | i-grow.html | ✅ Rundgänge werden erweitert |
-| Leistungen & Workflow | leistungen.html | selten |
-| User Guide | user-guide.html | selten |
-| Kontakt | kontakt.html | selten |
-| FAQs | faqs.html | selten |
-| Datenschutz | datenschutz.html | selten |
-| AGB | agb.html | selten |
-| Impressum | impressum.html | selten |
+| Seite | Datei | ✏️ Editierbar? | Status |
+|-------|-------|----------------|--------|
+| i.history | i-history.html | ✅ Rundgänge werden erweitert | ✅ Inhalte da |
+| i.dentity | i-dentity.html | ✅ Rundgänge werden erweitert | ✅ Inhalte da |
+| i.grow | i-grow.html | ✅ Rundgänge werden erweitert | ✅ Inhalte da |
+| Workflow & Leistungen | workflow.html | selten | ✅ Inhalte da |
+| User Guide | user-guide.html | selten | ✅ Short Guide |
+| Kontakt | kontakt.html | selten | ✅ Inhalte da |
+| FAQs | faqs.html | selten | ✅ 10 echte FAQs |
+| Impressum | impressum.html | selten | ✅ Inhalte da |
+| AGB | agb.html | selten | 🔲 Stub (Volltext folgt) |
+| Datenschutz | datenschutz.html | selten | 🔲 Stub (Volltext folgt) |
 
 ## ✏️ Regelmäßig zu aktualisierende Bereiche
 
-Diese 4 Bereiche werden als einfach editierbare Datenlisten gebaut:
+Diese 4 Bereiche werden als einfach editierbare Datenlisten gepflegt:
 
-1. **Vitrine** (Startseite, Sektion "Vitrine") – neue Kacheln/Projekte
-2. **i.history** – neue Rundgänge
-3. **i.identity** – neue Rundgänge
-4. **i.grow** – neue Rundgänge
+1. **Vitrine** (Startseite, Sektion "Vitrine") – `js/data/vitrine.js`
+2. **i.history** Rundgänge – `js/data/rundgaenge.js` (Knoten `history`)
+3. **i.dentity** Rundgänge – `js/data/rundgaenge.js` (Knoten `dentity`)
+4. **i.grow** Rundgänge – `js/data/rundgaenge.js` (Knoten `grow`)
 
 **Prinzip:**
 
 ```javascript
-// ✏️ NUR HIER BEARBEITEN – neue Kachel einfach hinzufügen:
-const RUNDGAENGE = [
+// HIER BEARBEITEN – neuen Eintrag einfach hinzufügen:
+window.IAPPEAR_VITRINE = [
   {
-    titel: "hist.appear",
-    bild: "assets/images/hist-appear.jpg",
-    beschreibung: "Zeitreise durch Dornbirn",
+    titel: "Mein neuer Eintrag",
+    text: "Beschreibung hier rein.",
     link: "#"
   },
-  // ↑ neue Einträge hier nach diesem Muster einfügen
+  // ↑ neue Einträge nach diesem Muster einfügen
 ]
 ```
 
+Beide Daten-Files haben am Anfang einen kommentierten `HIER BEARBEITEN`-Block mit Anleitung.
+
 ## 🎨 Design
 
-- **Hintergrund:** Schwarz / sehr dunkel
-- **Text:** Weiß / hellgrau
-- **Akzentfarbe:** Gold/Gelb (für Links, Highlights)
-- **Schlüsselelement:** Netzwerk-Visualisierung mit verbundenen Rundgang-Nodes
-- **Animationen:** SVG-Snippets vorhanden (von Gemini erstellt) ✅
-- **Assets:** Alle Bilder, Illustrationen, Videos vorhanden ✅
+- **Hintergrund:** #000 / #0a0a0a
+- **Text:** #ffffff / #e0e0e0
+- **Kategoriefarben:**
+  - i.history Gold: `#D3A54A`
+  - i.dentity Blau: `#769CA2`
+  - i.grow Grün: `#8E9F6A`
+- **Schrift:** Roboto (Sans) + Serif-Stack
+- **Animationen:** SVG-Snippets vorhanden (assets/svg/)
 
 ## 🔧 Technischer Stack
 
 | Element | Technologie |
 |---------|-------------|
 | Markup | HTML5 |
-| Styling | CSS3 |
+| Styling | CSS3 (global / layout / components / animations) |
 | Interaktivität | Vanilla JavaScript |
-| Animationen | SVG (bestehende Snippets) |
-| Netzwerk-Visualisierung | SVG + JS |
+| Animationen | SVG + CSS Keyframes |
+| Netzwerk-Visualisierung | SVG + JS (`js/network.js`) |
 | Hosting | GitHub Pages |
 | Deployment | Automatisch bei Push auf main |
 
-## 📁 Korrekte Ordnerstruktur
+## 📁 Ordnerstruktur
 
 ```
 iappear-website/
 │
 ├── index.html              ← Startseite (lange Scroll-Seite)
-├── i-history.html          ← Unterseite
-├── i-identity.html         ← Unterseite
-├── i-grow.html             ← Unterseite
-├── leistungen.html         ← Unterseite
-├── user-guide.html         ← Unterseite
-├── kontakt.html            ← Unterseite
-├── faqs.html               ← Unterseite
-├── datenschutz.html        ← Unterseite
-├── agb.html                ← Unterseite
-├── impressum.html          ← Unterseite
+├── i-history.html
+├── i-dentity.html
+├── i-grow.html
+├── workflow.html
+├── user-guide.html
+├── kontakt.html
+├── faqs.html
+├── impressum.html
+├── agb.html
+├── datenschutz.html
 │
-├── llms.txt                ← LLM-Lesbarkeit
 ├── CLAUDE.md               ← Kontext für Claude Code (auto-gelesen!)
 │
 ├── css/
 │   ├── global.css          ← Farben, Typo, Reset
-│   ├── components.css      ← Navigation, Cards, Buttons
-│   └── animations.css      ← SVG-Animationen
+│   ├── layout.css          ← Grids, Sektionen, Breakpoints
+│   ├── components.css      ← Navigation, Cards, Buttons, Footer ...
+│   └── animations.css      ← SVG-Animationen + Reveal
 │
 ├── js/
 │   ├── data/
 │   │   ├── vitrine.js      ← ✏️ Vitrine-Kacheln bearbeiten
 │   │   └── rundgaenge.js   ← ✏️ Rundgänge bearbeiten
+│   ├── main.js
 │   ├── network.js          ← Netzwerk-Visualisierung
-│   └── main.js
+│   └── features.js
 │
-└── assets/
-    ├── images/
-    ├── videos/
-    ├── svg/                ← Animations-Snippets
-    └── fonts/
+├── assets/
+│   ├── svg/
+│   │   ├── icons/
+│   │   ├── logos/
+│   │   ├── targets/
+│   │   ├── buttons/
+│   │   └── dots/
+│   └── (img/, video/, fonts/ — folgen)
+│
+└── _doku/
+    ├── projektdoku.md
+    └── recon/              ← Recon-Notizen aus iappear.at (Quelltexte)
 ```
 
 ## 📅 Session-Plan
 
-### ✅ Session 0 (Setup)
+### ✅ Session 0 (Setup) — abgeschlossen
 - Obsidian Git Plugin installiert
-- GitHub Desktop installiert
 - GitHub Repository iappear-website angelegt
 - GitHub Pages aktiviert
 - Repository lokal geklont
 - Claude Code-Tab mit Ordner verbunden
 - CLAUDE.md angelegt
 
-### Session 1 – Startseite
-- Navigation + Footer (werden auf allen Seiten wiederverwendet)
-- Hero-Bereich
-- Über uns / Was macht i.appear besonders?
-- Netzwerk-Visualisierung
+### ✅ Session 1 — Startseite — abgeschlossen
+- Navigation + Footer
+- Hero (Target + i.appear + Lorbeerzweige)
+- Über uns / Netzwerk-Visualisierung
+- Kategorien-Sektion
 - Features-Liste
-- Vitrine (mit editierbarem Datensystem)
+- Vitrine (mit editierbarem Datensystem, 14 Einträge)
+- Über uns Sektion mit Bios + Kontaktformular
 
-### Session 2 – Kategorie-Unterseiten
-- i.history (mit editierbarem Rundgang-System)
-- i.identity
-- i.grow
+### ✅ Session 2 — Kategorie-Unterseiten — abgeschlossen
+- i-history (hist.appear, Stadtspuren, Frauenspuren, 125 Jahre, Barockbaumeister, See Runde)
+- i-dentity (Sprechender Baum, Innenstadt erleben, Oberdorf entdecken)
+- i-grow (Intro + Workshop-/Rundgang-Prinzipien + 4 Schulprojekte)
 
-### Session 3 – Weitere Unterseiten
-- Leistungen & Workflow
-- User Guide
-- Kontakt (mit Formular)
+### ✅ Session 3 — Weitere Unterseiten — abgeschlossen
+- Workflow (Auftakt + Leistungen + 5-Schritt-Prozess)
+- User Guide (Short Guide)
+- Kontakt (Texte + Adresse + Formular)
 
-### Session 4 – Rechtliches & Feinschliff
-- FAQs, Datenschutz, AGB, Impressum
-- Mobile Responsiveness
-- SEO Meta-Tags
+### 🔲 Session 4 — Rechtliches & Feinschliff — teilweise
+- ✅ FAQs (10 echte FAQs)
+- ✅ Impressum (echte Firmen-Daten)
+- 🔲 AGB (Stub, Volltext fehlt)
+- 🔲 Datenschutz (Stub, Volltext fehlt)
+- 🔲 Mobile Responsiveness Feinschliff
+- 🔲 SEO Meta-Tags vervollständigen
 
-### Session 5 – Launch
+### 🔲 Session 5 — Launch — noch offen
+- Echte Bilder einbauen (Vitrine, Kategorien, Hero-Phones, Team-Fotos, Partner-Logos)
+- Lorbeerzweig + Awards Animation einbauen
 - llms.txt erstellen
 - Performance-Check
 - Domain iappear.at auf GitHub Pages umleiten
@@ -169,17 +194,22 @@ iappear-website/
 
 | Was | Info |
 |-----|------|
-| Aktuelle Website | https://iappear.at |
+| Aktuelle Live-Website (Readymag) | https://iappear.at |
 | Domain-Registrar | united-domains.de (Nameserver: ns.udag.de) |
-| GitHub Repository | noch anzulegen |
-| GitHub Pages URL | https://[username].github.io/iappear-website |
+| GitHub Repository | https://github.com/wuola/iappear-website |
+| GitHub Pages URL | https://wuola.github.io/iappear-website |
 
 ## 📝 Session-Notizen
 
-### Session 0 – Setup (03.03.2026)
+### Session 0 — Setup (03.03.2026)
 - Readymag CSR-Problem identifiziert
 - Entscheidung: Rebuild als statisches HTML/CSS/JS Projekt
 - GitHub Desktop installiert, Obsidian Git Plugin installiert
 - Korrekte Seitenstruktur geklärt: 1 lange Startseite + 10 Unterseiten
 
-**Weiter:** GitHub Repository anlegen → Clone → Claude Code verbinden
+### Sessions 1-3 — Inhalte (April 2026)
+- Recon-Phase: Live iappear.at via Chrome-Extension besucht, Texte aller Sektionen und Subpages über `get_page_text` extrahiert
+- Recon-Notizen unter `_doku/recon/startseite-notes.md` und `_doku/recon/unterseiten-notes.md`
+- Startseite vom alten Grob-Bau auf Recon-Inhalte umgestellt (Hero, Kategorien, Netzwerk-Nodes, Vitrine, Über uns, Footer)
+- Alle Subpages mit echten Texten aus der Live-Site gefüllt
+- Daten-Files (vitrine.js, rundgaenge.js) mit echten Inhalten befüllt + klar kommentiert für nicht-technische Pflege
