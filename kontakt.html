@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kontakt | i.appear</title>
+  <meta name="description" content="Kontakt zu i.appear – Marilena Tumler e.U. in Dornbirn." />
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+</head>
+<body>
+  <header class="nav"><div class="nav__inner">
+    <a class="nav__brand" href="index.html">i.appear</a>
+    <nav class="nav__links"><a href="index.html#features">Features</a><a href="index.html#kategorien">Kategorien</a><a href="workflow.html">Leistungen</a><a href="index.html#ueber">Ueber uns</a><a href="kontakt.html">Kontakt</a><a href="index.html#vitrine">Vitrine</a><a href="user-guide.html">User Guide</a></nav>
+    <button class="nav__burger" data-menu-toggle><span></span></button>
+  </div></header>
+  <div id="menu" class="menu"><button class="menu__close" data-menu-close>&times;</button>
+    <ul class="menu__list">
+      <li><a href="index.html">Startseite</a></li>
+      <li><a href="i-history.html" class="c-history">i.history</a></li>
+      <li><a href="i-dentity.html" class="c-dentity">i.dentity</a></li>
+      <li><a href="i-grow.html" class="c-grow">i.grow</a></li>
+      <li><a href="workflow.html">Workflow</a></li>
+      <li><a href="user-guide.html">User Guide</a></li>
+      <li><a href="kontakt.html">Kontakt</a></li>
+      <li><a href="faqs.html">FAQs</a></li>
+      <li><a href="agb.html">AGB</a></li>
+      <li><a href="impressum.html">Impressum</a></li>
+      <li><a href="datenschutz.html">Datenschutz</a></li>
+    </ul>
+  </div>
+
+  <main>
+    <header class="page-header container">
+      <p class="eyebrow">Sprich uns an</p>
+      <h1>Kontakt</h1>
+      <p class="muted">Wir freuen uns auf dein Projekt.</p>
+    </header>
+
+    <section class="section container">
+      <div class="grid grid-2">
+
+        <div class="prose">
+          <h2>Lass uns reden</h2>
+          <p>Du hast eine Idee, einen Ort, eine Geschichte? Egal ob Stadt, Museum, Verein, Schule oder Unternehmen – wir melden uns zurueck und ueberlegen gemeinsam, wie daraus ein i.appear-Rundgang wird.</p>
+
+          <!-- TODO: Formspree-Endpunkt eintragen, sobald Backend geklaert ist -->
+          <form class="form" action="https://formspree.io/f/REPLACE_ME" method="POST">
+            <div>
+              <label for="f-name">Name</label>
+              <input id="f-name" name="name" type="text" required />
+            </div>
+            <div>
+              <label for="f-email">Email</label>
+              <input id="f-email" name="email" type="email" required />
+            </div>
+            <div>
+              <label for="f-text">Nachricht</label>
+              <textarea id="f-text" name="message" required></textarea>
+            </div>
+            <button type="submit" class="btn">Nachricht senden &rarr;</button>
+            <p class="muted"><small>Die Nachricht geht direkt an info@iappear.app.</small></p>
+          </form>
+        </div>
+
+        <aside class="info-card">
+          <h3>Marilena Tumler e.U.</h3>
+          <p>
+            Mozartstrasse 5 | 16<br />
+            6850 Dornbirn<br />
+            Oesterreich
+          </p>
+          <p>
+            <strong>Telefon:</strong> <a href="tel:+4367682554212">+43 676 82554212</a><br />
+            <strong>Email:</strong> <a href="mailto:info@iappear.app">info@iappear.app</a><br />
+            <strong>Web:</strong> <a href="https://iappear.at">iappear.at</a>
+          </p>
+        </aside>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer"><div class="container">
+    <div class="footer__grid">
+      <div><h4>i.appear</h4><p class="muted">Die Plattform fuer digitale Erlebnisse.</p></div>
+      <div><h4>Kategorien</h4><ul class="stack"><li><a href="i-history.html">i.history</a></li><li><a href="i-dentity.html">i.dentity</a></li><li><a href="i-grow.html">i.grow</a></li></ul></div>
+      <div><h4>Unternehmen</h4><ul class="stack"><li><a href="workflow.html">Workflow</a></li><li><a href="user-guide.html">User Guide</a></li><li><a href="kontakt.html">Kontakt</a></li><li><a href="faqs.html">FAQs</a></li></ul></div>
+      <div><h4>Rechtliches</h4><ul class="stack"><li><a href="impressum.html">Impressum</a></li><li><a href="agb.html">AGB</a></li><li><a href="datenschutz.html">Datenschutz</a></li></ul></div>
+    </div>
+    <div class="footer__bottom"><small>&copy; Marilena Tumler e.U. – Dornbirn</small></div>
+  </div></footer>
+
+  <a href="#" class="back-up" data-back-up>&uarr;</a>
+  <script src="js/main.js"></script>
+</body>
+</html>

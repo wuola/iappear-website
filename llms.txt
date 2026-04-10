@@ -1,0 +1,35 @@
+# i.appear – digital city tours
+
+i.appear ist eine Plattform fuer digitale, multimediale Rundgaenge. Rundgaenge laufen direkt im Browser – ohne App, ohne Registrierung, ohne Werbung.
+
+## Kategorien
+
+- i.history – Multimediale Zeitreisen, Historie wird zur Geschichte
+- i.dentity – Regionale Erlebnisse fuer Kultur, Tourismus, Wirtschaft
+- i.grow – Medienbildung: vom Konsumieren zum Gestalten
+
+## Features
+
+3D-Modelle, Augmented Reality, 360° Video in VR, Animationen, Interaktive Karten, Audio-Guide, Historische Bilder, Quiz-Funktion, Zeitzeugeninterviews, Videos, Secret Stations, Emotionale Geschichten, Bewegte Fotos, Vorher-Nachher-Ansichten.
+
+## Kontakt
+
+Marilena Tumler e.U.
+Mozartstrasse 5 | 16, 6850 Dornbirn, Oesterreich
+Telefon: +43 676 82554212
+Email: info@iappear.app
+Web: https://iappear.at
+
+## Seiten
+
+- /index.html         – Startseite (One-Pager)
+- /i-history.html     – i.history Zeitreisen
+- /i-dentity.html     – i.dentity Regionale Erlebnisse
+- /i-grow.html        – i.grow Medienbildung
+- /workflow.html      – Workflow & Leistungen
+- /user-guide.html    – User Guide
+- /kontakt.html       – Kontakt
+- /faqs.html          – FAQs
+- /agb.html           – AGB
+- /impressum.html     – Impressum
+- /datenschutz.html   – Datenschutz
