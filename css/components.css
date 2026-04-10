@@ -92,10 +92,47 @@
 .card__title { font-family: var(--f-serif); }
 
 .vitrine-card {
-  display: flex; flex-direction: column; gap: var(--sp-2);
+  display: flex; flex-direction: column; gap: var(--sp-1);
 }
-.vitrine-card .ph { aspect-ratio: 4/3; }
-.vitrine-card__link { text-decoration: underline; font-size: .85rem; letter-spacing: .1em; }
+.vitrine-card .ph { aspect-ratio: 1/1; }
+.vitrine-card__text {
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: .78rem; line-height: 1.5;
+  color: var(--c-text-muted);
+}
+.vitrine-card__link {
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: .8rem;
+  text-decoration: none;
+  opacity: .85;
+}
+.vitrine-card__link:hover { opacity: 1; text-decoration: underline; }
+
+/* --- Kategorie-Cards (Startseite) ---------------------------------------- */
+.card--kategorie {
+  text-align: center;
+  align-items: center;
+  border: none;
+  padding: var(--sp-3) var(--sp-2);
+}
+.card--kategorie .card__icon {
+  width: 56px; height: 56px;
+  margin: 0 auto var(--sp-1);
+}
+.card--kategorie h3 {
+  font-family: var(--f-serif);
+  font-size: 2rem;
+}
+.card--kategorie .eyebrow {
+  text-transform: none;
+  letter-spacing: 0;
+  font-style: italic;
+}
+.card--kategorie .btn {
+  align-self: center;
+  margin-top: var(--sp-2);
+  border-radius: 999px;
+}
 
 /* --- Phone-Mockup (CSS-only) ---------------------------------------------- */
 .phone {
@@ -161,13 +198,49 @@ span.feature-list__icon {
   border-radius: 50%;
 }
 
-/* --- Hero-Logo ------------------------------------------------------------ */
-.hero__logo {
-  width: 100%;
-  max-width: 120px;
-  height: auto;
+/* --- Hero ----------------------------------------------------------------- */
+.hero__claim {
+  font-family: var(--f-serif);
+  font-size: 1rem;
+  line-height: 1.4;
+  opacity: .9;
+}
+.hero__brand {
+  display: flex; flex-direction: column; align-items: center;
+  gap: .2em;
+}
+.hero__target {
+  width: 38px; height: 38px;
   display: block;
-  margin: 0 auto var(--sp-2);
+}
+.hero__title {
+  font-family: var(--f-serif);
+  font-size: clamp(3rem, 8vw, 6rem);
+  letter-spacing: .02em;
+  margin: 0;
+  line-height: 1;
+}
+.hero__subtitle {
+  font-family: var(--f-serif);
+  font-size: 1rem;
+  letter-spacing: .15em;
+  opacity: .75;
+  margin: 0;
+}
+.hero__stage {
+  display: flex; align-items: center; justify-content: center;
+  gap: var(--sp-2);
+  width: 100%;
+  margin-top: var(--sp-3);
+}
+.hero__laurel {
+  width: 90px; min-height: 240px;
+  flex: 0 0 auto;
+}
+.hero__awards {
+  margin-top: var(--sp-3);
+  text-align: center;
+  opacity: .8;
 }
 
 /* --- Netzwerk-Visualisierung (Grob-Platzhalter) --------------------------- */
@@ -176,11 +249,49 @@ span.feature-list__icon {
   border: 1px dashed rgba(255,255,255,.2); border-radius: var(--radius-card);
 }
 .network-viz__node {
-  position: absolute; width: 84px; height: 84px; border-radius: 50%;
-  border: 1px solid var(--c-text); display: grid; place-items: center;
-  font-size: .7rem; text-align: center; padding: 6px;
-  background: rgba(0,0,0,.6);
+  position: absolute; width: 110px; height: 110px;
+  border: 1px solid var(--c-text); border-radius: 6px;
+  display: flex; flex-direction: column; align-items: center; justify-content: space-between;
+  padding: 8px 6px;
+  background-color: rgba(0,0,0,.6);
+  background-image: repeating-linear-gradient(45deg, rgba(255,255,255,.04) 0 10px, rgba(255,255,255,.08) 10px 20px);
+  text-align: center;
 }
+.network-viz__node-icon { width: 22px; height: 22px; opacity: .9; }
+.network-viz__node-label {
+  font-size: .7rem; line-height: 1.2;
+  text-shadow: 0 0 4px rgba(0,0,0,.85);
+}
+.network-viz__center {
+  position: absolute;
+  width: 200px;
+  font-family: var(--f-serif);
+  font-size: 1rem;
+  text-transform: uppercase; letter-spacing: .15em;
+  text-align: center;
+  pointer-events: none;
+}
+
+/* --- Team / Ueber uns ----------------------------------------------------- */
+.ueber__team { display: flex; flex-direction: column; gap: var(--sp-4); }
+.team-member {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: var(--sp-3);
+  align-items: start;
+}
+.team-member__photo {
+  width: 140px; aspect-ratio: 1/1; min-height: 0;
+}
+.team-member h3 {
+  font-family: var(--f-serif); font-size: 1.4rem;
+  margin-bottom: var(--sp-1);
+}
+.team-member p { font-size: .9rem; line-height: 1.55; }
+
+.ueber__kontakt { display: flex; flex-direction: column; gap: var(--sp-2); }
+.kontakt-mail { font-size: 1rem; }
+.kontakt-mail a { text-decoration: underline; }
 
 /* --- Footer --------------------------------------------------------------- */
 .footer {
@@ -188,22 +299,69 @@ span.feature-list__icon {
   border-top: 1px solid rgba(255,255,255,.1);
   font-size: .85rem;
 }
-.footer__grid {
+.footer h4 {
+  font-family: var(--f-serif);
+  font-size: 1.1rem;
+  letter-spacing: .05em;
+  margin-bottom: var(--sp-2);
+  text-transform: none;
+}
+.footer__quicklinks { margin-bottom: var(--sp-5); }
+.footer__quick-grid {
   display: grid; gap: var(--sp-3);
   grid-template-columns: 1fr;
 }
 @media (min-width: 720px) {
-  .footer__grid { grid-template-columns: repeat(4, 1fr); }
+  .footer__quick-grid { grid-template-columns: repeat(3, 1fr); }
 }
-.footer h4 { font-size: .8rem; text-transform: uppercase; letter-spacing: .15em; margin-bottom: var(--sp-1); }
-.footer a { opacity: .8; }
-.footer a:hover { opacity: 1; text-decoration: underline; }
+.footer__quick-grid a {
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  font-size: .8rem;
+  opacity: .85;
+}
+.footer__quick-grid a:hover { opacity: 1; text-decoration: underline; }
+
+.footer__kontakt { margin-bottom: var(--sp-5); }
+.kontakt-liste li {
+  display: flex; align-items: flex-start; gap: .6em;
+  padding: .25em 0;
+}
+.kontakt-liste a { text-decoration: underline; opacity: .9; }
+
+.footer__partner { margin-bottom: var(--sp-4); }
+.partner-grid {
+  display: grid; gap: var(--sp-2);
+  grid-template-columns: repeat(2, 1fr);
+}
+@media (min-width: 720px) { .partner-grid { grid-template-columns: repeat(4, 1fr); } }
+@media (min-width: 1080px) { .partner-grid { grid-template-columns: repeat(6, 1fr); } }
+.partner-logo {
+  aspect-ratio: 16/9; min-height: 70px;
+  font-size: .7rem;
+}
+.partner-uniwien {
+  display: grid; gap: var(--sp-2);
+  grid-template-columns: 1fr;
+  align-items: center;
+  margin-top: var(--sp-3);
+}
+@media (min-width: 720px) {
+  .partner-uniwien { grid-template-columns: 200px 1fr; }
+}
+
 .footer__bottom {
   display: flex; align-items: center; justify-content: space-between;
   margin-top: var(--sp-4); padding-top: var(--sp-3);
   border-top: 1px solid rgba(255,255,255,.1);
   color: var(--c-text-muted);
+  flex-wrap: wrap; gap: var(--sp-2);
 }
+.back-up-inline {
+  text-transform: uppercase; letter-spacing: .12em;
+  font-size: .8rem; opacity: .8;
+}
+.back-up-inline:hover { opacity: 1; }
 
 .back-up {
   position: fixed; right: var(--sp-3); bottom: var(--sp-3); z-index: 40;
