@@ -4,14 +4,13 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>i.history – Zeitreisen | i.appear</title>
-  <meta name="description" content="i.history – Multimediale Zeitreisen machen Geschichte direkt am Ort erlebbar." />
+  <meta name="description" content="i.history – Multimediale Zeitreisen machen Geschichte direkt am Ort erlebbar." />  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <link rel="apple-touch-icon" href="assets/favicon.png" />
+
   <link rel="stylesheet" href="css/global.css" />
   <link rel="stylesheet" href="css/layout.css" />
   <link rel="stylesheet" href="css/components.css" />
-  <link rel="stylesheet" href="css/animations.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet" />
-</head>
+  <link rel="stylesheet" href="css/animations.css" /></head>
 <body>
   <header class="nav"><div class="nav__inner">
     <a class="nav__brand" href="index.html">i.appear</a>
@@ -27,20 +26,32 @@
     <button class="nav__burger" data-menu-toggle aria-label="Menue oeffnen"><span></span></button>
   </div></header>
 
-  <div id="menu" class="menu"><button class="menu__close" data-menu-close>&times;</button>
-    <ul class="menu__list">
-      <li><a href="index.html">Startseite</a></li>
-      <li><a href="i-history.html" class="c-history">i.history</a></li>
-      <li><a href="i-dentity.html" class="c-dentity">i.dentity</a></li>
-      <li><a href="i-grow.html" class="c-grow">i.grow</a></li>
-      <li><a href="workflow.html">Workflow</a></li>
-      <li><a href="user-guide.html">User Guide</a></li>
-      <li><a href="kontakt.html">Kontakt</a></li>
-      <li><a href="faqs.html">FAQs</a></li>
-      <li><a href="agb.html">AGB</a></li>
-      <li><a href="impressum.html">Impressum</a></li>
-      <li><a href="datenschutz.html">Datenschutz</a></li>
-    </ul>
+    <div id="menu" class="menu" role="dialog" aria-modal="true" aria-label="Menue">
+    <button class="menu__close" data-menu-close aria-label="Menue schliessen">&times;</button>
+    <div class="menu__group">
+      <h4 class="menu__heading">Die Plattform</h4>
+      <ul class="menu__list">
+        <li><a href="user-guide.html">i.appear User Guide</a></li>
+        <li><a href="index.html#kategorien">Unsere Kategorien</a></li>
+        <li><a href="i-history.html" class="c-history">i.history &ndash; Zeitreisen</a></li>
+        <li><a href="i-dentity.html" class="c-dentity">i.dentity &ndash; Erlebnisse</a></li>
+        <li><a href="i-grow.html" class="c-grow">i.grow &ndash; Medienbildung</a></li>
+        <li><a href="index.html#features">Features</a></li>
+      </ul>
+    </div>
+    <div class="menu__group">
+      <h4 class="menu__heading">Backstage</h4>
+      <ul class="menu__list">
+        <li><a href="workflow.html">Workflow und Leistungen</a></li>
+        <li><a href="index.html#vitrine">Vitrine</a></li>
+        <li><a href="index.html#ueber-uns">Ueber uns</a></li>
+        <li><a href="kontakt.html">Kontakt</a></li>
+        <li><a href="faqs.html">FAQs</a></li>
+        <li><a href="agb.html">AGB</a></li>
+        <li><a href="impressum.html">Impressum</a></li>
+        <li><a href="datenschutz.html">Datenschutz</a></li>
+      </ul>
+    </div>
   </div>
 
   <main>

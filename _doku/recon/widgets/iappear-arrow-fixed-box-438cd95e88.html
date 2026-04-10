@@ -1,0 +1,52 @@
+<div class="iappear-arrow-fixed-box">
+  <svg viewBox="0 0 24 24" class="iappear-svg-animation">
+    <path fill="currentColor" d="M12 2L19 21L12 17L5 21L12 2Z"></path>
+  </svg>
+</div>
+
+<style>
+  /* --- HIER DIE GRÖSSE EINSTELLEN --- */
+  :root {
+    --ia-arrow-size: 30px; /* <--- Änder diesen Wert für die Größe! */
+    --ia-arrow-color: #FFFFFF; /* Optional: Farbe hier ändern */
+  }
+
+  .iappear-arrow-fixed-box {
+    /* Nutzt jetzt die Variable von oben */
+    width: var(--ia-arrow-size) !important;
+    height: var(--ia-arrow-size) !important;
+    
+    /* Sicherheitshalber auch min-width/height gleichsetzen */
+    min-width: var(--ia-arrow-size) !important;
+    min-height: var(--ia-arrow-size) !important;
+    
+    color: var(--ia-arrow-color);
+    opacity: 1;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    overflow: visible;
+  }
+
+  .iappear-svg-animation {
+    width: 100% !important;
+    height: 100% !important;
+    display: block;
+    
+    /* Drehpunkt exakt in der Mitte des Pfeils */
+    transform-origin: center center;
+    
+    /* Animation: Name | Dauer | Kurve | Endlos */
+    animation: iappear-sway-motion 4s ease-in-out infinite;
+    
+    /* Hardware-Beschleunigung erzwingen */
+    will-change: transform;
+  }
+
+  /* Keyframes für die Bewegung */
+  @keyframes iappear-sway-motion {
+    0% { transform: rotate(-7deg); }
+    50% { transform: rotate(7deg); }
+    100% { transform: rotate(-7deg); }
+  }
+</style>

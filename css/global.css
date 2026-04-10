@@ -3,6 +3,25 @@
    CSS-Variablen, Reset, Typografie, Basisfarben
    ========================================================================== */
 
+/* --- Schrift selbst hosten (kein Google Fonts -> DSGVO + Performance) ---
+   Variable Font deckt alle Gewichte 100..900 in einer Datei ab. */
+@font-face {
+  font-family: "Roboto";
+  src: url("../assets/fonts/Roboto-Variable.ttf") format("truetype-variations"),
+       url("../assets/fonts/Roboto-Variable.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Roboto";
+  src: url("../assets/fonts/Roboto-Variable-Italic.ttf") format("truetype-variations"),
+       url("../assets/fonts/Roboto-Variable-Italic.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
 :root {
   /* Farben */
   --c-bg: #000000;

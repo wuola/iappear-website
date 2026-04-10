@@ -1,0 +1,56 @@
+<div class="ia-icon-wrapper">
+  <div class="ia-feature-icon">
+    <svg viewBox="0 0 68 67" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path class="ia-icon-bg" d="M67 33.0123C67 50.6854 52.5 65.5117 34 65.0123C15.5 65.5117 1 50.6854 1 33.0123C1 15.3392 15.5 0.511747 34 1.01232C52.5 0.51172 67 15.3392 67 33.0123Z"></path>
+      
+      <g class="ia-symbol">
+        <path d="M49.5106 24.6524C49.3313 23.9362 48.9661 23.2799 48.452 22.7499C47.9379 22.2199 47.2931 21.8349 46.5826 21.6339C43.9866 21 33.6028 21 33.6028 21C33.6028 21 23.2191 21 20.6231 21.6943C19.9126 21.8953 19.2678 22.2802 18.7536 22.8102C18.2395 23.3402 17.8744 23.9965 17.6951 24.7128C17.22 27.3473 16.9876 30.0199 17.0009 32.6969C16.9839 35.394 17.2163 38.0869 17.6951 40.7413C17.8928 41.4353 18.2661 42.0666 18.779 42.5742C19.2919 43.0819 19.9271 43.4486 20.6231 43.6391C23.2191 44.3333 33.6028 44.3333 33.6028 44.3333C33.6028 44.3333 43.9866 44.3333 46.5826 43.6391C47.2931 43.4381 47.9379 43.0531 48.452 42.5231C48.9661 41.9931 49.3313 41.3368 49.5106 40.6205C49.982 38.0058 50.2144 35.3537 50.2048 32.6969C50.2218 29.9997 49.9894 27.3068 49.5106 24.6524V24.6524Z"></path>
+        <path d="M30.207 37.6324L38.8853 32.697L30.207 27.7617V37.6324Z"></path>
+      </g>
+    </svg>
+  </div>
+</div>
+
+<style>
+  :root {
+    /* --- ZENTRALE PARAMETER --- */
+    --ia-icon-scale: 0.5;               
+    --ia-icon-size: 68px;             
+    
+    --ia-glass-bg: rgba(255, 255, 255, 0.08); 
+    --ia-glass-border: rgba(255, 255, 255, 0.2); 
+    --ia-glass-blur: 5px;             
+    
+    --ia-symbol-color: #ffffff;       
+    --ia-symbol-stroke: 1.5px;        
+  }
+
+  .ia-icon-wrapper {
+    display: inline-block;
+    width: calc(var(--ia-icon-size) * var(--ia-icon-scale));
+    height: calc(var(--ia-icon-size) * var(--ia-icon-scale));
+    padding: 2px;
+  }
+
+  .ia-feature-icon {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(var(--ia-glass-blur));
+    -webkit-backdrop-filter: blur(var(--ia-glass-blur));
+    border-radius: 50%; 
+  }
+
+  .ia-icon-bg {
+    fill: var(--ia-glass-bg);
+    stroke: var(--ia-glass-border);
+    stroke-width: 1px;
+  }
+
+  .ia-symbol path {
+    stroke: var(--ia-symbol-color);
+    stroke-width: var(--ia-symbol-stroke);
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+</style>

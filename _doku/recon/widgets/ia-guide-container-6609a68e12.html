@@ -1,0 +1,299 @@
+<div class="ia-guide-container">
+  
+  <div class="ia-nav-wrapper">
+    <button onclick="changeStep(-1)" class="ia-nav-btn">←</button>
+    <span id="step-counter-label">Schritt 1</span>
+    <button onclick="changeStep(1)" class="ia-nav-btn">→</button>
+  </div>
+
+  <div class="ia-toggle-scaler">
+    <div id="ia-toggle-widget" class="ia-emergency-toggle is-suitcase" onclick="handleToggleClick(this)" style="opacity: 1; pointer-events: auto;">
+      <div class="ia-track">
+        <div class="ia-thumb"></div>
+        
+        <div class="ia-icons-layer">
+          <div class="ia-icon-slot">
+            <svg class="ia-icon map-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="1 6 8 2 15 6 22 2 22 18 15 22 8 18 1 22 1 6"></polygon>
+              <line x1="8" y1="2" x2="8" y2="18"></line>
+              <line x1="15" y1="6" x2="15" y2="22"></line>
+            </svg>
+          </div>
+          <div class="ia-icon-slot">
+            <svg class="ia-icon suitcase-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="8" width="18" height="12" rx="2"></rect>
+              <path d="M8 8V6a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="ia-mickey-hint" id="mickey-layer" style="display: block;">
+        <div class="ia-ripple"></div>
+        <svg class="ia-mickey-hand" viewBox="0 0 584.32 649.73">
+          <path d="M72.07,142.16l78.01,214.29c.67,1.67.33,3.01-1.34,3.68-1.34.67-2.34,0-3.35-1l-39.51-42.86c-25.78-27.79-58.59-29.8-84.04-8.37-28.79,24.44-29.13,60.94-1,95.42l112.16,135.6c84.71,102.45,184.15,134.26,295.31,93.75,132.93-48.21,189.51-170.09,135.94-317.41l-25.11-68.64c-26.11-72.66-76-102.46-134.6-82.03-15.74-20.42-39.84-27.45-65.96-18.08-9.04,3.35-17.75,8.37-26.12,14.73-17.08-22.1-43.53-30.13-70.98-20.42-7.37,2.68-14.4,6.7-21.09,11.38l-38.17-104.46C167.83,7.89,131.67-8.85,94.51,4.54c-37.5,13.73-54.24,49.55-39.84,89.4l2.68,7.37M413.93,588.81c-87.72,32.14-170.09,15.74-247.43-77.68l-112.17-134.93c-12.05-14.06-12.05-27.79-1.34-37.16,10.04-9.04,23.77-6.03,34.82,5.36l77.34,80.02c13.06,13.39,24.44,14.73,35.49,10.71,13.06-4.69,18.75-18.75,13.39-33.15L95.51,75.86c-5.02-13.39,1.01-26.12,13.73-30.8,13.06-4.69,25.11,1.67,30.14,15.07l84.71,232.7c4.02,11.05,16.41,16.07,27.46,12.05,10.71-4.02,16.41-15.74,12.39-26.45l-30.47-84.04c4.69-4.35,11.05-8.71,17.41-11.05,15.74-5.69,28.8,1.34,34.82,17.75l26.79,73.33c4.02,11.38,16.41,15.74,27.12,11.72,10.38-3.68,17.08-14.73,12.72-26.45l-21.76-59.26c4.69-4.69,11.05-9.04,17.41-11.38,15.74-5.69,28.79,1.34,34.82,17.75l17.75,48.88c4.35,11.72,16.74,16.07,27.46,12.05,10.38-3.68,16.74-15.07,12.72-26.45l-13.39-36.16c28.12-10.05,54.58,12.72,72.65,62.95l21.09,57.25c45.87,126.56,4.02,222.99-107.14,263.5Z" stroke-linejoin="round" stroke-linecap="round"></path>
+        </svg>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  :root {
+    /* --- POSITIONIERUNG (HIER ÄNDERN) --- */
+    --distance-top: 300px;  /* Abstand zwischen Navi (oben) und Schalter (unten) */
+    
+    /* --- CONFIG --- */
+    --ia-scale: 0.6; 
+    --base-w: 130px; 
+    --base-h: 56px;
+    --thumb-size: 56px; 
+    --move-dist: 74px; 
+    --ia-bg: rgba(30, 30, 30, 0.6);
+    --ia-border: rgba(255, 255, 255, 0.2);
+    --ia-thumb-c: #2A2A2A;
+    --hand-size: 30px; 
+    --hand-distance: 60px;
+  }
+
+  /* --- LAYOUT WRAPPER --- */
+  .ia-guide-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 0px; 
+    z-index: 1001;
+    position: relative;
+    /* Damit Klicks durch den leeren Raum dazwischen auf das Handy gehen: */
+    pointer-events: none; 
+  }
+
+  /* --- NAVIGATION --- */
+  .ia-nav-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(0,0,0,0.3);
+    padding: 8px 16px;
+    border-radius: 50px;
+    border: 0.5px solid rgba(255,255,255,0.1);
+    backdrop-filter: blur(4px);
+    /* Buttons müssen klickbar sein */
+    pointer-events: auto;
+  }
+  
+  .ia-nav-btn {
+    background: #222;
+    border: 1px solid rgba(255,255,255,0.2);
+    color: #fff;
+    border-radius: 50px;
+    cursor: pointer;
+    padding: 6px 14px;
+    font-size: 14px;
+    transition: background 0.2s;
+  }
+  .ia-nav-btn:hover { background: #333; }
+  
+  #step-counter-label {
+    font-family: sans-serif;
+    color: #fff;
+    font-size: 12px;
+    min-width: 60px;
+    text-align: center;
+  }
+
+  /* --- TOGGLE SCALER --- */
+  .ia-toggle-scaler {
+    /* HIER PASSIERT DIE VERSCHIEBUNG */
+    margin-top: var(--distance-top);
+    
+    transform: scale(var(--ia-scale));
+    transform-origin: center top;
+    backface-visibility: hidden;
+    -webkit-font-smoothing: antialiased;
+    /* Toggle muss klickbar sein */
+    pointer-events: auto;
+  }
+
+  /* --- TOGGLE TRACK (Safari Safe) --- */
+  .ia-emergency-toggle {
+    width: var(--base-w);
+    height: var(--base-h);
+    position: relative;
+    cursor: pointer;
+    isolation: isolate; 
+  }
+
+  .ia-track {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: var(--ia-bg);
+    border: 2px solid var(--ia-border); 
+    border-radius: 999px;
+    overflow: hidden;
+    box-sizing: border-box;
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
+  }
+
+  /* --- THUMB --- */
+  .ia-thumb {
+    position: absolute;
+    top: -1px; left: -1px;
+    width: var(--thumb-size);
+    height: var(--thumb-size);
+    background: var(--ia-thumb-c);
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.1);
+    box-sizing: border-box;
+    z-index: 1;
+    will-change: transform;
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    transform: translate3d(0, 0, 0);
+  }
+
+  .ia-emergency-toggle.is-suitcase .ia-thumb {
+    transform: translate3d(var(--move-dist), 0, 0);
+  }
+
+  /* --- ICONS --- */
+  .ia-icons-layer {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 16px;
+    box-sizing: border-box;
+    z-index: 2;
+    pointer-events: none;
+  }
+  
+  .ia-icon-slot { width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; }
+  .ia-icon { width: 24px; height: 24px; transition: color 0.3s; }
+
+  .ia-emergency-toggle:not(.is-suitcase) .map-svg { color: #fff; }
+  .ia-emergency-toggle.is-suitcase .suitcase-svg { color: #fff; }
+  .ia-emergency-toggle:not(.is-suitcase) .suitcase-svg, 
+  .ia-emergency-toggle.is-suitcase .map-svg { color: #666; }
+
+
+  /* --- MICKEY --- */
+  .ia-mickey-hint {
+    position: absolute;
+    top: 60px; /* Unter dem Toggle */
+    left: 20px;
+    width: var(--hand-size);
+    pointer-events: none;
+    z-index: 10;
+    animation: mickeyGroove 2.8s ease-in-out infinite;
+  }
+  
+  .ia-mickey-hand { width: 100%; height: 100%; filter: drop-shadow(1px 3px 5px rgba(0,0,0,0.4)); }
+  .ia-mickey-hand path { fill: #fff; }
+
+  .ia-ripple {
+    position: absolute;
+    top: 30%; left: 30%;
+    width: 20px; height: 20px;
+    background: rgba(255,255,255,0.5);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    animation: rippleEffect 2.8s ease-in-out infinite;
+  }
+
+  @keyframes mickeyGroove {
+    0%, 100% { transform: translate3d(0,0,0) rotate(-12deg); }
+    15%, 85% { transform: translate3d(0,0,0) rotate(-12deg); }
+    50%, 65% { transform: translate3d(var(--hand-distance), 0, 0) rotate(12deg); }
+  }
+
+  @keyframes rippleEffect {
+    0%, 100%, 15%, 50%, 85% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+    5%, 55% { transform: translate(-50%, -50%) scale(0); opacity: 1; }
+    12%, 62% { transform: translate(-50%, -50%) scale(2.5); opacity: 0; }
+  }
+
+  /* --- READYMAG TARGET LOGIC --- */
+  [data-id="697b7e436d4b28b8ed18b9c9"], [data-id="696de09bbc8a902b21afbfd1"], [data-id="697ba7fbcf5bfecdf2fbda6b"],
+  [data-id="69806806263ec92b6b9f2ee9"], [data-id="696de6b7a91657db94e14817"], [data-id="698065d7d90582656b39d99f"],
+  [data-id="69806814655aa5f8e2977b3a"], [data-id="696de6027fe5832773a20ea9"], [data-id="698067251c5dfa5d7f1fd965"],
+  [data-id="6980683ac9eb0f5b705dbf01"], [data-id="696de2a8f87a3f06286a08de"],
+  [data-id="697b8e871597dafc050739f6"], [data-id="697b8e8978bef8f204a9200f"], [data-id="697b8e88d12261fe790f5cb2"],
+  [data-id="697b8e8858b78c25bd195e4e"], [data-id="697b8e896c172d21a9574188"], [data-id="697b8e8a152de8515fedc8a2"] 
+  { opacity: 0 !important; pointer-events: none !important; transition: opacity 0.4s ease !important; }
+  
+  .ia-active { opacity: 1 !important; pointer-events: auto !important; }
+
+</style>
+
+<script>
+(function() {
+  const PATH_A = {
+    1: { text: "697b7e436d4b28b8ed18b9c9", suitcase: "696de09bbc8a902b21afbfd1", map: "697ba7fbcf5bfecdf2fbda6b" },
+    2: { text: "69806806263ec92b6b9f2ee9", suitcase: "696de6b7a91657db94e14817", map: "698065d7d90582656b39d99f" },
+    3: { text: "69806814655aa5f8e2977b3a", suitcase: "696de6027fe5832773a20ea9", map: "698067251c5dfa5d7f1fd965" },
+    4: { text: "6980683ac9eb0f5b705dbf01", suitcase: "696de2a8f87a3f06286a08de", map: "696de2a8f87a3f06286a08de" }
+  };
+  const ICONS = ["697b8e871597dafc050739f6", "697b8e8978bef8f204a9200f", "697b8e88d12261fe790f5cb2", "697b8e8858b78c25bd195e4e", "697b8e896c172d21a9574188", "697b8e8a152de8515fedc8a2"];
+
+  let currentStep = 1;
+  let isSuitcase = true; 
+  let mickeyClicked = false;
+
+  window.handleToggleClick = function(el) {
+    mickeyClicked = true;
+    isSuitcase = !isSuitcase;
+    if(isSuitcase) { el.classList.add('is-suitcase'); } else { el.classList.remove('is-suitcase'); }
+    updateView();
+  };
+
+  window.changeStep = function(dir) {
+    currentStep += dir;
+    if (currentStep > 4) currentStep = 1;
+    if (currentStep < 1) currentStep = 4;
+    updateView();
+  };
+
+  function updateView() {
+    const label = document.getElementById('step-counter-label');
+    if(label) label.innerText = `Schritt ${currentStep}`;
+    
+    const mickey = document.getElementById('mickey-layer');
+    if(mickey) mickey.style.display = (currentStep === 1 && !mickeyClicked) ? 'block' : 'none';
+    
+    const widget = document.getElementById('ia-toggle-widget');
+    if(widget) {
+        if(currentStep === 4) {
+            widget.style.opacity = '0';
+            widget.style.pointerEvents = 'none';
+        } else {
+            widget.style.opacity = '1';
+            widget.style.pointerEvents = 'auto';
+        }
+    }
+
+    document.querySelectorAll('.ia-active').forEach(el => el.classList.remove('ia-active'));
+
+    const step = PATH_A[currentStep];
+    if(step) {
+        show(step.text);
+        show(isSuitcase ? step.suitcase : step.map);
+    }
+    if (currentStep === 4) {
+      ICONS.forEach(id => show(id));
+    }
+  }
+
+  function show(id) {
+    const el = document.querySelector('[data-id="' + id + '"]');
+    if (el) el.classList.add('ia-active');
+  }
+
+  const safetyLoop = setInterval(updateView, 200);
+  setTimeout(() => clearInterval(safetyLoop), 5000);
+  updateView();
+})();
+</script>

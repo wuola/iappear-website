@@ -1,0 +1,125 @@
+<style>
+/* 1. GRUNDZUSTAND & ÜBERGANG: Logo-Widget */
+[data-id="698aeb86a193584059bdfbd3"] {
+    /* WICHTIG: 'transform' zur Transition hinzugefügt für weichen Zoom */
+    transition: opacity 0.3s ease-in-out, visibility 0.3s, transform 0.3s ease-out !important;
+    cursor: pointer !important;
+    transform: scale(1) !important; /* Ausgangsgröße */
+    transform-origin: center center !important; /* Zoomt aus der Mitte */
+}
+
+/* NEU: Hover-Animation für das Logo */
+[data-id="698aeb86a193584059bdfbd3"]:hover {
+    transform: scale(1.08) !important; /* Vergrößert das Logo um 8% beim Drüberfahren */
+}
+
+/* 2. AUS-ZUSTAND: Logo und alle Menü-Elemente verstecken */
+body:not(.menu-open) [data-id="698aeb86a193584059bdfbd3"], /* Das neue Logo */
+body:not(.menu-open) [data-id="6988a01024e59450dd83f023"],
+body:not(.menu-open) [data-id="6988a0870327652e6cb9088e"],
+body:not(.menu-open) [data-id="698225046923ed586bf32c63"],
+body:not(.menu-open) [data-id="69785cbfe9c704522aca4518"], 
+body:not(.menu-open) [data-id="69785cc1e9c704522aca451b"], 
+body:not(.menu-open) [data-id="69785cc0f82ac36e6fec742a"], 
+body:not(.menu-open) [data-id="69785cc05e5cc4dc19ad5681"], 
+body:not(.menu-open) [data-id="69785cbf0cd81b5752f54986"], 
+body:not(.menu-open) [data-id="69785cc1e13ef4295cfbd673"], 
+body:not(.menu-open) [data-id="69785cc0da5e834be668a96f"], 
+body:not(.menu-open) [data-id="69785cc16b44d4485725e19c"], 
+body:not(.menu-open) [data-id="69785cc0fe0e7d9f633d8b77"], 
+body:not(.menu-open) [data-id="69785c3e5120b5d20dfe4f39"], 
+body:not(.menu-open) [data-id="697861c57fdfbafda83cce40"] {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    /* Beim Ausblenden Zoom zurücksetzen */
+    transform: scale(1) !important;
+}
+
+/* 3. AN-ZUSTAND: Alles einblenden mit Z-Index Priorität */
+body.menu-open [data-id="698aeb86a193584059bdfbd3"] { /* Logo oben auf */
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    z-index: 20000 !important; 
+}
+
+body.menu-open [data-id="6988a01024e59450dd83f023"],
+body.menu-open [data-id="6988a0870327652e6cb9088e"],
+body.menu-open [data-id="698225046923ed586bf32c63"],
+body.menu-open [data-id="69785cbfe9c704522aca4518"], 
+body.menu-open [data-id="69785cc1e9c704522aca451b"], 
+body.menu-open [data-id="69785cc0f82ac36e6fec742a"], 
+body.menu-open [data-id="69785cc05e5cc4dc19ad5681"], 
+body.menu-open [data-id="69785cbf0cd81b5752f54986"], 
+body.menu-open [data-id="69785cc1e13ef4295cfbd673"], 
+body.menu-open [data-id="69785cc0da5e834be668a96f"], 
+body.menu-open [data-id="69785cc16b44d4485725e19c"], 
+body.menu-open [data-id="69785cc0fe0e7d9f633d8b77"] {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    z-index: 15000 !important;
+}
+
+/* Hintergrund-Elemente */
+body.menu-open [data-id="69785c3e5120b5d20dfe4f39"] {
+    opacity: 1 !important;
+    visibility: visible !important;
+    z-index: 10000 !important;
+}
+
+body.menu-open [data-id="697861c57fdfbafda83cce40"] {
+    opacity: 0.88 !important;
+    visibility: visible !important;
+    z-index: 5000 !important;
+}
+
+/* Der Burger-Button (immer oben) */
+[data-id="696f5bb19b88c8ad502f7ec9"] {
+    z-index: 999999 !important;
+}
+</style>
+
+<script>
+(function() {
+    let timer;
+    const btnId = "696f5bb19b88c8ad502f7ec9";
+    const bgId = "69785c3e5120b5d20dfe4f39";
+    const logoId = "698aeb86a193584059bdfbd3"; // Die korrigierte ID
+    const textIds = [
+        logoId, "6988a01024e59450dd83f023", "6988a0870327652e6cb9088e", "698225046923ed586bf32c63",
+        "69785cbfe9c704522aca4518", "69785cc1e9c704522aca451b", "69785cc0f82ac36e6fec742a",
+        "69785cc05e5cc4dc19ad5681", "69785cbf0cd81b5752f54986", "69785cc1e13ef4295cfbd673",
+        "69785cc0da5e834be668a96f", "69785cc16b44d4485725e19c", "69785cc0fe0e7d9f633d8b77"
+    ];
+
+    const safeZone = new Set([btnId, bgId, ...textIds]);
+
+    // Klick-Event für das Logo
+    document.addEventListener('click', function(e) {
+        const logoElement = e.target.closest(`[data-id="${logoId}"]`);
+        if (logoElement) {
+            window.location.href = 'https://iappear.at/home';
+        }
+    });
+
+    // Hover-Logik zum Öffnen/Schließen
+    const handleGlobalMouse = (e) => {
+        const hovered = e.target.closest('[data-id]');
+        const currentId = hovered ? hovered.getAttribute('data-id') : null;
+
+        if (safeZone.has(currentId)) {
+            clearTimeout(timer);
+            document.body.classList.add('menu-open');
+        } else {
+            clearTimeout(timer);
+            timer = setTimeout(() => {
+                document.body.classList.remove('menu-open');
+            }, 150); 
+        }
+    };
+
+    document.addEventListener('mouseover', handleGlobalMouse);
+})();
+</script>

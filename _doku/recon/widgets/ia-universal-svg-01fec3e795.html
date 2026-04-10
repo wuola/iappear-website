@@ -1,0 +1,116 @@
+<div class="ia-animated-arrow-container">
+  <svg overflow="visible" id="ia-universal-svg">
+    <defs>
+      <marker orient="auto" refY="3.5" refX="9" markerHeight="7" markerWidth="10" id="ia-head">
+        <polygon class="ia-head-poly" fill="context-stroke" points="0 0, 10 3.5, 0 7"></polygon>
+      </marker>
+    </defs>
+    <path marker-end="url(#ia-head)" fill="none" id="ia-universal-path" d="M 50 50 H 550 V 90"></path>
+  </svg>
+</div>
+
+<style>
+  :root {
+    /* --- BASIS PARAMETER --- */
+    --arr-color: #222222;      
+    --arr-stroke: 2px;         
+    --arr-opacity: 1.0;
+
+    /* --- NEU: ANIMATIONS-SPEED --- */
+    /* Gesamtdauer für Zeichnen + kurze Pause */
+    --anim-speed: 2.5s;        
+
+    /* --- GEOMETRIE (Wie gehabt) --- */
+    --arr-start-x: 50;         /* Start X */
+    --arr-start-y: 50;         /* Start Y */
+    --arr-len-1: 500;          /* Segment 1 (Horiz.): +/- für Rechts/Links */
+    --arr-len-2: 40;           /* Segment 2 (Vert.): +/- für Unten/Oben */
+    
+    /* --- INTERNE VARIABLE (Wird von JS berechnet, NICHT ÄNDERN) --- */
+    --path-length: 1; /* Platzhalter */
+  }
+
+  .ia-animated-arrow-container {
+    width: 100%; height: 100%;
+    opacity: var(--arr-opacity);
+    pointer-events: none;
+  }
+
+  #ia-universal-path {
+    stroke: var(--arr-color);
+    stroke-width: var(--arr-stroke);
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    
+    /* Die Magie: Strich-Muster, das so lang ist wie der Pfad selbst */
+    stroke-dasharray: var(--path-length);
+    /* Startzustand: Linie ist komplett "zurückgezogen" */
+    stroke-dashoffset: var(--path-length);
+    
+    /* Die Endlos-Animation anwenden */
+    animation: iaDrawLine var(--anim-speed) ease-in-out infinite;
+  }
+
+  /* Animation für den Pfad */
+  @keyframes iaDrawLine {
+    0% {
+      stroke-dashoffset: var(--path-length); /* Start: Unsichtbar */
+    }
+    70% {
+      stroke-dashoffset: 0; /* Bei 70% der Zeit: Fertig gezeichnet */
+    }
+    100% {
+      stroke-dashoffset: 0; /* Pause am Ende, bevor es von vorne losgeht */
+    }
+  }
+
+  /* Animation für die Spitze (damit sie nicht schon vorher da ist) */
+  .ia-head-poly {
+    opacity: 0;
+    animation: iaShowHead var(--anim-speed) ease-in-out infinite;
+  }
+
+  @keyframes iaShowHead {
+    0%, 65% { opacity: 0; } /* Unsichtbar während des Zeichnens */
+    70%, 100% { opacity: 1; } /* Erscheint genau am Ende und bleibt kurz */
+  }
+</style>
+
+<script>
+  (function() {
+    function drawAndMeasureArrow() {
+      const root = document.documentElement;
+      const s = getComputedStyle(root);
+      
+      // Werte lesen
+      const x1 = parseFloat(s.getPropertyValue('--arr-start-x')) || 0;
+      const y1 = parseFloat(s.getPropertyValue('--arr-start-y')) || 0;
+      const l1 = parseFloat(s.getPropertyValue('--arr-len-1')) || 0;
+      const l2 = parseFloat(s.getPropertyValue('--arr-len-2')) || 0;
+
+      // Pfad konstruieren
+      const xCorner = x1 + l1;
+      const yCorner = y1;
+      const yEnd = yCorner + l2;
+      const d = `M ${x1} ${y1} H ${xCorner} V ${yEnd}`;
+      
+      const pathEl = document.getElementById('ia-universal-path');
+      if (pathEl) {
+        pathEl.setAttribute('d', d);
+        
+        // NEU: Gesamtlänge berechnen (einfache Mathe für gerade Linien)
+        // Math.abs sorgt dafür, dass negative Richtungen positiv gezählt werden
+        const totalLength = Math.abs(l1) + Math.abs(l2);
+        
+        // Den berechneten Wert zurück ins CSS schreiben
+        root.style.setProperty('--path-length', totalLength);
+      }
+    }
+
+    // Init & Observer für Readymag Editor
+    drawAndMeasureArrow();
+    new MutationObserver(drawAndMeasureArrow).observe(document.documentElement, { 
+      attributes: true, attributeFilter: ['style'] 
+    });
+  })();
+</script>

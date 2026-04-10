@@ -74,18 +74,67 @@ Burger-Menue rechts mit allen Links.
 - Session 2 (Kategorie-Subpages): abgeschlossen
 - Session 3 (Workflow / User Guide / Kontakt): abgeschlossen
 - Session 4 (Rechtliches): teilweise (Impressum + FAQs fertig, AGB + Datenschutz noch Stub)
+- Session 4.5 (Recon-Sync mit Readymag-Editor, 2026-04-10):
+  - Komplette Recon aller 11 Readymag-Pages in `_doku/recon/readymag-editor-*.md`
+  - workflow.html, user-guide.html, impressum.html, i-dentity.html mit Recon-Texten gesynced
+  - i-history.html, i-grow.html, kontakt.html bereits passend (verifiziert)
+  - vitrine.js: 14 -> **22 Eintraege** in korrekter Reihenfolge
+  - features.js: 14 Features mit Original-Subtiteln & -Texten aus Recon
+  - index.html Burger-Menue: **Plattform / Backstage** Struktur (nur dort)
+  - Methoden-Dok unter `_doku/recon/README.md` — Anleitung fuer kuenftige Sessions, wie man Readymag-Editor anzapft
 - Session 5 (Launch): noch nicht begonnen
 
+- Session 4.6 (Polish-Pass, 2026-04-10):
+  - Burger-Menue Plattform/Backstage **auf allen 11 Seiten** ausgerollt
+  - Netzwerk-Viz neu gebaut nach Original-Koordinaten aus `_doku/recon/widgets/network-container-afa4fcac0b.html` (8s Linien-Animation -> 7 Knoten faden ein, IntersectionObserver)
+  - Hero-Logo: Serif-Text durch echtes `assets/svg/logos/logo-lang-weiss.svg` ersetzt
+  - Roboto Variable Font selbst gehostet (`assets/fonts/`), Google-Fonts-Link aus allen 9 HTMLs raus -> DSGVO + schneller
+  - Mobile-Feinschliff: Breakpoints 540/720/960/1080, Hero stapelt sauber, Features/Vitrine/Team responsive
+  - Favicon (`assets/favicon.png`) auf allen 11 Seiten verlinkt
+- Session 4.7 (Asset-Integration, 2026-04-10):
+  - **Vitrine** komplett mit Bildern: 20/22 Kacheln haben `assets/images/vitrine/*.png` (2 fehlen: Florenz 2023, Podiumsdiskussion PH Vorarlberg)
+  - **Feature-Videos** eingebunden: 13 mp4s in `assets/videos/features/`, `js/features.js` injiziert beim Hover/Klick automatisch das passende Video in den Phone-Mockup (autoplay/loop/muted/playsinline)
+  - **Partner-Logos**: 14 SVGs aus `assets/svg/partner/` als echte `<img>`-Tags im Footer, schwarze Logos werden mit `filter: brightness(0) invert(1)` weiss gemacht
+  - **Lorbeerkranz** als statisches SVG (`assets/svg/logos/lorbeerkranz.svg`) hinter den Hero-Phones platziert
+  - **Kategorie-Badges**: i-history/i-dentity/i-grow Buttons aus `assets/svg/buttons/` (Layout muss noch ueberarbeitet werden, siehe offen)
+  - **Cache-Bust** `?v=2` auf alle JS-Dateien in index.html (Browser-Cache-Falle bei `js/data/vitrine.js`)
+  - **67 Readymag-Widgets** extrahiert in `_doku/recon/widgets/`, bisher nur `network-container` verwendet — Rest siehe "Was noch offen ist"
+- Session 4.8 (Merge & GitHub Pages Test, 2026-04-10):
+  - Ersten kompletten Stand auf `main` gemerged & gepushed
+  - Live-Test-Link: https://wuola.github.io/iappear-website/ (Nutzerin kann jetzt vom Handy testen)
+
 ### Was noch offen ist
-- AGB & Datenschutz Volltexte (sehr lang, juristisch)
-- Echte Bilder ueberall (Vitrine, Kategorien, Hero-Phones, Team-Fotos, Partner-Logos)
-- Lorbeerzweig-SVG-Animation (Platzhalter)
-- Awards-Animation
+- **Kategorie-Buttons im Hero** (Nutzerin Vermerk: "sollte glaub ich eigentlich anders ausschauen") — aktuell falsch als `.card__badge` in den Kategorie-Karten
+- **Hero-Layout** insgesamt — Nutzerin Vermerk: "da pass sowieso was mit dem layout nicht" — Feinschliff sobald alles drauf ist
+- **Team-Fotos** (Marilena + Maggy) — Nutzerin reicht nach, aktuell Platzhalter mit TODO-Kommentaren
+- **2 fehlende Vitrine-Bilder**: Florenz 2023, Podiumsdiskussion PH Vorarlberg
+- AGB & Datenschutz Volltexte (siehe `_doku/recon/readymag-editor-legal-toc.md`)
+- **Yellow Widgets** noch nicht eingebaut (siehe `_doku/recon/widgets/INDEX.md`):
+  - `ia-guide-container-*.html` -> User Guide Slider mit Bild/Video-Rotation
+  - `iappear-process-safe-1c5e16a08c.html` -> 5-Schritt-Prozess SVG fuer workflow.html
+  - `glow-pure-*.html` -> Glow-Effekt fuer i-dentity
+  - `ia-emergency-toggle-*.html` -> Toggle-Widget fuer i-history
+  - `header-anim-container-27ac988ab3.html` -> Startseite Header-Animation
+  - `i-appear-kranz-v4-fc4f90a579.svg` -> animierter Lorbeerkranz (Alternative zum statischen)
+- Awards-Animation auf dem Lorbeerkranz
 - Map-Kreis-Deko auf Kategorie-Seiten
-- Feature-Beschreibungstexte (generisch, koennen praezisiert werden)
-- llms.txt
-- Mobile-Feinschliff
 - Domain-Umleitung (ganz am Schluss)
+
+### Phone-Mockup-Konvention (wichtig fuer Feature-Sektion + Hero!)
+Ueberall wo ein Smartphone+Screen gezeigt werden soll (Hero, Features, Kategorie-Seiten), wird der **CSS-only Mockup** aus `components.css` verwendet — KEINE fertigen Mockup-Bilder!
+
+```html
+<div class="phone">
+  <div class="phone__screen">
+    <video src="assets/videos/feature-XYZ.mp4" autoplay muted loop playsinline></video>
+  </div>
+</div>
+```
+
+Der Screen-Bereich hat `overflow: hidden` + `border-radius`, ein eingebettetes `<video>` oder `<img>` wird automatisch via `object-fit: cover` voll gefuellt. Der Mockup hat eine Notch und feste Aspect-Ratio 9/19. Hintergrund: Auf Readymag wurden die Phone+Screen Sachen als Workaround gebaut weil es keine guten Mockups gab — wir machen das jetzt sauber per CSS.
+
+### Wichtig fuer Recon/Readymag-Arbeit
+Wenn du nochmal Inhalte aus dem Readymag-Editor holen musst, lies **zuerst** `_doku/recon/README.md`. Dort steht: welche Tools, welche Stolperfallen (900-Zeichen-Limit, Content-Filter, @font-face-Rauschen), die Standard-Snippets und welche Page welche Editor-URL hat.
 
 ## Wichtige Hinweise
 

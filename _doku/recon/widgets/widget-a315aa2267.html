@@ -1,0 +1,27 @@
+<style>
+/* 1. Die "Alles-oder-Nichts"-Regel */
+/* Das * Sternchen wählt JEDES Element auf der Seite aus */
+* {
+    cursor: default !important; /* Erzwingt den Pfeil */
+    -webkit-user-select: none !important; /* Verhindert Markieren in Chrome/Safari */
+    -moz-user-select: none !important; /* Firefox */
+    user-select: none !important; /* Standard */
+}
+
+/* 2. Die Ausnahmen (damit Links funktionieren) */
+/* a ist der Link, a * sind Elemente im Link */
+a, a *, button, .rm-button {
+    cursor: pointer !important; /* Zeigt die Hand */
+}
+
+/* 3. Sicherheitsnetz für Formulare (falls du welche hast) */
+/* Falls du irgendwo ein Eingabefeld hast, muss dort der Strich bleiben */
+input, textarea {
+    cursor: text !important;
+    -webkit-user-select: text !important;
+    user-select: text !important;
+/* Ergänzung für Readymag Shapes, die Trigger sind */
+.rm-widget[data-trigger-type] {
+    cursor: pointer !important;
+  }
+</style>

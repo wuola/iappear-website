@@ -1,0 +1,90 @@
+<div class="network-bg-container">
+    <svg class="network-svg-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 500">
+        <defs>
+            <filter height="300%" width="300%" y="-100%" x="-100%" id="glow-pure">
+                <feGaussianBlur result="blur" stdDeviation="3"></feGaussianBlur>
+                <feComposite operator="over" in2="blur" in="SourceGraphic"></feComposite>
+            </filter>
+        </defs>
+
+        <g opacity="0.2" stroke-dasharray="4,6" stroke-width="1" stroke="#ffffff" fill="none" class="wires">
+            <path d="M500,50 V250"></path> <path d="M500,250 H250 V400"></path> <path d="M500,250 H750 V400"></path> </g>
+
+        <g opacity="0.5" filter="url(#glow-pure)" fill="#ffffff">
+            <circle r="4" cy="50" cx="500"></circle>
+            <circle r="4" cy="400" cx="250"></circle>
+            <circle r="4" cy="400" cx="750"></circle>
+        </g>
+
+        <circle filter="url(#glow-pure)" fill="#ffffff" r="3" class="sig sig-root"></circle>
+        
+        <circle filter="url(#glow-pure)" fill="#ffffff" r="3" class="sig sig-left"></circle>
+        <circle filter="url(#glow-pure)" fill="#ffffff" r="3" class="sig sig-right"></circle>
+    </svg>
+</div>
+
+<style>
+:root {
+    --total-time: 5s;
+}
+
+.network-bg-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    pointer-events: none;
+}
+
+.network-svg-full {
+    width: 100%;
+    height: auto;
+    overflow: visible;
+}
+
+/* --- BASIS SIGNAL STYLING --- */
+.sig {
+    opacity: 0;
+}
+
+/* --- ANIMATIONS-CHOREOGRAFIE --- */
+
+/* 1. Root-Signal: Bewegt sich von oben zur Mitte */
+.sig-root {
+    offset-path: path('M500,50 V250');
+    animation: moveRoot var(--total-time) ease-in-out infinite;
+}
+
+@keyframes moveRoot {
+    0% { offset-distance: 0%; opacity: 0; }
+    5% { opacity: 1; }
+    35% { offset-distance: 100%; opacity: 1; }
+    36%, 100% { offset-distance: 100%; opacity: 0; }
+}
+
+/* 2. Linkes Signal: Startet wenn Root ankommt */
+.sig-left {
+    offset-path: path('M500,250 H250 V400');
+    animation: moveBranch var(--total-time) ease-in-out infinite;
+}
+
+/* 3. Rechtes Signal: Synchron zum linken */
+.sig-right {
+    offset-path: path('M500,250 H750 V400');
+    animation: moveBranch var(--total-time) ease-in-out infinite;
+}
+
+@keyframes moveBranch {
+    0%, 35% { offset-distance: 0%; opacity: 0; }
+    36% { opacity: 1; }
+    70% { offset-distance: 100%; opacity: 1; }
+    75%, 100% { offset-distance: 100%; opacity: 0; }
+}
+
+/* Sanftes Fließen der Hintergrundlinien */
+.wires path {
+    animation: dashFlow 20s linear infinite;
+}
+@keyframes dashFlow {
+    to { stroke-dashoffset: -100; }
+}
+</style>

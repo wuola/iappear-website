@@ -1,0 +1,48 @@
+<div class="iappear-scroll-top-container">
+  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M18 15L12 9L6 15" stroke="currentColor" stroke-width="var(--stroke-width)" stroke-linecap="round" stroke-linejoin="round"></path>
+  </svg>
+</div>
+
+<style>
+  .iappear-scroll-top-container {
+    /* --- PARAMETER --- */
+    --size: 40px;           /* Gesamtgröße des Widgets */
+    --color: #242424;       /* Farbe des Pfeils (wie im Screenshot) */
+    --stroke-width: 1.5px;  /* Dicke der Linie */
+    --speed: 2s;            /* Geschwindigkeit (Dauer eines Zyklus) */
+    --bounce-dist: 6px;     /* Wie weit er hüpft */
+
+    /* Basis-Styling */
+    width: var(--size) !important;
+    height: var(--size) !important;
+    min-width: var(--size) !important;
+    min-height: var(--size) !important;
+    color: var(--color);
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  .iappear-scroll-top-container svg {
+    width: 80%; /* Etwas kleiner als der Container für Padding */
+    height: 80%;
+    display: block;
+    will-change: transform;
+    
+    /* Die Animation */
+    animation: iappear-bounce var(--speed) ease-in-out infinite;
+  }
+
+  /* Definition des sanften Hüpfens */
+  @keyframes iappear-bounce {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(calc(var(--bounce-dist) * -1));
+    }
+  }
+</style>

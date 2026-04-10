@@ -1,150 +1,134 @@
 /* iappear.at – network.js
-   Netzwerk-Visualisierung der Rundgaenge.
-   Liest aus window.IAPPEAR_RUNDGAENGE (falls vorhanden), sonst Fallback-Liste.
-   Positioniert Nodes auf einem Kreis, verbindet sie mit animierten Linien,
-   faerbt sie nach Kategorie ein und laesst sie sanft schweben.
-   Respektiert prefers-reduced-motion. */
+   ============================================================
+   Netzwerk-Visualisierung "Beispiel Dornbirn" auf der Startseite.
+   Das Layout (Box-Positionen + Verbindungslinien) ist direkt aus
+   dem Original-Readymag-Widget uebernommen — siehe
+   _doku/recon/widgets/network-container-afa4fcac0b.html
+   ------------------------------------------------------------
+   Die 7 Knoten-Inhalte (Titel, Farbe, optional Bild) werden aus
+   der zentralen Daten-Datei window.IAPPEAR_NETWORK gelesen
+   (siehe js/data/rundgaenge.js). Falls die Daten fehlen, gibt es
+   eine Fallback-Liste hier unten.
+   ============================================================ */
 
 (function () {
   const viz = document.querySelector('[data-network]');
   if (!viz) return;
 
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // Fixe Positionen aus dem Original-Widget (SVG-viewBox 1000x900)
+  // Box-Index 0..6, mit Groesse und Position als Prozentwerte
+  const POSITIONS = [
+    { x: 90,  y: 90,  w: 120, h: 120 }, // 0: oben links (gross)
+    { x: 410, y: 60,  w: 80,  h: 80  }, // 1: oben mitte (klein)
+    { x: 690, y: 240, w: 120, h: 120 }, // 2: rechts oben (gross)
+    { x: 90,  y: 490, w: 120, h: 120 }, // 3: mitte links (gross)
+    { x: 360, y: 560, w: 80,  h: 80  }, // 4: mitte (klein) — Center "Beispiel Dornbirn"
+    { x: 540, y: 740, w: 120, h: 120 }, // 5: unten (gross)
+    { x: 860, y: 610, w: 80,  h: 80  }, // 6: rechts unten (klein)
+  ];
 
-  // Farben aus CSS-Variablen
+  // Verbindungslinien aus dem Original (Linien-Endpunkte als Pixel)
+  const LINES = [
+    [150, 150, 450, 100],
+    [150, 150, 750, 300],
+    [150, 150, 400, 600],
+    [450, 100, 750, 300],
+    [750, 300, 150, 550],
+    [750, 300, 600, 800],
+    [750, 300, 900, 650],
+    [400, 600, 600, 800],
+    [600, 800, 900, 650],
+  ];
+
+  // Farben aus den CSS-Variablen
   const css = getComputedStyle(document.documentElement);
   const C_HISTORY = (css.getPropertyValue('--c-history') || '#D3A54A').trim();
   const C_DENTITY = (css.getPropertyValue('--c-dentity') || '#769CA2').trim();
   const C_GROW    = (css.getPropertyValue('--c-grow')    || '#8E9F6A').trim();
 
-  // Rundgaenge aus Daten-Datei sammeln (nur Dornbirn fuer die Viz – "Beispiel Dornbirn")
-  function collectNodes() {
-    const data = window.IAPPEAR_RUNDGAENGE;
-    const list = [];
-    if (data) {
-      const pushRegion = (kat, farbe) => {
-        const cat = data[kat];
-        if (!cat) return;
-        cat.regionen.forEach((region) => {
-          if (region.name !== 'Dornbirn') return;
-          region.rundgaenge.forEach((r) => {
-            if (/platzhalter/i.test(r.titel)) return;
-            list.push({ titel: r.titel, farbe });
-          });
-        });
-      };
-      pushRegion('history', C_HISTORY);
-      pushRegion('dentity', C_DENTITY);
-      pushRegion('grow',    C_GROW);
-    }
-    // Fallback falls Daten-Datei nicht geladen oder leer
-    if (list.length === 0) {
-      return [
-        { titel: 'Oberdorf Entdecken',     farbe: C_DENTITY },
-        { titel: 'Stadtspuren',            farbe: C_HISTORY },
-        { titel: 'hist.appear',            farbe: C_HISTORY },
-        { titel: '125 Jahre 125 Bilder',   farbe: C_HISTORY },
-        { titel: 'Frauenspuren',           farbe: C_HISTORY },
-        { titel: 'Innenstadt Erleben',     farbe: C_DENTITY },
-        { titel: 'Buntes Dornbirn',        farbe: C_DENTITY },
-      ];
-    }
-    return list;
-  }
+  // Fallback-Knoten falls keine Daten geladen wurden.
+  // Index 4 ist das Zentrum "Beispiel Dornbirn".
+  const FALLBACK = [
+    { titel: 'hist.appear',         farbe: C_HISTORY, status: 'live'   },
+    { titel: 'Oberdorf entdecken',  farbe: C_DENTITY, status: 'soon'   },
+    { titel: 'Frauenspuren',        farbe: C_HISTORY, status: 'soon'   },
+    { titel: 'Stadtspuren',         farbe: C_HISTORY, status: 'live'   },
+    { titel: 'Beispiel Dornbirn',   farbe: '#fff',    status: 'center' },
+    { titel: 'Buntes Dornbirn',     farbe: C_DENTITY, status: 'live'   },
+    { titel: '125 Jahre 125 Bilder',farbe: C_HISTORY, status: 'soon'   },
+  ];
 
-  const nodes = collectNodes();
+  const nodes = (Array.isArray(window.IAPPEAR_NETWORK) && window.IAPPEAR_NETWORK.length === 7)
+    ? window.IAPPEAR_NETWORK
+    : FALLBACK;
+
+  // ----- SVG mit Linien rendern -----
   const svgNS = 'http://www.w3.org/2000/svg';
+  viz.innerHTML = '';
+  viz.classList.add('network-viz');
 
-  function render() {
-    viz.innerHTML = '';
+  const svg = document.createElementNS(svgNS, 'svg');
+  svg.setAttribute('viewBox', '0 0 1000 900');
+  svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+  svg.setAttribute('class', 'network-viz__svg');
 
-    const W = viz.clientWidth || 400;
-    const H = viz.clientHeight || 400;
-    const cx = W / 2, cy = H / 2;
-    const r = Math.min(W, H) * 0.36;
-
-    // SVG als Basis (Linien)
-    const svg = document.createElementNS(svgNS, 'svg');
-    svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
-    svg.setAttribute('width', '100%');
-    svg.setAttribute('height', '100%');
-    svg.style.position = 'absolute';
-    svg.style.inset = '0';
-    svg.style.pointerEvents = 'none';
-
-    // Punkte gleichmaessig auf Kreis
-    const points = nodes.map((_, i) => {
-      const angle = (i / nodes.length) * Math.PI * 2 - Math.PI / 2;
-      return { x: cx + Math.cos(angle) * r, y: cy + Math.sin(angle) * r };
-    });
-
-    // Verbindungslinien – jeder mit jedem (vollstaendig verbunden, gibt Netz-Look)
-    for (let i = 0; i < points.length; i++) {
-      for (let j = i + 1; j < points.length; j++) {
-        const line = document.createElementNS(svgNS, 'line');
-        line.setAttribute('x1', points[i].x);
-        line.setAttribute('y1', points[i].y);
-        line.setAttribute('x2', points[j].x);
-        line.setAttribute('y2', points[j].y);
-        line.setAttribute('stroke', 'rgba(255,255,255,0.12)');
-        line.setAttribute('stroke-width', '1');
-        line.classList.add('network-viz__line');
-        if (!reduceMotion) {
-          // Zarte Pulse-Animation per CSS-Variablen-Delay
-          line.style.animationDelay = ((i + j) * 0.15) + 's';
-        }
-        svg.appendChild(line);
-      }
-    }
-    viz.appendChild(svg);
-
-    // Nodes als quadratische Kachel mit Hintergrundbild + Target-Icon + Name
-    nodes.forEach((n, i) => {
-      const node = document.createElement('div');
-      node.className = 'network-viz__node';
-      node.style.left = (points[i].x - 55) + 'px';
-      node.style.top  = (points[i].y - 55) + 'px';
-      node.style.borderColor = n.farbe;
-      // Hintergrundbild (Platzhalter via dashed pattern bleibt sonst bestehen)
-      if (n.bild) {
-        node.style.backgroundImage = 'url(' + n.bild + ')';
-        node.style.backgroundSize = 'cover';
-        node.style.backgroundPosition = 'center';
-      }
-      // Target-Icon oben
-      const icon = document.createElement('img');
-      icon.src = 'assets/svg/targets/target-weiss.svg';
-      icon.alt = '';
-      icon.className = 'network-viz__node-icon';
-      node.appendChild(icon);
-      // Name unten
-      const label = document.createElement('span');
-      label.className = 'network-viz__node-label';
-      label.textContent = n.titel;
-      label.style.color = '#fff';
-      node.appendChild(label);
-      if (!reduceMotion) {
-        node.style.animationDelay = (i * 0.35) + 's';
-        node.classList.add('is-floating');
-      }
-      viz.appendChild(node);
-    });
-
-    // Mittel-Label "BEISPIEL DORNBIRN"
-    const center = document.createElement('div');
-    center.className = 'network-viz__center';
-    center.textContent = 'Beispiel Dornbirn';
-    center.style.left = (cx - 100) + 'px';
-    center.style.top  = (cy - 16) + 'px';
-    viz.appendChild(center);
-  }
-
-  render();
-
-  // Neu zeichnen bei Resize (debounced)
-  let resizeTimer;
-  window.addEventListener('resize', () => {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(render, 200);
+  LINES.forEach(([x1, y1, x2, y2]) => {
+    const line = document.createElementNS(svgNS, 'line');
+    line.setAttribute('x1', x1);
+    line.setAttribute('y1', y1);
+    line.setAttribute('x2', x2);
+    line.setAttribute('y2', y2);
+    line.setAttribute('class', 'network-viz__line');
+    svg.appendChild(line);
   });
+
+  viz.appendChild(svg);
+
+  // ----- Knoten als HTML-Overlay positioniert -----
+  POSITIONS.forEach((p, i) => {
+    const n = nodes[i] || { titel: '', farbe: '#fff', status: '' };
+    const node = document.createElement('div');
+    node.className = 'network-viz__node' + (n.status === 'center' ? ' is-center' : '');
+    if (n.status === 'soon') node.classList.add('is-soon');
+
+    // Position als Prozent vom viewBox-Rahmen (1000x900)
+    node.style.left   = (p.x / 1000 * 100) + '%';
+    node.style.top    = (p.y / 900  * 100) + '%';
+    node.style.width  = (p.w / 1000 * 100) + '%';
+    node.style.height = (p.h / 900  * 100) + '%';
+    node.style.borderColor = n.farbe;
+
+    if (n.bild) {
+      node.style.backgroundImage = 'url(' + n.bild + ')';
+    }
+
+    const label = document.createElement('span');
+    label.className = 'network-viz__node-label';
+    label.textContent = n.titel;
+    node.appendChild(label);
+
+    if (n.status === 'soon') {
+      const tag = document.createElement('small');
+      tag.className = 'network-viz__node-tag';
+      tag.textContent = 'coming soon';
+      node.appendChild(tag);
+    }
+
+    viz.appendChild(node);
+  });
+
+  // ----- Linien-Animation per IntersectionObserver -----
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          viz.classList.add('is-animating');
+          obs.unobserve(viz);
+        }
+      });
+    }, { threshold: 0.3 });
+    observer.observe(viz);
+  } else {
+    viz.classList.add('is-animating');
+  }
 })();

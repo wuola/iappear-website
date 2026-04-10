@@ -1,0 +1,56 @@
+<div class="target-icon-container">
+  <style>
+    /* --- ZENTRALE STEUERUNG --- */
+    .target-icon-container {
+      /* Farbe des Hintergrund-Kreises */
+      --bg-color: #1A1A1A; 
+
+      /* Farbe des Icons (Ring und Punkt) */
+      --target-color: #ffffff; 
+
+      /* Dicke des äußeren Rings (im Verhältnis zum 100px Viewbox) */
+      --stroke-width: 6px; 
+
+      /* Deckkraft des gesamten Elements (0.0 bis 1.0) */
+      --target-opacity: 1.0; 
+
+      /* Größe des Widgets in Readymag */
+      width: 40px; 
+      height: 40px;
+      display: inline-block;
+    }
+
+    .target-svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+      opacity: var(--target-opacity);
+    }
+
+    /* Hintergrund-Kreis Styling */
+    .bg-circle {
+      fill: var(--bg-color);
+    }
+
+    /* Äußerer Ring Styling */
+    .outer-ring {
+      fill: none;
+      stroke: var(--target-color);
+      stroke-width: var(--stroke-width);
+    }
+
+    /* Innerer Punkt Styling */
+    .inner-dot {
+      fill: var(--target-color);
+      stroke: none;
+    }
+  </style>
+
+  <svg class="target-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <circle class="bg-circle" cx="50" cy="50" r="50"></circle>
+    
+    <circle class="outer-ring" cx="50" cy="50" r="22"></circle>
+    
+    <circle class="inner-dot" cx="50" cy="50" r="7"></circle>
+  </svg>
+</div>

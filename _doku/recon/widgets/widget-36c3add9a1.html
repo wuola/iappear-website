@@ -1,0 +1,103 @@
+<style>
+/* Snappy Transition für alle Inhalte */
+.feature-content {
+    opacity: 0 !important;
+    pointer-events: none !important;
+    transition: opacity 0.1s ease-in-out !important;
+    visibility: hidden !important;
+}
+
+.feature-content.active {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    visibility: visible !important;
+}
+
+/* Listenelemente links */
+.active-trigger, .active-trigger span, .active-trigger p {
+    color: #ffffff !important;
+    font-weight: 900 !important;
+    transition: all 0.1s ease-in-out !important;
+}
+
+/* DAS FIX FÜR DAS MOCKUP: Kein Wippen, kein Deelay */
+[data-id="69775179f5ed186d954cf1eb"], [data-id="697751ad525bbfb457a29812"] {
+    /* Wir haben das cubic-bezier durch ease-in-out ersetzt und auf 0.1s verkürzt */
+    transition: transform 0.1s ease-in-out !important; 
+    z-index: 999 !important;
+}
+</style>
+
+<script>
+(function() {
+    // Deine mühsam erkämpfte ID-Liste bleibt absolut unangetastet
+    const features = [
+        { t: "69720831fb37e3a479baa4db", ids: ["69720838250620518422f9f6", "6972082f9862721ee7c533d8", "69778459452ddeb298db81c0"] },
+        { t: "697208305fb7c2b73b0c2f07", ids: ["69720838d76be7e136ab9502", "697208327115281da7c3e1e1", "697208332f8f971108f393d7"] },
+        { t: "697208309e442a419a942445", ids: ["69720839b59e97280da06db7", "69720832250620518422f908", "69720832250620518422f90b"] },
+        { t: "69720831d2bc502b1e60d1d5", ids: ["69720839bf5364d5add74654", "6972083300cf1ccec25c2e69", "69720833cd094e01687f61dc", "697208339862721ee7c53518"] },
+        { t: "69720830787fbc2f71a2c8eb", ids: ["697208393ac09d413fa3731b", "69776b21fe0e7d9f63bdbd26", "697208381a5a8b3ff6651dc7"], rotate: true },
+        { t: "697208309e442a419a942448", ids: ["6972083930591f117db6f6ee", "69720833ae4c5f710cc306e6", "6972083399e2f40047c68bd5", "6972083368f0613b3483435d"] },
+        { t: "69720831699c0d1c27f089ce", ids: ["69720839b59e97280da06dca", "69720834bf5364d5add7449a", "69720834012b4ca1504c403b"] },
+        { t: "6972083036b1ca9b6c118e06", ids: ["697208397cc65b76e5e7de65", "69720834d76be7e136ab943f", "697208347a60cb6734ec487e"] },
+        { t: "697208301e991f001666934f", ids: ["6972083a30591f117db6f6ff", "69720835ae4c5f710cc30862", "6977790b6b44d44857b2fed0", "697208366dd401ac84ce9fa9"] },
+        { t: "69720831ae4c5f710cc3069a", ids: ["6972083ad76be7e136ab9521", "69720836bf5364d5add744df", "69720836544b848104b13a2d"] },
+        { t: "69720830b59e97280da06bd8", ids: ["6972083a7cc65b76e5e7de71", "69720832544b848104b139d7", "6972083206ae479c4284fb63"] },
+        { t: "697208313ac09d413fa371e4", ids: ["6972083a1e991f00166695f6", "697208364c68c45202e26938", "697208369e442a419a942606"] },
+        { t: "69720831787fbc2f71a2c8f6", ids: ["6972083a1fc4b095d3e7928d", "6972083768f0613b34834493", "69720837250620518422f9d8", "69776c23c318cd6da6b6304b"] },
+        { t: "69720831fb37e3a479baa4de", ids: ["6972083ad1cdcd496052d892", "69776ba7452ddeb298cc98c8", "69776e9737f5edf6aad27ece", "69720837250620518422f9e9"] }
+    ];
+
+    const mockupIDs = ["69775179f5ed186d954cf1eb", "697751ad525bbfb457a29812"];
+    const getAllEls = (id) => document.querySelectorAll(`[data-id="${id}"]`);
+    let lastActive = null;
+
+    function update(target) {
+        if (target === lastActive) return;
+
+        if (lastActive) {
+            getAllEls(lastActive.t).forEach(el => el.classList.remove('active-trigger'));
+            lastActive.ids.forEach(id => {
+                getAllEls(id).forEach(el => {
+                    el.classList.remove('active');
+                    const v = el.querySelector('video');
+                    if (v) { v.pause(); v.currentTime = 0; }
+                });
+            });
+        }
+
+        getAllEls(target.t).forEach(el => el.classList.add('active-trigger'));
+        target.ids.forEach(id => {
+            getAllEls(id).forEach(el => {
+                el.classList.add('active');
+                const v = el.querySelector('video');
+                if (v) { v.muted = true; v.play().catch(() => {}); }
+            });
+        });
+
+        const rot = target.rotate ? "rotate(90deg)" : "rotate(0deg)";
+        mockupIDs.forEach(mId => {
+            getAllEls(mId).forEach(mEl => mEl.style.transform = rot);
+        });
+
+        lastActive = target;
+    }
+
+    function setup() {
+        features.forEach(f => {
+            getAllEls(f.t).forEach(tEl => {
+                tEl.addEventListener('mouseenter', () => update(f));
+                tEl.style.cursor = "pointer";
+            });
+            f.ids.forEach(id => {
+                getAllEls(id).forEach(el => el.classList.add('feature-content'));
+            });
+        });
+        setTimeout(() => { if (features[0]) update(features[0]); }, 300);
+    }
+
+    if (document.readyState === 'complete') setup();
+    else window.addEventListener('load', setup);
+    setTimeout(setup, 1200);
+})();
+</script>

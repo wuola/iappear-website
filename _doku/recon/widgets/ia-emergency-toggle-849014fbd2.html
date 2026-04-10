@@ -1,0 +1,106 @@
+<div class="ia-emergency-toggle is-suitcase" onclick="runIAppearToggle(this)">
+  
+  <div class="ia-track">
+    <div class="ia-thumb"></div>
+    <div class="ia-icon-box">
+      <svg class="ia-icon map-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 6V22L8 18L15 22L22 18V2L15 6L8 2L1 6Z"></path><path d="M8 2V18"></path><path d="M15 6V22"></path></svg>
+      <svg class="ia-icon suitcase-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="12" rx="2"></rect><path d="M8 8V6a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+    </div>
+  </div>
+
+  <div class="ia-hint-container">
+    <svg class="ia-hint-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="4" y1="12" x2="20" y2="12"></line>
+      <polyline points="14 6 20 12 14 18"></polyline>
+    </svg>
+  </div>
+
+</div>
+
+<style>
+  :root {
+    /* --- EINSTELLUNGEN FÜR DEN TOGGLE --- */
+    --ia-scale: 1; 
+    --ia-w: calc(130px * var(--ia-scale)); 
+    --ia-h: calc(56px * var(--ia-scale)); 
+    --ia-bg: rgba(30, 30, 30, 0.6);
+    --ia-border: rgba(255, 255, 255, 0.2);
+    --ia-thumb-c: #2A2A2A;
+
+    /* --- NEU: EINSTELLUNGEN FÜR DEN PFEIL-HINWEIS --- */
+    --hint-color: #FFFFFF;    /* Farbe des Pfeils */
+    --hint-size: 24px;        /* Größe des Pfeils */
+    --hint-opacity: 0.7;      /* Wie durchsichtig ist er? (0 bis 1) */
+    --hint-speed: 1.5s;       /* Wie schnell bewegt er sich? */
+    --hint-distance: 15px;    /* Wie weit bewegt er sich nach rechts? */
+  }
+
+  /* Hauptcontainer des Buttons */
+  .ia-emergency-toggle {
+    width: var(--ia-w); height: var(--ia-h);
+    cursor: pointer; user-select: none; padding: 1px;
+    box-sizing: border-box; display: inline-block;
+    /* WICHTIG: Relativ, damit der Pfeil daran ausgerichtet werden kann */
+    position: relative; 
+    z-index: 999999 !important;
+  }
+
+  /* --- STYLING DES HINWEIS-PFEILS --- */
+  .ia-hint-container {
+    position: absolute;
+    /* Positionierung UNTERHALB des Buttons */
+    top: 100%; 
+    left: 0;
+    width: 100%;
+    height: 40px; /* Platz für die Animation */
+    display: flex;
+    justify-content: center; /* Horizontal mittig */
+    align-items: center;   /* Vertikal mittig im Container */
+    pointer-events: none;  /* GARANTIERT KEINE KLICK-BLOCKADE */
+    opacity: var(--hint-opacity);
+    color: var(--hint-color);
+  }
+
+  .ia-hint-arrow {
+    width: var(--hint-size);
+    height: var(--hint-size);
+    /* Die Animation anwenden */
+    animation: horizontalMove var(--hint-speed) ease-in-out infinite alternate;
+  }
+
+  /* Die horizontale Bewegung */
+  @keyframes horizontalMove {
+    from { transform: translateX(calc(var(--hint-distance) * -0.5)); }
+    to   { transform: translateX(calc(var(--hint-distance) * 0.5)); }
+  }
+
+
+  /* --- ORIGINAL TOGGLE STYLING (Unverändert) --- */
+  .ia-track { position: relative; width: 100%; height: 100%; background: var(--ia-bg); border: 1px solid var(--ia-border); border-radius: 999px; overflow: hidden; }
+  .ia-thumb { position: absolute; top: 0; left: 0; height: 100%; width: calc(var(--ia-h) - 2px); background: var(--ia-thumb-c); border-radius: 50%; transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+  .ia-icon-box { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; justify-content: space-between; align-items: center; padding: 0 calc(20px * var(--ia-scale)); box-sizing: border-box; z-index: 2; }
+  .ia-icon { width: calc(24px * var(--ia-scale)); height: calc(24px * var(--ia-scale)); transition: color 0.3s; pointer-events: none; }
+  .ia-emergency-toggle.is-suitcase .ia-thumb { transform: translateX(calc(var(--ia-w) - var(--ia-h))); }
+  .ia-emergency-toggle:not(.is-suitcase) .map-svg { color: #fff; }
+  .ia-emergency-toggle:not(.is-suitcase) .suitcase-svg { color: #666; }
+  .ia-emergency-toggle.is-suitcase .map-svg { color: #666; }
+  .ia-emergency-toggle.is-suitcase .suitcase-svg { color: #fff; }
+</style>
+
+<script>
+  (function() {
+    const MAP_ID = "697ba7fbcf5bfecdf2fbda6b"; 
+    const LIST_ID = "696de09bbc8a902b21afbfd1"; 
+    function setIAViewState(isSuitcase) {
+      const map = document.querySelector('[data-id="' + MAP_ID + '"]');
+      const list = document.querySelector('[data-id="' + LIST_ID + '"]');
+      if (map && list) {
+        [map, list].forEach(el => el.style.setProperty('transition', 'opacity 0.4s ease-in-out', 'important'));
+        if (isSuitcase) { map.style.setProperty('opacity', '0', 'important'); map.style.setProperty('pointer-events', 'none', 'important'); list.style.setProperty('opacity', '1', 'important'); list.style.setProperty('pointer-events', 'auto', 'important');
+        } else { map.style.setProperty('opacity', '1', 'important'); map.style.setProperty('pointer-events', 'auto', 'important'); list.style.setProperty('opacity', '0', 'important'); list.style.setProperty('pointer-events', 'none', 'important'); }
+      }
+    }
+    window.runIAppearToggle = function(element) { element.classList.toggle('is-suitcase'); setIAViewState(element.classList.contains('is-suitcase')); };
+    window.addEventListener('load', function() { setTimeout(function() { setIAViewState(true); }, 1000); });
+  })();
+</script>

@@ -1,0 +1,12 @@
+let ghost = document.querySelector('[data-id="697b95dda3f6af45bb9a76ec"]');
+if(ghost) {
+    ghost.style.setProperty('display', 'block', 'important');
+    ghost.style.setProperty('background', 'red', 'important');
+    ghost.style.setProperty('position', 'fixed', 'important');
+    ghost.style.setProperty('top', '50px', 'important');
+    ghost.style.setProperty('left', '50px', 'important');
+    ghost.style.setProperty('z-index', '999999', 'important');
+    console.log("Ghost gefunden und oben links fixiert!");
+} else {
+    console.log("Widget existiert auf DIESER Seite physisch nicht.");
+}

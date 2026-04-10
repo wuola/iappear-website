@@ -1,0 +1,53 @@
+<style>
+  /* Die Schreib-Animation */
+  @keyframes signContract {
+    0% {
+      transform: translate(0, 0) rotate(0deg);
+    }
+    20% {
+      /* Stift bewegt sich zum Start der Linie und neigt sich */
+      transform: translate(-18px, -4px) rotate(-20deg);
+    }
+    40% {
+      /* Kritzelbewegung 1 */
+      transform: translate(-12px, -2px) rotate(-5deg);
+    }
+    60% {
+      /* Kritzelbewegung 2 */
+      transform: translate(-6px, -4px) rotate(-20deg);
+    }
+    80% {
+      /* Kritzelbewegung 3 */
+      transform: translate(-2px, -2px) rotate(-5deg);
+    }
+    100% {
+      /* Zurück zur Ruheposition */
+      transform: translate(0, 0) rotate(0deg);
+    }
+  }
+
+  .pen-group {
+    /* Damit sich der Stift um seine eigene Mitte dreht */
+    transform-origin: center;
+    transform-box: fill-box;
+  }
+
+  .contract-icon:hover .pen-group {
+    animation: signContract 1s ease-in-out;
+  }
+</style>
+
+<svg class="contract-icon" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#C2C2C2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="overflow: visible;">
+  
+  <path d="M15 5 H45 V55 H15 V5 Z"></path>
+  <line x1="22" y1="15" x2="38" y2="15"></line>
+  <line x1="22" y1="22" x2="38" y2="22"></line>
+  <line x1="22" y1="29" x2="38" y2="29"></line>
+  
+  <line x1="22" y1="45" x2="40" y2="45"></line>
+  
+  <g class="pen-group">
+    <path d="M48 35 L42 48 L38 42 L48 35 Z" fill="white"></path> <path d="M48 35 L52 30"></path>
+  </g>
+  
+</svg>

@@ -50,10 +50,18 @@
   border: 1px solid var(--c-text); border-radius: var(--radius);
   width: 42px; height: 42px;
 }
-.menu__list { display: grid; gap: var(--sp-2); max-width: 700px; margin: var(--sp-4) auto; }
+.menu__group { max-width: 700px; margin: var(--sp-4) auto 0; }
+.menu__heading {
+  font-family: var(--f-serif); font-size: .9rem;
+  letter-spacing: .2em; text-transform: uppercase;
+  color: rgba(255,255,255,.55);
+  margin: 0 0 var(--sp-2);
+}
+.menu__list { display: grid; gap: var(--sp-2); list-style: none; padding: 0; margin: 0 0 var(--sp-3); }
 .menu__list a {
-  font-family: var(--f-serif); font-size: 1.6rem;
+  font-family: var(--f-serif); font-size: clamp(1.2rem, 5vw, 1.6rem);
   padding: var(--sp-1) 0; border-bottom: 1px solid rgba(255,255,255,.15);
+  display: block;
 }
 
 /* --- Buttons --------------------------------------------------------------- */
@@ -94,7 +102,18 @@
 .vitrine-card {
   display: flex; flex-direction: column; gap: var(--sp-1);
 }
-.vitrine-card .ph { aspect-ratio: 1/1; }
+.vitrine-card__thumb {
+  aspect-ratio: 1/1;
+  background-size: cover;
+  background-position: center;
+  background-color: #0a0a0a;
+  border-radius: var(--radius-card);
+  border: 1px solid rgba(255,255,255,.12);
+  overflow: hidden;
+}
+.vitrine-card .ph.vitrine-card__thumb {
+  background-color: transparent;
+}
 .vitrine-card__text {
   font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   font-size: .78rem; line-height: 1.5;
@@ -119,6 +138,11 @@
   width: 56px; height: 56px;
   margin: 0 auto var(--sp-1);
 }
+.card--kategorie .card__badge {
+  width: 140px; height: auto;
+  margin: 0 auto var(--sp-2);
+  display: block;
+}
 .card--kategorie h3 {
   font-family: var(--f-serif);
   font-size: 2rem;
@@ -134,26 +158,41 @@
   border-radius: 999px;
 }
 
-/* --- Phone-Mockup (CSS-only) ---------------------------------------------- */
+/* --- Phone-Mockup (CSS-only) ----------------------------------------------
+   Wird ueberall eingesetzt, wo ein Smartphone+Screen gezeigt werden soll.
+   Innen kommt entweder Platzhaltertext oder spaeter ein <video> bzw. <img>
+   mit object-fit: cover. Das Mockup hat eine Notch und feste Aspect-Ratio. */
 .phone {
-  width: 200px; aspect-ratio: 9/19;
+  width: clamp(160px, 38vw, 220px);
+  aspect-ratio: 9/19;
   border: 2px solid var(--c-text);
   border-radius: 28px;
   padding: 10px;
   background: #0a0a0a;
   position: relative;
+  flex: 0 0 auto;
 }
 .phone::before {
   content: ""; position: absolute; top: 10px; left: 50%; transform: translateX(-50%);
   width: 60px; height: 14px; background: #000; border-radius: 0 0 10px 10px;
+  z-index: 2;
 }
 .phone__screen {
   width: 100%; height: 100%;
   border-radius: 18px;
+  overflow: hidden;
   background: repeating-linear-gradient(
     45deg, rgba(255,255,255,.04) 0 10px, rgba(255,255,255,.08) 10px 20px
   );
   display: grid; place-items: center; color: var(--c-text-muted); font-size: .8rem; text-align: center;
+  position: relative;
+}
+/* Wenn ein Video oder Bild im Screen liegt: voll fuellen, ohne Verzerrung. */
+.phone__screen > video,
+.phone__screen > img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
 }
 
 /* --- Platzhalter (Bilder/Videos/SVGs) ------------------------------------- */
@@ -220,6 +259,12 @@ span.feature-list__icon {
   margin: 0;
   line-height: 1;
 }
+.hero__logo {
+  width: clamp(220px, 38vw, 460px);
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
 .hero__subtitle {
   font-family: var(--f-serif);
   font-size: 1rem;
@@ -227,61 +272,157 @@ span.feature-list__icon {
   opacity: .75;
   margin: 0;
 }
+/* Stage: Phones + Awards werden vom Lorbeerkranz umrahmt.
+   Der Kranz liegt als absolut positioniertes Background-SVG dahinter. */
 .hero__stage {
-  display: flex; align-items: center; justify-content: center;
-  gap: var(--sp-2);
+  position: relative;
   width: 100%;
-  margin-top: var(--sp-3);
+  max-width: 640px;
+  margin: var(--sp-3) auto 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .hero__laurel {
-  width: 90px; min-height: 240px;
-  flex: 0 0 auto;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+  z-index: 0;
+}
+.hero__stage-inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-4) var(--sp-5);
+  width: 100%;
 }
 .hero__awards {
-  margin-top: var(--sp-3);
   text-align: center;
-  opacity: .8;
+  opacity: .85;
+  font-family: var(--f-serif);
+  font-size: .9rem;
+  letter-spacing: .05em;
 }
 
-/* --- Netzwerk-Visualisierung (Grob-Platzhalter) --------------------------- */
+/* --- Netzwerk-Visualisierung ---------------------------------------------
+   Layout-Quelle: _doku/recon/widgets/network-container-afa4fcac0b.html
+   Boxen + Linien sind in JS in Prozent eines 1000x900 viewBox positioniert.
+   Animation: zuerst werden die Linien ueber 8s gezeichnet, danach
+   blenden die Knoten ein. Wird per IntersectionObserver gestartet.
+   ------------------------------------------------------------------------ */
 .network-viz {
-  position: relative; aspect-ratio: 1/1; min-height: 360px;
-  border: 1px dashed rgba(255,255,255,.2); border-radius: var(--radius-card);
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1000 / 900;
+  margin: 0 auto;
 }
-.network-viz__node {
-  position: absolute; width: 110px; height: 110px;
-  border: 1px solid var(--c-text); border-radius: 6px;
-  display: flex; flex-direction: column; align-items: center; justify-content: space-between;
-  padding: 8px 6px;
-  background-color: rgba(0,0,0,.6);
-  background-image: repeating-linear-gradient(45deg, rgba(255,255,255,.04) 0 10px, rgba(255,255,255,.08) 10px 20px);
-  text-align: center;
-}
-.network-viz__node-icon { width: 22px; height: 22px; opacity: .9; }
-.network-viz__node-label {
-  font-size: .7rem; line-height: 1.2;
-  text-shadow: 0 0 4px rgba(0,0,0,.85);
-}
-.network-viz__center {
-  position: absolute;
-  width: 200px;
-  font-family: var(--f-serif);
-  font-size: 1rem;
-  text-transform: uppercase; letter-spacing: .15em;
-  text-align: center;
+.network-viz__svg {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  overflow: visible;
   pointer-events: none;
+}
+.network-viz__line {
+  stroke: rgba(255,255,255,.5);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-dasharray: 2000;
+  stroke-dashoffset: 2000;
+  fill: none;
+}
+.network-viz.is-animating .network-viz__line {
+  animation: network-draw-lines 8s ease-in-out forwards;
+}
+
+.network-viz__node {
+  position: absolute;
+  border: 4px solid var(--c-text);
+  background: #000;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center;
+  padding: 6px;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transform: scale(.8);
+  transform-origin: center;
+}
+.network-viz.is-animating .network-viz__node {
+  animation: network-fade-in 1.5s ease-out 8s forwards;
+}
+.network-viz__node.is-center {
+  background: #fff;
+  color: #000;
+  border-color: #fff;
+}
+.network-viz__node.is-soon {
+  opacity: 0;
+}
+.network-viz.is-animating .network-viz__node.is-soon {
+  animation: network-fade-in-soon 1.5s ease-out 8s forwards;
+}
+.network-viz__node-label {
+  font-family: var(--f-serif);
+  font-size: clamp(.55rem, 1vw, .85rem);
+  line-height: 1.15;
+  text-shadow: 0 0 4px rgba(0,0,0,.85);
+  word-break: break-word;
+}
+.network-viz__node.is-center .network-viz__node-label {
+  text-shadow: none;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+.network-viz__node-tag {
+  display: block;
+  margin-top: 4px;
+  font-size: .55rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  opacity: .75;
+}
+
+@keyframes network-draw-lines {
+  from { stroke-dashoffset: 2000; }
+  to   { stroke-dashoffset: 0; }
+}
+@keyframes network-fade-in {
+  from { opacity: 0; transform: scale(.8); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes network-fade-in-soon {
+  from { opacity: 0; transform: scale(.8); }
+  to   { opacity: .55; transform: scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .network-viz__line { stroke-dashoffset: 0; animation: none !important; }
+  .network-viz__node { opacity: 1; transform: none; animation: none !important; }
+  .network-viz__node.is-soon { opacity: .55; }
 }
 
 /* --- Team / Ueber uns ----------------------------------------------------- */
 .ueber__team { display: flex; flex-direction: column; gap: var(--sp-4); }
 .team-member {
   display: grid;
-  grid-template-columns: 140px 1fr;
-  gap: var(--sp-3);
+  grid-template-columns: 1fr;
+  gap: var(--sp-2);
   align-items: start;
+}
+@media (min-width: 540px) {
+  .team-member { grid-template-columns: 140px 1fr; gap: var(--sp-3); }
 }
 .team-member__photo {
   width: 140px; aspect-ratio: 1/1; min-height: 0;
+  object-fit: cover;
+  border-radius: var(--radius-card);
 }
 .team-member h3 {
   font-family: var(--f-serif); font-size: 1.4rem;
@@ -339,7 +480,18 @@ span.feature-list__icon {
 .partner-logo {
   aspect-ratio: 16/9; min-height: 70px;
   font-size: .7rem;
+  display: flex; align-items: center; justify-content: center;
+  padding: var(--sp-1);
 }
+.partner-logo img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  filter: brightness(0) invert(1); /* SVGs auf Weiss umfaerben (falls sie schwarz sind) */
+  opacity: .85;
+  transition: opacity .2s var(--ease);
+}
+.partner-logo img:hover { opacity: 1; }
 .partner-uniwien {
   display: grid; gap: var(--sp-2);
   grid-template-columns: 1fr;

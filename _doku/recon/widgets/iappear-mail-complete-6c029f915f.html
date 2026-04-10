@@ -1,0 +1,43 @@
+<div class="icon-container" id="iappear-mail-complete">
+  <a href="mailto:info@iappear.app">
+    <svg class="swinging-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 60">
+      <path stroke-linejoin="round" stroke-width="4" stroke="#646464" fill="none" d="M5 10 H75 V50 H5 Z"></path>
+      <path stroke-linejoin="round" stroke-width="4" stroke="#646464" fill="none" d="M5 10 L40 35 L75 10"></path>
+      
+      <g transform="translate(75, 45)">
+        <circle fill="black" r="12" cy="0" cx="0"></circle> <text font-weight="bold" text-anchor="middle" fill="#646464" font-size="16" font-family="Arial, sans-serif" y="5" x="0">@</text>
+      </g>
+    </svg>
+  </a>
+</div>
+
+<style>
+  .icon-container {
+    width: 40px; /* Deine Originalbreite aus dem JSON */
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .swinging-svg {
+    width: 100%;
+    height: auto;
+    transform-origin: center center;
+    animation: gentleSwing 3s ease-in-out infinite;
+    display: block;
+  }
+
+  @keyframes gentleSwing {
+    0%   { transform: rotate(-3deg); }
+    50%  { transform: rotate(3deg); }
+    100% { transform: rotate(-3deg); }
+  }
+
+  /* Entfernt Standard-Link-Styles */
+  .icon-container a {
+    text-decoration: none;
+    display: block;
+    width: 100%;
+  }
+</style>

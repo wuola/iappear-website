@@ -1,0 +1,50 @@
+<script>
+(function() {
+  // Diese Funktion erzwingt das Verschwinden der Hand dauerhaft
+  function killMickey() {
+    if (!document.getElementById('ia-mickey-silencer')) {
+      const style = document.createElement('style');
+      style.id = 'ia-mickey-silencer';
+      // !important gewinnt gegen den Loop in Guide A
+      style.innerHTML = '#mickey-layer { display: none !important; opacity: 0 !important; pointer-events: none !important; }';
+      document.head.appendChild(style);
+      console.log("Mickey wurde in den Feierabend geschickt.");
+    }
+  }
+
+  // Interceptor: Wir klinken uns in die Funktionen von Guide B ein
+  const interceptor = setInterval(() => {
+    // Prüfen, ob Guide B schon geladen ist
+    if (window.changeStepB || window.handleToggleClickB) {
+      
+      // 1. Navigation kapern
+      if (window.changeStepB && !window.changeStepB.isHooked) {
+        const original = window.changeStepB;
+        window.changeStepB = function() {
+          killMickey();
+          original.apply(this, arguments);
+        };
+        window.changeStepB.isHooked = true;
+      }
+
+      // 2. Toggle kapern
+      if (window.handleToggleClickB && !window.handleToggleClickB.isHooked) {
+        const original = window.handleToggleClickB;
+        window.handleToggleClickB = function() {
+          killMickey();
+          original.apply(this, arguments);
+        };
+        window.handleToggleClickB.isHooked = true;
+      }
+
+      // Wenn alles verbunden ist, können wir aufhören zu suchen
+      if (window.changeStepB.isHooked && window.handleToggleClickB.isHooked) {
+        clearInterval(interceptor);
+      }
+    }
+  }, 500);
+
+  // Nach 15 Sekunden Suche aufgeben, falls die Widgets nicht da sind
+  setTimeout(() => clearInterval(interceptor), 15000);
+})();
+</script>

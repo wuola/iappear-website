@@ -1,0 +1,106 @@
+<style id="menu-styles">
+/* Alle Menü-IDs in eine Liste für das CSS */
+[data-id="698b0fdfe17b5ab923f5ace6"], /* Hintergrund */
+[data-id="698b0fe5306dc29bd632cfa5"], /* LOGO */
+[data-id="698b0fe11e4fdfa408a7f55a"], /* I.APPEAR USER GUIDE (Hinzugefügt) */
+[data-id="698b0fe31385275f9d7febe2"], /* Plattform */
+[data-id="698b0fe1306dc29bd632cf7e"], /* Kategorien 1 */
+[data-id="698b0fe2e862739d300b3d13"], /* Kategorien 2 */
+[data-id="698b0fe429522eaf8b2931d4"], /* Backstage */
+[data-id="698b0fe11385275f9d7feb95"], /* Workflow */
+[data-id="698b0fe22d597c3bc008b839"], /* Vitrine */
+[data-id="698b0fe33a4539abbaf7e6b8"], /* Über uns */
+[data-id="698b0fe2a193584059cec139"], /* Kontakt */
+[data-id="698b0fe02b099f79dfa72d65"], /* AGBs */
+[data-id="698b0fe0ccffab6c27fa08f9"], /* Impressum */
+[data-id="698b0fe0f2e61b5da220229e"]  /* Datenschutz */ {
+    display: block !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    transition: opacity 0.4s ease-in-out, visibility 0.4s !important;
+}
+
+/* Wenn das Menü offen ist */
+body.menu-active [data-id="698b0fdfe17b5ab923f5ace6"],
+body.menu-active [data-id="698b0fe5306dc29bd632cfa5"],
+body.menu-active [data-id="698b0fe11e4fdfa408a7f55a"], /* I.APPEAR USER GUIDE (Hinzugefügt) */
+body.menu-active [data-id="698b0fe31385275f9d7febe2"],
+body.menu-active [data-id="698b0fe1306dc29bd632cf7e"],
+body.menu-active [data-id="698b0fe2e862739d300b3d13"],
+body.menu-active [data-id="698b0fe429522eaf8b2931d4"],
+body.menu-active [data-id="698b0fe11385275f9d7feb95"],
+body.menu-active [data-id="698b0fe22d597c3bc008b839"],
+body.menu-active [data-id="698b0fe33a4539abbaf7e6b8"],
+body.menu-active [data-id="698b0fe2a193584059cec139"],
+body.menu-active [data-id="698b0fe02b099f79dfa72d65"],
+body.menu-active [data-id="698b0fe0ccffab6c27fa08f9"],
+body.menu-active [data-id="698b0fe0f2e61b5da220229e"] {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: all !important;
+}
+
+/* Logo Animation */
+[data-id="698b0fe5306dc29bd632cfa5"] { cursor: pointer !important; transition: transform 0.2s ease !important; }
+[data-id="698b0fe5306dc29bd632cfa5"]:active { transform: scale(0.95) !important; }
+</style>
+
+<script>
+(function() {
+    const btnId = '698b0fe5ccffab6c27fa0a1f';
+    const bgId = '698b0fdfe17b5ab923f5ace6';
+    const logoId = '698b0fe5306dc29bd632cfa5';
+    const allIds = [
+        btnId, bgId, logoId,
+        '698b0fe11e4fdfa408a7f55a', // I.APPEAR USER GUIDE (Hinzugefügt)
+        '698b0fe31385275f9d7febe2', '698b0fe1306dc29bd632cf7e', '698b0fe2e862739d300b3d13',
+        '698b0fe429522eaf8b2931d4', '698b0fe11385275f9d7feb95', '698b0fe22d597c3bc008b839',
+        '698b0fe33a4539abbaf7e6b8', '698b0fe2a193584059cec139', '698b0fe02b099f79dfa72d65',
+        '698b0fe0ccffab6c27fa08f9', '698b0fe0f2e61b5da220229e'
+    ];
+
+    function initMenu() {
+        const menuBtn = document.querySelector(`[data-id="${btnId}"]`);
+        const menuBg = document.querySelector(`[data-id="${bgId}"]`);
+        const logo = document.querySelector(`[data-id="${logoId}"]`);
+
+        if (menuBtn) {
+            menuBtn.style.cursor = 'pointer';
+            menuBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                document.body.classList.toggle('menu-active');
+            });
+        }
+
+        if (menuBg) {
+            menuBg.addEventListener('click', () => {
+                document.body.classList.remove('menu-active');
+            });
+        }
+
+        // Alle Links schließen das Menü
+        allIds.slice(3).forEach(id => {
+            const el = document.querySelector(`[data-id="${id}"]`);
+            if (el) el.addEventListener('click', () => {
+                document.body.classList.remove('menu-active');
+            });
+        });
+
+        // Logo Link
+        if (logo) {
+            logo.addEventListener('click', (e) => {
+                e.preventDefault();
+                setTimeout(() => { window.location.href = "https://www.iappear.at/home"; }, 200);
+            });
+        }
+    }
+
+    if (document.readyState === 'complete') {
+        initMenu();
+    } else {
+        window.addEventListener('load', initMenu);
+    }
+})();
+</script>

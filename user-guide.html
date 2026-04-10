@@ -4,14 +4,13 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>User Guide | i.appear</title>
-  <meta name="description" content="So nutzt du i.appear: Schritt fuer Schritt durch die Web-App." />
+  <meta name="description" content="So nutzt du i.appear: Schritt fuer Schritt durch die Web-App." />  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <link rel="apple-touch-icon" href="assets/favicon.png" />
+
   <link rel="stylesheet" href="css/global.css" />
   <link rel="stylesheet" href="css/layout.css" />
   <link rel="stylesheet" href="css/components.css" />
-  <link rel="stylesheet" href="css/animations.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet" />
-</head>
+  <link rel="stylesheet" href="css/animations.css" /></head>
 <body>
   <header class="nav"><div class="nav__inner">
     <a class="nav__brand" href="index.html">i.appear</a>
@@ -27,20 +26,32 @@
     <button class="nav__burger" data-menu-toggle aria-label="Menue oeffnen"><span></span></button>
   </div></header>
 
-  <div id="menu" class="menu"><button class="menu__close" data-menu-close>&times;</button>
-    <ul class="menu__list">
-      <li><a href="index.html">Startseite</a></li>
-      <li><a href="i-history.html" class="c-history">i.history</a></li>
-      <li><a href="i-dentity.html" class="c-dentity">i.dentity</a></li>
-      <li><a href="i-grow.html" class="c-grow">i.grow</a></li>
-      <li><a href="workflow.html">Workflow</a></li>
-      <li><a href="user-guide.html">User Guide</a></li>
-      <li><a href="kontakt.html">Kontakt</a></li>
-      <li><a href="faqs.html">FAQs</a></li>
-      <li><a href="agb.html">AGB</a></li>
-      <li><a href="impressum.html">Impressum</a></li>
-      <li><a href="datenschutz.html">Datenschutz</a></li>
-    </ul>
+    <div id="menu" class="menu" role="dialog" aria-modal="true" aria-label="Menue">
+    <button class="menu__close" data-menu-close aria-label="Menue schliessen">&times;</button>
+    <div class="menu__group">
+      <h4 class="menu__heading">Die Plattform</h4>
+      <ul class="menu__list">
+        <li><a href="user-guide.html">i.appear User Guide</a></li>
+        <li><a href="index.html#kategorien">Unsere Kategorien</a></li>
+        <li><a href="i-history.html" class="c-history">i.history &ndash; Zeitreisen</a></li>
+        <li><a href="i-dentity.html" class="c-dentity">i.dentity &ndash; Erlebnisse</a></li>
+        <li><a href="i-grow.html" class="c-grow">i.grow &ndash; Medienbildung</a></li>
+        <li><a href="index.html#features">Features</a></li>
+      </ul>
+    </div>
+    <div class="menu__group">
+      <h4 class="menu__heading">Backstage</h4>
+      <ul class="menu__list">
+        <li><a href="workflow.html">Workflow und Leistungen</a></li>
+        <li><a href="index.html#vitrine">Vitrine</a></li>
+        <li><a href="index.html#ueber-uns">Ueber uns</a></li>
+        <li><a href="kontakt.html">Kontakt</a></li>
+        <li><a href="faqs.html">FAQs</a></li>
+        <li><a href="agb.html">AGB</a></li>
+        <li><a href="impressum.html">Impressum</a></li>
+        <li><a href="datenschutz.html">Datenschutz</a></li>
+      </ul>
+    </div>
   </div>
 
   <main>
@@ -51,28 +62,60 @@
 
     <section class="section container prose">
       <h2>Short Guide</h2>
-      <p>Zuerst besuchst du die Web-App <a href="https://www.iappear.app">www.iappear.app</a>. Es gibt zwei Wege, die du gehen kannst: ueber die <strong>Karte</strong> oder ueber den <strong>Koffer-Modus</strong>.</p>
+      <p>Zuerst besuchst du die Web-App <a href="https://www.iappear.app">www.iappear.app</a>.</p>
+      <p><strong>Es gibt zwei Wege, die du gehen kannst:</strong></p>
 
+      <div class="grid grid-2" style="margin-top:var(--sp-3); gap:var(--sp-3)">
+        <article class="card">
+          <h3>Rundgaenge</h3>
+          <p>Uebersicht aller Rundgaenge pro Region.</p>
+        </article>
+        <article class="card">
+          <h3>In meiner Naehe</h3>
+          <p>Einzelne Stationen im Umkreis deines Standortes.</p>
+        </article>
+      </div>
+
+      <h2 style="margin-top:var(--sp-5)">In 4 Schritten zum Erlebnis</h2>
       <ol class="grid grid-2" style="list-style:none; padding:0; margin-top:var(--sp-3); gap:var(--sp-3)">
         <li class="card">
-          <h3>1. Region oder Standort auswaehlen</h3>
+          <h3>1. Region waehlen</h3>
           <p>Waehle die Region, in der du dich gerade befindest, oder lass i.appear deinen Standort erkennen.</p>
         </li>
         <li class="card">
-          <h3>2. Zwischen Karte und Station navigieren</h3>
-          <p>Auf der Karte siehst du alle Stationen rund um dich. Tippe eine Station an, um sie zu oeffnen.</p>
+          <h3>2. Rundgang waehlen</h3>
+          <p>Suche dir einen Rundgang aus der Liste in deiner Region aus.</p>
         </li>
         <li class="card">
-          <h3>3. Station auswaehlen</h3>
-          <p>An der Station angekommen, wird sie automatisch freigeschaltet. Du kannst nun die Inhalte erleben.</p>
+          <h3>3. Station waehlen</h3>
+          <p>Auf der Karte siehst du alle Stationen des Rundgangs. Wandere zur Station &ndash; sie wird automatisch freigeschaltet, sobald du dort ankommst.</p>
         </li>
         <li class="card">
-          <h3>4. Inhalt auswaehlen</h3>
+          <h3>4. Inhalt waehlen</h3>
           <p>Audio, Bilder, Videos, 3D-Modelle, AR &ndash; tippe auf das Element, das dich interessiert, und tauche ein.</p>
         </li>
       </ol>
+    </section>
 
-      <p style="margin-top:var(--sp-4)">Du brauchst ein Smartphone mit Internetverbindung und aktiviertem GPS. Fuer AR-Inhalte: Kamera-Zugriff im Browser erlauben.</p>
+    <section class="section container prose">
+      <h2>Hinweis</h2>
+      <p>Stationen muessen beim ersten Aufruf tatsaechlich besucht werden, damit der Inhalt freigeschalten wird. Einfach hingehen &ndash; ueber deinen Standort wird die Station automatisch auf deinem Smartphone freigegeben.</p>
+      <p>Erteile die Berechtigung fuer deinen Standort und die Kamera. Keine Angst um deine Daten: Wir speichern NICHTS! Augmented Reality funktioniert nur, wenn dein mobiles Endgeraet einen AR-Core hat.</p>
+    </section>
+
+    <section class="section container prose">
+      <h2>Technische Anforderungen</h2>
+      <ul>
+        <li><strong>Standort:</strong> Diese Anwendung benoetigt Zugriff auf deinen Standort (GPS), um standortbasierte Inhalte freizuschalten und dich auf der Karte zu lokalisieren.</li>
+        <li><strong>Kamera:</strong> Der Zugriff auf die Kamera ist erforderlich, um AR-Inhalte (Augmented Reality) darzustellen.</li>
+        <li><strong>Allgemeine AR-Kompatibilitaet:</strong> Fuer die Nutzung der AR-Funktionen ist ein Geraet erforderlich, das ARCore (Android) oder ARKit (iOS) unterstuetzt.</li>
+        <li><strong>Browser:</strong> Stelle sicher, dass dein mobiler Browser (Safari unter iOS, Chrome unter Android) aktuell ist und den Zugriff auf Bewegungssensoren erlaubt.</li>
+        <li><strong>Datenverbindung:</strong> Fuer das Laden von Inhalten und Karten ist eine aktive Internetverbindung erforderlich. Es koennen Kosten gemaess deinem Mobilfunktarif anfallen.</li>
+        <li><strong>GPS-Signal:</strong> Die Genauigkeit der Standorterkennung haengt von deinem Geraet und der Umgebung ab. In geschlossenen Raeumen oder engen Haeuserschluchten kann das Signal beeintraechtigt sein.</li>
+        <li><strong>Energiesparmodus:</strong> Deaktiviere gegebenenfalls den Energiesparmodus deines Smartphones, um eine kontinuierliche GPS-Verfolgung im Hintergrund sicherzustellen.</li>
+        <li><strong>Datennutzung:</strong> Deine Standortdaten werden nur lokal zur Navigation verwendet und nicht dauerhaft auf unseren Servern gespeichert.</li>
+      </ul>
+      <p class="muted" style="margin-top:var(--sp-3)">Erfahre hier mehr zu den 3 Kategorien <a href="i-history.html" class="c-history">i.history</a>, <a href="i-dentity.html" class="c-dentity">i.dentity</a> und <a href="i-grow.html" class="c-grow">i.grow</a>.</p>
     </section>
   </main>
 

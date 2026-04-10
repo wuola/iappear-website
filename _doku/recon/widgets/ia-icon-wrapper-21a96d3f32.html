@@ -1,0 +1,62 @@
+<div class="ia-icon-wrapper">
+  <div class="ia-feature-icon">
+    <svg viewBox="0 0 68 67" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path class="ia-icon-bg" d="M67 33.0123C67 50.6854 52.5 65.5117 34 65.0123C15.5 65.5117 1 50.6854 1 33.0123C1 15.3392 15.5 0.511747 34 1.01232C52.5 0.51172 67 15.3392 67 33.0123Z"></path>
+      
+      <g class="ia-symbol">
+        <path d="M34.4965 18.6035C42.7849 19.271 45.7702 22.2356 46.6549 25.2363C47.6214 28.5156 46.3881 32.6826 44.4648 36.2442L44.4287 36.3092L44.4003 36.3783C43.1104 39.4122 42.8876 41.932 43.0906 43.8874C41.7492 43.0734 39.9442 42.0334 37.5336 40.765L35.8358 39.886L35.6786 39.8106C34.9301 39.4859 34.0539 39.4935 33.3118 39.8262L33.1558 39.9018C29.5823 41.779 27.1057 43.2078 25.4176 44.213C25.4412 44.0643 25.4637 43.9131 25.4821 43.7598C25.7333 41.661 25.5391 38.9398 24.0809 35.7116C21.5772 29.7048 22.1664 25.706 24.0641 23.1569C26.0256 20.5226 29.7371 18.9404 34.4965 18.6035Z" stroke-width="2.4"></path>
+        <path class="ia-glyph" d="M34.5876 27.3757C34.5876 30.493 30.8546 30.4557 31.7971 33.685H29.8752C28.6925 30.0637 32.4069 29.6717 32.4069 27.5997C32.4069 26.4237 31.0025 25.5837 28.7109 25.4904L28.9697 23.6797C32.6841 23.7917 34.5876 25.509 34.5876 27.3757ZM32.1112 35.925C32.1112 36.6344 31.5753 37.1757 30.8546 37.1757C30.1524 37.1757 29.598 36.6344 29.598 35.925C29.598 35.2344 30.1524 34.693 30.8546 34.693C31.5753 34.693 32.1112 35.2344 32.1112 35.925ZM40.0621 23.829L39.748 33.685H38.0663L37.7336 23.829H40.0621ZM40.1545 35.925C40.1545 36.6344 39.6001 37.1757 38.8979 37.1757C38.1772 37.1757 37.6228 36.6344 37.6228 35.925C37.6228 35.2344 38.1772 34.693 38.8979 34.693C39.6001 34.693 40.1545 35.2344 40.1545 35.925Z"></path>
+      </g>
+    </svg>
+  </div>
+</div>
+
+<style>
+  :root {
+    /* --- DEINE AKTUALISIERTEN PARAMETER --- */
+    --ia-icon-scale: 0.5;               
+    --ia-icon-size: 68px;             
+    
+    --ia-glass-bg: rgba(255, 255, 255, 0.08); 
+    --ia-glass-border: rgba(255, 255, 255, 0.2); 
+    --ia-glass-blur: 5px;             
+    
+    --ia-symbol-color: #ffffff;       
+    --ia-symbol-stroke: 1.5px;        
+  }
+
+  .ia-icon-wrapper {
+    display: inline-block;
+    width: calc(var(--ia-icon-size) * var(--ia-icon-scale));
+    height: calc(var(--ia-icon-size) * var(--ia-icon-scale));
+    padding: 2px;
+  }
+
+  .ia-feature-icon {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(var(--ia-glass-blur));
+    -webkit-backdrop-filter: blur(var(--ia-glass-blur));
+    border-radius: 50%; 
+  }
+
+  .ia-icon-bg {
+    fill: var(--ia-glass-bg);
+    stroke: var(--ia-glass-border);
+    stroke-width: 1px;
+  }
+
+  /* Linien der Blase */
+  .ia-symbol path:not(.ia-glyph) {
+    stroke: var(--ia-symbol-color);
+    stroke-width: var(--ia-symbol-stroke);
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  /* Füllung der Glyphen (? und !) */
+  .ia-glyph {
+    fill: var(--ia-symbol-color);
+  }
+</style>

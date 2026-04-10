@@ -13,16 +13,6 @@
   50%      { opacity: .4; }
 }
 
-@keyframes float-node {
-  0%, 100% { transform: translateY(0); }
-  50%      { transform: translateY(-6px); }
-}
-
-@keyframes line-pulse {
-  0%, 100% { stroke-opacity: .10; }
-  50%      { stroke-opacity: .35; }
-}
-
 .reveal {
   opacity: 0;
   transform: translateY(16px);
@@ -32,9 +22,6 @@
   opacity: 1;
   transform: translateY(0);
 }
-
-.network-viz__node.is-floating { animation: float-node 5s var(--ease) infinite; }
-.network-viz__line { animation: line-pulse 4s var(--ease) infinite; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
