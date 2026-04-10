@@ -1,0 +1,180 @@
+<style>
+  :root {
+    /* --- DESIGN PARAMETER --- */
+    --faq-bg-color: transparent;      
+    --accent-color: #C2C2C2;         
+    --question-color: #C2C2C2;       
+    --answer-color: #C2C2C2;         
+    --font-family: 'Inter', sans-serif; 
+    
+    --font-size-title: 18px;
+    --font-size-question: 14px;
+    --font-size-answer: 14px;
+    
+    --spacing: 12px; /* Etwas erhöht für Mobile */
+    --transition-speed: 0.3s;        
+  }
+
+  /* Globales Box-Sizing für Readymag Container */
+  .faq-wrapper * { box-sizing: border-box; }
+
+  .faq-wrapper { 
+    font-family: var(--font-family); 
+    max-width: 100%; 
+    background-color: var(--faq-bg-color); 
+    overflow-x: hidden; 
+  }
+
+  .faq-category-title { 
+    font-size: var(--font-size-title); 
+    font-weight: 600; 
+    color: var(--accent-color); 
+    margin: 30px 0 10px 0; 
+    opacity: 1; 
+  }
+
+  /* Mobile Anpassung der Titel */
+  @media (max-width: 480px) {
+    .faq-category-title { font-size: 16px; margin-top: 25px; }
+    :root { --font-size-question: 13px; --font-size-answer: 13px; }
+  }
+
+  .faq-item { 
+    border-bottom: 1px solid rgba(255,255,255,0.1); 
+    padding: var(--spacing) 0; 
+  }
+
+  .faq-question { 
+    width: 100%; 
+    background: none; 
+    border: none; 
+    text-align: left; 
+    outline: none; 
+    cursor: pointer; 
+    font-size: var(--font-size-question); 
+    font-weight: bold; 
+    text-transform: uppercase; 
+    letter-spacing: 1px; 
+    opacity: 0.7; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    color: var(--question-color); 
+    padding: 8px 0; /* Mehr Fläche für Touch */
+    transition: opacity var(--transition-speed);
+    -webkit-tap-highlight-color: transparent; /* Verhindert blauen Kasten auf iOS */
+  }
+
+  .faq-item:hover .faq-question,
+  .faq-item.active .faq-question { opacity: 1; }
+
+  /* Plus-Button Fix für Mobile */
+  .faq-question::after { 
+    content: '+'; 
+    font-size: 22px; 
+    font-weight: 300; 
+    margin-left: 15px;
+    flex-shrink: 0; /* Verhindert das Quetschen bei langen Fragen */
+    transition: transform var(--transition-speed); 
+  }
+  
+  .faq-item.active .faq-question::after { transform: rotate(45deg); }
+
+  .faq-answer { 
+    max-height: 0; 
+    overflow: hidden; 
+    transition: max-height var(--transition-speed) ease-out; 
+    color: var(--answer-color); 
+    line-height: 1.5; 
+    font-size: var(--font-size-answer); 
+  }
+  
+  .faq-item.active .faq-answer { 
+    max-height: 1200px; /* Groß genug für viel Text */
+    padding-top: 10px; 
+    padding-bottom: 10px;
+  }
+  
+  .faq-answer a { color: inherit; text-decoration: underline; }
+</style>
+
+<div id="faq-app" class="faq-wrapper"><div class="faq-category-title">Allgemein</div><div class="faq-item">
+      <button class="faq-question">Was genau ist i.appear?</button>
+      <div class="faq-answer">i.appear ist eine Plattform für digitale Stadttouren. Wir verbinden die physische Welt mit digitalen Inhalten, um Orte erlebbar zu machen. Jeder Rundgang besteht aus verschiedenen Stationen mit 3D-Modellen, AR, Audio-Guides, Videos und Vielem mehr!</div>
+    </div><div class="faq-item">
+      <button class="faq-question">Muss ich eine App im Store herunterladen?</button>
+      <div class="faq-answer">Nein. i.appear ist eine progressive Web-App. Du kannst sie direkt über den Browser deines Smartphones öffnen (z.B. via QR-Code vor Ort), ohne Speicherplatz für einen Download zu verbrauchen.</div>
+    </div><div class="faq-item">
+      <button class="faq-question">Ist die Nutzung für mich kostenlos?</button>
+      <div class="faq-answer">Ja. Für Endnutzer ist der Zugang zu den Touren komplett kostenfrei. Die Finanzierung erfolgt durch die jeweiligen Kommunen, Museen oder Unternehmen.</div>
+    </div><div class="faq-item">
+      <button class="faq-question">Wo gibt es überall Rundgänge?</button>
+      <div class="faq-answer">Derzeit über ganz Vorarlberg verteilt, aber mit Stationen in Deutschland und der Schweiz. Die App ist skalierbar – wir planen derzeit unsere erste Station auf der Mondrückseite.</div>
+    </div><div class="faq-category-title">Nutzung &amp; Technik</div><div class="faq-item">
+      <button class="faq-question">Warum sind manche Stationen gesperrt?</button>
+      <div class="faq-answer">i.appear ist ortsbasiert. Um eine Station freizuschalten, musst du dich physisch an diesem Ort befinden. Dein GPS erkennt deinen Standort und gibt den Inhalt frei. Einmal entdeckt, kannst du die Inhalte oft auch später von überall ansehen.</div>
+    </div><div class="faq-item">
+      <button class="faq-question">Welche Voraussetzungen gibt es?</button>
+      <div class="faq-answer">Du benötigst lediglich ein Smartphone mit Internetverbindung und aktiviertem GPS. Für AR-Inhalte sollte dein Browser Zugriff auf die Kamera und einen integrierten AR-Core haben (hier ist eine <a href="https://developers.google.com/ar/devices?hl=de" target="_blank">Liste von Google</a>).</div>
+    </div><div class="faq-item">
+      <button class="faq-question">Was passiert mit meinen Standortdaten?</button>
+      <div class="faq-answer">Dein Standort wird nur verwendet, um Stationen vor Ort freizuschalten. Wir erstellen keine Bewegungsprofile und nutzen die Daten ausschließlich für die Funktionalität der Tour. Wir speichern nichts.</div>
+    </div><div class="faq-category-title">Inhalte</div><div class="faq-item">
+      <button class="faq-question">Was sind die drei Kategorien?</button>
+      <div class="faq-answer"><strong>i.history:</strong> Historische Fakten und Rekonstruktionen.<br><strong>i.dentity:</strong> Kultur, Region, Identität.<br><strong>i.grow:</strong> Medienbildung und Demokratie, Bildungsworkshops.</div>
+    </div><div class="faq-item">
+      <button class="faq-question">Für welche Zielgruppe ist i.appear gedacht?</button>
+      <div class="faq-answer">Dank unserer Kategorien decken wir ein breites Spektrum ab:<br><strong>i.history:</strong> Für Tourist:innen und interessierte Lokal Pionier:innen.<br><strong>i.dentity:</strong> Highlights der Region.<br><strong>i.grow:</strong> Als Schnittstelle für Lehrer:innen und Schüler:innen im Bildungskontext.</div>
+    </div><div class="faq-category-title">Für Partner</div><div class="faq-item">
+      <button class="faq-question">Wie kommt i.appear in unsere Stadt?</button>
+      <div class="faq-answer">Wir bieten Full-Service-Lösungen an – von der Konzeption über 3D-Inhalte bis zur Bereitstellung der Web-App. Kontaktiere uns einfach für ein Beratungsgespräch.</div>
+    </div></div>
+
+<script>
+  const faqData = [
+    { cat: "Allgemein", q: "Was genau ist i.appear?", a: "i.appear ist eine Plattform für digitale Stadttouren. Wir verbinden die physische Welt mit digitalen Inhalten, um Orte erlebbar zu machen. Jeder Rundgang besteht aus verschiedenen Stationen mit 3D-Modellen, AR, Audio-Guides, Videos und Vielem mehr!" },
+    { cat: "Allgemein", q: "Muss ich eine App im Store herunterladen?", a: "Nein. i.appear ist eine progressive Web-App. Du kannst sie direkt über den Browser deines Smartphones öffnen (z.B. via QR-Code vor Ort), ohne Speicherplatz für einen Download zu verbrauchen." },
+    { cat: "Allgemein", q: "Ist die Nutzung für mich kostenlos?", a: "Ja. Für Endnutzer ist der Zugang zu den Touren komplett kostenfrei. Die Finanzierung erfolgt durch die jeweiligen Kommunen, Museen oder Unternehmen." },
+    { cat: "Allgemein", q: "Wo gibt es überall Rundgänge?", a: "Derzeit über ganz Vorarlberg verteilt, aber mit Stationen in Deutschland und der Schweiz. Die App ist skalierbar – wir planen derzeit unsere erste Station auf der Mondrückseite." },
+    { cat: "Nutzung & Technik", q: "Warum sind manche Stationen gesperrt?", a: "i.appear ist ortsbasiert. Um eine Station freizuschalten, musst du dich physisch an diesem Ort befinden. Dein GPS erkennt deinen Standort und gibt den Inhalt frei. Einmal entdeckt, kannst du die Inhalte oft auch später von überall ansehen." },
+    { cat: "Nutzung & Technik", q: "Welche Voraussetzungen gibt es?", a: "Du benötigst lediglich ein Smartphone mit Internetverbindung und aktiviertem GPS. Für AR-Inhalte sollte dein Browser Zugriff auf die Kamera und einen integrierten AR-Core haben (hier ist eine <a href='https://developers.google.com/ar/devices?hl=de' target='_blank'>Liste von Google</a>)." },
+    { cat: "Nutzung & Technik", q: "Was passiert mit meinen Standortdaten?", a: "Dein Standort wird nur verwendet, um Stationen vor Ort freizuschalten. Wir erstellen keine Bewegungsprofile und nutzen die Daten ausschließlich für die Funktionalität der Tour. Wir speichern nichts." },
+    { cat: "Inhalte", q: "Was sind die drei Kategorien?", a: "<strong>i.history:</strong> Historische Fakten und Rekonstruktionen.<br><strong>i.dentity:</strong> Kultur, Region, Identität.<br><strong>i.grow:</strong> Medienbildung und Demokratie, Bildungsworkshops." },
+    { cat: "Inhalte", q: "Für welche Zielgruppe ist i.appear gedacht?", a: "Dank unserer Kategorien decken wir ein breites Spektrum ab:<br><strong>i.history:</strong> Für Tourist:innen und interessierte Lokal Pionier:innen.<br><strong>i.dentity:</strong> Highlights der Region.<br><strong>i.grow:</strong> Als Schnittstelle für Lehrer:innen und Schüler:innen im Bildungskontext." },
+    { cat: "Für Partner", q: "Wie kommt i.appear in unsere Stadt?", a: "Wir bieten Full-Service-Lösungen an – von der Konzeption über 3D-Inhalte bis zur Bereitstellung der Web-App. Kontaktiere uns einfach für ein Beratungsgespräch." }
+  ];
+
+  const container = document.getElementById('faq-app');
+  let lastCategory = "";
+
+  faqData.forEach(item => {
+    if (item.cat !== lastCategory) {
+      const catDiv = document.createElement('div');
+      catDiv.className = 'faq-category-title';
+      catDiv.innerText = item.cat;
+      container.appendChild(catDiv);
+      lastCategory = item.cat;
+    }
+
+    const itemDiv = document.createElement('div');
+    itemDiv.className = 'faq-item';
+    itemDiv.innerHTML = `
+      <button class="faq-question">${item.q}</button>
+      <div class="faq-answer">${item.a}</div>
+    `;
+    container.appendChild(itemDiv);
+  });
+
+  document.querySelectorAll('.faq-question').forEach(button => {
+    button.addEventListener('click', () => {
+      const faqItem = button.parentElement;
+      
+      // Schließt andere Items beim Öffnen eines neuen (optional)
+      document.querySelectorAll('.faq-item').forEach(item => {
+        if (item !== faqItem) item.classList.remove('active');
+      });
+      
+      faqItem.classList.toggle('active');
+    });
+  });
+</script>

@@ -1,0 +1,82 @@
+<div id="network-container" style="width:100%; height:100%; position: relative; overflow: hidden;">
+  <svg preserveAspectRatio="xMidYMid meet" viewBox="0 0 1000 900" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" xmlns="http://www.w3.org/2000/svg" version="1.1">
+    
+    <style>
+      /* Definition der Animationen */
+      @keyframes draw-lines {
+        from { stroke-dashoffset: 2000; }
+        to { stroke-dashoffset: 0; }
+      }
+      @keyframes fade-in {
+        from { opacity: 0; transform: scale(0.8); }
+        to { opacity: 1; transform: scale(1); }
+      }
+      
+      /* Basis-Stil für die Linien */
+      .conn-line {
+        /* HIER GEÄNDERT: rgba(255, 255, 255, 0.5) entspricht Weiß mit 50% Deckkraft */
+        stroke: rgba(255, 255, 255, 0.5); 
+        stroke-width: 3;
+        stroke-linecap: round;
+        stroke-dasharray: 2000;
+        stroke-dashoffset: 2000;
+      }
+
+      /* Basis-Stil für die Boxen */
+      .box {
+        stroke: white;
+        stroke-width: 4;
+        fill: black;
+        transform-origin: center;
+        transform-box: fill-box;
+        opacity: 0;
+      }
+
+      /* Animationen starten mit der Klasse "start-animation" */
+      #network-container.start-animation .conn-line {
+        animation: draw-lines 8s ease-in-out forwards;
+      }
+
+      #network-container.start-animation .box {
+        animation: fade-in 1.5s ease-out 8s forwards;
+      }
+    </style>
+
+    <g>
+      <line y2="100" x2="450" y1="150" x1="150" class="conn-line"></line> 
+      <line y2="300" x2="750" y1="150" x1="150" class="conn-line"></line> 
+      <line y2="600" x2="400" y1="150" x1="150" class="conn-line"></line> 
+      <line y2="300" x2="750" y1="100" x1="450" class="conn-line"></line> 
+      <line y2="550" x2="150" y1="300" x1="750" class="conn-line"></line> 
+      <line y2="800" x2="600" y1="300" x1="750" class="conn-line"></line> 
+      <line y2="650" x2="900" y1="300" x1="750" class="conn-line"></line> 
+      <line y2="800" x2="600" y1="600" x1="400" class="conn-line"></line> 
+      <line y2="650" x2="900" y1="800" x1="600" class="conn-line"></line> 
+    </g>
+
+    <g>
+      <rect height="120" width="120" y="90" x="90" class="box"></rect>
+      <rect height="80" width="80" y="60" x="410" class="box"></rect>
+      <rect height="120" width="120" y="240" x="690" class="box"></rect>
+      <rect height="120" width="120" y="490" x="90" class="box"></rect>
+      <rect height="80" width="80" y="560" x="360" class="box"></rect>
+      <rect height="120" width="120" y="740" x="540" class="box"></rect>
+      <rect height="80" width="80" y="610" x="860" class="box"></rect>
+    </g>
+  </svg>
+</div>
+
+<script>
+  const target = document.getElementById('network-container');
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('start-animation');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.3
+  });
+  observer.observe(target);
+</script>

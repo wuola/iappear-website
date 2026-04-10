@@ -1,0 +1,133 @@
+<div class="ia-emergency-toggle is-suitcase" onclick="runIAppearToggle(this)">
+  
+  <div class="ia-track">
+    <div class="ia-thumb"></div>
+    <div class="ia-icon-box">
+      <svg class="ia-icon map-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 6V22L8 18L15 22L22 18V2L15 6L8 2L1 6Z"></path><path d="M8 2V18"></path><path d="M15 6V22"></path></svg>
+      <svg class="ia-icon suitcase-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="12" rx="2"></rect><path d="M8 8V6a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+    </div>
+  </div>
+
+  <div class="ia-mickey-hint">
+    <div class="ia-ripple"></div>
+    <svg class="ia-mickey-hand" viewBox="0 0 600 650" preserveAspectRatio="xMidYMid meet">
+      <path d="M72,142l78,214c1,2,0,3-1,4c-1,1-2,0-3-1l-40-43c-26-28-59-30-84-8c-29,24-29,61-1,95l112,136c85,102,184,134,295,94c133-48,190-170,136-317l-25-69c-26-73-76-102-135-82c-16-20-40-27-66-18c-9,3-18,8-26,15c-17-22-44-30-71-20c-7,3-14,7-21,11l-38-104C168,8,132-9,95,5c-38,14-54,50-40,89l3,7M414,589c-88,32-170,16-247-78l-112-135c-12-14-12-28-1-37c10-9,24-6,35,5l77,80c13,13,24,15,35,11c13-5,19-19,13-33L96,76c-5-13,1-26,14-31c13-5,25,2,30,15l85,233c4,11,16,16,27,12c11-4,16-16,12-26l-30-84c5-4,11-9,17-11c16-6,29,1,35,18l27,73c4,11,16,16,27,12c10-4,17-15,13-26l-22-59c5-5,11-9,17-11c16-6,29,1,35,18l18,49c4,12,17,16,27,12c10-4,17-15,13-26l-13-36c28-10,55,13,73,63l21,57c46,127,4,223-107,264Z" stroke-linejoin="round" stroke-linecap="round"></path>
+    </svg>
+  </div>
+
+</div>
+
+<style>
+  :root {
+    /* --- EINSTELLUNGEN TOGGLE --- */
+    --ia-scale: 0.8; 
+    --ia-w: calc(130px * var(--ia-scale)); 
+    --ia-h: calc(56px * var(--ia-scale)); 
+
+    /* --- PARAMETER FÜR DIE HAND (DEINE REGLER) --- */
+    --hand-size: 24px;           /* Größe der Hand */
+    --hand-fill: #ffffff;        /* Füllfarbe */
+    --hand-stroke: #ffffff;      /* Konturfarbe */
+    --hand-stroke-width: 0px;   /* Dicke der Kontur */
+    --hand-opacity: 0.95;        /* Transparenz (0 bis 1) */
+    --hand-speed: 2.8s;          /* Dauer für einen Groove */
+    --hand-distance: 65px;       /* Wie weit schiebt sie? */
+    --hand-tilt: 12deg;          /* Wie stark neigt sie sich? */
+    --ripple-color: rgba(255, 255, 255, 0.5); /* Wellen-Farbe */
+  }
+
+  /* Stabilisierung */
+  .ia-emergency-toggle {
+    width: var(--ia-w); height: var(--ia-h);
+    cursor: pointer; user-select: none; padding: 1px;
+    box-sizing: border-box; display: inline-block;
+    position: relative; z-index: 999999 !important;
+  }
+
+  /* Mickey Hand & Wellen Setup */
+  .ia-mickey-hint {
+    position: absolute;
+    top: 55%; left: -12px;
+    width: var(--hand-size); height: auto;
+    pointer-events: none;
+    opacity: var(--hand-opacity);
+    animation: mickeyGroove var(--hand-speed) ease-in-out infinite;
+    z-index: 10;
+    transform-origin: center bottom;
+  }
+
+  .ia-mickey-hand {
+    width: 100%; height: 100%;
+    filter: drop-shadow(1px 3px 5px rgba(0,0,0,0.4));
+    overflow: visible;
+  }
+  
+  .ia-mickey-hand path {
+    fill: var(--hand-fill);
+    stroke: var(--hand-stroke);
+    stroke-width: var(--hand-stroke-width);
+  }
+
+  /* Die Ripple/Wellen-Animation */
+  .ia-ripple {
+    position: absolute;
+    top: 25%; left: 25%; /* An der Fingerspitze */
+    width: 20px; height: 20px;
+    background: var(--ripple-color);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    animation: rippleEffect var(--hand-speed) ease-in-out infinite;
+  }
+
+  /* Animation: Gleiten & Kippen */
+  @keyframes mickeyGroove {
+    0%, 100% { transform: translateX(0) rotate(calc(var(--hand-tilt) * -1)); }
+    15%, 85% { transform: translateX(0) rotate(calc(var(--hand-tilt) * -1)); } 
+    50% { transform: translateX(var(--hand-distance)) rotate(var(--hand-tilt)); }
+    65% { transform: translateX(var(--hand-distance)) rotate(var(--hand-tilt)); }
+  }
+
+  /* Animation: Wellen-Puls */
+  @keyframes rippleEffect {
+    0%, 100%, 15%, 50%, 85% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+    5%, 55% { transform: translate(-50%, -50%) scale(0); opacity: 1; }
+    12%, 62% { transform: translate(-50%, -50%) scale(2.5); opacity: 0; }
+  }
+
+  /* --- STABILER BUTTON CODE --- */
+  .ia-track { position: relative; width: 100%; height: 100%; background: rgba(30, 30, 30, 0.6); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 999px; overflow: hidden; }
+  .ia-thumb { position: absolute; top: 0; left: 0; height: 100%; width: calc(var(--ia-h) - 2px); background: #2A2A2A; border-radius: 50%; transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+  .ia-icon-box { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; justify-content: space-between; align-items: center; padding: 0 calc(20px * var(--ia-scale)); box-sizing: border-box; z-index: 2; }
+  .ia-icon { width: calc(24px * var(--ia-scale)); height: calc(24px * var(--ia-scale)); transition: color 0.3s; pointer-events: none; }
+  .ia-emergency-toggle.is-suitcase .ia-thumb { transform: translateX(calc(var(--ia-w) - var(--ia-h))); }
+  .ia-emergency-toggle:not(.is-suitcase) .map-svg { color: #fff; }
+  .ia-emergency-toggle.is-suitcase .suitcase-svg { color: #666; }
+  .ia-emergency-toggle.is-suitcase .map-svg { color: #666; }
+  .ia-emergency-toggle.is-suitcase .suitcase-svg { color: #fff; }
+</style>
+
+<script>
+  (function() {
+    const MAP_ID = "697ba7fbcf5bfecdf2fbda6b"; 
+    const LIST_ID = "696de09bbc8a902b21afbfd1"; 
+    function setIAViewState(isSuitcase) {
+      const map = document.querySelector('[data-id="' + MAP_ID + '"]');
+      const list = document.querySelector('[data-id="' + LIST_ID + '"]');
+      if (map && list) {
+        [map, list].forEach(el => el.style.setProperty('transition', 'opacity 0.4s ease-in-out', 'important'));
+        if (isSuitcase) {
+          map.style.setProperty('opacity', '0', 'important'); map.style.setProperty('pointer-events', 'none', 'important');
+          list.style.setProperty('opacity', '1', 'important'); list.style.setProperty('pointer-events', 'auto', 'important');
+        } else {
+          map.style.setProperty('opacity', '1', 'important'); map.style.setProperty('pointer-events', 'auto', 'important');
+          list.style.setProperty('opacity', '0', 'important'); list.style.setProperty('pointer-events', 'none', 'important');
+        }
+      }
+    }
+    window.runIAppearToggle = function(element) { 
+      element.classList.toggle('is-suitcase'); 
+      setIAViewState(element.classList.contains('is-suitcase')); 
+    };
+    window.addEventListener('load', function() { setTimeout(function() { setIAViewState(true); }, 1000); });
+  })();
+</script>

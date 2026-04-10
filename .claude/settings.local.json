@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(gh pr create --base main --head claude/friendly-burnell --title 'Session 1: Grob-Bau aller Seiten \\(HTML/CSS/JS\\)' --body ':*)",
+      "Bash(gh pr:*)",
+      "Bash(python -c ':*)",
+      "Bash(python)",
+      "Bash(cp \"C:/Users/maggy/OneDrive/Desktop/Website_Neu/i.appear_logo/LogoLangWeiss.svg\" \"C:/Users/maggy/OneDrive/Dokumente/GitHub/iappear-website/.claude/worktrees/friendly-burnell/assets/svg/logos/logo-lang-weiss.svg\")",
+      "Bash(cp \"C:/Users/maggy/OneDrive/Desktop/Website_Neu/i.appear_logo/LogoLangSchwarz.svg\" \"C:/Users/maggy/OneDrive/Dokumente/GitHub/iappear-website/.claude/worktrees/friendly-burnell/assets/svg/logos/logo-lang-schwarz.svg\")",
+      "Bash(cp \"C:/Users/maggy/OneDrive/Desktop/Website_Neu/Roboto_Font/Roboto-VariableFont_wdth,wght.ttf\" \"C:/Users/maggy/OneDrive/Dokumente/GitHub/iappear-website/.claude/worktrees/friendly-burnell/assets/fonts/Roboto-Variable.ttf\")",
+      "Bash(cp \"C:/Users/maggy/OneDrive/Desktop/Website_Neu/Roboto_Font/Roboto-Italic-VariableFont_wdth,wght.ttf\" \"C:/Users/maggy/OneDrive/Dokumente/GitHub/iappear-website/.claude/worktrees/friendly-burnell/assets/fonts/Roboto-Variable-Italic.ttf\")",
+      "Bash(mkdir -p \"C:/Users/maggy/OneDrive/Dokumente/GitHub/iappear-website/.claude/worktrees/friendly-burnell/assets/svg/partner\")",
+      "Bash(cp \"LandVorarlberg.svg\" \"BMU_KunstKultur.svg\" \"BMU_wissenschaft.svg\" \"FHV-Fachhochschule_Vorarlberg_logo_\\(2021–\\).svg\" \"OEAD_neu.svg\" \"Marke_Vorarlberg_weiss_neu.svg\" \"dornbirn_archiv.svg\" \"dornbirn_stadtlogo_schwarz.svg\" \"feldkirch.svg\" \"hard.svg\" \"literatur.svg\" \"tourismus.svg\" \"vorarlberg_museum.svg\" \"weHolo.svg\" \"C:/Users/maggy/OneDrive/Dokumente/GitHub/iappear-website/.claude/worktrees/friendly-burnell/assets/svg/partner/\")",
+      "Bash(cp \"C:/Users/maggy/OneDrive/Desktop/Website_Neu/BUTTONS_MARILENA/i.historyButtonNEU 1.svg\" \"C:/Users/maggy/OneDrive/Dokumente/GitHub/iappear-website/.claude/worktrees/friendly-burnell/assets/svg/buttons/i-history.svg\")",
+      "Bash(cp \"C:/Users/maggy/OneDrive/Desktop/Website_Neu/BUTTONS_MARILENA/i.dentityButtonNEU.svg\" \"C:/Users/maggy/OneDrive/Dokumente/GitHub/iappear-website/.claude/worktrees/friendly-burnell/assets/svg/buttons/i-dentity.svg\")",
+      "Bash(cp \"C:/Users/maggy/OneDrive/Desktop/Website_Neu/BUTTONS_MARILENA/i.growButtonNEU.svg\" \"C:/Users/maggy/OneDrive/Dokumente/GitHub/iappear-website/.claude/worktrees/friendly-burnell/assets/svg/buttons/i-grow.svg\")"
+    ]
+  }
+}

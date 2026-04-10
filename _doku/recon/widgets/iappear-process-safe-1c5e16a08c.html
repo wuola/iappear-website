@@ -1,0 +1,124 @@
+<div class="iappear-process-safe">
+  <style>
+    /* --- PARAMETER-BEREICH --- */
+    :root {
+      --main-gold: #FFFFFF;
+      --text-white: #FFFFFF;
+      --font-family: 'Inter', sans-serif;
+      
+      /* 1. Horizontaler Abstand zwischen den Kreisen */
+      --step-spacing: 200px; 
+
+      /* 2. Vertikaler Abstand zum Text (Lücke zwischen Kreis und Label) */
+      --label-gap: 70px; 
+
+      /* 3. Start des Strichs (gemessen von der Kreismitte nach rechts) */
+      /* Wert ca. 12px startet nach der Zahl */
+      --line-start: 13px;
+
+      /* 4. Länge des Strichs */
+      /* Alles über 15px ragt über den Kreisrand (28px Radius) hinaus */
+      --line-width: 30px;
+
+      --line-thickness: 2px;
+      --circle-radius: 28px;
+    }
+
+    .iappear-process-safe {
+      width: 100%;
+      overflow: visible;
+      background: transparent;
+      padding: 50px 0;
+    }
+
+    .process-svg {
+      display: block;
+      width: 100%;
+      height: auto;
+      overflow: visible;
+    }
+
+    /* Die Linie als Rechteck, damit CSS-Variablen sicher greifen */
+    .step-line-rect {
+      fill: var(--main-gold);
+      x: var(--line-start);
+      width: var(--line-width);
+      height: var(--line-thickness);
+      /* Zentrierung der Linie auf der Y-Achse */
+      y: calc(var(--line-thickness) / -2); 
+    }
+
+    .step-circle {
+      stroke: var(--main-gold);
+      stroke-width: var(--line-thickness);
+      fill: none;
+    }
+
+    .step-number {
+      fill: var(--main-gold);
+      font-family: var(--font-family);
+      font-size: 18px;
+      font-weight: 500;
+      text-anchor: middle;
+      dominant-baseline: central;
+    }
+
+    .step-label {
+      fill: var(--text-white);
+      font-family: var(--font-family);
+      font-size: 16px;
+      text-anchor: middle;
+      letter-spacing: 0.03em;
+    }
+
+    /* Positionierung der Gruppen über calc basierend auf dem Spacing-Parameter */
+    .step-group { transform: translateY(80px); }
+    .s1 { transform: translateX(calc(var(--step-spacing) * 0 + 100px)) translateY(80px); }
+    .s2 { transform: translateX(calc(var(--step-spacing) * 1 + 100px)) translateY(80px); }
+    .s3 { transform: translateX(calc(var(--step-spacing) * 2 + 100px)) translateY(80px); }
+    .s4 { transform: translateX(calc(var(--step-spacing) * 3 + 100px)) translateY(80px); }
+    .s5 { transform: translateX(calc(var(--step-spacing) * 4 + 100px)) translateY(80px); }
+  </style>
+
+  <svg class="process-svg" viewBox="0 0 1400 250" xmlns="http://www.w3.org/2000/svg">
+    
+    <g class="step-group s1">
+      <rect class="step-line-rect"></rect>
+      <circle class="step-circle" cx="0" cy="0" r="28"></circle>
+      <text class="step-number" x="0" y="0">01</text>
+      <text class="step-label" x="0" y="0" style="transform: translateY(var(--label-gap))">Idee &amp; Konzept</text>
+    </g>
+
+    <g class="step-group s2">
+      <rect class="step-line-rect"></rect>
+      <circle class="step-circle" cx="0" cy="0" r="28"></circle>
+      <text class="step-number" x="0" y="0">02</text>
+      <text class="step-label" x="0" y="0" style="transform: translateY(var(--label-gap))">Inhalte &amp; Story</text>
+    </g>
+
+    <g class="step-group s3">
+      <rect class="step-line-rect"></rect>
+      <circle class="step-circle" cx="0" cy="0" r="28"></circle>
+      <text class="step-number" x="0" y="0">03</text>
+      <text class="step-label" x="0" y="0" style="transform: translateY(var(--label-gap))">Medienproduktion</text>
+    </g>
+
+    <g class="step-group s4">
+      <rect class="step-line-rect"></rect>
+      <circle class="step-circle" cx="0" cy="0" r="28"></circle>
+      <text class="step-number" x="0" y="0">04</text>
+      <text class="step-label" x="0" y="0" style="transform: translateY(var(--label-gap))">
+        <tspan x="0" dy="0">Abstimmung &amp;</tspan>
+        <tspan x="0" dy="18">Implementierung</tspan>
+      </text>
+    </g>
+
+    <g class="step-group s5">
+      <rect class="step-line-rect"></rect>
+      <circle class="step-circle" cx="0" cy="0" r="28"></circle>
+      <text class="step-number" x="0" y="0">05</text>
+      <text class="step-label" x="0" y="0" style="transform: translateY(var(--label-gap))">Launch &amp; Service</text>
+    </g>
+
+  </svg>
+</div>

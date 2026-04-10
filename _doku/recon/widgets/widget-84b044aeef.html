@@ -1,0 +1,53 @@
+<style>
+  /* Standard-Transition für weiche Bewegung */
+  .offer-icon g {
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  
+  /* Der Plus-Indikator braucht einen eigenen Drehpunkt */
+  .plus-sign {
+    transform-origin: 50px 14px; /* Exakter Mittelpunkt des Kreuzes */
+    transition: transform 0.4s ease-out;
+  }
+
+  /* HOVER-EFFEKTE */
+  
+  /* Das linke Papier duckt sich leicht weg */
+  .offer-icon:hover .doc-left {
+    transform: translateX(-2px) translateY(2px);
+    opacity: 0.8; /* Wird etwas passiver */
+  }
+
+  /* Das rechte Papier kommt hervor (aktiv) */
+  .offer-icon:hover .doc-right {
+    transform: translateX(2px) translateY(-5px);
+  }
+
+  /* Das Plus-Zeichen dreht sich um 90 Grad */
+  .offer-icon:hover .plus-sign {
+    transform: rotate(90deg);
+  }
+</style>
+
+<svg class="offer-icon" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#C2C2C2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="overflow: visible;">
+  
+  <g class="doc-left">
+    <rect x="5" y="10" width="20" height="30" rx="2"></rect>
+    <line x1="10" y1="20" x2="20" y2="20"></line>
+    <line x1="10" y1="28" x2="20" y2="28"></line>
+    <line x1="10" y1="36" x2="15" y2="36"></line>
+  </g>
+
+  <g class="doc-right">
+    <rect x="35" y="10" width="20" height="30" rx="2"></rect>
+    <line x1="40" y1="20" x2="50" y2="20"></line>
+    <line x1="40" y1="28" x2="50" y2="28"></line>
+    <line x1="40" y1="36" x2="45" y2="36"></line>
+    
+    <g class="plus-sign">
+      <line x1="48" y1="14" x2="52" y2="14"></line>
+      <line x1="50" y1="12" x2="50" y2="16"></line>
+    </g>
+  </g>
+  
+</svg>

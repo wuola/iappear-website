@@ -1,0 +1,58 @@
+<div class="ia-icon-wrapper">
+  <div class="ia-feature-icon">
+    <svg viewBox="0 0 68 67" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path class="ia-icon-bg" d="M67 33.0123C67 50.6854 52.5 65.5117 34 65.0123C15.5 65.5117 1 50.6854 1 33.0123C1 15.3392 15.5 0.511747 34 1.01232C52.5 0.51172 67 15.3392 67 33.0123Z"></path>
+      
+      <g class="ia-symbol">
+        <path d="M45.2222 28.7773H18"></path>
+        <path d="M53 21H18"></path>
+        <path d="M53 36.5547H18"></path>
+        <path d="M45.2222 44.334H18"></path>
+      </g>
+    </svg>
+  </div>
+</div>
+
+<style>
+  :root {
+    /* --- DEINE AKTUALISIERTEN PARAMETER --- */
+    --ia-icon-scale: 0.5;               
+    --ia-icon-size: 68px;             
+    
+    --ia-glass-bg: rgba(255, 255, 255, 0.08); 
+    --ia-glass-border: rgba(255, 255, 255, 0.2); 
+    --ia-glass-blur: 5px;             
+    
+    --ia-symbol-color: #ffffff;       
+    --ia-symbol-stroke: 1.5px;        
+  }
+
+  .ia-icon-wrapper {
+    display: inline-block;
+    width: calc(var(--ia-icon-size) * var(--ia-icon-scale));
+    height: calc(var(--ia-icon-size) * var(--ia-icon-scale));
+    padding: 2px;
+  }
+
+  .ia-feature-icon {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(var(--ia-glass-blur));
+    -webkit-backdrop-filter: blur(var(--ia-glass-blur));
+    border-radius: 50%; 
+  }
+
+  .ia-icon-bg {
+    fill: var(--ia-glass-bg);
+    stroke: var(--ia-glass-border);
+    stroke-width: 1px;
+  }
+
+  .ia-symbol path {
+    stroke: var(--ia-symbol-color);
+    stroke-width: var(--ia-symbol-stroke);
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+</style>

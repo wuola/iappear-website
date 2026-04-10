@@ -1,0 +1,26 @@
+<style>
+  /* Standard-Einstellung für weiche Bewegung */
+  .team-piece {
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Ein federneder "Snap"-Effekt */
+  }
+
+  /* HOVER-ZUSTAND */
+  
+  /* Das linke Teil bewegt sich nach rechts (x+4) */
+  .team-icon:hover .piece-left {
+    transform: translateX(4px);
+  }
+
+  /* Das rechte Teil bewegt sich nach links (x-4) */
+  .team-icon:hover .piece-right {
+    transform: translateX(-4px);
+  }
+</style>
+
+<svg class="team-icon" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#C2C2C2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="overflow: visible;">
+  
+  <path class="team-piece piece-left" d="M15 20 H25 V30 A 5 5 0 0 1 25 40 V50 H15 V40 A 5 5 0 0 0 15 30 V20 Z"></path>
+  
+  <path class="team-piece piece-right" d="M45 50 H35 V40 A 5 5 0 0 0 35 30 V20 H45 V30 A 5 5 0 0 1 45 40 V50 Z"></path>
+  
+</svg>

@@ -1,0 +1,42 @@
+<style>
+  /* Die Nadel braucht einen Drehpunkt in der exakten Mitte */
+  .compass-needle {
+    transform-origin: 30px 30px;
+    transition: transform 0.5s; /* Fallback */
+  }
+
+  /* Die Animation: Einmal drehen mit "Overshoot" (Federn) */
+  @keyframes findNorth {
+    0% {
+      transform: rotate(0deg);
+    }
+    60% {
+      /* Dreht etwas zu weit (400 Grad) für den Schwung */
+      transform: rotate(400deg);
+    }
+    80% {
+      /* Korrigiert zurück (350 Grad) */
+      transform: rotate(350deg);
+    }
+    100% {
+      /* Rastet ein (360 Grad) */
+      transform: rotate(360deg);
+    }
+  }
+
+  /* HOVER-TRIGGER */
+  .compass-icon:hover .compass-needle {
+    /* 0.8s Dauer, Ease-In-Out für organischen Start/Stop */
+    animation: findNorth 0.8s ease-in-out forwards;
+  }
+</style>
+
+<svg class="compass-icon" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#C2C2C2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="overflow: visible;">
+  
+  <circle cx="30" cy="30" r="25"></circle>
+  
+  <line x1="12" y1="30" x2="48" y2="30"></line>
+  
+  <path class="compass-needle" d="M30 10 L35 30 L30 50 L25 30 Z"></path>
+  
+</svg>

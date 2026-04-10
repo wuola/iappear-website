@@ -1,0 +1,150 @@
+<style>
+  :root {
+    /* --- MASTER SKALIERUNG --- */
+    --scale: 0.7;                     
+
+    /* --- DESIGN PARAMETER --- */
+    --contact-bg: transparent;        
+    --text-primary: #ffffff;         
+    --text-secondary: #ffffff;       
+    --accent-color: #ffffff;         
+    --font-family: 'Inter', sans-serif;
+
+    /* Berechnete Werte */
+    --icon-size: calc(22px * var(--scale)); 
+    --font-size-header: calc(18px * var(--scale));
+    --font-size-main: calc(16px * var(--scale));
+    --font-size-sub: calc(14px * var(--scale));
+    --spacing-inner: calc(15px * var(--scale));
+    --spacing-items: calc(20px * var(--scale)); /* Etwas kompakter */
+  }
+
+  .contact-container {
+    font-family: var(--font-family);
+    color: var(--text-primary);
+    background: var(--contact-bg);
+    /* Zentrierung des gesamten Blocks */
+    width: fit-content; 
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-items);
+  }
+
+  .brand-header {
+    font-size: var(--font-size-header);
+    letter-spacing: calc(2px * var(--scale));
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: calc(10px * var(--scale));
+    /* Zentrierung über dem Text */
+    text-align: center;
+    width: 100%;
+    /* Strich entfernt */
+    border: none; 
+  }
+
+  .contact-row {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-inner);
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+
+  a.contact-row:hover {
+    transform: translateX(calc(5px * var(--scale)));
+    opacity: 0.8;
+  }
+  
+  .icon-box {
+    width: var(--icon-size);
+    height: var(--icon-size);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    margin-top: calc(2px * var(--scale));
+  }
+
+  /* Icons mit Füllung (Pin, Tel, Mail) */
+  .icon-box.filled svg {
+    fill: var(--text-primary);
+    stroke: none;
+  }
+
+  /* Icon mit Linien (Globus) */
+  .icon-box.outline svg {
+    fill: none;
+    stroke: var(--text-primary);
+    stroke-width: 2;
+  }
+
+  .content-box {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.4;
+  }
+
+  .main-text {
+    font-size: var(--font-size-main);
+    font-weight: 500;
+    white-space: nowrap; /* Verhindert ungewollte Umbrüche */
+  }
+
+  .sub-text {
+    font-size: var(--font-size-sub);
+    color: var(--text-secondary);
+  }
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+</style>
+
+<div class="contact-container">
+  <div class="brand-header">I.APPEAR - DIGITAL CITY TOURS</div>
+
+  <div class="contact-row">
+    <div class="icon-box filled">
+      <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"></path></svg>
+    </div>
+    <div class="content-box">
+      <span class="main-text">Marilena Tumler e.U.</span>
+      <span class="sub-text">Mozartstraße 5 | 16<br>6850 Dornbirn</span>
+    </div>
+  </div>
+
+  <a href="tel:+4367682554212" class="contact-row">
+    <div class="icon-box filled">
+      <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"></path></svg>
+    </div>
+    <div class="content-box">
+      <span class="main-text">+43 676 82554212</span>
+    </div>
+  </a>
+
+  <a href="mailto:info@iappear.app" class="contact-row">
+    <div class="icon-box filled">
+      <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"></path></svg>
+    </div>
+    <div class="content-box">
+      <span class="main-text">info@iappear.app</span>
+    </div>
+  </a>
+
+  <a href="https://iappear.at" target="_blank" class="contact-row">
+    <div class="icon-box outline">
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"></circle>
+        <line x1="2" y1="12" x2="22" y2="12"></line>
+        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+      </svg>
+    </div>
+    <div class="content-box">
+      <span class="main-text">iappear.at</span>
+    </div>
+  </a>
+</div>

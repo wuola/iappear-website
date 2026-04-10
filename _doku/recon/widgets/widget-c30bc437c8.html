@@ -1,0 +1,74 @@
+<script>
+(function() {
+    // HIER DIE IDs EINTRAGEN, DIE IGNORIERT WERDEN SOLLEN
+    const excludedIds = [
+        '698b0fe5ccffab6c27fa0a1f' // Dein Menü-Button
+    ];
+
+    const tooltip = document.createElement('div');
+    Object.assign(tooltip.style, {
+        position: 'fixed',
+        padding: '5px 10px',
+        background: '#000',
+        color: '#fff',
+        fontSize: '12px',
+        fontFamily: 'monospace',
+        zIndex: '9999999',
+        pointerEvents: 'none',
+        display: 'none',
+        borderRadius: '4px',
+        border: '1px solid #ff0055'
+    });
+    document.body.appendChild(tooltip);
+
+    document.addEventListener('mousemove', (e) => {
+        const target = e.target.closest('[data-id]');
+        if (target) {
+            const dataId = target.getAttribute('data-id');
+            
+            // Prüfung: Ist die ID auf der Blacklist?
+            if (excludedIds.includes(dataId)) {
+                tooltip.style.display = 'none';
+                target.style.outline = 'none';
+                return;
+            }
+
+            tooltip.innerText = 'ID: ' + dataId;
+            tooltip.style.display = 'block';
+            tooltip.style.left = (e.clientX + 15) + 'px';
+            tooltip.style.top = (e.clientY + 15) + 'px';
+            target.style.outline = '2px solid #ff0055';
+        } else {
+            tooltip.style.display = 'none';
+        }
+    });
+
+    document.addEventListener('mouseout', (e) => {
+        const target = e.target.closest('[data-id]');
+        if (target) {
+            target.style.outline = 'none';
+        }
+    });
+
+    document.addEventListener('click', (e) => {
+        const target = e.target.closest('[data-id]');
+        if (target) {
+            const dataId = target.getAttribute('data-id');
+            
+            // Wenn ID auf Blacklist, dann Klick normal durchlassen und nichts kopieren
+            if (excludedIds.includes(dataId)) return;
+
+            navigator.clipboard.writeText(dataId);
+            // Kleiner Log statt Alert, damit der Workflow nicht unterbrochen wird
+            console.log('ID kopiert: ' + dataId);
+            
+            // Visuelles Feedback am Tooltip
+            const originalColor = tooltip.style.background;
+            tooltip.style.background = '#00ff00';
+            setTimeout(() => tooltip.style.background = originalColor, 500);
+        }
+    });
+
+    console.log("Hover-Inspector aktiv. Ausnahmen:", excludedIds);
+})();
+</script><div style="position: fixed; padding: 5px 10px; background: rgb(0, 0, 0); color: rgb(255, 255, 255); font-size: 12px; font-family: monospace; z-index: 9999999; pointer-events: none; display: none; border-radius: 4px; border: 1px solid rgb(255, 0, 85);"></div>

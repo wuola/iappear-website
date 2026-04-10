@@ -4,14 +4,13 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>i.appear – Die Plattform fuer digitale Erlebnisse</title>
-  <meta name="description" content="i.appear – digital city tours. Die Plattform fuer digitale Erlebnisse. Ohne App-Download, ohne Registrierung, ohne Werbung." />
+  <meta name="description" content="i.appear – digital city tours. Die Plattform fuer digitale Erlebnisse. Ohne App-Download, ohne Registrierung, ohne Werbung." />  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <link rel="apple-touch-icon" href="assets/favicon.png" />
+
   <link rel="stylesheet" href="css/global.css" />
   <link rel="stylesheet" href="css/layout.css" />
   <link rel="stylesheet" href="css/components.css" />
-  <link rel="stylesheet" href="css/animations.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet" />
-</head>
+  <link rel="stylesheet" href="css/animations.css" /></head>
 <body>
 
   <!-- ========== NAVIGATION ========== -->
@@ -36,19 +35,30 @@
   <!-- Overlay-Menue -->
   <div id="menu" class="menu" role="dialog" aria-modal="true" aria-label="Menue">
     <button class="menu__close" data-menu-close aria-label="Menue schliessen">&times;</button>
-    <ul class="menu__list">
-      <li><a href="index.html">Startseite</a></li>
-      <li><a href="i-history.html" class="c-history">i.history – Zeitreisen</a></li>
-      <li><a href="i-dentity.html" class="c-dentity">i.dentity – Erlebnisse</a></li>
-      <li><a href="i-grow.html"    class="c-grow">i.grow – Medienbildung</a></li>
-      <li><a href="workflow.html">Leistungen / Workflow</a></li>
-      <li><a href="user-guide.html">User Guide</a></li>
-      <li><a href="kontakt.html">Kontakt</a></li>
-      <li><a href="faqs.html">FAQs</a></li>
-      <li><a href="agb.html">AGB</a></li>
-      <li><a href="impressum.html">Impressum</a></li>
-      <li><a href="datenschutz.html">Datenschutz</a></li>
-    </ul>
+    <div class="menu__group">
+      <h4 class="menu__heading">Die Plattform</h4>
+      <ul class="menu__list">
+        <li><a href="user-guide.html">i.appear User Guide</a></li>
+        <li><a href="index.html#kategorien">Unsere Kategorien</a></li>
+        <li><a href="i-history.html" class="c-history">i.history &ndash; Zeitreisen</a></li>
+        <li><a href="i-dentity.html" class="c-dentity">i.dentity &ndash; Erlebnisse</a></li>
+        <li><a href="i-grow.html" class="c-grow">i.grow &ndash; Medienbildung</a></li>
+        <li><a href="index.html#features">Features</a></li>
+      </ul>
+    </div>
+    <div class="menu__group">
+      <h4 class="menu__heading">Backstage</h4>
+      <ul class="menu__list">
+        <li><a href="workflow.html">Workflow und Leistungen</a></li>
+        <li><a href="index.html#vitrine">Vitrine</a></li>
+        <li><a href="index.html#ueber-uns">Ueber uns</a></li>
+        <li><a href="kontakt.html">Kontakt</a></li>
+        <li><a href="faqs.html">FAQs</a></li>
+        <li><a href="agb.html">AGB</a></li>
+        <li><a href="impressum.html">Impressum</a></li>
+        <li><a href="datenschutz.html">Datenschutz</a></li>
+      </ul>
+    </div>
   </div>
 
   <main>
@@ -61,29 +71,30 @@
 
       <div class="hero__mid">
         <div class="hero__brand">
-          <img src="assets/svg/targets/target-weiss.svg" alt="" class="hero__target" aria-hidden="true" />
-          <h1 class="hero__title">i.appear</h1>
+          <!-- Hauptlogo. SVG bringt sein eigenes Target-Symbol mit, daher kein extra target-Icon mehr. -->
+          <h1 class="hero__title">
+            <img src="assets/svg/logos/logo-lang-weiss.svg" alt="i.appear" class="hero__logo" />
+          </h1>
           <p class="hero__subtitle">digital city tours</p>
         </div>
 
+        <!-- Stage: Phones stehen vor dem Lorbeerkranz, darunter die Awards.
+             Der Kranz ist als Background-SVG positioniert, damit er den ganzen
+             Award-Bereich umrahmt. -->
         <div class="hero__stage">
-          <div class="hero__laurel hero__laurel--left ph" aria-hidden="true">
-            <small>Lorbeer<br/>links</small>
-          </div>
-          <div class="phones">
-            <div class="phone"><div class="phone__screen">Region-Auswahl</div></div>
-            <div class="phone"><div class="phone__screen">hist.appear<br/>Karte</div></div>
-          </div>
-          <div class="hero__laurel hero__laurel--right ph" aria-hidden="true">
-            <small>Lorbeer<br/>rechts</small>
+          <img src="assets/svg/logos/lorbeerkranz.svg" alt="" aria-hidden="true" class="hero__laurel" />
+          <div class="hero__stage-inner">
+            <div class="phones">
+              <div class="phone"><div class="phone__screen">Region-Auswahl</div></div>
+              <div class="phone"><div class="phone__screen">hist.appear<br/>Karte</div></div>
+            </div>
+            <ul class="awards hero__awards">
+              <li>Smart City Dornbirn &ndash; 2022</li>
+              <li>Innovation Call Vorarlberg &ndash; 2025</li>
+              <li>Digitale Innovationen im Tourismus &ndash; 2025</li>
+            </ul>
           </div>
         </div>
-
-        <ul class="awards hero__awards">
-          <li>Smart City Dornbirn &ndash; 2022</li>
-          <li>Innovation Call Vorarlberg &ndash; 2025</li>
-          <li>Digitale Innovationen im Tourismus &ndash; 2025</li>
-        </ul>
       </div>
 
       <div class="hero__right">
@@ -138,7 +149,7 @@
       <div class="grid grid-3" style="margin-top:var(--sp-4)">
 
         <article class="card card--kategorie">
-          <img src="assets/svg/targets/target-gelb.svg" alt="" class="card__icon" aria-hidden="true" />
+          <img src="assets/svg/buttons/i-history.svg" alt="i.history" class="card__badge" />
           <h3 class="c-history">i.history</h3>
           <p class="eyebrow">Zeitreisen</p>
           <p><strong>Historie wird zur Geschichte</strong></p>
@@ -147,7 +158,7 @@
         </article>
 
         <article class="card card--kategorie">
-          <img src="assets/svg/targets/target-blau.svg" alt="" class="card__icon" aria-hidden="true" />
+          <img src="assets/svg/buttons/i-dentity.svg" alt="i.dentity" class="card__badge" />
           <h3 class="c-dentity">i.dentity</h3>
           <p class="eyebrow">Regionale Erlebnisse</p>
           <p><strong>Kultur, Tourismus, Wirtschaft</strong></p>
@@ -156,7 +167,7 @@
         </article>
 
         <article class="card card--kategorie">
-          <img src="assets/svg/targets/target-gruen.svg" alt="" class="card__icon" aria-hidden="true" />
+          <img src="assets/svg/buttons/i-grow.svg" alt="i.grow" class="card__badge" />
           <h3 class="c-grow">i.grow</h3>
           <p class="eyebrow">Medienbildung</p>
           <p><strong>Vom Konsumieren zum Gestalten</strong></p>
@@ -216,6 +227,10 @@
 
         <div class="ueber__team">
           <article class="team-member">
+            <!-- TODO: Foto Marilena. Datei nach assets/images/team/marilena.jpg
+                 ablegen und die ph-Box unten durch
+                 <img src="assets/images/team/marilena.jpg" alt="Marilena Tumler" class="team-member__photo" />
+                 ersetzen. -->
             <div class="ph ph--square team-member__photo" aria-hidden="true">
               <small>Foto<br/>Marilena</small>
             </div>
@@ -227,6 +242,9 @@
           </article>
 
           <article class="team-member">
+            <!-- TODO: Foto Maggy. Noch kein Foto vorhanden - wenn vorhanden nach
+                 assets/images/team/maggy.jpg ablegen und hier die ph-Box durch
+                 <img src="assets/images/team/maggy.jpg" ...> ersetzen. -->
             <div class="ph ph--square team-member__photo" aria-hidden="true">
               <small>Foto<br/>Maggy</small>
             </div>
@@ -301,18 +319,18 @@
       <div class="footer__partner">
         <h4>Partner und Foerdergeber</h4>
         <div class="partner-grid">
-          <div class="ph partner-logo">Studio Weholo GmbH</div>
-          <div class="ph partner-logo">OEAD &ndash; Bildung und Internationalisierung</div>
-          <div class="ph partner-logo">BMBWF</div>
-          <div class="ph partner-logo">BMKOES</div>
-          <div class="ph partner-logo">Stadt Dornbirn</div>
-          <div class="ph partner-logo">Dornbirn Stadtarchiv</div>
-          <div class="ph partner-logo">Stadt Feldkirch</div>
-          <div class="ph partner-logo">Hard am Bodensee</div>
-          <div class="ph partner-logo">Land Vorarlberg</div>
-          <div class="ph partner-logo">FH Vorarlberg</div>
-          <div class="ph partner-logo">vorarlberg museum</div>
-          <div class="ph partner-logo">Vorarlberg unser Land</div>
+          <div class="partner-logo"><img src="assets/svg/partner/weHolo.svg" alt="Studio Weholo GmbH" /></div>
+          <div class="partner-logo"><img src="assets/svg/partner/OEAD_neu.svg" alt="OEAD" /></div>
+          <div class="partner-logo"><img src="assets/svg/partner/BMU_wissenschaft.svg" alt="BMBWF" /></div>
+          <div class="partner-logo"><img src="assets/svg/partner/BMU_KunstKultur.svg" alt="BMKOES" /></div>
+          <div class="partner-logo"><img src="assets/svg/logos/partner-dornbirn.svg" alt="Stadt Dornbirn" /></div>
+          <div class="partner-logo"><img src="assets/svg/partner/dornbirn_archiv.svg" alt="Dornbirn Stadtarchiv" /></div>
+          <div class="partner-logo"><img src="assets/svg/partner/feldkirch.svg" alt="Stadt Feldkirch" /></div>
+          <div class="partner-logo"><img src="assets/svg/partner/hard.svg" alt="Hard am Bodensee" /></div>
+          <div class="partner-logo"><img src="assets/svg/partner/LandVorarlberg.svg" alt="Land Vorarlberg" /></div>
+          <div class="partner-logo"><img src="assets/svg/partner/fhv.svg" alt="FH Vorarlberg" /></div>
+          <div class="partner-logo"><img src="assets/svg/partner/vorarlberg_museum.svg" alt="vorarlberg museum" /></div>
+          <div class="partner-logo"><img src="assets/svg/partner/Marke_Vorarlberg_weiss_neu.svg" alt="Vorarlberg unser Land" /></div>
         </div>
         <div class="partner-uniwien">
           <div class="ph partner-logo">Universitaet Wien</div>
@@ -330,9 +348,9 @@
   <a href="#" class="back-up" data-back-up aria-label="Nach oben">&uarr;</a>
 
   <script src="js/main.js"></script>
-  <script src="js/data/rundgaenge.js"></script>
-  <script src="js/data/vitrine.js"></script>
-  <script src="js/network.js"></script>
-  <script src="js/features.js"></script>
+  <script src="js/data/rundgaenge.js?v=2"></script>
+  <script src="js/data/vitrine.js?v=2"></script>
+  <script src="js/network.js?v=2"></script>
+  <script src="js/features.js?v=2"></script>
 </body>
 </html>

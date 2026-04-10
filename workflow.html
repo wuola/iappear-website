@@ -4,14 +4,13 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Workflow & Leistungen | i.appear</title>
-  <meta name="description" content="i.appear Workflow und Leistungen: Wie wir gemeinsam einen Rundgang fuer dich erstellen." />
+  <meta name="description" content="i.appear Workflow und Leistungen: Wie wir gemeinsam einen Rundgang fuer dich erstellen." />  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <link rel="apple-touch-icon" href="assets/favicon.png" />
+
   <link rel="stylesheet" href="css/global.css" />
   <link rel="stylesheet" href="css/layout.css" />
   <link rel="stylesheet" href="css/components.css" />
-  <link rel="stylesheet" href="css/animations.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet" />
-</head>
+  <link rel="stylesheet" href="css/animations.css" /></head>
 <body>
   <header class="nav"><div class="nav__inner">
     <a class="nav__brand" href="index.html">i.appear</a>
@@ -27,20 +26,32 @@
     <button class="nav__burger" data-menu-toggle aria-label="Menue oeffnen"><span></span></button>
   </div></header>
 
-  <div id="menu" class="menu"><button class="menu__close" data-menu-close>&times;</button>
-    <ul class="menu__list">
-      <li><a href="index.html">Startseite</a></li>
-      <li><a href="i-history.html" class="c-history">i.history</a></li>
-      <li><a href="i-dentity.html" class="c-dentity">i.dentity</a></li>
-      <li><a href="i-grow.html" class="c-grow">i.grow</a></li>
-      <li><a href="workflow.html">Workflow</a></li>
-      <li><a href="user-guide.html">User Guide</a></li>
-      <li><a href="kontakt.html">Kontakt</a></li>
-      <li><a href="faqs.html">FAQs</a></li>
-      <li><a href="agb.html">AGB</a></li>
-      <li><a href="impressum.html">Impressum</a></li>
-      <li><a href="datenschutz.html">Datenschutz</a></li>
-    </ul>
+    <div id="menu" class="menu" role="dialog" aria-modal="true" aria-label="Menue">
+    <button class="menu__close" data-menu-close aria-label="Menue schliessen">&times;</button>
+    <div class="menu__group">
+      <h4 class="menu__heading">Die Plattform</h4>
+      <ul class="menu__list">
+        <li><a href="user-guide.html">i.appear User Guide</a></li>
+        <li><a href="index.html#kategorien">Unsere Kategorien</a></li>
+        <li><a href="i-history.html" class="c-history">i.history &ndash; Zeitreisen</a></li>
+        <li><a href="i-dentity.html" class="c-dentity">i.dentity &ndash; Erlebnisse</a></li>
+        <li><a href="i-grow.html" class="c-grow">i.grow &ndash; Medienbildung</a></li>
+        <li><a href="index.html#features">Features</a></li>
+      </ul>
+    </div>
+    <div class="menu__group">
+      <h4 class="menu__heading">Backstage</h4>
+      <ul class="menu__list">
+        <li><a href="workflow.html">Workflow und Leistungen</a></li>
+        <li><a href="index.html#vitrine">Vitrine</a></li>
+        <li><a href="index.html#ueber-uns">Ueber uns</a></li>
+        <li><a href="kontakt.html">Kontakt</a></li>
+        <li><a href="faqs.html">FAQs</a></li>
+        <li><a href="agb.html">AGB</a></li>
+        <li><a href="impressum.html">Impressum</a></li>
+        <li><a href="datenschutz.html">Datenschutz</a></li>
+      </ul>
+    </div>
   </div>
 
   <main>
@@ -89,19 +100,28 @@
     </section>
 
     <section class="section container">
-      <h2>5-Schritt-Prozess</h2>
-      <p class="muted">Vielfaeltige Moeglichkeiten</p>
-      <ol class="grid grid-3" style="margin-top:var(--sp-3); list-style:none; padding:0">
-        <li class="card"><h3>01 &mdash; Idee &amp; Konzept</h3><p>Wir starten mit einem Gespraech ueber deine Idee, dein Ziel und deine Zielgruppe.</p></li>
-        <li class="card"><h3>02 &mdash; Inhalte &amp; Story</h3><p>Wir recherchieren, schreiben, entwickeln Geschichten und Stationen.</p></li>
-        <li class="card"><h3>03 &mdash; Medienproduktion</h3><p>3D, AR, Audio, Video, Animationen &mdash; das ganze multimediale Programm.</p></li>
-        <li class="card"><h3>04 &mdash; Abstimmung &amp; Implementierung</h3><p>Feedback-Schleifen, Anpassungen und Einbau in die Plattform.</p></li>
-        <li class="card"><h3>05 &mdash; Launch &amp; Service</h3><p>Wir launchen deinen Rundgang und bleiben fuer Wartung und Updates an deiner Seite.</p></li>
-      </ol>
+      <h2>Vielfaeltige Moeglichkeiten</h2>
+      <div class="grid grid-3" style="margin-top:var(--sp-3)">
+        <article class="card">
+          <h3>Bestehendes digitalisieren</h3>
+          <p>In i.appear koennen bestehende Rundgaenge digitalisiert und erweitert werden.</p>
+        </article>
+        <article class="card">
+          <h3>Informationsstationen</h3>
+          <p>Zudem lassen sich Informationsstationen fuer relevante Orientierungspunkte einpflegen, die auf Rundgaenge oder zusammenhaengende Stationen verweisen. So werden alle Elemente innerhalb der App zu einem flaechendeckenden digitalen Netzwerk verknuepft, das auf der interaktiven Karte fuer die Nutzer:innen sichtbar wird.</p>
+        </article>
+        <article class="card">
+          <h3>Neue Rundgaenge im Team</h3>
+          <p>Zusammen mit unserem interdisziplinaeren Team koennen neue Rundgaenge erarbeitet oder bestehende Konzepte neu gedacht werden. Durch das Teilen von Stationen lassen sich neue und vorhandene Rundgaenge flexibel miteinander verbinden.</p>
+        </article>
+      </div>
+      <p class="muted" style="margin-top:var(--sp-3)">Stationen koennen auch kategorienuebergreifend von verschiedenen Rundgaengen geteilt werden.</p>
     </section>
 
     <section class="section container center">
-      <a href="kontakt.html" class="btn">Projekt anfragen &rarr;</a>
+      <p class="muted">Da unsere Rundgaenge sich konzeptionell voneinander unterscheiden, haben wir variierende Workflows. Diese sind aber flexibel und optional.</p>
+      <p style="margin-top:var(--sp-2)">Du darfst dir das alles gerne durchlesen, du kannst uns aber auch einfach deine Fragen gleich schicken. Oder fuer erste Hilfe kommst du hier zu den <a href="faqs.html">FAQs</a>.</p>
+      <a href="kontakt.html" class="btn" style="margin-top:var(--sp-3)">Projekt anfragen &rarr;</a>
     </section>
   </main>
 

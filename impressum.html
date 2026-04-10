@@ -3,14 +3,13 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Impressum | i.appear</title>
+  <title>Impressum | i.appear</title>  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <link rel="apple-touch-icon" href="assets/favicon.png" />
+
   <link rel="stylesheet" href="css/global.css" />
   <link rel="stylesheet" href="css/layout.css" />
   <link rel="stylesheet" href="css/components.css" />
-  <link rel="stylesheet" href="css/animations.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet" />
-</head>
+  <link rel="stylesheet" href="css/animations.css" /></head>
 <body>
   <header class="nav"><div class="nav__inner">
     <a class="nav__brand" href="index.html">i.appear</a>
@@ -26,20 +25,32 @@
     <button class="nav__burger" data-menu-toggle aria-label="Menue oeffnen"><span></span></button>
   </div></header>
 
-  <div id="menu" class="menu"><button class="menu__close" data-menu-close>&times;</button>
-    <ul class="menu__list">
-      <li><a href="index.html">Startseite</a></li>
-      <li><a href="i-history.html" class="c-history">i.history</a></li>
-      <li><a href="i-dentity.html" class="c-dentity">i.dentity</a></li>
-      <li><a href="i-grow.html" class="c-grow">i.grow</a></li>
-      <li><a href="workflow.html">Workflow</a></li>
-      <li><a href="user-guide.html">User Guide</a></li>
-      <li><a href="kontakt.html">Kontakt</a></li>
-      <li><a href="faqs.html">FAQs</a></li>
-      <li><a href="agb.html">AGB</a></li>
-      <li><a href="impressum.html">Impressum</a></li>
-      <li><a href="datenschutz.html">Datenschutz</a></li>
-    </ul>
+    <div id="menu" class="menu" role="dialog" aria-modal="true" aria-label="Menue">
+    <button class="menu__close" data-menu-close aria-label="Menue schliessen">&times;</button>
+    <div class="menu__group">
+      <h4 class="menu__heading">Die Plattform</h4>
+      <ul class="menu__list">
+        <li><a href="user-guide.html">i.appear User Guide</a></li>
+        <li><a href="index.html#kategorien">Unsere Kategorien</a></li>
+        <li><a href="i-history.html" class="c-history">i.history &ndash; Zeitreisen</a></li>
+        <li><a href="i-dentity.html" class="c-dentity">i.dentity &ndash; Erlebnisse</a></li>
+        <li><a href="i-grow.html" class="c-grow">i.grow &ndash; Medienbildung</a></li>
+        <li><a href="index.html#features">Features</a></li>
+      </ul>
+    </div>
+    <div class="menu__group">
+      <h4 class="menu__heading">Backstage</h4>
+      <ul class="menu__list">
+        <li><a href="workflow.html">Workflow und Leistungen</a></li>
+        <li><a href="index.html#vitrine">Vitrine</a></li>
+        <li><a href="index.html#ueber-uns">Ueber uns</a></li>
+        <li><a href="kontakt.html">Kontakt</a></li>
+        <li><a href="faqs.html">FAQs</a></li>
+        <li><a href="agb.html">AGB</a></li>
+        <li><a href="impressum.html">Impressum</a></li>
+        <li><a href="datenschutz.html">Datenschutz</a></li>
+      </ul>
+    </div>
   </div>
 
   <main>
@@ -66,19 +77,26 @@
       <strong>Gerichtsstandort:</strong> Dornbirn</p>
 
       <h2>Haftung fuer Inhalte dieser Website</h2>
-      <p>Wir entwickeln die Inhalte dieser Webseite staendig weiter und bemuehen uns korrekte und aktuelle Informationen bereitzustellen. Leider koennen wir keine Haftung fuer die Korrektheit aller Inhalte auf dieser Webseite uebernehmen, speziell fuer jene, die seitens Dritter bereitgestellt wurden.</p>
+      <p>Wir entwickeln die Inhalte dieser Website staendig weiter und bemuehen uns korrekte und aktuelle Informationen bereitzustellen. Leider koennen wir keine Haftung fuer die Korrektheit aller Inhalte auf dieser Website uebernehmen, speziell fuer jene, die seitens Dritter bereitgestellt wurden. Als Diensteanbieter sind wir nicht verpflichtet, die von Ihnen uebermittelten oder gespeicherten Informationen zu ueberwachen oder nach Umstaenden zu forschen, die auf eine rechtswidrige Taetigkeit hinweisen.</p>
+      <p>Unsere Verpflichtungen zur Entfernung von Informationen oder zur Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen aufgrund von gerichtlichen oder behoerdlichen Anordnungen bleiben auch im Falle unserer Nichtverantwortlichkeit davon unberuehrt.</p>
+      <p>Sollten Ihnen problematische oder rechtswidrige Inhalte auffallen, bitten wir Sie uns umgehend zu kontaktieren, damit wir die rechtswidrigen Inhalte entfernen koennen. Sie finden die Kontaktdaten im Impressum.</p>
 
       <h2>Haftung fuer Links auf dieser Website</h2>
-      <p>Unsere Webseite enthaelt Links zu anderen Webseiten fuer deren Inhalt wir nicht verantwortlich sind. Sollten Ihnen rechtswidrige Links auf unserer Webseite auffallen, bitten wir Sie uns zu kontaktieren.</p>
+      <p>Unsere Website enthaelt Links zu anderen Websites, fuer deren Inhalt wir nicht verantwortlich sind. Haftung fuer verlinkte Websites besteht fuer uns nicht, da wir keine Kenntnis rechtswidriger Taetigkeiten hatten und haben, uns solche Rechtswidrigkeiten auch bisher nicht aufgefallen sind und wir Links sofort entfernen wuerden, wenn uns Rechtswidrigkeiten bekannt werden.</p>
+      <p>Wenn Ihnen rechtswidrige Links auf unserer Website auffallen, bitten wir Sie uns zu kontaktieren. Sie finden die Kontaktdaten im Impressum.</p>
 
       <h2>Haftung fuer Inhalte von Projekten auf der App i.appear</h2>
-      <p>Inhalte von Projekten, die auf der Plattform i.appear veroeffentlicht werden, liegen in der Verantwortung der jeweiligen Projektbetreiber. Bei rechtlichen Fragen kontaktiere uns bitte unter info@iappear.app.</p>
+      <p>Unsere App besteht zu grossen Teilen aus Projekten, deren Inhalte nur zum Teil von uns mitgestaltet oder erstellt wurden. Folglich ist i.appear nicht fuer deren Inhalte verantwortlich. Ebenfalls besteht keine Haftung fuer verlinkte Websites, da wir keine Kenntnis rechtswidriger Taetigkeiten hatten und haben, uns solche Rechtswidrigkeiten auch bisher nicht aufgefallen sind und wir Links sofort entfernen wuerden, wenn uns Rechtswidrigkeiten bekannt werden.</p>
+      <p>Wenn Ihnen rechtswidrige Links auf unserer Website auffallen, bitten wir Sie uns zu kontaktieren. Sie finden die Kontaktdaten im Impressum.</p>
 
       <h2>Urheberrechtshinweis</h2>
-      <p>Alle Inhalte dieser Webseite (Bilder, Fotos, Texte, Videos) unterliegen dem Urheberrecht. Bitte fragen Sie uns bevor Sie die Inhalte dieser Website verbreiten, vervielfaeltigen oder verwerten.</p>
+      <p>Alle Inhalte dieser Webseite (Bilder, Fotos, Texte, Videos) unterliegen dem Urheberrecht. Bitte fragen Sie uns bevor Sie die Inhalte dieser Website verbreiten, vervielfaeltigen oder verwerten &ndash; wie zum Beispiel auf anderen Websites erneut veroeffentlichen. Falls notwendig, werden wir die unerlaubte Nutzung von Teilen der Inhalte unserer Seite rechtlich verfolgen.</p>
+      <p>Sollten Sie auf dieser Webseite Inhalte finden, die das Urheberrecht verletzen, bitten wir Sie uns zu kontaktieren.</p>
 
-      <h2>Bildernachweise</h2>
-      <p>Die Bilder auf dieser Webseite sind urheberrechtlich geschuetzt.</p>
+      <h2>Bildernachweise sowie Videos auf dieser Website und der App i.appear</h2>
+      <p>Die Bilder, Fotos, Grafiken und Videos auf dieser Webseite sind urheberrechtlich geschuetzt. Sollten in Rundgaengen von Projektpartner:innen Inhalte verwendet worden sein, fuer die keine Rechte bestehen, uebernimmt i.appear keine Haftung, da wir keine Kenntnis rechtswidriger Taetigkeiten hatten und haben, uns solche Rechtswidrigkeiten bisher nicht aufgefallen sind und wir solche Inhalte sofort entfernen wuerden, wenn uns Rechtswidrigkeiten bekannt werden.</p>
+      <p><strong>Die Bilderrechte liegen bei:</strong> Marilena Tumler sowie den jeweiligen Projektpartner:innen.</p>
+      <p>Alle Texte sind urheberrechtlich geschuetzt.</p>
     </section>
   </main>
 

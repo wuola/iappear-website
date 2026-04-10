@@ -1,0 +1,49 @@
+<style>
+  /* Die Animation definieren: */
+  @keyframes steamRise {
+    0% {
+      transform: translateY(0);
+      opacity: 0; /* Startet unsichtbar */
+    }
+    20% {
+      opacity: 1; /* Wird schnell sichtbar */
+    }
+    100% {
+      transform: translateY(-10px); /* Steigt 10px nach oben */
+      opacity: 0; /* Verblasst am Ende */
+    }
+  }
+
+  /* Standardzustand: Dampf ist leicht transparent */
+  .steam {
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+  }
+
+  /* HOVER-ZUSTAND */
+  /* Wenn man über das SVG (Klasse .coffee-icon) hovert, passiert folgendes mit den .steam Elementen: */
+  .coffee-icon:hover .steam {
+    /* Die Animation 'steamRise' wird angewendet, dauert 2s, läuft unendlich, linear */
+    animation: steamRise 2s infinite linear;
+  }
+
+  /* Zeitversetzung für organischen Look */
+  .coffee-icon:hover .steam-mid {
+    animation-delay: 0s;
+  }
+  .coffee-icon:hover .steam-left {
+    animation-delay: 0.4s;
+  }
+  .coffee-icon:hover .steam-right {
+    animation-delay: 0.8s;
+  }
+</style>
+
+<svg class="coffee-icon" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#C2C2C2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="overflow: visible;">
+  <path d="M10 15 H40 V35 A 10 10 0 0 1 30 45 H20 A 10 10 0 0 1 10 35 V15 Z"></path>
+  <path d="M40 20 H45 A 5 5 0 0 1 45 30 H40"></path>
+
+  <path class="steam steam-mid" d="M25 5 Q 28 0 31 5"></path>
+  <path class="steam steam-left" d="M19 7 Q 22 2 25 7"></path>
+  <path class="steam steam-right" d="M31 7 Q 34 2 37 7"></path>
+</svg>

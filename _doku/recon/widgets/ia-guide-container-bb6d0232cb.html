@@ -1,0 +1,227 @@
+<div class="ia-guide-container">
+  
+  <div class="ia-nav-wrapper">
+    <button onclick="changeStep(-1)" class="ia-nav-btn">←</button>
+    <span id="step-counter-label">Schritt 1</span>
+    <button onclick="changeStep(1)" class="ia-nav-btn">→</button>
+  </div>
+
+  <div class="ia-toggle-scaler">
+    
+    <div id="ia-toggle-widget" class="ia-emergency-toggle is-suitcase" onclick="handleToggleClick(this)" style="opacity: 1; pointer-events: auto;">
+      <div class="ia-track">
+        <div class="ia-thumb"></div>
+        <div class="ia-icons-layer">
+          <div class="ia-icon-slot">
+            <svg class="ia-icon map-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="1 6 8 2 15 6 22 2 22 18 15 22 8 18 1 22 1 6"></polygon>
+              <line x1="8" y1="2" x2="8" y2="18"></line>
+              <line x1="15" y1="6" x2="15" y2="22"></line>
+            </svg>
+          </div>
+          <div class="ia-icon-slot">
+            <svg class="ia-icon suitcase-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="8" width="18" height="12" rx="2"></rect>
+              <path d="M8 8V6a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+            </svg>
+          </div>
+        </div>
+      </div>
+      
+      <div class="ia-mickey-hint" id="mickey-layer" style="display: block;">
+        <div class="ia-ripple"></div>
+        <svg class="ia-mickey-hand" viewBox="0 0 584.32 649.73">
+          <path d="M72.07,142.16l78.01,214.29c.67,1.67.33,3.01-1.34,3.68-1.34.67-2.34,0-3.35-1l-39.51-42.86c-25.78-27.79-58.59-29.8-84.04-8.37-28.79,24.44-29.13,60.94-1,95.42l112.16,135.6c84.71,102.45,184.15,134.26,295.31,93.75,132.93-48.21,189.51-170.09,135.94-317.41l-25.11-68.64c-26.11-72.66-76-102.46-134.6-82.03-15.74-20.42-39.84-27.45-65.96-18.08-9.04,3.35-17.75,8.37-26.12,14.73-17.08-22.1-43.53-30.13-70.98-20.42-7.37,2.68-14.4,6.7-21.09,11.38l-38.17-104.46C167.83,7.89,131.67-8.85,94.51,4.54c-37.5,13.73-54.24,49.55-39.84,89.4l2.68,7.37M413.93,588.81c-87.72,32.14-170.09,15.74-247.43-77.68l-112.17-134.93c-12.05-14.06-12.05-27.79-1.34-37.16,10.04-9.04,23.77-6.03,34.82,5.36l77.34,80.02c13.06,13.39,24.44,14.73,35.49,10.71,13.06-4.69,18.75-18.75,13.39-33.15L95.51,75.86c-5.02-13.39,1.01-26.12,13.73-30.8,13.06-4.69,25.11,1.67,30.14,15.07l84.71,232.7c4.02,11.05,16.41,16.07,27.46,12.05,10.71-4.02,16.41-15.74,12.39-26.45l-30.47-84.04c4.69-4.35,11.05-8.71,17.41-11.05,15.74-5.69,28.8,1.34,34.82,17.75l26.79,73.33c4.02,11.38,16.41,15.74,27.12,11.72,10.38-3.68,17.08-14.73,12.72-26.45l-21.76-59.26c4.69-4.69,11.05-9.04,17.41-11.38,15.74-5.69,28.79,1.34,34.82,17.75l17.75,48.88c4.35,11.72,16.74,16.07,27.46,12.05,10.38-3.68,16.74-15.07,12.72-26.45l-13.39-36.16c28.12-10.05,54.58,12.72,72.65,62.95l21.09,57.25c45.87,126.56,4.02,222.99-107.14,263.5Z" stroke-linejoin="round" stroke-linecap="round"></path>
+        </svg>
+      </div>
+    </div>
+
+    <div id="ia-icons-grid-a" class="ia-sharp-grid" style="display: none;">
+      
+      <div class="ia-sharp-icon-wrapper"><svg viewBox="0 0 68 67" fill="none"><path class="ia-icon-bg" d="M67 33.0123C67 50.6854 52.5 65.5117 34 65.0123C15.5 65.5117 1 50.6854 1 33.0123C1 15.3392 15.5 0.511747 34 1.01232C52.5 0.51172 67 15.3392 67 33.0123Z"></path><g class="ia-symbol"><path d="M47.1491 38.3352V26.7134C47.1486 26.2039 47.0141 25.7035 46.7591 25.2624C46.5041 24.8212 46.1376 24.4549 45.6964 24.2002L35.5273 18.3893C35.0856 18.1343 34.5846 18 34.0746 18C33.5645 18 33.0635 18.1343 32.6218 18.3893L22.4527 24.2002C22.0115 24.4549 21.645 24.8212 21.39 25.2624C21.135 25.7035 21.0005 26.2039 21 26.7134V38.3352C21.0005 38.8447 21.135 39.3451 21.39 39.7863C21.645 40.2274 22.0115 40.5937 22.4527 40.8484L32.6218 46.6594C33.0635 46.9144 33.5645 47.0486 34.0746 47.0486C34.5846 47.0486 35.0856 46.9144 35.5273 46.6594L45.6964 40.8484C46.1376 40.5937 46.5041 40.2274 46.7591 39.7863C47.0141 39.3451 47.1486 38.8447 47.1491 38.3352Z"></path><path d="M21.3926 25.2031L34.0749 32.5394L46.7572 25.2031"></path><path d="M34.0742 47.165V32.5215"></path></g></svg></div>
+      <div class="ia-sharp-icon-wrapper"><svg viewBox="0 0 68 67" fill="none"><path class="ia-icon-bg" d="M67 33.0123C67 50.6854 52.5 65.5117 34 65.0123C15.5 65.5117 1 50.6854 1 33.0123C1 15.3392 15.5 0.511747 34 1.01232C52.5 0.51172 67 15.3392 67 33.0123Z"></path><g class="ia-symbol"><path d="M17.6955 40.6776C17.8748 41.3939 18.2399 42.0502 18.754 42.5802C19.2681 43.1102 19.913 43.4952 20.6235 43.6962C23.2194 44.3301 33.6032 44.3301 33.6032 44.3301C33.6032 44.3301 43.987 44.3301 46.5829 43.6358C47.2934 43.4348 47.9383 43.0499 48.4524 42.5198C48.9665 41.9898 49.3316 41.3336 49.5109 40.6173C49.986 37.9828 50.2184 35.3102 50.2052 32.6332C50.2221 29.9361 49.9897 27.2432 49.5109 24.5888C49.3133 23.8948 48.94 23.2635 48.4271 22.7558C47.9141 22.2482 47.279 21.8815 46.5829 21.691C43.987 20.9967 33.6032 20.9967 33.6032 20.9967C33.6032 20.9967 23.2194 20.9967 20.6235 21.691C19.913 21.892 19.2681 22.277 18.754 22.807C18.2399 23.337 17.8748 23.9933 17.6955 24.7096C17.2241 27.3242 16.9917 29.9764 17.0012 32.6332C16.9843 35.3304 17.2167 38.0233 17.6955 40.6776Z"></path><path d="M43.0516 39.8533L38.4913 32.0257L34.0508 39.9219L43.0516 39.8533Z"></path><path d="M34.0907 39.9197L29.5004 28.1675L25.0898 39.9883L34.0907 39.9197Z"></path><circle cx="34.9912" cy="27.9961" r="2.25" class="ia-sun"></circle></g></svg></div>
+      <div class="ia-sharp-icon-wrapper"><svg viewBox="0 0 68 67" fill="none"><path class="ia-icon-bg" d="M67 33.0123C67 50.6854 52.5 65.5117 34 65.0123C15.5 65.5117 1 50.6854 1 33.0123C1 15.3392 15.5 0.511747 34 1.01232C52.5 0.51172 67 15.3392 67 33.0123Z"></path><g class="ia-symbol"><path d="M49.5106 24.6524C49.3313 23.9362 48.9661 23.2799 48.452 22.7499C47.9379 22.2199 47.2931 21.8349 46.5826 21.6339C43.9866 21 33.6028 21 33.6028 21C33.6028 21 23.2191 21 20.6231 21.6943C19.9126 21.8953 19.2678 22.2802 18.7536 22.8102C18.2395 23.3402 17.8744 23.9965 17.6951 24.7128C17.22 27.3473 16.9876 30.0199 17.0009 32.6969C16.9839 35.394 17.2163 38.0869 17.6951 40.7413C17.8928 41.4353 18.2661 42.0666 18.779 42.5742C19.2919 43.0819 19.9271 43.4486 20.6231 43.6391C23.2191 44.3333 33.6028 44.3333 33.6028 44.3333C33.6028 44.3333 43.9866 44.3333 46.5826 43.6391C47.2931 43.4381 47.9379 43.0531 48.452 42.5231C48.9661 41.9931 49.3313 41.3368 49.5106 40.6205C49.982 38.0058 50.2144 35.3537 50.2048 32.6969C50.2218 29.9997 49.9894 27.3068 49.5106 24.6524V24.6524Z"></path><path d="M30.207 37.6324L38.8853 32.697L30.207 27.7617V37.6324Z"></path></g></svg></div>
+      
+      <div class="ia-sharp-icon-wrapper"><svg viewBox="0 0 68 67" fill="none"><path class="ia-icon-bg" d="M67 33.0123C67 50.6854 52.5 65.5117 34 65.0123C15.5 65.5117 1 50.6854 1 33.0123C1 15.3392 15.5 0.511747 34 1.01232C52.5 0.51172 67 15.3392 67 33.0123Z"></path><g class="ia-symbol"><path d="M45.2222 28.7773H18"></path><path d="M53 21H18"></path><path d="M53 36.5547H18"></path><path d="M45.2222 44.334H18"></path></g></svg></div>
+      <div class="ia-sharp-icon-wrapper"><svg viewBox="0 0 68 67" fill="none"><path class="ia-icon-bg" d="M67 33.0123C67 50.6854 52.5 65.5117 34 65.0123C15.5 65.5117 1 50.6854 1 33.0123C1 15.3392 15.5 0.511747 34 1.01232C52.5 0.51172 67 15.3392 67 33.0123Z"></path><g class="ia-symbol"><path d="M31.8515 22.1172L23.6007 28.7178H17V38.6188H23.6007L31.8515 45.2195V22.1172Z"></path><path d="M45.1688 22C48.2624 25.0945 50.0003 29.291 50.0003 33.6667C50.0003 38.0423 48.2624 42.2388 45.1688 45.3333M39.3438 27.8251C40.8905 29.3723 41.7595 31.4706 41.7595 33.6584C41.7595 35.8462 40.8905 37.9445 39.3438 39.4918"></path></g></svg></div>
+      <div class="ia-sharp-icon-wrapper"><svg viewBox="0 0 68 67" fill="none"><path class="ia-icon-bg" d="M67 33.0123C67 50.6854 52.5 65.5117 34 65.0123C15.5 65.5117 1 50.6854 1 33.0123C1 15.3392 15.5 0.511747 34 1.01232C52.5 0.51172 67 15.3392 67 33.0123Z"></path><g class="ia-symbol"><path d="M34.4965 18.6035C42.7849 19.271 45.7702 22.2356 46.6549 25.2363C47.6214 28.5156 46.3881 32.6826 44.4648 36.2442L44.4287 36.3092L44.4003 36.3783C43.1104 39.4122 42.8876 41.932 43.0906 43.8874C41.7492 43.0734 39.9442 42.0334 37.5336 40.765L35.8358 39.886L35.6786 39.8106C34.9301 39.4859 34.0539 39.4935 33.3118 39.8262L33.1558 39.9018C29.5823 41.779 27.1057 43.2078 25.4176 44.213C25.4412 44.0643 25.4637 43.9131 25.4821 43.7598C25.7333 41.661 25.5391 38.9398 24.0809 35.7116C21.5772 29.7048 22.1664 25.706 24.0641 23.1569C26.0256 20.5226 29.7371 18.9404 34.4965 18.6035Z" stroke-width="2.4"></path><path class="ia-glyph" d="M34.5876 27.3757C34.5876 30.493 30.8546 30.4557 31.7971 33.685H29.8752C28.6925 30.0637 32.4069 29.6717 32.4069 27.5997C32.4069 26.4237 31.0025 25.5837 28.7109 25.4904L28.9697 23.6797C32.6841 23.7917 34.5876 25.509 34.5876 27.3757ZM32.1112 35.925C32.1112 36.6344 31.5753 37.1757 30.8546 37.1757C30.1524 37.1757 29.598 36.6344 29.598 35.925C29.598 35.2344 30.1524 34.693 30.8546 34.693C31.5753 34.693 32.1112 35.2344 32.1112 35.925ZM40.0621 23.829L39.748 33.685H38.0663L37.7336 23.829H40.0621ZM40.1545 35.925C40.1545 36.6344 39.6001 37.1757 38.8979 37.1757C38.1772 37.1757 37.6228 36.6344 37.6228 35.925C37.6228 35.2344 38.1772 34.693 38.8979 34.693C39.6001 34.693 40.1545 35.2344 40.1545 35.925Z"></path></g></svg></div>
+
+    </div>
+  </div>
+
+</div>
+
+<style>
+  :root {
+    /* =================================== */
+    /* --- STEUERZENTRALE FÜR DICH --- */
+    /* =================================== */
+    
+    /* 1. POSITION DES 6er-GRIDS */
+    --grid-pos-x: 290px;  /* Spiel hiermit für Links/Rechts */
+    --grid-pos-y: -190px; /* Spiel hiermit für Hoch/Runter */
+
+    /* 2. GRÖSSE DER ICONS */
+    --ia-icon-scale: 0.8; 
+
+    /* 3. ABSTAND VOM TOGGLE (Start) */
+    --distance-top: 300px;
+    
+    /* =================================== */
+
+
+    /* --- RESTLICHE CONFIG --- */
+    --ia-glass-bg: rgba(255, 255, 255, 0.08);
+    --ia-glass-border: rgba(255, 255, 255, 0.2);
+    --ia-glass-blur: 5px;
+    --ia-symbol-color: #ffffff;
+    --ia-symbol-stroke: 1.5px;
+    --ia-icon-size: 68px;
+    
+    /* --- TOGGLE CONFIG --- */
+    --ia-scale: 0.6; 
+    --base-w: 130px; --base-h: 56px;
+    --thumb-size: 56px; --move-dist: 74px; 
+    --ia-bg: rgba(30, 30, 30, 0.6); --ia-border: rgba(255, 255, 255, 0.2);
+    --ia-thumb-c: #2A2A2A;
+    --hand-size: 30px; --hand-distance: 60px;
+  }
+
+  /* --- LAYOUT WRAPPER --- */
+  .ia-guide-container {
+    display: flex; flex-direction: column; align-items: center; width: 100%;
+    margin-top: 0px; z-index: 1001; position: relative; pointer-events: none; 
+  }
+
+  /* --- NAVIGATION --- */
+  .ia-nav-wrapper {
+    display: flex; align-items: center; gap: 12px;
+    background: rgba(0,0,0,0.3); padding: 8px 16px; border-radius: 50px;
+    border: 0.5px solid rgba(255,255,255,0.1); backdrop-filter: blur(4px); pointer-events: auto;
+  }
+  .ia-nav-btn {
+    background: #222; border: 1px solid rgba(255,255,255,0.2); color: #fff;
+    border-radius: 50px; cursor: pointer; padding: 6px 14px; font-size: 14px; transition: background 0.2s;
+  }
+  .ia-nav-btn:hover { background: #333; }
+  #step-counter-label { font-family: sans-serif; color: #fff; font-size: 12px; min-width: 60px; text-align: center; }
+
+  /* --- TOGGLE SCALER --- */
+  .ia-toggle-scaler {
+    margin-top: var(--distance-top);
+    transform: scale(var(--ia-scale)); transform-origin: center top;
+    backface-visibility: hidden; -webkit-font-smoothing: antialiased;
+    pointer-events: auto; position: relative; display: flex; justify-content: center;
+    overflow: visible; 
+  }
+  
+  /* --- ICON GRID (CSS GRID STATT FLEX) --- */
+  .ia-sharp-grid {
+      position: absolute;
+      top: var(--grid-pos-y); 
+      left: var(--grid-pos-x); 
+      
+      /* DAS HIER ERZWINGT DAS 3x2 LAYOUT */
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      
+      pointer-events: none; z-index: 10;
+  }
+  
+  .ia-sharp-icon-wrapper {
+      width: calc(var(--ia-icon-size) * var(--ia-icon-scale));
+      height: calc(var(--ia-icon-size) * var(--ia-icon-scale));
+      position: relative;
+  }
+
+  .ia-sharp-icon-wrapper svg { width: 100%; height: 100%; overflow: visible; }
+  .ia-feature-icon { position: relative; width: 100%; height: 100%; backdrop-filter: blur(var(--ia-glass-blur)); -webkit-backdrop-filter: blur(var(--ia-glass-blur)); border-radius: 50%; }
+  .ia-icon-bg { fill: var(--ia-glass-bg); stroke: var(--ia-glass-border); stroke-width: 1px; }
+  .ia-symbol path:not(.ia-glyph), .ia-symbol circle { stroke: var(--ia-symbol-color); stroke-width: var(--ia-symbol-stroke); stroke-linecap: round; stroke-linejoin: round; }
+  .ia-glyph { fill: var(--ia-symbol-color); }
+
+  /* --- TOGGLE STYLES --- */
+  .ia-emergency-toggle { width: var(--base-w); height: var(--base-h); position: relative; cursor: pointer; isolation: isolate; }
+  .ia-track { position: relative; width: 100%; height: 100%; background: var(--ia-bg); border: 2px solid var(--ia-border); border-radius: 999px; overflow: hidden; box-sizing: border-box; -webkit-mask-image: -webkit-radial-gradient(white, black); }
+  .ia-thumb { position: absolute; top: -1px; left: -1px; width: var(--thumb-size); height: var(--thumb-size); background: var(--ia-thumb-c); border-radius: 50%; border: 2px solid rgba(255,255,255,0.1); box-sizing: border-box; z-index: 1; will-change: transform; transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1); transform: translate3d(0, 0, 0); }
+  .ia-emergency-toggle.is-suitcase .ia-thumb { transform: translate3d(var(--move-dist), 0, 0); }
+  .ia-icons-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; justify-content: space-between; align-items: center; padding: 0 16px; box-sizing: border-box; z-index: 2; pointer-events: none; }
+  .ia-icon-slot { width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; }
+  .ia-icon { width: 24px; height: 24px; transition: color 0.3s; }
+  .ia-emergency-toggle:not(.is-suitcase) .map-svg { color: #fff; }
+  .ia-emergency-toggle.is-suitcase .suitcase-svg { color: #fff; }
+  .ia-emergency-toggle:not(.is-suitcase) .suitcase-svg, .ia-emergency-toggle.is-suitcase .map-svg { color: #666; }
+
+  /* --- MICKEY --- */
+  .ia-mickey-hint { position: absolute; top: 60px; left: 20px; width: var(--hand-size); pointer-events: none; z-index: 10; animation: mickeyGroove 2.8s ease-in-out infinite; }
+  .ia-mickey-hand { width: 100%; height: 100%; filter: drop-shadow(1px 3px 5px rgba(0,0,0,0.4)); }
+  .ia-mickey-hand path { fill: #fff; }
+  .ia-ripple { position: absolute; top: 30%; left: 30%; width: 20px; height: 20px; background: rgba(255,255,255,0.5); border-radius: 50%; transform: translate(-50%, -50%) scale(0); animation: rippleEffect 2.8s ease-in-out infinite; }
+  @keyframes mickeyGroove { 0%, 100% { transform: translate3d(0,0,0) rotate(-12deg); } 15%, 85% { transform: translate3d(0,0,0) rotate(-12deg); } 50%, 65% { transform: translate3d(var(--hand-distance), 0, 0) rotate(12deg); } }
+  @keyframes rippleEffect { 0%, 100%, 15%, 50%, 85% { transform: translate(-50%, -50%) scale(0); opacity: 0; } 5%, 55% { transform: translate(-50%, -50%) scale(0); opacity: 1; } 12%, 62% { transform: translate(-50%, -50%) scale(2.5); opacity: 0; } }
+
+  /* --- VISIBILITY --- */
+  [data-id="697b7e436d4b28b8ed18b9c9"], [data-id="696de09bbc8a902b21afbfd1"], [data-id="697ba7fbcf5bfecdf2fbda6b"],
+  [data-id="69806806263ec92b6b9f2ee9"], [data-id="696de6b7a91657db94e14817"], [data-id="698065d7d90582656b39d99f"],
+  [data-id="69806814655aa5f8e2977b3a"], [data-id="696de6027fe5832773a20ea9"], [data-id="698067251c5dfa5d7f1fd965"],
+  [data-id="6980683ac9eb0f5b705dbf01"], [data-id="696de2a8f87a3f06286a08de"]
+  { opacity: 0 !important; pointer-events: none !important; transition: opacity 0.4s ease !important; }
+  .ia-active { opacity: 1 !important; pointer-events: auto !important; }
+
+</style>
+
+<script>
+(function() {
+  const PATH_A = {
+    1: { text: "697b7e436d4b28b8ed18b9c9", suitcase: "696de09bbc8a902b21afbfd1", map: "697ba7fbcf5bfecdf2fbda6b" },
+    2: { text: "69806806263ec92b6b9f2ee9", suitcase: "696de6b7a91657db94e14817", map: "698065d7d90582656b39d99f" },
+    3: { text: "69806814655aa5f8e2977b3a", suitcase: "696de6027fe5832773a20ea9", map: "698067251c5dfa5d7f1fd965" },
+    4: { text: "6980683ac9eb0f5b705dbf01", suitcase: "696de2a8f87a3f06286a08de", map: "696de2a8f87a3f06286a08de" }
+  };
+  
+  let currentStep = 1;
+  let isSuitcase = true; 
+  let mickeyClicked = false;
+
+  window.handleToggleClick = function(el) {
+    mickeyClicked = true;
+    isSuitcase = !isSuitcase;
+    if(isSuitcase) { el.classList.add('is-suitcase'); } else { el.classList.remove('is-suitcase'); }
+    updateView();
+  };
+
+  window.changeStep = function(dir) {
+    currentStep += dir;
+    if (currentStep > 4) currentStep = 1;
+    if (currentStep < 1) currentStep = 4;
+    updateView();
+  };
+
+  function updateView() {
+    const label = document.getElementById('step-counter-label');
+    if(label) label.innerText = `Schritt ${currentStep}`;
+    const mickey = document.getElementById('mickey-layer');
+    if(mickey) mickey.style.display = (currentStep === 1 && !mickeyClicked) ? 'block' : 'none';
+    
+    const widget = document.getElementById('ia-toggle-widget');
+    if(widget) {
+        if(currentStep === 4) {
+            widget.style.opacity = '0'; widget.style.pointerEvents = 'none';
+            const grid = document.getElementById('ia-icons-grid-a');
+            if(grid) grid.style.display = 'grid'; // WICHTIG: Grid statt Flex
+        } else {
+            widget.style.opacity = '1'; widget.style.pointerEvents = 'auto';
+            const grid = document.getElementById('ia-icons-grid-a');
+            if(grid) grid.style.display = 'none';
+        }
+    }
+    document.querySelectorAll('.ia-active').forEach(el => el.classList.remove('ia-active'));
+    const step = PATH_A[currentStep];
+    if(step) { show(step.text); show(isSuitcase ? step.suitcase : step.map); }
+  }
+
+  function show(id) { const el = document.querySelector('[data-id="' + id + '"]'); if (el) el.classList.add('ia-active'); }
+  const safetyLoop = setInterval(updateView, 200); setTimeout(() => clearInterval(safetyLoop), 5000); updateView();
+})();
+</script>

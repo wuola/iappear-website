@@ -1,0 +1,310 @@
+<div class="ia-guide-container-b">
+  
+  <div class="ia-nav-wrapper-b">
+    <button onclick="changeStepB(-1)" class="ia-nav-btn-b">←</button>
+    <span id="step-counter-label-b">Schritt 1</span>
+    <button id="ia-next-arrow-b" onclick="changeStepB(1)" class="ia-nav-btn-b" style="visibility: visible;">→</button>
+  </div>
+
+  <div id="ia-decision-box-b" class="ia-decision-container-b" style="display: none;">
+    <button onclick="goToPathB(3)" class="ia-decision-btn-b">Station</button>
+    <button onclick="goToPathB(4)" class="ia-decision-btn-b">Route</button>
+  </div>
+
+  <div id="ia-toggle-scaler-b" class="ia-toggle-scaler-b" style="display: none;">
+    <div id="ia-toggle-widget-b" class="ia-emergency-toggle-b" onclick="handleToggleClickB(this)">
+      <div class="ia-track-b">
+        <div class="ia-thumb-b"></div>
+        <div class="ia-icon-wrapper-b">
+          <div class="ia-icon-box-b">
+             <svg class="ia-icon-b map-svg-b" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 8 2 15 6 22 2 22 18 15 22 8 18 1 22 1 6"></polygon><line x1="8" y1="2" x2="8" y2="18"></line><line x1="15" y1="6" x2="15" y2="22"></line></svg>
+          </div>
+          <div class="ia-icon-box-b">
+             <svg class="ia-icon-b suitcase-svg-b" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="12" rx="2"></rect><path d="M8 8V6a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<style>
+  :root {
+    /* --- POSITIONIERUNG (HIER ANPASSEN) --- */
+    --pos-decision-top: 350px; /* Wo sollen die Buttons (Station/Route) stehen? */
+    --pos-toggle-top: 350px;   /* Wo soll der Schieberegler stehen? */
+    
+    /* --- CONFIG --- */
+    --ia-scale: 0.6; 
+    
+    /* Ganze Zahlen für sauberes Rendering */
+    --base-w: 130px; 
+    --base-h: 56px;
+    --thumb-s: 56px;
+    --move-x: 74px; /* 130 - 56 = 74 */
+    
+    /* Farben */
+    --ia-bg: rgba(30, 30, 30, 0.6);
+    --ia-border: rgba(255, 255, 255, 0.2);
+    --ia-thumb-c: #2A2A2A;
+  }
+
+  /* --- LAYOUT WRAPPER --- */
+  .ia-guide-container-b {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    position: relative;
+    z-index: 1000;
+    pointer-events: none; /* Klicks gehen durch leere Flächen */
+  }
+
+  /* --- NAVIGATION --- */
+  .ia-nav-wrapper-b {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(0,0,0,0.3);
+    padding: 8px 16px;
+    border-radius: 50px;
+    border: 0.5px solid rgba(255,255,255,0.1);
+    backdrop-filter: blur(4px);
+    pointer-events: auto; /* Nav muss klickbar sein */
+    margin-bottom: 20px;
+  }
+  
+  .ia-nav-btn-b {
+    background: #222;
+    border: 1px solid rgba(255,255,255,0.2);
+    color: #fff;
+    border-radius: 50px;
+    cursor: pointer;
+    padding: 4px 12px;
+    font-size: 13px;
+    transition: background 0.2s;
+    min-width: 30px;
+  }
+  .ia-nav-btn-b:hover { background: #333; }
+  
+  #step-counter-label-b {
+    font-family: sans-serif;
+    color: #fff;
+    font-size: 12px;
+    min-width: 60px;
+    text-align: center;
+  }
+
+  /* --- DECISION BOX (STATION / ROUTE) --- */
+  .ia-decision-container-b {
+    position: absolute;
+    top: var(--pos-decision-top); /* Variable Position */
+    width: 100%;
+    display: flex; /* Flex statt 'none' initial, JS regelt Sichtbarkeit */
+    justify-content: center;
+    gap: 12px;
+    z-index: 1002;
+    pointer-events: auto;
+  }
+
+  .ia-decision-btn-b {
+    background: #222;
+    border: 1px solid rgba(255,255,255,0.4);
+    color: #fff;
+    padding: 8px 24px;
+    border-radius: 50px;
+    font-size: 14px;
+    cursor: pointer;
+    font-family: sans-serif;
+    transition: background 0.2s;
+  }
+  .ia-decision-btn-b:hover { background: #333; }
+
+  /* --- TOGGLE SCALER --- */
+  .ia-toggle-scaler-b {
+    /* Absolute Positionierung + Skalierung */
+    position: absolute;
+    top: var(--pos-toggle-top);
+    
+    transform: scale(var(--ia-scale));
+    transform-origin: center top;
+    backface-visibility: hidden;
+    -webkit-font-smoothing: antialiased;
+    pointer-events: auto;
+    
+    /* Flexbox für Zentrierung im Scaler */
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  /* --- TOGGLE TRACK (Safari Safe) --- */
+  .ia-emergency-toggle-b {
+    width: var(--base-w);
+    height: var(--base-h);
+    position: relative;
+    cursor: pointer;
+    isolation: isolate; 
+  }
+
+  .ia-track-b {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: var(--ia-bg);
+    border: 2px solid var(--ia-border);
+    border-radius: 999px;
+    overflow: hidden;
+    box-sizing: border-box;
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
+  }
+
+  /* --- THUMB --- */
+  .ia-thumb-b {
+    position: absolute;
+    top: -1px; left: -1px;
+    width: var(--thumb-s);
+    height: var(--thumb-s);
+    background: var(--ia-thumb-c);
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.1);
+    box-sizing: border-box;
+    z-index: 1;
+    
+    /* Hardware Beschleunigung */
+    will-change: transform;
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    transform: translate3d(0, 0, 0);
+  }
+
+  /* Toggle Active State */
+  .ia-emergency-toggle-b.is-suitcase-b .ia-thumb-b {
+    transform: translate3d(var(--move-x), 0, 0);
+  }
+
+  /* --- ICONS --- */
+  .ia-icon-wrapper-b {
+    position: absolute; top: 0; left: 0;
+    width: 100%; height: 100%;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0 16px;
+    box-sizing: border-box;
+    z-index: 2;
+    pointer-events: none;
+  }
+  
+  .ia-icon-box-b { width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; }
+  .ia-icon-b { width: 24px; height: 24px; transition: color 0.3s; }
+
+  /* Farb-Logik */
+  .ia-emergency-toggle-b:not(.is-suitcase-b) .map-svg-b { color: #fff; }
+  .ia-emergency-toggle-b.is-suitcase-b .suitcase-svg-b { color: #fff; }
+  .ia-emergency-toggle-b:not(.is-suitcase-b) .suitcase-svg-b, 
+  .ia-emergency-toggle-b.is-suitcase-b .map-svg-b { color: #666; }
+
+
+  /* --- READYMAG VISIBILITY --- */
+  [data-id="698068591db74ce048dabf3f"], [data-id="696de2023c0c9a007e35d172"], [data-id="697b78a3369fc60ffbc02453"], [data-id="697b78e39bd5b6f5c6675624"],
+  [data-id="6980686dc9eb0f5b705dc2d1"], [data-id="697b8ff848dc7aca24487d4a"], [data-id="697b8fd105eead7e00488044"], [data-id="6980b766fc4ba55d0166d38d"],
+  [data-id="6980b8a39018eefe9ee11c64"], [data-id="6980baa822769ff68f949c40"],
+  [data-id="6980bb34655aa5f8e2ca4386"], [data-id="6980bb35812f128bb124908a"], [data-id="6980bb35e57e04002b1a675a"],
+  [data-id="6980bb351bae6f1870506450"], [data-id="6980bb35c9a391c49bf91943"], [data-id="6980bb3665a5f7a88192371a"],
+  [data-id="6980c7759018eefe9eeec08d"], [data-id="6980c7a0812f128bb12e9886"], [data-id="6980d2e285b1e77f9b4e5d11"]
+  { opacity: 0 !important; pointer-events: none !important; transition: opacity 0.4s ease !important; }
+
+  .ia-active-b { opacity: 1 !important; pointer-events: auto !important; }
+</style>
+
+<script>
+(function() {
+  const PATH_B = {
+    1: { ids: ["698068591db74ce048dabf3f", "696de2023c0c9a007e35d172", "697b78a3369fc60ffbc02453", "697b78e39bd5b6f5c6675624"] },
+    2: { ids: ["6980686dc9eb0f5b705dc2d1", "697b8ff848dc7aca24487d4a", "697b8fd105eead7e00488044", "6980b766fc4ba55d0166d38d"] },
+    3: { ids: ["6980b8a39018eefe9ee11c64", "6980baa822769ff68f949c40", "6980bb34655aa5f8e2ca4386", "6980bb35812f128bb124908a", "6980bb35e57e04002b1a675a", "6980bb351bae6f1870506450", "6980bb35c9a391c49bf91943", "6980bb3665a5f7a88192371a"] },
+    4: { 
+        text: "6980d2e285b1e77f9b4e5d11", 
+        map: "6980c7759018eefe9eeec08d", 
+        suitcase: "6980c7a0812f128bb12e9886" 
+    },
+    5: { ids: ["6980b8a39018eefe9ee11c64", "6980baa822769ff68f949c40", "6980bb34655aa5f8e2ca4386", "6980bb35812f128bb124908a", "6980bb35e57e04002b1a675a", "6980bb351bae6f1870506450", "6980bb35c9a391c49bf91943", "6980bb3665a5f7a88192371a"] }
+  };
+
+  let currentStepB = 1; 
+  let isSuitcaseB = false;
+
+  window.handleToggleClickB = function(el) {
+    isSuitcaseB = !isSuitcaseB; 
+    if(isSuitcaseB) {
+        el.classList.add('is-suitcase-b');
+    } else {
+        el.classList.remove('is-suitcase-b');
+    }
+    updateViewB();
+  };
+
+  window.goToPathB = function(step) {
+    currentStepB = step;
+    updateViewB();
+  };
+
+  window.changeStepB = function(dir) {
+    // Schritt 2 Blockade (man muss die Buttons klicken)
+    if (currentStepB === 2 && dir === 1) return;
+    
+    // Loops und Navigation Logic
+    if ((currentStepB === 3 || currentStepB === 5) && dir === 1) { 
+        currentStepB = 1; 
+    } 
+    else if (currentStepB === 5 && dir === -1) {
+        currentStepB = 4;
+    }
+    else if ((currentStepB === 3 || currentStepB === 4) && dir === -1) { 
+        currentStepB = 2; 
+    } 
+    else {
+        currentStepB += dir;
+        if (currentStepB > 5) currentStepB = 1;
+        if (currentStepB < 1) currentStepB = 5;
+    }
+    updateViewB();
+  };
+
+  function updateViewB() {
+    const label = document.getElementById('step-counter-label-b');
+    if(label) label.innerText = `Schritt ${currentStepB}`;
+    
+    // UI Elemente steuern
+    const box = document.getElementById('ia-decision-box-b');
+    if(box) box.style.display = (currentStepB === 2) ? 'flex' : 'none';
+
+    const toggle = document.getElementById('ia-toggle-scaler-b');
+    if(toggle) toggle.style.display = (currentStepB === 4) ? 'flex' : 'none';
+
+    const arrow = document.getElementById('ia-next-arrow-b');
+    if(arrow) arrow.style.visibility = (currentStepB === 2) ? 'hidden' : 'visible';
+
+    // Content Switching
+    document.querySelectorAll('.ia-active-b').forEach(el => el.classList.remove('ia-active-b'));
+
+    const stepData = PATH_B[currentStepB];
+    if (stepData) {
+      if (currentStepB === 4) {
+        show(stepData.text);
+        show(isSuitcaseB ? stepData.suitcase : stepData.map);
+      } else {
+        stepData.ids.forEach(id => show(id));
+      }
+    }
+  }
+
+  function show(id) {
+    const el = document.querySelector('[data-id="' + id + '"]');
+    if (el) el.classList.add('ia-active-b');
+  }
+
+  const safetyLoop = setInterval(updateViewB, 250);
+  setTimeout(() => clearInterval(safetyLoop), 5000);
+  updateViewB();
+})();
+</script>

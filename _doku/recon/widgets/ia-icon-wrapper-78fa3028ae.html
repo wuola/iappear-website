@@ -1,0 +1,58 @@
+<div class="ia-icon-wrapper">
+  <div class="ia-feature-icon">
+    <svg viewBox="0 0 68 67" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path class="ia-icon-bg" d="M67 33.0123C67 50.6854 52.5 65.5117 34 65.0123C15.5 65.5117 1 50.6854 1 33.0123C1 15.3392 15.5 0.511747 34 1.01232C52.5 0.51172 67 15.3392 67 33.0123Z"></path>
+      
+      <g class="ia-symbol">
+        <path d="M47.1491 38.3352V26.7134C47.1486 26.2039 47.0141 25.7035 46.7591 25.2624C46.5041 24.8212 46.1376 24.4549 45.6964 24.2002L35.5273 18.3893C35.0856 18.1343 34.5846 18 34.0746 18C33.5645 18 33.0635 18.1343 32.6218 18.3893L22.4527 24.2002C22.0115 24.4549 21.645 24.8212 21.39 25.2624C21.135 25.7035 21.0005 26.2039 21 26.7134V38.3352C21.0005 38.8447 21.135 39.3451 21.39 39.7863C21.645 40.2274 22.0115 40.5937 22.4527 40.8484L32.6218 46.6594C33.0635 46.9144 33.5645 47.0486 34.0746 47.0486C34.5846 47.0486 35.0856 46.9144 35.5273 46.6594L45.6964 40.8484C46.1376 40.5937 46.5041 40.2274 46.7591 39.7863C47.0141 39.3451 47.1486 38.8447 47.1491 38.3352Z"></path>
+        <path d="M21.3926 25.2031L34.0749 32.5394L46.7572 25.2031"></path>
+        <path d="M34.0742 47.165V32.5215"></path>
+      </g>
+    </svg>
+  </div>
+</div>
+
+<style>
+  :root {
+    /* --- DEINE PARAMETER (Zentral steuerbar) --- */
+    --ia-icon-scale: 0.5;               /* Skalierung (0.5, 1, 1.5 etc.) */
+    --ia-icon-size: 68px;             /* Basisgröße */
+    
+    --ia-glass-bg: rgba(255, 255, 255, 0.08); /* Glas-Füllung */
+    --ia-glass-border: rgba(255, 255, 255, 0.2); /* Ring-Kontur */
+    --ia-glass-blur: 5px;             /* Blur-Stärke */
+    
+    --ia-symbol-color: #ffffff;       /* Farbe des Icons */
+    --ia-symbol-stroke: 1.5px;        /* Dicke der Linien */
+  }
+
+  .ia-icon-wrapper {
+    display: inline-block;
+    width: calc(var(--ia-icon-size) * var(--ia-icon-scale));
+    height: calc(var(--ia-icon-size) * var(--ia-icon-scale));
+    padding: 2px;
+  }
+
+  .ia-feature-icon {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    /* Der magische Glass-Effekt */
+    backdrop-filter: blur(var(--ia-glass-blur));
+    -webkit-backdrop-filter: blur(var(--ia-glass-blur));
+    border-radius: 50%; /* Für den Blur-Beschnitt */
+  }
+
+  .ia-icon-bg {
+    fill: var(--ia-glass-bg);
+    stroke: var(--ia-glass-border);
+    stroke-width: 1px;
+  }
+
+  .ia-symbol path {
+    stroke: var(--ia-symbol-color);
+    stroke-width: var(--ia-symbol-stroke);
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+</style>

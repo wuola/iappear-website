@@ -1,66 +1,118 @@
 /* ==========================================================================
    iappear.at – layout.css
    Grid, Flex, Sektionen, Responsive Breakpoints
+   --------------------------------------------------------------------------
+   Mobile-first: Grundzustand ist immer 1-spaltig fuer kleine Screens,
+   ab definierten Breakpoints werden Spalten nachgereicht.
+     - 540px  : kleines Tablet hochkant
+     - 720px  : Tablet
+     - 960px  : kleines Desktop / Tablet quer
+     - 1080px : Desktop
    ========================================================================== */
 
 .section {
-  padding: var(--sp-6) 0;
+  padding: var(--sp-5) 0;
   border-top: 1px solid rgba(255,255,255,.08);
+}
+@media (min-width: 720px) {
+  .section { padding: var(--sp-6) 0; }
 }
 .section:first-of-type { border-top: 0; }
 
-.grid { display: grid; gap: var(--sp-4); }
+.grid { display: grid; gap: var(--sp-3); }
 .grid-2 { grid-template-columns: 1fr; }
 .grid-3 { grid-template-columns: 1fr; }
 .grid-4 { grid-template-columns: 1fr; }
 
+@media (min-width: 540px) {
+  .grid-4 { grid-template-columns: repeat(2, 1fr); }
+}
 @media (min-width: 720px) {
+  .grid { gap: var(--sp-4); }
   .grid-2 { grid-template-columns: 1fr 1fr; }
   .grid-3 { grid-template-columns: repeat(3, 1fr); }
-  .grid-4 { grid-template-columns: repeat(2, 1fr); }
 }
 @media (min-width: 1080px) {
   .grid-4 { grid-template-columns: repeat(4, 1fr); }
 }
 
-/* Hero */
+/* Hero
+   Mobile: alles untereinander gestapelt — Claim, Logo+Phones, Kategorie-Links.
+   Ab 960px: 3-Spalten-Layout (links Claim, mitte Brand+Phones, rechts Kategorien). */
 .hero {
-  min-height: 100vh;
+  min-height: auto;
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--sp-4);
-  padding: var(--sp-6) 0 var(--sp-5);
+  gap: var(--sp-3);
+  padding: calc(var(--sp-6) + 40px) 0 var(--sp-4);
   align-items: center;
 }
-@media (min-width: 960px) {
-  .hero { grid-template-columns: 1fr 1.4fr 1fr; }
+@media (min-width: 720px) {
+  .hero { gap: var(--sp-4); padding: calc(var(--sp-6) + 60px) 0 var(--sp-5); }
 }
-.hero__left  { display: flex; flex-direction: column; gap: var(--sp-3); }
+@media (min-width: 960px) {
+  .hero {
+    min-height: 100vh;
+    grid-template-columns: 1fr 1.4fr 1fr;
+  }
+}
+.hero__left  {
+  display: flex; flex-direction: column; gap: var(--sp-2);
+  text-align: center;
+}
+@media (min-width: 960px) {
+  .hero__left { text-align: left; gap: var(--sp-3); }
+}
 .hero__mid   { display: flex; flex-direction: column; align-items: center; text-align: center; gap: var(--sp-2); }
-.hero__right { display: flex; flex-direction: column; gap: var(--sp-3); }
+.hero__right {
+  display: flex; flex-direction: column; gap: var(--sp-2);
+  max-width: 420px; margin: 0 auto;
+  width: 100%;
+}
+@media (min-width: 960px) {
+  .hero__right { gap: var(--sp-3); max-width: none; margin: 0; }
+}
 
 .phones {
   display: flex; gap: var(--sp-2); justify-content: center; margin-top: var(--sp-3);
+  flex-wrap: wrap;
 }
 
-/* Über uns / Netzwerk */
+/* Ueber uns / Netzwerk */
 .network {
   display: grid; gap: var(--sp-4);
   grid-template-columns: 1fr;
 }
-@media (min-width: 960px) { .network { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 960px) { .network { grid-template-columns: 1fr 1fr; align-items: center; } }
 
-/* Features-Sektion: 3 Spalten (Liste | Phone | Text) */
+/* Features-Sektion: Liste | Phone | Text
+   Mobile: alles untereinander, Phone in der Mitte mittig.
+   720px: Liste links, Phone+Text rechts.
+   960px: 3 Spalten. */
 .features {
   display: grid; gap: var(--sp-4);
   grid-template-columns: 1fr;
 }
+.features .phones { margin-top: 0; }
+@media (min-width: 720px) {
+  .features {
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+  }
+  .features [data-feature-desc] { grid-column: 1 / -1; }
+}
 @media (min-width: 960px) {
-  .features { grid-template-columns: 1fr 1fr 1.2fr; align-items: center; }
+  .features {
+    grid-template-columns: 1fr 1fr 1.2fr;
+  }
+  .features [data-feature-desc] { grid-column: auto; }
 }
 
 /* Vitrine */
 .vitrine-grid {
   display: grid; gap: var(--sp-3);
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+}
+@media (max-width: 539px) {
+  .vitrine-grid { grid-template-columns: repeat(2, 1fr); gap: var(--sp-2); }
 }
