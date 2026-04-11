@@ -5,7 +5,15 @@
   const burger = document.querySelector('[data-menu-toggle]');
   const menu   = document.getElementById('menu');
   const closeBtn = document.querySelector('[data-menu-close]');
-  const backUp = document.querySelector('[data-back-up]');
+  const backUp = document.querySelector('.back-up');
+  // Alle [data-back-up] Links (inkl. Footer-inline) sollen smooth-scrollen
+  const allBackUps = document.querySelectorAll('[data-back-up]');
+  allBackUps.forEach(el => {
+    el.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
 
   if (burger && menu) {
     burger.addEventListener('click', () => menu.classList.add('is-open'));
@@ -19,12 +27,8 @@
     });
   }
 
-  // Back-to-top
+  // Back-to-top: nur den floating Button ein/ausblenden
   if (backUp) {
-    backUp.addEventListener('click', (e) => {
-      e.preventDefault();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
     window.addEventListener('scroll', () => {
       if (window.scrollY > 600) backUp.classList.add('is-visible');
       else backUp.classList.remove('is-visible');
