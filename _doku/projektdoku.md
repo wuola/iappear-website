@@ -174,13 +174,13 @@ iappear-website/
 - User Guide (Short Guide)
 - Kontakt (Texte + Adresse + Formular)
 
-### 🔲 Session 4 — Rechtliches & Feinschliff — teilweise
+### ✅ Session 4 — Rechtliches & Feinschliff — abgeschlossen
 - ✅ FAQs (10 echte FAQs)
 - ✅ Impressum (echte Firmen-Daten)
-- 🔲 AGB (Stub, Volltext fehlt)
-- 🔲 Datenschutz (Stub, Volltext fehlt)
-- 🔲 Mobile Responsiveness Feinschliff
-- 🔲 SEO Meta-Tags vervollständigen
+- ✅ AGB Volltext (aus Live iappear.at gezogen, 13 Abschnitte + Mediationsklausel)
+- ✅ Datenschutz Volltext (adsimple-Fassung 14.04.2022, 32 Sektionen)
+- ✅ SEO Meta-Tags auf allen 11 Seiten (Title, Description, Canonical, OpenGraph, Twitter Card, Author, Locale)
+- ✅ Mobile Responsiveness geprueft (375x812 Viewport, keine Overflows, Nav + Body ok)
 
 ### 🔲 Session 5 — Launch — noch offen
 - Echte Bilder einbauen (Vitrine, Kategorien, Hero-Phones, Team-Fotos, Partner-Logos)
@@ -213,3 +213,9 @@ iappear-website/
 - Startseite vom alten Grob-Bau auf Recon-Inhalte umgestellt (Hero, Kategorien, Netzwerk-Nodes, Vitrine, Über uns, Footer)
 - Alle Subpages mit echten Texten aus der Live-Site gefüllt
 - Daten-Files (vitrine.js, rundgaenge.js) mit echten Inhalten befüllt + klar kommentiert für nicht-technische Pflege
+
+### Session 4 — Rechtliches & SEO (11.04.2026)
+- AGB: Text per JavaScript aus Live iappear.at/agb/ gezogen (DOM-positionierte Spans), als JSON heruntergeladen, mit Python in 13 nummerierte Abschnitte + Mediationsklausel geparst, ASCII-konvertiert und in `agb.html` eingesetzt
+- Datenschutz: Text ueber manuellen Copy/Paste der Nutzerin (Chrome blockte den Auto-Download); adsimple-Fassung 14.04.2022 mit 32 Sektionen nach ASCII konvertiert und in `datenschutz.html` eingesetzt
+- SEO: Python-Patch fuegt auf allen 11 HTML-Seiten einen einheitlichen Head-Block ein: `description`, `author`, `canonical`, Open-Graph (title/description/url/type/site_name/locale/image) und Twitter Card
+- Mobile Check: Preview-Server auf 375x812, keine horizontalen Overflows, AGB+Datenschutz+Startseite saubere Darstellung
