@@ -345,7 +345,7 @@ span.feature-list__icon {
   fill: none;
 }
 .network-viz.is-animating .network-viz__line {
-  animation: network-draw-lines 8s ease-in-out forwards;
+  animation: network-draw-lines 2.8s ease-in-out forwards;
 }
 
 .network-viz__node {
@@ -356,14 +356,42 @@ span.feature-list__icon {
   align-items: center; justify-content: center;
   text-align: center;
   padding: 6px;
-  background-size: cover;
-  background-position: center;
+  overflow: hidden;
   opacity: 0;
   transform: scale(.8);
   transform-origin: center;
 }
+.network-viz__node-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  opacity: .85;
+}
+.network-viz__node .network-viz__node-label,
+.network-viz__node .network-viz__node-tag {
+  position: relative;
+  z-index: 1;
+}
+/* Bei Knoten mit Bild: Label als klarer Text mit dunkler Shadow-Gradient, die
+   nur unten aufliegt, damit das Bild im oberen Bereich frei bleibt. */
+.network-viz__node.has-image::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0) 40%, rgba(0,0,0,.75) 100%);
+  z-index: 0;
+  pointer-events: none;
+}
+.network-viz__node.has-image .network-viz__node-label {
+  align-self: end;
+  margin-bottom: 4px;
+  font-weight: 500;
+}
 .network-viz.is-animating .network-viz__node {
-  animation: network-fade-in 1.5s ease-out 8s forwards;
+  animation: network-fade-in .9s ease-out 1.5s forwards;
 }
 .network-viz__node.is-center {
   background: #fff;
@@ -374,19 +402,31 @@ span.feature-list__icon {
   opacity: 0;
 }
 .network-viz.is-animating .network-viz__node.is-soon {
-  animation: network-fade-in-soon 1.5s ease-out 8s forwards;
+  animation: network-fade-in-soon .9s ease-out 1.5s forwards;
 }
 .network-viz__node-label {
   font-family: var(--f-serif);
-  font-size: clamp(.55rem, 1vw, .85rem);
-  line-height: 1.15;
-  text-shadow: 0 0 4px rgba(0,0,0,.85);
-  word-break: break-word;
+  font-size: clamp(.55rem, .95vw, .8rem);
+  line-height: 1.2;
+  text-shadow: 0 0 4px rgba(0,0,0,.85), 0 0 2px rgba(0,0,0,.85);
+  word-break: normal;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  padding: 0 2px;
+}
+.network-viz__node.is-center {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 }
 .network-viz__node.is-center .network-viz__node-label {
   text-shadow: none;
   text-transform: uppercase;
-  letter-spacing: .08em;
+  letter-spacing: .05em;
+  font-size: clamp(.45rem, .7vw, .6rem);
+  word-break: keep-all;
+  white-space: normal;
+  line-height: 1.25;
 }
 .network-viz__node-tag {
   display: block;

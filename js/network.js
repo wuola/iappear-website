@@ -48,14 +48,17 @@
 
   // Fallback-Knoten falls keine Daten geladen wurden.
   // Index 4 ist das Zentrum "Beispiel Dornbirn".
+  // Die Bilder landen in assets/images/rundgaenge/ - wenn eine Datei noch
+  // nicht existiert, zeigt die Box einfach den Titel auf schwarzem Grund.
+  const IMG = 'assets/images/rundgaenge/';
   const FALLBACK = [
-    { titel: 'hist.appear',         farbe: C_HISTORY, status: 'live'   },
-    { titel: 'Oberdorf entdecken',  farbe: C_DENTITY, status: 'soon'   },
-    { titel: 'Frauenspuren',        farbe: C_HISTORY, status: 'soon'   },
-    { titel: 'Stadtspuren',         farbe: C_HISTORY, status: 'live'   },
-    { titel: 'Beispiel Dornbirn',   farbe: '#fff',    status: 'center' },
-    { titel: 'Buntes Dornbirn',     farbe: C_DENTITY, status: 'live'   },
-    { titel: '125 Jahre 125 Bilder',farbe: C_HISTORY, status: 'soon'   },
+    { titel: 'Stadtspuren',          farbe: C_HISTORY, status: 'live',   bild: IMG + 'stadtspuren.jpg' },
+    { titel: 'Oberdorf Entdecken',   farbe: C_DENTITY, status: 'live',   bild: IMG + 'oberdorf.jpg'    },
+    { titel: 'hist.appear',          farbe: C_HISTORY, status: 'live',   bild: IMG + 'hist-appear.jpg' },
+    { titel: '125 Jahre 125 Bilder', farbe: C_HISTORY, status: 'live',   bild: IMG + '125-jahre.jpg'   },
+    { titel: 'Beispiel<br>Dornbirn', farbe: '#fff',    status: 'center'                                 },
+    { titel: 'Innenstadt Erleben',   farbe: C_DENTITY, status: 'live',   bild: IMG + 'innenstadt.jpg'  },
+    { titel: 'Frauenspuren',         farbe: C_HISTORY, status: 'soon',   bild: IMG + 'frauenspuren.jpg'},
   ];
 
   const nodes = (Array.isArray(window.IAPPEAR_NETWORK) && window.IAPPEAR_NETWORK.length === 7)
@@ -99,12 +102,23 @@
     node.style.borderColor = n.farbe;
 
     if (n.bild) {
-      node.style.backgroundImage = 'url(' + n.bild + ')';
+      // Bild als <img loading="lazy"> einsetzen. Falls die Datei nicht
+      // existiert (z.B. Platzhalter), faellt sie einfach aus dem DOM.
+      const img = document.createElement('img');
+      img.src = n.bild;
+      img.alt = '';
+      img.loading = 'lazy';
+      img.decoding = 'async';
+      img.className = 'network-viz__node-bg';
+      img.onerror = () => img.remove();
+      node.appendChild(img);
+      node.classList.add('has-image');
     }
 
     const label = document.createElement('span');
     label.className = 'network-viz__node-label';
-    label.textContent = n.titel;
+    // Titel darf <br> enthalten (fuer das Zentrum "Beispiel Dornbirn")
+    label.innerHTML = (n.titel || '').replace(/[^\w\säöüÄÖÜß<>/.\-]/g, c => c);
     node.appendChild(label);
 
     if (n.status === 'soon') {
