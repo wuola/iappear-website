@@ -13,8 +13,10 @@
   <meta property="og:title" content="i.appear - Die Plattform fuer digitale Erlebnisse" />
   <meta property="og:description" content="i.appear - digital city tours. Die Plattform fuer digitale Erlebnisse. Ohne App-Download, ohne Registrierung, ohne Werbung." />
   <meta property="og:url" content="https://iappear.at/" />
-  <meta property="og:image" content="https://iappear.at/assets/favicon.png" />
-  <meta name="twitter:card" content="summary" />
+  <meta property="og:image" content="https://iappear.at/assets/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="i.appear - Die Plattform fuer digitale Erlebnisse" />
   <meta name="twitter:description" content="i.appear - digital city tours. Die Plattform fuer digitale Erlebnisse. Ohne App-Download, ohne Registrierung, ohne Werbung." />
   <link rel="icon" type="image/png" href="assets/favicon.png" />
@@ -23,7 +25,65 @@
   <link rel="stylesheet" href="css/global.css" />
   <link rel="stylesheet" href="css/layout.css" />
   <link rel="stylesheet" href="css/components.css" />
-  <link rel="stylesheet" href="css/animations.css" /></head>
+  <link rel="stylesheet" href="css/animations.css" />
+
+  <!-- Schema.org strukturierte Daten: Organization + WebSite + LocalBusiness.
+       Hilft Suchmaschinen, Google/Bing-Rich-Snippets und LLMs, den Kontext
+       der Seite korrekt zu erfassen. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://iappear.at/#organization",
+        "name": "i.appear",
+        "legalName": "Marilena Tumler e.U.",
+        "url": "https://iappear.at/",
+        "logo": "https://iappear.at/assets/svg/logos/logo-lang-weiss.svg",
+        "image": "https://iappear.at/assets/og-image.png",
+        "email": "info@iappear.app",
+        "telephone": "+43-676-82554212",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Mozartstrasse 5/16",
+          "postalCode": "6850",
+          "addressLocality": "Dornbirn",
+          "addressCountry": "AT"
+        },
+        "sameAs": ["https://iappear.app"]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://iappear.at/#website",
+        "url": "https://iappear.at/",
+        "name": "i.appear - Die Plattform fuer digitale Erlebnisse",
+        "description": "Multimediale, ortsbasierte Rundgaenge in Vorarlberg und angrenzenden Regionen. Ohne App-Download, ohne Registrierung, ohne Werbung.",
+        "inLanguage": "de-AT",
+        "publisher": { "@id": "https://iappear.at/#organization" }
+      },
+      {
+        "@type": "LocalBusiness",
+        "@id": "https://iappear.at/#business",
+        "name": "i.appear - digital city tours",
+        "image": "https://iappear.at/assets/og-image.png",
+        "url": "https://iappear.at/",
+        "telephone": "+43-676-82554212",
+        "email": "info@iappear.app",
+        "priceRange": "$$",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Mozartstrasse 5/16",
+          "postalCode": "6850",
+          "addressLocality": "Dornbirn",
+          "addressCountry": "AT"
+        },
+        "areaServed": ["Vorarlberg", "Oesterreich", "Bodenseeregion"]
+      }
+    ]
+  }
+  </script>
+</head>
 <body>
 
   <!-- ========== NAVIGATION ========== -->
@@ -377,7 +437,7 @@
     </div>
   </footer>
 
-  <a href="#" class="back-up" data-back-up aria-label="Nach oben">&uarr;</a>
+  <a href="#" class="back-up" data-back-up aria-label="Nach oben"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" aria-hidden="true"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg></a>
 
   <script src="js/main.js"></script>
   <script src="js/data/rundgaenge.js?v=2"></script>

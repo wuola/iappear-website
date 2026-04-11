@@ -787,7 +787,65 @@ details.info-card[open] > *:not(summary) {
 
 /* Page-Header (Unterseiten) */
 .page-header {
-  padding: calc(var(--sp-6) + 60px) 0 var(--sp-4);
+  padding: var(--sp-4) 0 var(--sp-4);
   text-align: center;
   border-bottom: 1px solid rgba(255,255,255,.08);
 }
+
+/* --- Breadcrumbs --------------------------------------------------------- */
+.breadcrumb {
+  padding-top: calc(var(--sp-5) + 60px);
+  padding-bottom: var(--sp-2);
+  font-size: .8rem;
+  letter-spacing: .05em;
+  opacity: .7;
+}
+.breadcrumb ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4em;
+}
+.breadcrumb li + li::before {
+  content: '/';
+  margin-right: .4em;
+  opacity: .5;
+}
+.breadcrumb a {
+  color: inherit;
+  text-decoration: none;
+}
+.breadcrumb a:hover { opacity: 1; text-decoration: underline; }
+.breadcrumb [aria-current="page"] { opacity: 1; }
+
+/* --- Back-to-top Button (floating, rund) --------------------------------- */
+.back-up {
+  position: fixed;
+  right: var(--sp-3);
+  bottom: var(--sp-3);
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,.6);
+  border: 1px solid rgba(255,255,255,.2);
+  border-radius: 50%;
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.2rem;
+  backdrop-filter: blur(6px);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(10px);
+  transition: opacity .3s ease, transform .3s ease, background .2s ease;
+  z-index: 40;
+}
+.back-up.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+.back-up:hover { background: rgba(0,0,0,.85); }

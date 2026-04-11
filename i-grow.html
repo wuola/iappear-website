@@ -13,8 +13,10 @@
   <meta property="og:title" content="i.grow - Medienbildung | i.appear" />
   <meta property="og:description" content="i.grow - Medienbildung mit i.appear: Workshops, in denen Schueler:innen vom Konsumieren zum Gestalten wechseln und eigene digitale Rundgaenge schaffen." />
   <meta property="og:url" content="https://iappear.at/i-grow/" />
-  <meta property="og:image" content="https://iappear.at/assets/favicon.png" />
-  <meta name="twitter:card" content="summary" />
+  <meta property="og:image" content="https://iappear.at/assets/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="i.grow - Medienbildung | i.appear" />
   <meta name="twitter:description" content="i.grow - Medienbildung mit i.appear: Workshops, in denen Schueler:innen vom Konsumieren zum Gestalten wechseln und eigene digitale Rundgaenge schaffen." />
   <link rel="icon" type="image/png" href="assets/favicon.png" />
@@ -23,7 +25,19 @@
   <link rel="stylesheet" href="css/global.css" />
   <link rel="stylesheet" href="css/layout.css" />
   <link rel="stylesheet" href="css/components.css" />
-  <link rel="stylesheet" href="css/animations.css" /></head>
+  <link rel="stylesheet" href="css/animations.css" />
+  <!-- Breadcrumb strukturierte Daten -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://iappear.at/" },
+        { "@type": "ListItem", "position": 2, "name": "i.grow - Medienbildung", "item": "https://iappear.at/i-grow/" }
+    ]
+  }
+  </script>
+</head>
 <body>
   <header class="nav"><div class="nav__inner">
     <a class="nav__brand" href="index.html">i.appear</a>
@@ -68,6 +82,7 @@
   </div>
 
   <main>
+    <nav class="breadcrumb container" aria-label="Breadcrumb"><ol><li><a href="index.html">Startseite</a></li><li><span aria-current="page">i.grow - Medienbildung</span></li></ol></nav>
     <header class="page-header container">
       <p class="eyebrow">i.grow</p>
       <h1 class="c-grow">Medienbildung</h1>
@@ -115,6 +130,7 @@
           <h3 class="c-grow">Buntes Dornbirn</h3>
           <p>Der Ethik-Rundgang &bdquo;Buntes Dornbirn&ldquo; bietet ein Komplettpaket zum Thema der pluralen Gesellschaft. Schueler:innen begegnen Menschen aus unterschiedlichen Generationen und Lebenswelten, hoeren Stimmen aus verschiedenen Bubbles und lernen Geschichten kennen. Der Rundgang laedt dazu ein, Perspektiven zu wechseln. Der Rundgang ist lehrplanbezogen aufgebaut und wird durch ausgearbeitete Stundenbilder und Arbeitsblaetter ergaenzt.</p>
           <p><em>Wichtig: Nimm Kontakt mit uns auf, damit wir zentrale Stationen fuer dich und deine Schueler:innen freischalten koennen.</em></p>
+          <a href="https://iappear.app/de/routes/dornbirn/immersive-ethik?view=list" class="btn btn--grow">Zum Rundgang &rarr;</a>
         </article>
       </div>
     </section>
@@ -126,11 +142,13 @@
           <div class="ph ph--wide">Bild: Zusammenwachsen</div>
           <h3 class="c-grow">Zusammenwachsen</h3>
           <p>Im Projekt &bdquo;Zusammenwachsen&ldquo; arbeiteten die Schueler:innen der MS Levis rund um die Frage: Was haelt uns zusammen? Und welche Werte teilen wir? Gemeinsam erarbeiteten die Jugendlichen ihre persoenlichen Werte, erzaehlten in Interviews davon, schrieben Geschichten dazu und uebersetzten diese in Bilder, Animationen, Fotos und kurze Filme. So entstand ein Rundgang mit vielen bunten Facetten, getragen von den Stimmen und Erfahrungen der Schueler:innen. Ermoeglicht durch &bdquo;Kunst ist Klasse&ldquo; des Bundesministeriums fuer Kunst und Kultur.</p>
+          <a href="https://iappear.app/de/routes/feldkirch/zusammen-wachsen-ms-levis-?view=list" class="btn btn--grow">Zum Rundgang &rarr;</a>
         </article>
         <article class="card">
           <div class="ph ph--wide">Bild: Ein Oktobertag</div>
           <h3 class="c-grow">Ein Oktobertag</h3>
           <p>Im i.grow-Projekt &bdquo;Ein Oktobertag&ldquo; arbeiteten die Schueler:innen der MS Oberau zu den Bombenabwuerfen ueber Feldkirch im Jahr 1943. Gemeinsam naeherten wir uns dem Thema des Zweiten Weltkriegs ueber Fragen, Gespraeche, Recherche und kreative Methoden. Fuenf Stationen fuehren nun jung und alt von der Feldkircher Innenstadt zum Antoniushaus. Ermoeglicht durch &bdquo;Kunst ist Klasse&ldquo; des Bundesministeriums fuer Kunst und Kultur und in Zusammenarbeit mit Erika Kronabitter sowie einem Beitrag von Klangkuenstler Arno Oeri.</p>
+          <a href="https://iappear.app/de/routes/feldkirch/ein-oktobertag?view=list" class="btn btn--grow">Zum Rundgang &rarr;</a>
         </article>
       </div>
     </section>
@@ -147,7 +165,7 @@
     </div>
   </div></footer>
 
-  <a href="#" class="back-up" data-back-up>&uarr;</a>
+  <a href="#" class="back-up" data-back-up aria-label="Nach oben"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" aria-hidden="true"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg></a>
   <script src="js/main.js"></script>
 </body>
 </html>

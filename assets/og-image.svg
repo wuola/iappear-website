@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <style>
+      .bg { fill: #0a0a0a; }
+      .title { fill: #ffffff; font-family: Georgia, 'Times New Roman', serif; font-size: 120px; font-weight: 700; }
+      .sub { fill: #ffffff; font-family: Georgia, 'Times New Roman', serif; font-size: 32px; letter-spacing: 6px; opacity: .8; }
+      .claim { fill: #d3a54a; font-family: Georgia, 'Times New Roman', serif; font-size: 28px; letter-spacing: 2px; }
+      .dot { fill: #ffffff; }
+      .ring { fill: none; stroke: #ffffff; stroke-width: 6; }
+    </style>
+  </defs>
+  <rect class="bg" width="1200" height="630"/>
+  <!-- Target-Symbol links vom Logo -->
+  <g transform="translate(280, 235)">
+    <circle class="ring" cx="40" cy="40" r="40"/>
+    <circle class="dot" cx="40" cy="40" r="14"/>
+  </g>
+  <!-- i.appear Wortmarke -->
+  <text class="title" x="380" y="320">i.appear</text>
+  <!-- digital city tours -->
+  <text class="sub" x="385" y="370">DIGITAL CITY TOURS</text>
+  <!-- Claim darunter -->
+  <text class="claim" x="600" y="480" text-anchor="middle">Die Plattform fuer digitale Erlebnisse</text>
+  <!-- 3 Category-Dots am unteren Rand -->
+  <g transform="translate(600, 540)">
+    <circle cx="-70" cy="0" r="8" fill="#D3A54A"/>
+    <text x="-70" y="30" fill="#ffffff" font-family="Georgia, serif" font-size="14" text-anchor="middle" opacity=".7">i.history</text>
+    <circle cx="0" cy="0" r="8" fill="#769CA2"/>
+    <text x="0" y="30" fill="#ffffff" font-family="Georgia, serif" font-size="14" text-anchor="middle" opacity=".7">i.dentity</text>
+    <circle cx="70" cy="0" r="8" fill="#8E9F6A"/>
+    <text x="70" y="30" fill="#ffffff" font-family="Georgia, serif" font-size="14" text-anchor="middle" opacity=".7">i.grow</text>
+  </g>
+</svg>

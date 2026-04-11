@@ -124,3 +124,43 @@
   .hero__laurel-svg path { stroke-dashoffset: 0; opacity: .4; }
   .hero__awards li { opacity: 1; transform: none; }
 }
+
+/* --- Print-Stylesheet -----------------------------------------------------
+   Beim Drucken (z.B. AGB/Datenschutz fuer Aktenablage) soll die Seite
+   klassisch schwarz auf weiss sein, ohne Navigation / Footer / Animationen.
+-------------------------------------------------------------------------- */
+@media print {
+  body, html {
+    background: #fff !important;
+    color: #000 !important;
+  }
+  .nav, .menu, .footer, .back-up, .back-up-inline, .hero__laurel, .hero__stage,
+  .network-viz, .feature-list, .phone, .ia-demo, .breadcrumb, .nav__burger,
+  video, .network-caption {
+    display: none !important;
+  }
+  a { color: #000; text-decoration: underline; }
+  a[href^="http"]::after {
+    content: ' (' attr(href) ')';
+    font-size: .85em;
+    word-break: break-all;
+  }
+  .container, .section, main, .prose {
+    max-width: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: #fff !important;
+    color: #000 !important;
+  }
+  .page-header { border-bottom: 1px solid #ccc; }
+  h1, h2, h3, h4 { color: #000 !important; page-break-after: avoid; }
+  .card, .info-card, details.info-card, .vitrine-card {
+    background: #fff !important;
+    border: 1px solid #ccc !important;
+    color: #000 !important;
+    break-inside: avoid;
+  }
+  details.info-card[open] > *:not(summary) { animation: none !important; }
+  details.info-card > summary { color: #000 !important; opacity: 1 !important; }
+  .eyebrow, .muted { color: #555 !important; }
+}

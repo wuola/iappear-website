@@ -214,6 +214,17 @@ iappear-website/
 - Alle Subpages mit echten Texten aus der Live-Site gefüllt
 - Daten-Files (vitrine.js, rundgaenge.js) mit echten Inhalten befüllt + klar kommentiert für nicht-technische Pflege
 
+### Session 5.5 — Professional Polish (11.04.2026)
+- **Rundgang-Deep-Links**: Live iappear.app Routes aus dem Next.js-State der App extrahiert (10 Routen gefunden). Alle "Zum Rundgang" Buttons auf i-history / i-dentity / i-grow auf die echten `iappear.app/de/routes/{region}/{slug}?view=list` URLs umgestellt (hist.appear, Stadtspuren, Barockbaumeister, See Runde, Sprechender Baum, Buntes Dornbirn, Zusammenwachsen, Ein Oktobertag)
+- **404.html**: eigene Fehlerseite im i.appear-Design mit 3 Quicklinks (Startseite, Kategorien, Kontakt). Von GitHub Pages automatisch als 404 geserved
+- **OG-Image**: 1200x630 SVG+PNG (52KB) mit Logo, Target, Claim und 3 Kategorie-Dots. PNG erzeugt per Canvas-Renderer im Browser. `og:image`-Meta auf allen 11 Seiten auf das neue Asset + Twitter-Card auf `summary_large_image`
+- **Schema.org JSON-LD** auf `index.html`: Organization + WebSite + LocalBusiness mit Adresse, Telefon, Mail. BreadcrumbList-JSON-LD auf allen Subpages
+- **Visuelle Breadcrumbs** auf allen Subpages (`<nav class="breadcrumb">` mit "Startseite / Aktuelle Seite"), darunter die page-header. CSS in `components.css`
+- **Back-to-top-Button Polish**: Unicode `&uarr;` durch rundes Floating-Button-Design mit SVG-Arrow-Icon ersetzt. Faded ein/aus beim Scrollen (`.is-visible` Class, bereits in `main.js` gesetzt)
+- **Print-Stylesheet**: `@media print` in `animations.css`. Schwarz auf weiss, Navigation/Footer/Animationen ausgeblendet, URLs hinter externen Links ausgeschrieben, details offen dargestellt (fuer AGB/Datenschutz-Ausdruck)
+
+**NICHT angefasst** (auf Entscheidung der Nutzerin): Kontaktformular-Funktionalitaet, Hero-Phone-Videos, Team-Fotos, Landing-Page-Dramaturgie, "Keine App/Tracking"-Claim-Positionierung, Farben/Kontraste (Marilenas Design). Besprechung 2026-04-13.
+
 ### Session 5 — Pre-Launch-Polish (11.04.2026)
 Umfasst noch KEIN Go-Live — weitere inhaltliche Aenderungen kommen noch.
 - `sitemap.xml` im Repo-Root angelegt (11 URLs, priorisiert: Startseite 1.0, Kategorien 0.9, ...)

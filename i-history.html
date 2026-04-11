@@ -13,8 +13,10 @@
   <meta property="og:title" content="i.history - Zeitreisen | i.appear" />
   <meta property="og:description" content="i.history - Multimediale Zeitreisen machen Geschichte direkt am Ort erlebbar. Quellenbasiert, mit Archivmaterial und Zeitzeug:inneninterviews." />
   <meta property="og:url" content="https://iappear.at/i-history/" />
-  <meta property="og:image" content="https://iappear.at/assets/favicon.png" />
-  <meta name="twitter:card" content="summary" />
+  <meta property="og:image" content="https://iappear.at/assets/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="i.history - Zeitreisen | i.appear" />
   <meta name="twitter:description" content="i.history - Multimediale Zeitreisen machen Geschichte direkt am Ort erlebbar. Quellenbasiert, mit Archivmaterial und Zeitzeug:inneninterviews." />
   <link rel="icon" type="image/png" href="assets/favicon.png" />
@@ -23,7 +25,19 @@
   <link rel="stylesheet" href="css/global.css" />
   <link rel="stylesheet" href="css/layout.css" />
   <link rel="stylesheet" href="css/components.css" />
-  <link rel="stylesheet" href="css/animations.css" /></head>
+  <link rel="stylesheet" href="css/animations.css" />
+  <!-- Breadcrumb strukturierte Daten -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://iappear.at/" },
+        { "@type": "ListItem", "position": 2, "name": "i.history - Zeitreisen", "item": "https://iappear.at/i-history/" }
+    ]
+  }
+  </script>
+</head>
 <body>
   <header class="nav"><div class="nav__inner">
     <a class="nav__brand" href="index.html">i.appear</a>
@@ -68,6 +82,7 @@
   </div>
 
   <main>
+    <nav class="breadcrumb container" aria-label="Breadcrumb"><ol><li><a href="index.html">Startseite</a></li><li><span aria-current="page">i.history - Zeitreisen</span></li></ol></nav>
     <header class="page-header container">
       <p class="eyebrow">i.history</p>
       <h1 class="c-history">Zeitreisen</h1>
@@ -83,7 +98,7 @@
           <h3 class="c-history">hist.appear</h3>
           <p>Im Rundgang hist.appear begibst du dich auf eine Zeitreise durch das historische Dornbirn. Entlang einer interaktiven Karte und eines farblich codierten Zeitstrahls bewegst du dich durch unterschiedliche Epochen, vom Mittelalter bis in die Gegenwart. An den Stationen oeffnen sich Inhalte auf deinem Smartphone oder Tablet und verbinden Augmented Reality, Bilder, Audio, Zeitzeug:innenberichte, historische Quellen und den realen Stadtraum zu einem immersiven Geschichtserlebnis.</p>
           <p>hist.appear war der erste Rundgang von i.appear und die Initialzuendung der Plattform. Das didaktische Konzept basiert auf den wissenschaftlichen Erkenntnissen einer Masterarbeit an der Universitaet Wien und verbindet aktuelle AR- und VR-Forschung mit Bildungsansaetzen. Der Rundgang wurde vom Bundesministerium fuer Kunst, Kultur, oeffentlichen Dienst und Sport gefoerdert und in Zusammenarbeit mit der Dornbirner Geschichtswerkstatt umgesetzt.</p>
-          <a href="https://iappear.app" class="btn btn--history">Zum Rundgang &rarr;</a>
+          <a href="https://iappear.app/de/routes/dornbirn/hist-appear?view=list" class="btn btn--history">Zum Rundgang &rarr;</a>
         </article>
 
         <article class="card">
@@ -91,7 +106,7 @@
           <h3 class="c-history">Stadtspuren</h3>
           <p>Im Rundgang Stadtspuren entdeckst du entlang der Dornbirner Ach und des Muellerbachs die Industrie- und Stadtgeschichte Dornbirns. Als zweiter historischer Rundgang in i.appear ist Stadtspuren mit hist.appear vernetzt und teilt an manchen Orten Stationen, dort, wo sich Raum, Zeit und Themen ueberschneiden. Die Stationen sind digital und physisch im Stadtraum verankert, mit Tafeln, Sitzgelegenheiten und Fahrradabstellplaetzen. Gestaltet von den Saegenvier.</p>
           <p>Pro Station oeffnen sich zwei Perspektiven: Industrie und Gesellschaft. Die Route fuehrt meist dem Wasser entlang vom Guetle bis ins Forach, vorbei an historischen Bauwerken, restaurierten Maschinen und lebensgrossen Illustrationen von Nikolay Uzunov. Inhaltlich wurde der Rundgang vom Dornbirner Stadtarchiv ausgearbeitet, insbesondere von Werner Matt und Klaus Fessler. Zum Rundgang ist auch ein gleichnamiges Buch erschienen, das es im Stadtarchiv Dornbirn zu erwerben gibt.</p>
-          <a href="https://iappear.app" class="btn btn--history">Zum Rundgang &rarr;</a>
+          <a href="https://iappear.app/de/routes/dornbirn/stadtspuren?view=list" class="btn btn--history">Zum Rundgang &rarr;</a>
         </article>
 
         <article class="card">
@@ -121,7 +136,7 @@
           <h3 class="c-history">Barockbaumeister</h3>
           <p>Barockbaumeister Franz Beer fuehrt dich auf einem Spaziergang von Au im Bregenzerwald ueber Bregenz, Konstanz und Rheinau bis zurueck nach Bezau, wo sein Leben vor rund 300 Jahren endete. Als Erzaehler begleitet er dich durch den Rundgang und erzaehlt von seiner Herkunft, seiner Lehrzeit, seinen Reisen und seinem Wirken im Bodenseeraum. So entsteht eine Reise durch Baukultur, Biografien und Orte, die Geschichte persoenlich erfahrbar macht.</p>
           <p>Der Rundgang entstand im Rahmen des Forschungsprojekts Digital In&amp;Out. In Zusammenarbeit mit dem vorarlberg museum, der Universitaet Konstanz, dem Barockbaumeister Museum in Au und dem Fachbereich Gestaltung der Fachhochschule Vorarlberg wurde er als Vermittlungskontext entwickelt.</p>
-          <a href="https://iappear.app" class="btn btn--history">Zum Rundgang &rarr;</a>
+          <a href="https://iappear.app/de/routes/bregenzerwald/barockbaumeister?view=list" class="btn btn--history">Zum Rundgang &rarr;</a>
         </article>
       </div>
     </section>
@@ -134,7 +149,7 @@
           <h3 class="c-history">See Runde</h3>
           <p>In der See Runde in Hard begibst du dich entlang des Bodenseeufers auf eine Reise durch die letzten zwei Jahrhunderte der Gemeinde. Acht Stationen fuehren durch den Ort, ergaenzt durch unsichtbare Stationen, die erst in deiner Naehe sichtbar werden. Erzaehlt wird vom ehemaligen Armenhaus mit Gehoeft, vom Alltag der Aermsten, von Geburtenstation und Sezierhaus &ndash; begleitet vom Strassenkehrer Fiffi, einem echten Harder Original.</p>
           <p>Die See Runde verbindet reale Schauplaetze mit digitalen Erzaehlungen und macht lokale Geschichte im Stadtraum erfahrbar. Entstanden ist ein Rundgang, der Vergangenheit und Gegenwart zusammenfuehrt und zeigt, wie Erinnerung lebendig bleibt &ndash; generationenuebergreifend und nah an den Menschen.</p>
-          <a href="https://iappear.app" class="btn btn--history">Zum Rundgang &rarr;</a>
+          <a href="https://iappear.app/de/routes/bregenz/see-runde?view=list" class="btn btn--history">Zum Rundgang &rarr;</a>
         </article>
       </div>
     </section>
@@ -151,7 +166,7 @@
     </div>
   </div></footer>
 
-  <a href="#" class="back-up" data-back-up>&uarr;</a>
+  <a href="#" class="back-up" data-back-up aria-label="Nach oben"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" aria-hidden="true"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg></a>
   <script src="js/main.js"></script>
 </body>
 </html>

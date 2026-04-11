@@ -13,8 +13,10 @@
   <meta property="og:title" content="i.dentity - Regionale Erlebnisse | i.appear" />
   <meta property="og:description" content="i.dentity - Rundgaenge, die Kultur, Tourismus und regionale Identitaet erlebbar machen. Immersiv, interaktiv und direkt vor Ort." />
   <meta property="og:url" content="https://iappear.at/i-dentity/" />
-  <meta property="og:image" content="https://iappear.at/assets/favicon.png" />
-  <meta name="twitter:card" content="summary" />
+  <meta property="og:image" content="https://iappear.at/assets/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="i.dentity - Regionale Erlebnisse | i.appear" />
   <meta name="twitter:description" content="i.dentity - Rundgaenge, die Kultur, Tourismus und regionale Identitaet erlebbar machen. Immersiv, interaktiv und direkt vor Ort." />
   <link rel="icon" type="image/png" href="assets/favicon.png" />
@@ -23,7 +25,19 @@
   <link rel="stylesheet" href="css/global.css" />
   <link rel="stylesheet" href="css/layout.css" />
   <link rel="stylesheet" href="css/components.css" />
-  <link rel="stylesheet" href="css/animations.css" /></head>
+  <link rel="stylesheet" href="css/animations.css" />
+  <!-- Breadcrumb strukturierte Daten -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://iappear.at/" },
+        { "@type": "ListItem", "position": 2, "name": "i.dentity - Regionale Erlebnisse", "item": "https://iappear.at/i-dentity/" }
+    ]
+  }
+  </script>
+</head>
 <body>
   <header class="nav"><div class="nav__inner">
     <a class="nav__brand" href="index.html">i.appear</a>
@@ -68,6 +82,7 @@
   </div>
 
   <main>
+    <nav class="breadcrumb container" aria-label="Breadcrumb"><ol><li><a href="index.html">Startseite</a></li><li><span aria-current="page">i.dentity - Regionale Erlebnisse</span></li></ol></nav>
     <header class="page-header container">
       <p class="eyebrow">i.dentity</p>
       <h1 class="c-dentity">Regionale Erlebnisse</h1>
@@ -83,7 +98,7 @@
           <h3 class="c-dentity">Messepark &ndash; Der sprechende Baum</h3>
           <p>Der sprechende Baum im Messepark Dornbirn ist eine Kindheitserinnerung fuer viele Menschen in Dornbirn. Ueber Jahre war er verschwunden, einsam in einem Lager, bis er wiedergefunden und neu aufgestellt wurde. Doch die Zeit hatte ihre Spuren hinterlassen, der Baum war zu alt geworden, um sich zu bewegen und zu sprechen wie frueher. Deshalb haben wir ihn als 3D-Modell in die Augmented Reality geholt.</p>
           <p>Jetzt bewegt er sich wieder, laechelt, erzaehlt seine alten Geschichten und bringt ein Stueck gemeinsamer Erinnerung zurueck in den Alltag. Fuer Kinder gibt es alle Geschichten von frueher auch im Audioguide, ergaenzt durch ein Quiz, das zum Zuhoeren, Mitdenken und Entdecken einlaedt.</p>
-          <a href="https://iappear.app" class="btn btn--dentity">Zum Rundgang &rarr;</a>
+          <a href="https://iappear.app/de/routes/dornbirn/messepark?view=list" class="btn btn--dentity">Zum Rundgang &rarr;</a>
         </article>
 
         <article class="card">
@@ -128,7 +143,7 @@
     </div>
   </div></footer>
 
-  <a href="#" class="back-up" data-back-up>&uarr;</a>
+  <a href="#" class="back-up" data-back-up aria-label="Nach oben"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" aria-hidden="true"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg></a>
   <script src="js/main.js"></script>
 </body>
 </html>

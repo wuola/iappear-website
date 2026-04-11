@@ -13,8 +13,10 @@
   <meta property="og:title" content="Workflow und Leistungen | i.appear" />
   <meta property="og:description" content="i.appear Workflow und Leistungen: Wie wir gemeinsam einen multimedialen Rundgang fuer dich erstellen - von der Idee bis zum Go-Live." />
   <meta property="og:url" content="https://iappear.at/workflow/" />
-  <meta property="og:image" content="https://iappear.at/assets/favicon.png" />
-  <meta name="twitter:card" content="summary" />
+  <meta property="og:image" content="https://iappear.at/assets/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Workflow und Leistungen | i.appear" />
   <meta name="twitter:description" content="i.appear Workflow und Leistungen: Wie wir gemeinsam einen multimedialen Rundgang fuer dich erstellen - von der Idee bis zum Go-Live." />
   <link rel="icon" type="image/png" href="assets/favicon.png" />
@@ -23,7 +25,19 @@
   <link rel="stylesheet" href="css/global.css" />
   <link rel="stylesheet" href="css/layout.css" />
   <link rel="stylesheet" href="css/components.css" />
-  <link rel="stylesheet" href="css/animations.css" /></head>
+  <link rel="stylesheet" href="css/animations.css" />
+  <!-- Breadcrumb strukturierte Daten -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://iappear.at/" },
+        { "@type": "ListItem", "position": 2, "name": "Workflow & Leistungen", "item": "https://iappear.at/workflow/" }
+    ]
+  }
+  </script>
+</head>
 <body>
   <header class="nav"><div class="nav__inner">
     <a class="nav__brand" href="index.html">i.appear</a>
@@ -68,6 +82,7 @@
   </div>
 
   <main>
+    <nav class="breadcrumb container" aria-label="Breadcrumb"><ol><li><a href="index.html">Startseite</a></li><li><span aria-current="page">Workflow & Leistungen</span></li></ol></nav>
     <header class="page-header container">
       <p class="eyebrow">i.appear</p>
       <h1>Workflow &amp; Leistungen</h1>
@@ -145,7 +160,7 @@
     </div>
   </div></footer>
 
-  <a href="#" class="back-up" data-back-up>&uarr;</a>
+  <a href="#" class="back-up" data-back-up aria-label="Nach oben"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" aria-hidden="true"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg></a>
   <script src="js/main.js"></script>
 </body>
 </html>
