@@ -146,8 +146,10 @@ window.IAPPEAR_VITRINE = [
 ];
 
 // Rendert die Vitrine-Grid auf der Startseite.
-// Wenn ein "bild" gesetzt ist, wird es als Hintergrundbild angezeigt,
+// Wenn ein "bild" gesetzt ist, wird es als <img loading="lazy"> angezeigt,
 // sonst kommt der Platzhalter mit dem Titel.
+// Lazy-loading laesst den Browser die Bilder erst runterladen wenn der Nutzer
+// nah an die Vitrine scrollt - spart viel Bandbreite auf der Startseite.
 (function () {
   const grid = document.querySelector('[data-vitrine-grid]');
   if (!grid || !window.IAPPEAR_VITRINE) return;
@@ -155,7 +157,7 @@ window.IAPPEAR_VITRINE = [
   grid.innerHTML = window.IAPPEAR_VITRINE.map(item => {
     const hasImg = !!item.bild;
     const thumb = hasImg
-      ? `<div class="vitrine-card__thumb" style="background-image:url('${esc(item.bild)}')" role="img" aria-label="${esc(item.titel)}"></div>`
+      ? `<div class="vitrine-card__thumb"><img src="${esc(item.bild)}" alt="${esc(item.titel)}" loading="lazy" decoding="async" /></div>`
       : `<div class="ph ph--square vitrine-card__thumb"><small>${esc(item.titel)}</small></div>`;
     return `
       <article class="vitrine-card">

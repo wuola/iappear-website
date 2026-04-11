@@ -214,6 +214,15 @@ iappear-website/
 - Alle Subpages mit echten Texten aus der Live-Site gefüllt
 - Daten-Files (vitrine.js, rundgaenge.js) mit echten Inhalten befüllt + klar kommentiert für nicht-technische Pflege
 
+### Session 5 — Pre-Launch-Polish (11.04.2026)
+Umfasst noch KEIN Go-Live — weitere inhaltliche Aenderungen kommen noch.
+- `sitemap.xml` im Repo-Root angelegt (11 URLs, priorisiert: Startseite 1.0, Kategorien 0.9, ...)
+- `llms.txt` auf llmstxt.org-Format umgebaut (h1 + Blockquote-Summary, Links pro Abschnitt)
+- Vorarlberg- und Dornbirn-Wort-SVGs in der Startseite-Network-Section unter der Netzwerk-Viz platziert (`.network-caption`)
+- Vitrine-Bilder werden jetzt als `<img loading="lazy" decoding="async">` gerendert statt als CSS-background. Spart Bandbreite bei Erstladen (Vitrine ist weit unten auf der Startseite)
+- Partner-Logos und weitere `<img>`-Tags auf `index.html` mit `loading="lazy"` und `decoding="async"` versehen (ausser Hero-Logo, Feature-Icons, Kategorie-Badges — die laden sofort)
+- Team-Fotos bleiben bewusst ausgeblendet (Marilenas aktuelles Foto ist nicht das finale, Maggys fehlt noch)
+
 ### Session 4.5 — Widgets + Animationen (11.04.2026)
 - Lorbeerkranz als Inline-SVG in `index.html` (vorher `<img>`, damit CSS die Pfade nicht erreicht hat). Pfade haben `pathLength="1000"` und werden mit `stroke-dasharray`/`stroke-dashoffset` via CSS-`@keyframes laurel-draw` gezeichnet (5s, gestartet per IntersectionObserver auf `.hero__stage`).
 - Rotierende Awards mittig im Kranz (`.hero__awards-rotator`): 3 Items (Smart City Dornbirn 2022, Innovation Call Vorarlberg 2025, Digitale Innovationen im Tourismus 2025), 18s Zyklus mit staggered animation-delay.
