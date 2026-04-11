@@ -77,19 +77,61 @@
       <h2>Short Guide</h2>
       <p>Zuerst besuchst du die Web-App <a href="https://www.iappear.app">www.iappear.app</a>.</p>
       <p><strong>Es gibt zwei Wege, die du gehen kannst:</strong></p>
+    </section>
 
-      <div class="grid grid-2" style="margin-top:var(--sp-3); gap:var(--sp-3)">
-        <article class="card">
-          <h3>Rundgaenge</h3>
-          <p>Uebersicht aller Rundgaenge pro Region.</p>
-        </article>
-        <article class="card">
-          <h3>In meiner Naehe</h3>
-          <p>Einzelne Stationen im Umkreis deines Standortes.</p>
-        </article>
+    <!-- ========== INTERAKTIVE DEMO ==========
+         Portiert aus _doku/recon/widgets/ia-guide-container-*.html
+         4 Schritte + Toggle (Rundgaenge / In meiner Naehe).
+         Der Toggle wechselt die Visualisierung im Phone-Mockup und
+         passt den Text rechts an. -->
+    <section class="section container">
+      <div class="ia-demo" data-ia-demo>
+        <div class="ia-demo__toggle">
+          <button class="ia-demo__toggle-btn is-active" type="button" data-mode="rundgaenge">
+            <span class="ia-demo__toggle-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="8" width="18" height="12" rx="2"/>
+                <path d="M8 8V6a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+              </svg>
+            </span>
+            Rundgaenge
+          </button>
+          <button class="ia-demo__toggle-btn" type="button" data-mode="naehe">
+            <span class="ia-demo__toggle-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="1 6 8 2 15 6 22 2 22 18 15 22 8 18 1 22 1 6"/>
+                <line x1="8" y1="2" x2="8" y2="18"/>
+                <line x1="15" y1="6" x2="15" y2="22"/>
+              </svg>
+            </span>
+            In meiner Naehe
+          </button>
+        </div>
+
+        <div class="ia-demo__stage">
+          <div class="phone ia-demo__phone">
+            <div class="phone__screen ia-demo__screen" data-ia-screen>
+              <div class="ia-demo__label">Schritt 1</div>
+              <div class="ia-demo__icon-large" data-ia-screen-icon aria-hidden="true">&#127758;</div>
+              <strong class="ia-demo__screen-title" data-ia-screen-title>Region waehlen</strong>
+            </div>
+          </div>
+
+          <div class="ia-demo__info">
+            <p class="eyebrow" data-ia-step>Schritt 1 von 4</p>
+            <h3 data-ia-title>Region waehlen</h3>
+            <p data-ia-text>Waehle die Region, in der du dich gerade befindest, oder lass i.appear deinen Standort erkennen.</p>
+            <div class="ia-demo__nav">
+              <button class="btn btn--ghost" type="button" data-ia-prev aria-label="Vorheriger Schritt">&larr;</button>
+              <button class="btn btn--ghost" type="button" data-ia-next aria-label="Naechster Schritt">&rarr;</button>
+            </div>
+          </div>
+        </div>
       </div>
+    </section>
 
-      <h2 style="margin-top:var(--sp-5)">In 4 Schritten zum Erlebnis</h2>
+    <section class="section container prose">
+      <h2>In 4 Schritten zum Erlebnis</h2>
       <ol class="grid grid-2" style="list-style:none; padding:0; margin-top:var(--sp-3); gap:var(--sp-3)">
         <li class="card">
           <h3>1. Region waehlen</h3>
@@ -141,5 +183,68 @@
 
   <a href="#" class="back-up" data-back-up>&uarr;</a>
   <script src="js/main.js"></script>
+  <script>
+    // Interaktive User-Guide-Demo: Toggle + 4 Schritte
+    (function(){
+      const demo = document.querySelector('[data-ia-demo]');
+      if (!demo) return;
+
+      const STEPS = {
+        rundgaenge: [
+          { t:'Region waehlen',  x:'Waehle die Region, in der du dich gerade befindest, oder lass i.appear deinen Standort erkennen.', i:'\u{1F30D}' },
+          { t:'Rundgang waehlen', x:'Suche dir einen Rundgang aus der Liste in deiner Region aus.', i:'\u{1F9F3}' },
+          { t:'Station waehlen',  x:'Auf der Karte siehst du alle Stationen des Rundgangs. Wandere zur Station.', i:'\u{1F4CD}' },
+          { t:'Inhalt waehlen',   x:'Audio, Bilder, Videos, 3D-Modelle, AR - tippe auf das Element, das dich interessiert.', i:'\u{1F3AC}' },
+        ],
+        naehe: [
+          { t:'Standort erlauben', x:'Erlaube i.appear den Zugriff auf deinen Standort, damit Stationen in der Naehe gefunden werden.', i:'\u{1F4F1}' },
+          { t:'Stationen in der Naehe', x:'i.appear listet alle Stationen im Umkreis deines Standortes.', i:'\u{1F5FA}' },
+          { t:'Station besuchen', x:'Gehe zur gewaehlten Station - sie wird automatisch freigeschaltet, sobald du dort ankommst.', i:'\u{1F6B6}' },
+          { t:'Inhalt waehlen',   x:'Entdecke Audio, AR, 3D-Modelle und mehr - direkt am Ort.', i:'\u{1F3AC}' },
+        ],
+      };
+
+      let mode = 'rundgaenge';
+      let step = 0;
+
+      const $ = (s) => demo.querySelector(s);
+      const stepLbl = $('[data-ia-step]');
+      const title   = $('[data-ia-title]');
+      const text    = $('[data-ia-text]');
+      const screenTitle = $('[data-ia-screen-title]');
+      const screenIcon  = $('[data-ia-screen-icon]');
+      const screenLabel = demo.querySelector('.ia-demo__label');
+
+      function render() {
+        const cur = STEPS[mode][step];
+        stepLbl.textContent = `Schritt ${step+1} von 4`;
+        title.textContent = cur.t;
+        text.textContent = cur.x;
+        screenTitle.textContent = cur.t;
+        screenIcon.textContent = cur.i;
+        screenLabel.textContent = `Schritt ${step+1}`;
+      }
+
+      demo.querySelectorAll('[data-mode]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          mode = btn.dataset.mode;
+          demo.querySelectorAll('[data-mode]').forEach(b => b.classList.toggle('is-active', b === btn));
+          step = 0;
+          render();
+        });
+      });
+
+      demo.querySelector('[data-ia-prev]').addEventListener('click', () => {
+        step = (step - 1 + 4) % 4;
+        render();
+      });
+      demo.querySelector('[data-ia-next]').addEventListener('click', () => {
+        step = (step + 1) % 4;
+        render();
+      });
+
+      render();
+    })();
+  </script>
 </body>
 </html>

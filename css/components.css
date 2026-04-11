@@ -274,40 +274,43 @@ span.feature-list__icon {
 }
 /* Stage: Phones + Awards werden vom Lorbeerkranz umrahmt.
    Der Kranz liegt als absolut positioniertes Background-SVG dahinter. */
+/* Kranz-Stage: nur Lorbeer + rotierende Awards, nichts anderes */
 .hero__stage {
   position: relative;
   width: 100%;
-  max-width: 640px;
-  margin: var(--sp-3) auto 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  max-width: 420px;
+  aspect-ratio: 822 / 686;
+  margin: var(--sp-3) auto var(--sp-2);
 }
 .hero__laurel {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: contain;
   pointer-events: none;
   z-index: 0;
 }
-.hero__stage-inner {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--sp-3);
-  padding: var(--sp-4) var(--sp-5);
+.hero__laurel-svg {
   width: 100%;
+  height: 100%;
+  display: block;
 }
-.hero__awards {
-  text-align: center;
-  opacity: .85;
-  font-family: var(--f-serif);
-  font-size: .9rem;
-  letter-spacing: .05em;
+/* Awards-Rotator: absolut positioniert, mittig im Kranz (Innenraum ist
+   zentral bei etwa 35-65% horizontal und 35-65% vertikal). */
+.hero__awards-rotator {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 55%;
+  height: 35%;
+  pointer-events: none;
+  z-index: 2;
+}
+/* Phones unterhalb des Kranzes, nebeneinander. */
+.hero__phones {
+  margin-top: var(--sp-3);
+  justify-content: center;
 }
 
 /* --- Netzwerk-Visualisierung ---------------------------------------------
@@ -548,6 +551,167 @@ span.feature-list__icon {
   padding: var(--sp-3);
   font-size: .95rem;
 }
+
+/* --- FAQ Accordion (details + summary)
+   Layout-Quelle: _doku/recon/widgets/widget-69a99be150.html
+   Wir nutzen native <details>/<summary> und imitieren den Readymag-Look:
+   Uppercase-Question mit Plus, unterer Border als Trennlinie, Rotation
+   beim Oeffnen. -------------------------------------------------------- */
+details.info-card {
+  border: none;
+  border-bottom: 1px solid rgba(255,255,255,.1);
+  border-radius: 0;
+  padding: var(--sp-2) 0;
+  margin: 0 0 var(--sp-1) !important;
+  font-size: .95rem;
+}
+details.info-card > summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-2);
+  padding: .6rem 0;
+  font-size: .85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: #c2c2c2;
+  opacity: .7;
+  transition: opacity .25s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+details.info-card > summary::-webkit-details-marker { display: none; }
+details.info-card > summary::after {
+  content: '+';
+  font-size: 1.4rem;
+  font-weight: 300;
+  line-height: 1;
+  flex-shrink: 0;
+  transition: transform .3s ease;
+  color: inherit;
+}
+details.info-card[open] > summary,
+details.info-card > summary:hover { opacity: 1; }
+details.info-card[open] > summary::after { transform: rotate(45deg); }
+details.info-card[open] > *:not(summary) {
+  animation: faq-slide-down .3s ease-out;
+  padding-top: .4rem;
+  padding-bottom: .6rem;
+  color: #c2c2c2;
+  line-height: 1.5;
+}
+@keyframes faq-slide-down {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+/* Category-Gruppen: die h2 in faqs.html wird als Section-Title gestylt */
+.section h2 + details.info-card,
+.section h2 + details.info-card { margin-top: var(--sp-1); }
+
+/* --- User-Guide interaktive Demo ------------------------------------------
+   Port aus _doku/recon/widgets/ia-guide-container-*.html
+   Toggle (Rundgaenge/Naehe) + Phone-Mockup + 4 Schritte-Navigation.
+   ------------------------------------------------------------------------ */
+.ia-demo {
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: var(--radius-card);
+  padding: var(--sp-4);
+  background: rgba(255,255,255,.02);
+}
+.ia-demo__toggle {
+  display: inline-flex;
+  background: rgba(0,0,0,.4);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 999px;
+  padding: 4px;
+  gap: 4px;
+  margin-bottom: var(--sp-4);
+  backdrop-filter: blur(4px);
+}
+.ia-demo__toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5em;
+  padding: .6em 1.1em;
+  border: none;
+  background: transparent;
+  color: #c2c2c2;
+  border-radius: 999px;
+  font: inherit;
+  font-size: .85rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: background .3s ease, color .3s ease;
+}
+.ia-demo__toggle-btn.is-active {
+  background: rgba(255,255,255,.1);
+  color: #fff;
+}
+.ia-demo__toggle-icon svg {
+  width: 18px;
+  height: 18px;
+  display: block;
+}
+.ia-demo__stage {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-4);
+  align-items: center;
+}
+@media (min-width: 720px) {
+  .ia-demo__stage { grid-template-columns: auto 1fr; gap: var(--sp-5); }
+}
+.ia-demo__phone {
+  justify-self: center;
+  width: 200px;
+  height: 400px;
+  flex-shrink: 0;
+}
+.ia-demo__screen {
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-2);
+  padding: var(--sp-3);
+  text-align: center;
+  transition: opacity .3s ease;
+}
+.ia-demo__label {
+  font-size: .7rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  opacity: .5;
+}
+.ia-demo__icon-large {
+  font-size: 3.5rem;
+  line-height: 1;
+  opacity: .85;
+}
+.ia-demo__screen-title {
+  font-size: 1rem;
+  letter-spacing: .03em;
+}
+.ia-demo__info h3 { margin: .2em 0 .5em; }
+.ia-demo__info p:not(.eyebrow) { opacity: .9; }
+.ia-demo__nav {
+  display: flex;
+  gap: var(--sp-2);
+  margin-top: var(--sp-3);
+}
+.ia-demo__nav .btn--ghost {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,.2);
+  color: #fff;
+  padding: .5em 1.2em;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: background .2s ease;
+}
+.ia-demo__nav .btn--ghost:hover { background: rgba(255,255,255,.08); }
 
 /* Award-Liste */
 .awards { display: grid; gap: var(--sp-1); font-size: .85rem; }

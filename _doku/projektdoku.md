@@ -214,6 +214,15 @@ iappear-website/
 - Alle Subpages mit echten Texten aus der Live-Site gefüllt
 - Daten-Files (vitrine.js, rundgaenge.js) mit echten Inhalten befüllt + klar kommentiert für nicht-technische Pflege
 
+### Session 4.5 — Widgets + Animationen (11.04.2026)
+- Lorbeerkranz als Inline-SVG in `index.html` (vorher `<img>`, damit CSS die Pfade nicht erreicht hat). Pfade haben `pathLength="1000"` und werden mit `stroke-dasharray`/`stroke-dashoffset` via CSS-`@keyframes laurel-draw` gezeichnet (5s, gestartet per IntersectionObserver auf `.hero__stage`).
+- Rotierende Awards mittig im Kranz (`.hero__awards-rotator`): 3 Items (Smart City Dornbirn 2022, Innovation Call Vorarlberg 2025, Digitale Innovationen im Tourismus 2025), 18s Zyklus mit staggered animation-delay.
+- Hero-Claim ("Die Plattform fuer digitale Erlebnisse") in 4 Zeilen-`<span>`s gesplittet, pro Zeile leicht unterschiedlicher Hover-Drift (Port aus `_doku/recon/widgets/header-anim-container-27ac988ab3.html`).
+- Hero-Layout: `hero__stage` ist jetzt nur Kranz + Awards (aspect-ratio 822/686, max-width 420px). Die Phones liegen als eigener Block darunter — vorher waren sie im Stage und haben den Kranz unsichtbar hochgezogen.
+- FAQ-Akkordeon gepolisht (Port aus `widget-69a99be150.html`): Uppercase-Summary, Plus-Icon (rotiert zu X beim Oeffnen), Border-Bottom als Trennlinie, smooth slide-down.
+- User-Guide interaktive Demo (Port aus `ia-guide-container-*.html`): Toggle Rundgaenge/Naehe, 4 Schritte, Phone-Mockup + Prev/Next. JS inline in `user-guide.html`, CSS in `components.css`.
+- Zwei neue SVGs im Repo (aus Recon): `assets/svg/logos/vorarlberg-wort.svg`, `assets/svg/logos/dornbirn-wort.svg` (noch nicht eingebaut, stehen fuer Session 5 bereit).
+
 ### Session 4 — Rechtliches & SEO (11.04.2026)
 - AGB: Text per JavaScript aus Live iappear.at/agb/ gezogen (DOM-positionierte Spans), als JSON heruntergeladen, mit Python in 13 nummerierte Abschnitte + Mediationsklausel geparst, ASCII-konvertiert und in `agb.html` eingesetzt
 - Datenschutz: Text ueber manuellen Copy/Paste der Nutzerin (Chrome blockte den Auto-Download); adsimple-Fassung 14.04.2022 mit 32 Sektionen nach ASCII konvertiert und in `datenschutz.html` eingesetzt

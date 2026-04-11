@@ -39,4 +39,24 @@
       )
     : null;
   document.querySelectorAll('.reveal').forEach(el => io ? io.observe(el) : el.classList.add('is-in'));
+
+  // Hero-Stage: Lorbeer-Draw + Awards-Rotator starten
+  const heroStage = document.querySelector('.hero__stage');
+  if (heroStage) {
+    const laurel = heroStage.querySelector('[data-laurel]');
+    const start = () => {
+      heroStage.classList.add('is-drawn');
+      if (laurel) laurel.classList.add('is-drawn');
+    };
+    if ('IntersectionObserver' in window) {
+      const heroIo = new IntersectionObserver((entries, obs) => {
+        entries.forEach(en => {
+          if (en.isIntersecting) { start(); obs.unobserve(heroStage); }
+        });
+      }, { threshold: 0.05, rootMargin: '0px 0px -10% 0px' });
+      heroIo.observe(heroStage);
+    } else {
+      start();
+    }
+  }
 })();

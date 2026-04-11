@@ -23,9 +23,104 @@
   transform: translateY(0);
 }
 
+/* --- Lorbeerkranz Draw-Anim (Hero) ----------------------------------------
+   Die beiden Kranz-Pfade haben pathLength="1000" (im SVG gesetzt), daher
+   koennen wir mit stroke-dasharray/-dashoffset 1000 unabhaengig von der
+   echten Pfadlaenge animieren. Start: Viewport-Eintritt via IntersectionObserver.
+-------------------------------------------------------------------------- */
+.hero__laurel-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  shape-rendering: geometricPrecision;
+}
+.hero__laurel-svg path {
+  stroke: #fff;
+  stroke-width: 2;
+  fill: none;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  opacity: 0;
+}
+.hero__laurel.is-drawn .hero__laurel-svg path {
+  animation: laurel-draw 5s ease-out forwards;
+}
+.hero__laurel.is-drawn .hero__laurel-svg path:nth-child(2) {
+  animation-delay: .3s;
+}
+@keyframes laurel-draw {
+  0%   { opacity: 0;  stroke-dashoffset: 1000; }
+  5%   { opacity: .6; }
+  100% { opacity: .4; stroke-dashoffset: 0; }
+}
+
+/* --- Awards-Rotator (im Kranz mittig) -------------------------------------
+   Drei Auszeichnungs-Texte rotieren zyklisch. Jeder Text ist 4s sichtbar,
+   mit 2s Fade-Uebergang dazwischen. Gesamtzyklus: 18s (3 Items x 6s).
+   Start verzoegert, damit sie nach dem Kranz-Draw (~5s) erscheinen.
+-------------------------------------------------------------------------- */
+.hero__award {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: var(--f-serif, Georgia, serif);
+  font-size: clamp(.85rem, 1.4vw, 1.05rem);
+  letter-spacing: .05em;
+  color: #fff;
+  opacity: 0;
+  pointer-events: none;
+  padding: 0 var(--sp-3);
+  line-height: 1.35;
+}
+.hero__award small {
+  display: block;
+  margin-top: .3em;
+  font-size: .75em;
+  opacity: .7;
+  letter-spacing: .15em;
+}
+.hero__stage.is-drawn .hero__award {
+  animation: award-rotate 18s ease-in-out infinite;
+  animation-delay: 5s;
+}
+.hero__stage.is-drawn .hero__award.is-award-2 { animation-delay: 11s; }
+.hero__stage.is-drawn .hero__award.is-award-3 { animation-delay: 17s; }
+
+@keyframes award-rotate {
+  0%               { opacity: 0; transform: translateY(8px); }
+  5%, 28%          { opacity: 1; transform: translateY(0);   }
+  33%              { opacity: 0; transform: translateY(-8px);}
+  /* Rest des Zyklus bleibt unsichtbar, damit die anderen beiden dran sind */
+  100%             { opacity: 0; transform: translateY(-8px);}
+}
+
+/* --- Hero Claim Drift (hover parallax) ------------------------------------
+   Die vier Zeilen "Die / Plattform / fuer digitale / Erlebnisse" driften
+   leicht weg beim Hover — inspiriert vom header-anim-container.
+-------------------------------------------------------------------------- */
+.hero__claim {
+  display: inline-block;
+  cursor: default;
+}
+.hero__claim .line {
+  display: block;
+  transition: transform .25s ease-out, opacity .25s ease-out;
+  will-change: transform;
+}
+.hero__claim:hover .line-1 { transform: translate(5px, -1px);  opacity: .8;  }
+.hero__claim:hover .line-2 { transform: translate(-3px, 0);                  }
+.hero__claim:hover .line-3 { transform: translate(7px, 2px);   opacity: .85; }
+.hero__claim:hover .line-4 { transform: translate(-4px, 4px);                }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: .01ms !important;
     transition-duration: .01ms !important;
   }
+  .hero__laurel-svg path { stroke-dashoffset: 0; opacity: .4; }
+  .hero__awards li { opacity: 1; transform: none; }
 }
