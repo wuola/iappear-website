@@ -44,7 +44,7 @@ window.IAPPEAR_VITRINE = [
   {
     titel: "Re-Design dank Preisgeld",
     text: "Wir haben uns beworben und gewonnen! Herzlichen Dank an die Jury! Das Preisgeld wurde in das Re-Design von i.appear gesteckt.",
-    bild: "assets/images/vitrine/award.png",
+    bild: "assets/images/vitrine/inno.png",
     link: "vitrine/innovation-call-2025.html"
   },
   {
@@ -68,7 +68,7 @@ window.IAPPEAR_VITRINE = [
   {
     titel: "Innovation Call Tourismus 2025",
     text: "Zusaetzlich zum Innovation-Call-Preis erhielt i.appear die Auszeichnung 'Digitale Innovationen im Tourismus'. Juhu!",
-    bild: "assets/images/vitrine/inno.png",
+    bild: "assets/images/vitrine/inno2.png",
     link: "vitrine/innovation-call-tourismus-2025.html"
   },
   {
@@ -122,7 +122,7 @@ window.IAPPEAR_VITRINE = [
   {
     titel: "ISTD Siegerprojekt Stadtspuren",
     text: "Wir sind stolz, dass der App-Rundgang Stadtspuren Teil des Siegerprojektes des ISTD war. Glueckwunsch an Saegenvier!",
-    bild: "assets/images/vitrine/stadtspuren1.png",
+    bild: "assets/images/vitrine/award.png",
     link: "vitrine/istd-stadtspuren.html"
   },
   {
