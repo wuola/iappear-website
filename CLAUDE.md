@@ -74,8 +74,10 @@ Beide haben am Anfang einen klaren `HIER BEARBEITEN`-Block mit Anleitung.
 ## Navigation
 
 Einheitliche Navigation auf allen Seiten.
-Menuepunkte: Features, Kategorien, Leistungen, Ueber uns, Kontakt, Vitrine, User Guide
+Top-Nav (6 Links): Stadtrundgaenge | Features | Leistungen | Ueber uns | Vitrine | Kontakt
 Burger-Menue rechts mit 3 Gruppen: **Die Plattform** | **Stadtrundgaenge** (Alle Orte + Einzelstaedte) | **Backstage**
+
+Seit Session 6 zeigen alle Nav-Links auf eigene HTML-Seiten (features.html, vitrine.html, ueber-uns.html etc.) — KEINE #anchor-Links mehr.
 
 ## Aktueller Stand
 
@@ -120,6 +122,38 @@ Burger-Menue rechts mit 3 Gruppen: **Die Plattform** | **Stadtrundgaenge** (Alle
 - Session 4.8 (Merge & GitHub Pages Test, 2026-04-10):
   - Ersten kompletten Stand auf `main` gemerged & gepushed
   - Live-Test-Link: https://wuola.github.io/iappear-website/ (Nutzerin kann jetzt vom Handy testen)
+- Session 6 (Seitenstruktur-Umbau + Rename, 2026-04-13):
+  - **Startseite entschlackt**: index.html ist jetzt kompaktes "Schaufenster" mit Teaser-Karten statt langer Scroll-Collage. Hero + Netzwerk bleiben, alles andere sind kurze Teaser → eigene Seiten
+  - **Neue eigene Seiten**: features.html, vitrine.html, ueber-uns.html (Inhalte 1:1 aus index.html ausgelagert)
+  - **Blog + Vitrine verschmolzen**: "Blog" gibt es nicht mehr als eigenen Bereich. vitrine.html zeigt Kacheln (aus vitrine.js) + Artikel-Links. blog/index.html leitet per meta-refresh auf vitrine.html weiter. Die 2 bestehenden Blog-Artikel bleiben unter blog/*.html, Breadcrumbs zeigen auf Vitrine.
+  - **i.dentity Rename**: "Erlebnisse" → "Regionale Identitaet" in allen Burger-Menues, Breadcrumbs, Eyebrows, Schema, JS, llms.txt, CLAUDE.md. Hero-Claim "digitale Erlebnisse" bewusst unveraendert.
+  - **Nav-Links**: Alle #anchor-Links durch echte Seiten-Links ersetzt (features.html, vitrine.html, ueber-uns.html)
+  - **Sitemap + llms.txt** aktualisiert
+  - **Hero-Layout nach Readymag-Vorbild**: Lorbeerkranz + Awards kleiner und links, Logo kleiner, Phones nebeneinander (flex-wrap: nowrap) direkt unterm Logo, "JETZT STARTEN" Button unter den Phones, Social Media Icons (Instagram + LinkedIn) rechts unten. Alles above the fold sichtbar.
+  - **Phone-Groessen**: `.phone` max 160px breit (vorher 220px), `.hero__logo` max 240px (vorher 460px)
+
+### Versionen und Rollback (wichtig!)
+
+Beide Versionen sind auf GitHub gesichert:
+- **Neue Version (aktuell auf main)**: Kompakte Startseite + eigene Unterseiten + Vitrine/Blog-Merge + Rename. Commit `376e30e`.
+- **Alte Version**: Lange Scroll-Startseite mit #anchor-Navigation. Git-Tag `vor-experiment` (Commit `5c7fab7`).
+
+Rollback zur alten Version (nur wenn Nutzerin es will!):
+```bash
+git checkout main
+git reset --hard vor-experiment
+git push origin main --force
+```
+
+Zurueck zur neuen Version:
+```bash
+git checkout main
+git reset --hard experiment/startseite-neu
+git push origin main --force
+```
+
+Branch `experiment/startseite-neu` bleibt als Backup erhalten — NICHT loeschen.
+Live-Vorschau: https://wuola.github.io/iappear-website/
 
 ### Was noch offen ist
 - **Kategorie-Buttons im Hero** (Nutzerin Vermerk: "sollte glaub ich eigentlich anders ausschauen") — aktuell falsch als `.card__badge` in den Kategorie-Karten
