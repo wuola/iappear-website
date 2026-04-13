@@ -17,7 +17,10 @@ Die drei inhaltlichen Kategorien heissen i.history (historische Stadtrundgaenge,
 
 ## Hauptseiten
 
-- [Startseite](https://iappear.at/): Ueberblick, Kategorien, Features, Vitrine, Team.
+- [Startseite](https://iappear.at/): Kompakter Ueberblick mit Teasern zu allen Bereichen.
+- [Features](https://iappear.at/features/): 14 multimediale Features fuer digitale Stadtrundgaenge - 3D, AR, Audio, Quiz und mehr.
+- [Vitrine](https://iappear.at/vitrine/): Auszeichnungen, Pressebeitraege und Referenzen - Smart City, Ars Electronica, Innovation Call.
+- [Ueber uns](https://iappear.at/ueber-uns/): Das Team (Marilena Tumler, Maggy Haidacher) und Partner/Foerdergeber.
 - [Alle Stadtrundgaenge](https://iappear.at/stadtrundgaenge/): Uebersicht aller Orte mit digitalen Stadtrundgaengen und Audioguides - mit interaktiver Karte.
 - [Stadtrundgang Dornbirn](https://iappear.at/stadtrundgang-dornbirn/): 10+ digitale Stadtrundgaenge und Audioguides in Dornbirn.
 - [Stadtrundgang Feldkirch](https://iappear.at/stadtrundgang-feldkirch/): Barockbaumeister, Bombenabwuerfe 1943, Schulprojekte in Feldkirch.
