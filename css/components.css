@@ -168,11 +168,11 @@
    Innen kommt entweder Platzhaltertext oder spaeter ein <video> bzw. <img>
    mit object-fit: cover. Das Mockup hat eine Notch und feste Aspect-Ratio. */
 .phone {
-  width: clamp(160px, 38vw, 220px);
+  width: clamp(120px, 20vw, 160px);
   aspect-ratio: 9/19;
   border: 2px solid var(--c-text);
-  border-radius: 28px;
-  padding: 10px;
+  border-radius: 22px;
+  padding: 8px;
   background: #0a0a0a;
   position: relative;
   flex: 0 0 auto;
@@ -265,7 +265,7 @@ span.feature-list__icon {
   line-height: 1;
 }
 .hero__logo {
-  width: clamp(180px, 30vw, 360px);
+  width: clamp(120px, 18vw, 240px);
   height: auto;
   display: block;
   margin: 0 auto;
@@ -311,6 +311,7 @@ span.feature-list__icon {
 .hero__phones {
   margin-top: var(--sp-1);
   justify-content: center;
+  flex-wrap: nowrap;
 }
 /* CTA-Button im Hero */
 .hero__cta {
