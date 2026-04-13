@@ -76,7 +76,7 @@ window.IAPPEAR_RUNDGAENGE = {
   },
 
   dentity: {
-    titel: "i.dentity – Regionale Erlebnisse",
+    titel: "i.dentity – Regionale Identitaet",
     farbe: "#769CA2",
     regionen: [
       {

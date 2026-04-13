@@ -42,7 +42,7 @@ Ziel-Domain: iappear.at (Umleitung kommt ganz am Schluss)
 ### Unterseiten:
 
 - i-history.html — Zeitreisen (Dornbirn, Au, Hard, ...)
-- i-dentity.html — Regionale Erlebnisse (Dornbirn, weitere Regionen)
+- i-dentity.html — Regionale Identitaet (Dornbirn, weitere Regionen)
 - i-grow.html — Medienbildung (Workshop-/Rundgang-Prinzipien + Schulprojekte + Demokratie/KI-Vision)
 - workflow.html — Auftakt + Leistungen + 5-Schritt-Prozess
 - user-guide.html — Short Guide

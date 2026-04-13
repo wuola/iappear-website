@@ -12,7 +12,7 @@ Die drei inhaltlichen Kategorien heissen i.history (historische Stadtrundgaenge,
 ## Kategorien
 
 - [i.history - Zeitreisen](https://iappear.at/i-history/): Historische digitale Stadtrundgaenge und Audioguides an Originalschauplaetzen, entwickelt mit Historiker:innen, Archiven und Zeitzeug:inneninterviews.
-- [i.dentity - Regionale Erlebnisse](https://iappear.at/i-dentity/): Digitale Stadtrundgaenge fuer Kultur, Tourismus und regionale Identitaet; auch fuer Unternehmen und Institutionen.
+- [i.dentity - Regionale Identitaet](https://iappear.at/i-dentity/): Digitale Stadtrundgaenge fuer Kultur, Tourismus und regionale Identitaet; auch fuer Unternehmen und Institutionen.
 - [i.grow - Medienbildung](https://iappear.at/i-grow/): Medienbildung, Demokratiebildung und KI-Bildung fuer Schulen. Workshops, in denen Schueler:innen eigene digitale Stadtrundgaenge gestalten und Medienkompetenz aufbauen. In Zusammenarbeit mit PH Vorarlberg, FH Vorarlberg und OeAD.
 
 ## Hauptseiten
