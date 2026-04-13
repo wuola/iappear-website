@@ -15,19 +15,19 @@ window.IAPPEAR_VITRINE = [
     titel: "askd:Magazin Portrait Marilena Tumler",
     text: "Ein wunderschoenes Portrait vom askd:Magazin ueber Marilena Tumler.",
     bild: "assets/images/vitrine/asked.png",
-    link: "https://askd.marketing/interviews/episode-10-verbindungen-marilena-tumler/"
+    link: "vitrine/askd-magazin-portrait-marilena-tumler.html"
   },
   {
     titel: "ARS Electronica 2022",
     text: "2022 wurden die Rundgaenge Brigantium und Barockbaumeister auf der ARS Electronica ausgestellt.",
     bild: "assets/images/vitrine/ars.png",
-    link: "https://ars.electronica.art/planetb/de/tangible-past/"
+    link: "vitrine/ars-electronica-2022.html"
   },
   {
     titel: "Smart City Dornbirn 2022",
     text: "Marilena erhielt 2022 den Smart City Dornbirn Preis mit dem Siegerprojekt i.appear.",
     bild: "assets/images/vitrine/cityx.png",
-    link: "https://smartcitydornbirn.com/preisverleihung-smart-city-dornbirn-2022/"
+    link: "vitrine/smart-city-dornbirn-2022.html"
   },
   {
     titel: "Ars Electronica 2021 Garden Vorarlberg",
