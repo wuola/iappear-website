@@ -1,22 +1,25 @@
 # i.appear
 
-> i.appear ist eine Plattform fuer digitale, multimediale Rundgaenge in Oesterreich (Vorarlberg) und angrenzenden Regionen. Jeder Rundgang laeuft direkt im Browser - ohne App-Download, ohne Registrierung, ohne Werbung, ohne Tracking.
+> i.appear ist eine Plattform fuer digitale Stadtrundgaenge und Audioguides in Oesterreich (Schwerpunkt Vorarlberg) und angrenzenden Regionen. Jeder Stadtrundgang laeuft direkt im Browser - ohne App-Download, ohne Registrierung, ohne Werbung, ohne Tracking.
 
 Betreiberin: Marilena Tumler e.U., Mozartstrasse 5 | 16, 6850 Dornbirn, Oesterreich.
 Kontakt: info@iappear.app, +43 676 82554212
 
-i.appear kombiniert Text, Audio, Video, 3D-Modelle, Augmented Reality und Karten zu ortsbasierten Erlebnissen. Die drei inhaltlichen Kategorien heissen i.history (historisch, quellenbasiert), i.dentity (regionale Kultur/Tourismus/Wirtschaft) und i.grow (Medienbildung mit Schulklassen).
+i.appear kombiniert Text, Audio, Video, 3D-Modelle, Augmented Reality und Karten zu ortsbasierten Erlebnissen. Aktuell gibt es digitale Stadtrundgaenge in Dornbirn, Feldkirch, Hard, Au im Bregenzerwald und weiteren Standorten in Vorarlberg.
+
+Die drei inhaltlichen Kategorien heissen i.history (historische Stadtrundgaenge, quellenbasiert), i.dentity (regionale Kultur/Tourismus/Wirtschaft) und i.grow (Medienbildung, Demokratiebildung und Medienkompetenz mit Schulklassen).
 
 ## Kategorien
 
-- [i.history - Zeitreisen](https://iappear.at/i-history/): Historisch belegte Rundgaenge an Originalschauplaetzen, entwickelt mit Historiker:innen, Archiven und Zeitzeug:inneninterviews.
-- [i.dentity - Regionale Erlebnisse](https://iappear.at/i-dentity/): Kultur, Tourismus und regionale Identitaet erlebbar machen; auch fuer Unternehmen und Institutionen.
-- [i.grow - Medienbildung](https://iappear.at/i-grow/): Bildungsworkshops, in denen Schueler:innen eigene digitale Rundgaenge gestalten und Medienkompetenz aufbauen.
+- [i.history - Zeitreisen](https://iappear.at/i-history/): Historische digitale Stadtrundgaenge und Audioguides an Originalschauplaetzen, entwickelt mit Historiker:innen, Archiven und Zeitzeug:inneninterviews.
+- [i.dentity - Regionale Erlebnisse](https://iappear.at/i-dentity/): Digitale Stadtrundgaenge fuer Kultur, Tourismus und regionale Identitaet; auch fuer Unternehmen und Institutionen.
+- [i.grow - Medienbildung](https://iappear.at/i-grow/): Medienbildung, Demokratiebildung und KI-Bildung fuer Schulen. Workshops, in denen Schueler:innen eigene digitale Stadtrundgaenge gestalten und Medienkompetenz aufbauen. In Zusammenarbeit mit PH Vorarlberg, FH Vorarlberg und OeAD.
 
 ## Hauptseiten
 
 - [Startseite](https://iappear.at/): Ueberblick, Kategorien, Features, Vitrine, Team.
-- [Workflow und Leistungen](https://iappear.at/workflow/): Wie Projekte mit i.appear ablaufen.
+- [Stadtrundgang Dornbirn](https://iappear.at/stadtrundgang-dornbirn/): Alle digitalen Stadtrundgaenge und Audioguides in Dornbirn auf einen Blick.
+- [Workflow und Leistungen](https://iappear.at/workflow/): Wie Projekte mit i.appear ablaufen - eigenen digitalen Stadtrundgang oder Audioguide erstellen lassen.
 - [User Guide](https://iappear.at/user-guide/): Nutzung der Web-App Schritt fuer Schritt.
 - [Kontakt](https://iappear.at/kontakt/): Kontaktmoeglichkeiten fuer Anfragen, Workshops, Kooperationen.
 - [FAQs](https://iappear.at/faqs/): Haeufige Fragen zu Nutzung, Technik, Inhalten, Partnern.
