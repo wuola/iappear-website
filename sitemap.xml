@@ -66,6 +66,21 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://iappear.at/blog/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://iappear.at/blog/was-ist-ein-digitaler-stadtrundgang/</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://iappear.at/blog/medienbildung-vorarlberg-schueler-gestalten-stadtrundgaenge/</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://iappear.at/impressum/</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>

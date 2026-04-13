@@ -43,14 +43,24 @@ Ziel-Domain: iappear.at (Umleitung kommt ganz am Schluss)
 
 - i-history.html — Zeitreisen (Dornbirn, Au, Hard, ...)
 - i-dentity.html — Regionale Erlebnisse (Dornbirn, weitere Regionen)
-- i-grow.html — Medienbildung (Workshop-/Rundgang-Prinzipien + Schulprojekte)
+- i-grow.html — Medienbildung (Workshop-/Rundgang-Prinzipien + Schulprojekte + Demokratie/KI-Vision)
 - workflow.html — Auftakt + Leistungen + 5-Schritt-Prozess
 - user-guide.html — Short Guide
 - kontakt.html — Texte + Adresse + Formular
-- faqs.html — 10 echte FAQs in 4 Kategorien
+- faqs.html — 10 echte FAQs in 4 Kategorien (mit FAQPage Schema)
 - impressum.html — Firmen-Daten
 - agb.html — Stub (juristischer Volltext fehlt noch)
 - datenschutz.html — Stub (DSGVO-Volltext fehlt noch)
+
+### Stadtrundgaenge (SEO Landing Pages, Hub-Modell):
+
+- stadtrundgaenge.html — Hub-Seite mit Leaflet-Karte + Ort-Karten (alle Standorte)
+- stadtrundgang-dornbirn.html — 10+ Touren, alle 3 Kategorien
+- stadtrundgang-feldkirch.html — Barockbaumeister + 2 Schulprojekte
+- stadtrundgang-hard.html — See Runde
+- stadtrundgang-au.html — Barockbaumeister Franz Beer
+
+Jede Stadtseite hat TouristAttraction Schema, SEO-optimierte Meta-Tags und Breadcrumb: Startseite > Stadtrundgaenge > [Ort]. Neuer Ort? Seite erstellen, Pin in Karte (JS in stadtrundgaenge.html), Sitemap + Burger-Menue updaten.
 
 ## Editierbare Datenbereiche (wichtig!)
 
@@ -65,7 +75,7 @@ Beide haben am Anfang einen klaren `HIER BEARBEITEN`-Block mit Anleitung.
 
 Einheitliche Navigation auf allen Seiten.
 Menuepunkte: Features, Kategorien, Leistungen, Ueber uns, Kontakt, Vitrine, User Guide
-Burger-Menue rechts mit allen Links.
+Burger-Menue rechts mit 3 Gruppen: **Die Plattform** | **Stadtrundgaenge** (Alle Orte + Einzelstaedte) | **Backstage**
 
 ## Aktueller Stand
 
@@ -83,6 +93,14 @@ Burger-Menue rechts mit allen Links.
   - index.html Burger-Menue: **Plattform / Backstage** Struktur (nur dort)
   - Methoden-Dok unter `_doku/recon/README.md` — Anleitung fuer kuenftige Sessions, wie man Readymag-Editor anzapft
 - Session 5 (Launch): noch nicht begonnen
+- Session 5.5 (SEO + Stadtrundgaenge-Hub, 2026-04-13):
+  - **SEO-Offensive**: Keyword-Enrichment aller Seiten (Stadtrundgang, Audioguide, Dornbirn, Vorarlberg)
+  - **i-grow.html massiv erweitert**: Demokratiebildung, KI-Bildung, Medienkompetenz, Pflichtfach, Partner
+  - **i-dentity.html verdichtet**: von 394 auf 600+ Woerter
+  - **FAQPage Schema** auf faqs.html (Google Rich Snippets)
+  - **Stadtrundgaenge Hub-Modell**: stadtrundgaenge.html mit Leaflet-Karte + 4 Stadtseiten (Dornbirn, Feldkirch, Hard, Au)
+  - **Burger-Menue** auf allen Seiten um Stadtrundgaenge-Gruppe erweitert (3 Gruppen: Plattform / Stadtrundgaenge / Backstage)
+  - Sitemap + llms.txt aktualisiert, Footer-Link auf Hub statt nur Dornbirn
 
 - Session 4.6 (Polish-Pass, 2026-04-10):
   - Burger-Menue Plattform/Backstage **auf allen 11 Seiten** ausgerollt
