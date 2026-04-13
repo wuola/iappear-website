@@ -265,7 +265,7 @@ span.feature-list__icon {
   line-height: 1;
 }
 .hero__logo {
-  width: clamp(220px, 38vw, 460px);
+  width: clamp(180px, 30vw, 360px);
   height: auto;
   display: block;
   margin: 0 auto;
@@ -277,31 +277,26 @@ span.feature-list__icon {
   opacity: .75;
   margin: 0;
 }
-/* Stage: Phones + Awards werden vom Lorbeerkranz umrahmt.
-   Der Kranz liegt als absolut positioniertes Background-SVG dahinter. */
-/* Kranz-Stage: nur Lorbeer + rotierende Awards, nichts anderes */
+/* Kranz-Stage: Lorbeerkranz + rotierende Awards.
+   Jetzt in der linken Spalte, kleiner dargestellt. */
 .hero__stage {
   position: relative;
   width: 100%;
-  max-width: 420px;
-  aspect-ratio: 822 / 686;
-  margin: var(--sp-3) auto var(--sp-2);
+  max-width: 220px;
+  margin: var(--sp-2) auto 0;
 }
 .hero__laurel {
-  position: absolute;
-  inset: 0;
+  position: relative;
   width: 100%;
-  height: 100%;
   pointer-events: none;
   z-index: 0;
 }
 .hero__laurel-svg {
   width: 100%;
-  height: 100%;
+  height: auto;
   display: block;
 }
-/* Awards-Rotator: absolut positioniert, mittig im Kranz (Innenraum ist
-   zentral bei etwa 35-65% horizontal und 35-65% vertikal). */
+/* Awards-Rotator: absolut positioniert, mittig im Kranz */
 .hero__awards-rotator {
   position: absolute;
   top: 50%;
@@ -312,10 +307,35 @@ span.feature-list__icon {
   pointer-events: none;
   z-index: 2;
 }
-/* Phones unterhalb des Kranzes, nebeneinander. */
+/* Phones direkt unter dem Logo, kein grosser Abstand. */
 .hero__phones {
-  margin-top: var(--sp-3);
+  margin-top: var(--sp-1);
   justify-content: center;
+}
+/* CTA-Button im Hero */
+.hero__cta {
+  margin-top: var(--sp-2);
+  font-size: .9rem;
+  letter-spacing: .15em;
+  border-radius: 999px;
+  padding: .7em 2em;
+}
+/* Social Icons im Hero (rechte Spalte, unten) */
+.hero__social {
+  display: flex;
+  gap: var(--sp-2);
+  margin-top: auto;
+  padding-top: var(--sp-2);
+}
+.hero__social a {
+  color: rgba(255,255,255,.6);
+  transition: color .2s;
+}
+.hero__social a:hover {
+  color: #fff;
+}
+@media (min-width: 960px) {
+  .hero__social { justify-content: flex-end; }
 }
 
 /* --- Netzwerk-Visualisierung ---------------------------------------------

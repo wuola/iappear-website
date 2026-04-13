@@ -146,6 +146,7 @@
 
     <!-- ========== SEKTION 2: HERO ========== -->
     <section class="section hero container">
+      <!-- Linke Spalte: Claim-Text + Lorbeerkranz mit Awards (kleiner als vorher) -->
       <div class="hero__left">
         <p class="eyebrow hero__claim" aria-label="Die Plattform fuer digitale Erlebnisse">
           <span class="line line-1">Die</span>
@@ -153,20 +154,8 @@
           <span class="line line-3">fuer digitale</span>
           <span class="line line-4">Erlebnisse</span>
         </p>
-      </div>
 
-      <div class="hero__mid">
-        <div class="hero__brand">
-          <!-- Hauptlogo. SVG bringt sein eigenes Target-Symbol mit, daher kein extra target-Icon mehr. -->
-          <h1 class="hero__title">
-            <img src="assets/svg/logos/logo-lang-weiss.svg" alt="i.appear" class="hero__logo" />
-          </h1>
-          <p class="hero__subtitle">digital city tours</p>
-        </div>
-
-        <!-- Kranz-Stage: Inline-SVG-Lorbeer mit Stroke-Draw-Animation.
-             Mittig im Kranz rotieren die drei Awards. Der Stage ist NUR der
-             Kranz + Awards; die Phones darunter sind ein eigener Block. -->
+        <!-- Kranz + Awards: jetzt links neben den Phones, kleiner dargestellt -->
         <div class="hero__stage">
           <div class="hero__laurel" data-laurel aria-hidden="true">
             <svg class="hero__laurel-svg" xmlns="http://www.w3.org/2000/svg" viewBox="-10 -10 822 685.8" aria-hidden="true" focusable="false">
@@ -184,27 +173,51 @@
             <span role="listitem" class="hero__award is-award-3">Digitale Innovationen im Tourismus<br/><small>2025</small></span>
           </div>
         </div>
+      </div>
 
-        <!-- Phones unter dem Kranz: zwei nebeneinander als App-Mockup. -->
+      <!-- Mittlere Spalte: Logo (kleiner) + Phones (direkt darunter) + CTA-Button -->
+      <div class="hero__mid">
+        <div class="hero__brand">
+          <h1 class="hero__title">
+            <img src="assets/svg/logos/logo-lang-weiss.svg" alt="i.appear" class="hero__logo" />
+          </h1>
+          <p class="hero__subtitle">digital city tours</p>
+        </div>
+
+        <!-- Phones direkt unter dem Logo, ohne grossen Abstand -->
         <div class="phones hero__phones">
           <div class="phone"><div class="phone__screen">Region-Auswahl</div></div>
           <div class="phone"><div class="phone__screen">hist.appear<br/>Karte</div></div>
         </div>
+
+        <!-- CTA-Button unter den Phones -->
+        <a href="stadtrundgaenge.html" class="btn hero__cta">JETZT STARTEN</a>
       </div>
 
+      <!-- Rechte Spalte: Kategorie-Links + Social Icons -->
       <div class="hero__right">
         <a href="i-history.html" class="cat-link c-history">
           <span>i.history<br /><small>ZEITREISEN</small></span>
           <span class="cat-link__arrow">&rarr;</span>
         </a>
         <a href="i-dentity.html" class="cat-link c-dentity">
-          <span>i.dentity<br /><small>ERLEBNISSE</small></span>
+          <span>i.dentity<br /><small>REGIONALE IDENTITAET</small></span>
           <span class="cat-link__arrow">&rarr;</span>
         </a>
         <a href="i-grow.html" class="cat-link c-grow">
           <span>i.grow<br /><small>MEDIENBILDUNG</small></span>
           <span class="cat-link__arrow">&rarr;</span>
         </a>
+
+        <!-- Social Media Icons -->
+        <div class="hero__social">
+          <a href="https://www.instagram.com/i.appear.app/" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/company/iappear/" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+        </div>
       </div>
     </section>
 
