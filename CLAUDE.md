@@ -62,11 +62,20 @@ Ziel-Domain: iappear.at (Umleitung kommt ganz am Schluss)
 
 Jede Stadtseite hat TouristAttraction Schema, SEO-optimierte Meta-Tags und Breadcrumb: Startseite > Stadtrundgaenge > [Ort]. Neuer Ort? Seite erstellen, Pin in Karte (JS in stadtrundgaenge.html), Sitemap + Burger-Menue updaten.
 
+### Vitrine-Artikel (SEO-Seiten, in Arbeit):
+
+Ordner `vitrine/`, Breadcrumb: Startseite > Vitrine > [Artikel]. 3 von 22 fertig:
+- vitrine/askd-magazin-portrait-marilena-tumler.html
+- vitrine/smart-city-dornbirn-2022.html
+- vitrine/ars-electronica-2022.html
+
+Template basiert auf Blog-Artikeln (`blog/was-ist-ein-digitaler-stadtrundgang.html`). Jede Seite hat Hero-Bild aus `assets/images/vitrine/`, Schema.org BlogPosting, Tags, CTA-Box, Link zum Original. `vitrine.js` verlinkt intern auf fertige Seiten, extern fuer noch nicht erstellte.
+
 ## Editierbare Datenbereiche (wichtig!)
 
 Diese Dateien sind so gebaut, dass die Nutzerin sie OHNE Code-Kenntnisse bearbeiten kann:
 
-- `js/data/vitrine.js` — Vitrine-Kacheln auf der Startseite (14 Eintraege)
+- `js/data/vitrine.js` — Vitrine-Kacheln (22 Eintraege, Links zeigen teils auf interne Artikel-Seiten in `vitrine/`)
 - `js/data/rundgaenge.js` — Rundgaenge fuer alle 3 Kategorien
 
 Beide haben am Anfang einen klaren `HIER BEARBEITEN`-Block mit Anleitung.
@@ -131,6 +140,9 @@ Seit Session 6 zeigen alle Nav-Links auf eigene HTML-Seiten (features.html, vitr
   - **Sitemap + llms.txt** aktualisiert
   - **Hero-Layout nach Readymag-Vorbild**: Lorbeerkranz + Awards kleiner und links, Logo kleiner, Phones nebeneinander (flex-wrap: nowrap) direkt unterm Logo, "JETZT STARTEN" Button unter den Phones, Social Media Icons (Instagram + LinkedIn) rechts unten. Alles above the fold sichtbar.
   - **Phone-Groessen**: `.phone` max 160px breit (vorher 220px), `.hero__logo` max 240px (vorher 460px)
+  - **Vitrine-Links**: Alle 22 Kachel-Links aus Readymag extrahiert und in vitrine.js eingetragen (vorher alles `#`)
+  - **Vitrine-Artikel-Seiten (3/22)**: Eigene SEO-Seiten in `vitrine/` fuer askd Portrait, Smart City Dornbirn, Ars Electronica 2022. Template mit Hero-Bild, Schema.org, Breadcrumbs, Text aus Originalquellen, Link zum Original. vitrine.js verlinkt intern auf diese Seiten.
+  - **Cache-Bust**: vitrine.js auf `?v=4` in vitrine.html
 
 ### Versionen und Rollback (wichtig!)
 
@@ -160,6 +172,8 @@ Live-Vorschau: https://wuola.github.io/iappear-website/
 - **Hero-Layout** insgesamt — Nutzerin Vermerk: "da pass sowieso was mit dem layout nicht" — Feinschliff sobald alles drauf ist
 - **Team-Fotos** (Marilena + Maggy) — Nutzerin reicht nach, aktuell Platzhalter mit TODO-Kommentaren
 - **2 fehlende Vitrine-Bilder**: Florenz 2023, Podiumsdiskussion PH Vorarlberg
+- **19 Vitrine-Artikel-Seiten** noch zu erstellen (3/22 fertig, siehe Seitenstruktur oben)
+- **2 Vitrine-Links Platzhalter**: "Schafferei Traumjob" + "Podiumsdiskussion PH" zeigen auf falsche Meetup-URL — Nutzerin liefert echte Links nach
 - AGB & Datenschutz Volltexte (siehe `_doku/recon/readymag-editor-legal-toc.md`)
 - **Yellow Widgets** noch nicht eingebaut (siehe `_doku/recon/widgets/INDEX.md`):
   - `ia-guide-container-*.html` -> User Guide Slider mit Bild/Video-Rotation
