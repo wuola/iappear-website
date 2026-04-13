@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Digitale Stadtrundgaenge &amp; Audioguides in Vorarlberg | i.appear</title>
+  <meta name="description" content="Alle digitalen Stadtrundgaenge und Audioguides von i.appear auf einen Blick: Dornbirn, Feldkirch, Bregenz, Hard, Au im Bregenzerwald und weitere Orte in Vorarlberg, Bodenseeregion und darueber hinaus." />
+  <meta name="author" content="Marilena Tumler e.U." />
+  <link rel="canonical" href="https://iappear.at/stadtrundgaenge/" />
+  <meta property="og:site_name" content="i.appear" />
+  <meta property="og:locale" content="de_AT" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Digitale Stadtrundgaenge und Audioguides in Vorarlberg | i.appear" />
+  <meta property="og:description" content="Alle digitalen Stadtrundgaenge und Audioguides von i.appear: Dornbirn, Feldkirch, Bregenz, Hard, Au und weitere Orte." />
+  <meta property="og:url" content="https://iappear.at/stadtrundgaenge/" />
+  <meta property="og:image" content="https://iappear.at/assets/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Digitale Stadtrundgaenge und Audioguides in Vorarlberg | i.appear" />
+  <meta name="twitter:description" content="Alle digitalen Stadtrundgaenge und Audioguides von i.appear: Dornbirn, Feldkirch, Bregenz, Hard, Au und weitere Orte." />
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <link rel="apple-touch-icon" href="assets/favicon.png" />
+
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+
+  <!-- Leaflet CSS fuer die Karte (OpenStreetMap, DSGVO-konform) -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+
+  <!-- Schema: BreadcrumbList + ItemList -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://iappear.at/" },
+          { "@type": "ListItem", "position": 2, "name": "Stadtrundgaenge", "item": "https://iappear.at/stadtrundgaenge/" }
+        ]
+      },
+      {
+        "@type": "ItemList",
+        "name": "Digitale Stadtrundgaenge in Vorarlberg und Bodenseeregion",
+        "description": "Alle Orte mit digitalen Stadtrundgaengen und Audioguides von i.appear",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Stadtrundgang Dornbirn", "url": "https://iappear.at/stadtrundgang-dornbirn/" },
+          { "@type": "ListItem", "position": 2, "name": "Stadtrundgang Feldkirch", "url": "https://iappear.at/stadtrundgang-feldkirch/" },
+          { "@type": "ListItem", "position": 3, "name": "Stadtrundgang Hard am Bodensee", "url": "https://iappear.at/stadtrundgang-hard/" },
+          { "@type": "ListItem", "position": 4, "name": "Stadtrundgang Au im Bregenzerwald", "url": "https://iappear.at/stadtrundgang-au/" },
+          { "@type": "ListItem", "position": 5, "name": "Stadtrundgang Bregenz", "url": "https://iappear.at/stadtrundgang-bregenz/" }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    /* Karten-Container */
+    .map-wrap { position: relative; width: 100%; height: 420px; border-radius: var(--radius-card); overflow: hidden; margin-bottom: var(--sp-4); border: 1px solid rgba(255,255,255,.12); }
+    @media (max-width: 600px) { .map-wrap { height: 320px; } }
+
+    /* Ort-Karten */
+    .ort-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: var(--sp-3); margin-top: var(--sp-3); }
+    .ort-card { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: var(--radius-card); padding: var(--sp-4); transition: border-color .25s, background .25s; }
+    .ort-card:hover { border-color: rgba(255,255,255,.25); background: rgba(255,255,255,.07); }
+    .ort-card h3 { margin: 0 0 var(--sp-1); }
+    .ort-card .ort-count { font-size: .85rem; color: var(--c-text-muted); margin-bottom: var(--sp-2); }
+    .ort-card .ort-tags { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: var(--sp-2); }
+    .ort-card .ort-tag { font-size: .75rem; padding: .15rem .55rem; border-radius: var(--radius); border: 1px solid; opacity: .8; }
+    .ort-tag--history { color: var(--c-history); border-color: var(--c-history); }
+    .ort-tag--dentity { color: var(--c-dentity); border-color: var(--c-dentity); }
+    .ort-tag--grow { color: var(--c-grow); border-color: var(--c-grow); }
+
+    /* Leaflet Popup */
+    .leaflet-popup-content-wrapper { background: #1a1a1a; color: #fff; border-radius: 10px; }
+    .leaflet-popup-tip { background: #1a1a1a; }
+    .leaflet-popup-content a { color: #fff; text-decoration: underline; }
+
+    /* Coming-soon Karte */
+    .ort-card--soon { opacity: .55; }
+    .ort-card--soon h3::after { content: " (bald)"; font-size: .75em; color: var(--c-text-muted); font-weight: 400; }
+  </style>
+</head>
+<body>
+  <header class="nav"><div class="nav__inner">
+    <a class="nav__brand" href="index.html">i.appear</a>
+    <nav class="nav__links">
+      <a href="index.html#features">Features</a>
+      <a href="index.html#kategorien">Kategorien</a>
+      <a href="workflow.html">Leistungen</a>
+      <a href="index.html#ueber-uns">Ueber uns</a>
+      <a href="kontakt.html">Kontakt</a>
+      <a href="index.html#vitrine">Vitrine</a>
+      <a href="user-guide.html">User Guide</a>
+    </nav>
+    <button class="nav__burger" data-menu-toggle aria-label="Menue oeffnen"><span></span></button>
+  </div></header>
+
+    <div id="menu" class="menu" role="dialog" aria-modal="true" aria-label="Menue">
+    <button class="menu__close" data-menu-close aria-label="Menue schliessen">&times;</button>
+    <div class="menu__group">
+      <h4 class="menu__heading">Die Plattform</h4>
+      <ul class="menu__list">
+        <li><a href="user-guide.html">i.appear User Guide</a></li>
+        <li><a href="index.html#kategorien">Unsere Kategorien</a></li>
+        <li><a href="i-history.html" class="c-history">i.history &ndash; Zeitreisen</a></li>
+        <li><a href="i-dentity.html" class="c-dentity">i.dentity &ndash; Erlebnisse</a></li>
+        <li><a href="i-grow.html" class="c-grow">i.grow &ndash; Medienbildung</a></li>
+        <li><a href="index.html#features">Features</a></li>
+      </ul>
+    </div>
+    <div class="menu__group">
+      <h4 class="menu__heading">Stadtrundgaenge</h4>
+      <ul class="menu__list">
+        <li><a href="stadtrundgaenge.html">Alle Orte</a></li>
+        <li><a href="stadtrundgang-dornbirn.html">Dornbirn</a></li>
+        <li><a href="stadtrundgang-feldkirch.html">Feldkirch</a></li>
+        <li><a href="stadtrundgang-hard.html">Hard am Bodensee</a></li>
+        <li><a href="stadtrundgang-au.html">Au im Bregenzerwald</a></li>
+      </ul>
+    </div>
+    <div class="menu__group">
+      <h4 class="menu__heading">Backstage</h4>
+      <ul class="menu__list">
+        <li><a href="workflow.html">Workflow und Leistungen</a></li>
+        <li><a href="index.html#vitrine">Vitrine</a></li>
+        <li><a href="index.html#ueber-uns">Ueber uns</a></li>
+        <li><a href="kontakt.html">Kontakt</a></li>
+        <li><a href="faqs.html">FAQs</a></li>
+        <li><a href="agb.html">AGB</a></li>
+        <li><a href="impressum.html">Impressum</a></li>
+        <li><a href="datenschutz.html">Datenschutz</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <main>
+    <nav class="breadcrumb container" aria-label="Breadcrumb"><ol><li><a href="index.html">Startseite</a></li><li><span aria-current="page">Stadtrundgaenge</span></li></ol></nav>
+
+    <header class="page-header container">
+      <p class="eyebrow">i.appear &ndash; digital city tours</p>
+      <h1>Digitale Stadtrundgaenge &amp; Audioguides</h1>
+      <p class="muted">Alle Orte auf einen Blick &ndash; in Vorarlberg, der Bodenseeregion und darueber hinaus</p>
+    </header>
+
+    <!-- Intro -->
+    <section class="section container">
+      <div class="prose">
+        <p>Mit den digitalen Stadtrundgaengen und Audioguides von i.appear entdeckst du Orte in Vorarlberg und der Bodenseeregion auf eine neue Art: multimedial, interaktiv und kostenlos &ndash; direkt im Browser auf deinem Smartphone. An jeder Station erwarten dich 3D-Modelle, Augmented Reality, Audioguide-Beitraege, historische Fotografien und Videos.</p>
+        <p>Unsere Stadtrundgaenge verbinden <strong>Geschichte, Kultur, Tourismus und Medienbildung</strong>. Ob historische Zeitreise, regionaler Erlebnis-Audioguide oder Bildungsprojekt mit Schulen &ndash; waehle deinen Ort und starte deinen Rundgang. <strong>Ohne App-Download, ohne Registrierung, ohne Werbung.</strong></p>
+      </div>
+    </section>
+
+    <!-- Karte -->
+    <section class="section container">
+      <h2>Unsere Standorte</h2>
+      <div class="map-wrap" id="karte"></div>
+    </section>
+
+    <!-- Ort-Karten -->
+    <section class="section container">
+      <h2>Waehle deinen Ort</h2>
+
+      <div class="ort-grid">
+
+        <!-- Dornbirn -->
+        <a href="stadtrundgang-dornbirn.html" class="ort-card" style="text-decoration:none;color:inherit">
+          <h3>Dornbirn</h3>
+          <p class="ort-count">10+ Stadtrundgaenge &amp; Audioguides</p>
+          <div class="ort-tags">
+            <span class="ort-tag ort-tag--history">Zeitreisen</span>
+            <span class="ort-tag ort-tag--dentity">Erlebnisse</span>
+            <span class="ort-tag ort-tag--grow">Medienbildung</span>
+          </div>
+          <p class="muted">Von der grossen Zeitreise durch 600 Jahre Stadtgeschichte bis zum sprechenden Baum im Messepark &ndash; Dornbirn ist das Herzstueck von i.appear mit den meisten Rundgaengen.</p>
+        </a>
+
+        <!-- Feldkirch -->
+        <a href="stadtrundgang-feldkirch.html" class="ort-card" style="text-decoration:none;color:inherit">
+          <h3>Feldkirch</h3>
+          <p class="ort-count">3 Stadtrundgaenge</p>
+          <div class="ort-tags">
+            <span class="ort-tag ort-tag--history">Zeitreisen</span>
+            <span class="ort-tag ort-tag--grow">Medienbildung</span>
+          </div>
+          <p class="muted">Barockbaumeister, Bombenabwuerfe 1943 und ein Schulprojekt &ndash; Feldkirch verbindet Baukultur und Erinnerungsarbeit mit Medienbildung.</p>
+        </a>
+
+        <!-- Hard -->
+        <a href="stadtrundgang-hard.html" class="ort-card" style="text-decoration:none;color:inherit">
+          <h3>Hard am Bodensee</h3>
+          <p class="ort-count">1 Stadtrundgang</p>
+          <div class="ort-tags">
+            <span class="ort-tag ort-tag--history">Zeitreisen</span>
+          </div>
+          <p class="muted">Die See Runde fuehrt entlang des Bodenseeufers durch 200 Jahre Ortsgeschichte &ndash; begleitet vom Harder Original Fiffi.</p>
+        </a>
+
+        <!-- Au -->
+        <a href="stadtrundgang-au.html" class="ort-card" style="text-decoration:none;color:inherit">
+          <h3>Au im Bregenzerwald</h3>
+          <p class="ort-count">1 Stadtrundgang</p>
+          <div class="ort-tags">
+            <span class="ort-tag ort-tag--history">Zeitreisen</span>
+          </div>
+          <p class="muted">Auf den Spuren der Vorarlberger Barockbaumeister: Eine Reise von Au ueber Bregenz und Konstanz bis Bezau &ndash; Baukultur trifft Biografie.</p>
+        </a>
+
+        <!-- Bregenz -->
+        <a href="stadtrundgang-bregenz.html" class="ort-card ort-card--soon" style="text-decoration:none;color:inherit">
+          <h3>Bregenz</h3>
+          <p class="ort-count">1 Stadtrundgang</p>
+          <div class="ort-tags">
+            <span class="ort-tag ort-tag--history">Zeitreisen</span>
+          </div>
+          <p class="muted">Roemisches Bregenz: Eine Zeitreise zurueck nach Brigantium mit 3D-Rekonstruktionen und archaeologischen Funden vor Ort.</p>
+        </a>
+
+        <!-- Weitere -->
+        <div class="ort-card ort-card--soon" style="border-style:dashed">
+          <h3 style="color:var(--c-text-muted)">Weitere Orte</h3>
+          <p class="ort-count">Liechtenstein, Sueddeutschland, Schweiz &hellip;</p>
+          <p class="muted">Neue Standorte sind in Planung. Du moechtest einen digitalen Stadtrundgang fuer deinen Ort? <a href="kontakt.html">Kontaktiere uns &rarr;</a></p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Wie funktioniert es -->
+    <section class="section container">
+      <h2>So funktioniert ein digitaler Stadtrundgang</h2>
+      <div class="grid grid-3" style="margin-top:var(--sp-3)">
+        <article class="card center">
+          <p><strong>1. QR-Code scannen</strong></p>
+          <p class="muted">Vor Ort am Startpunkt oder vorab ueber den Link &ndash; der Stadtrundgang oeffnet sich direkt im Browser.</p>
+        </article>
+        <article class="card center">
+          <p><strong>2. Stationen entdecken</strong></p>
+          <p class="muted">Folge der Karte zu den Stationen. GPS schaltet die Inhalte frei &ndash; Audioguide, 3D-Modelle, AR und Videos.</p>
+        </article>
+        <article class="card center">
+          <p><strong>3. Erleben und staunen</strong></p>
+          <p class="muted">Tauche ein in Geschichte und Kultur. Kein Download, kein Konto, keine Werbung &ndash; einfach losgehen.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section container center">
+      <h2>Eigenen Stadtrundgang erstellen?</h2>
+      <p>Wir entwickeln digitale Stadtrundgaenge und Audioguides fuer Staedte, Gemeinden, Museen und Schulen &ndash; massgeschneidert und multimedial.</p>
+      <a href="kontakt.html" class="btn">Jetzt anfragen &rarr;</a>
+    </section>
+
+  </main>
+
+  <footer class="footer"><div class="container">
+    <div class="footer__bottom">
+      <small>&copy; Marilena Tumler e.U. &ndash; Mozartstrasse 5 | 16, 6850 Dornbirn</small>
+      <a href="index.html" class="back-up-inline">zurueck zur Startseite &rarr;</a>
+    </div>
+  </div></footer>
+
+  <a href="#" class="back-up" data-back-up aria-label="Nach oben"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" aria-hidden="true"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg></a>
+
+  <script src="js/main.js"></script>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+  <script>
+  (function () {
+    var map = L.map('karte', {
+      scrollWheelZoom: false,
+      attributionControl: true
+    }).setView([47.38, 9.75], 10);
+
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/">CARTO</a>',
+      subdomains: 'abcd',
+      maxZoom: 17
+    }).addTo(map);
+
+    var orte = [
+      { name: 'Dornbirn',           lat: 47.4125, lng: 9.7417, count: '10+', url: 'stadtrundgang-dornbirn.html' },
+      { name: 'Feldkirch',          lat: 47.2387, lng: 9.5983, count: '3',   url: 'stadtrundgang-feldkirch.html' },
+      { name: 'Hard am Bodensee',   lat: 47.4856, lng: 9.6928, count: '1',   url: 'stadtrundgang-hard.html' },
+      { name: 'Au (Bregenzerwald)', lat: 47.3167, lng: 9.9833, count: '1',   url: 'stadtrundgang-au.html' },
+      { name: 'Bregenz',            lat: 47.5033, lng: 9.7472, count: '1',   url: 'stadtrundgang-bregenz.html' }
+    ];
+
+    var icon = L.divIcon({
+      className: '',
+      html: '<div style="width:14px;height:14px;background:#fff;border-radius:50%;border:3px solid #D3A54A;box-shadow:0 0 8px rgba(211,165,74,.5)"></div>',
+      iconSize: [14, 14],
+      iconAnchor: [7, 7],
+      popupAnchor: [0, -12]
+    });
+
+    orte.forEach(function (o) {
+      L.marker([o.lat, o.lng], { icon: icon })
+        .addTo(map)
+        .bindPopup('<strong>' + o.name + '</strong><br>' + o.count + ' Rundgang' + (o.count !== '1' ? 'e' : '') + '<br><a href="' + o.url + '">Ansehen &rarr;</a>');
+    });
+  })();
+  </script>
+</body>
+</html>
