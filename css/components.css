@@ -754,6 +754,9 @@ span.feature-list__icon {
   transition: opacity .2s var(--ease);
 }
 .partner-logo img:hover { opacity: 1; }
+/* Opt-out vom Weiss-Filter fuer Logos die ihre eigenen Farben mitbringen
+   (z.B. vorarlberg-wort.svg mit weissem Wappen + schwarzem V) */
+.partner-logo--raw img { filter: none; }
 .partner-uniwien {
   display: grid; gap: var(--sp-2);
   grid-template-columns: 1fr;
