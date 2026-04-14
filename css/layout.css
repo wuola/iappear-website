@@ -71,7 +71,23 @@
   text-align: center; align-items: center;
 }
 @media (min-width: 960px) {
-  .hero__left { text-align: left; align-items: flex-start; gap: var(--sp-2); }
+  /* Hero-left als Grid mit 4 Rows:
+       1. claim (oben, buendig zum Logo)
+       2. flexibler Spacer (1fr)
+       3. stage/laurel (buendig mit i.history rechts)
+       4. flexibler Spacer (1.5fr — etwas mehr Raum unten,
+          damit der Laurel optisch nach oben gezogen wird) */
+  .hero__left {
+    text-align: left;
+    align-self: stretch;
+    display: grid;
+    grid-template-rows: auto 1fr auto 1.5fr;
+    gap: 0;
+    height: 100%;
+    justify-items: start;
+  }
+  .hero__left .hero__claim { grid-row: 1; margin: 0; }
+  .hero__left .hero__stage { grid-row: 3; }
 }
 .hero__mid   { display: flex; flex-direction: column; align-items: center; text-align: center; gap: var(--sp-1); }
 .hero__right {
