@@ -53,11 +53,11 @@ window.IAPPEAR_RUNDGAENGE = {
         ]
       },
       {
-        name: "Feldkirch",
+        name: "Au im Bregenzerwald",
         rundgaenge: [
           {
             titel: "Barockbaumeister",
-            kurz: "Auf den Spuren der Vorarlberger Barockbaumeister-Schule rund um Feldkirch.",
+            kurz: "Barockbaumeister Franz Beer führt auf einer Reise von Au über Bregenz und Konstanz bis Bezau durch sein Leben.",
             status: "aktiv"
           }
         ]
