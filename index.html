@@ -22,10 +22,10 @@
   <link rel="icon" type="image/png" href="assets/favicon.png" />
   <link rel="apple-touch-icon" href="assets/favicon.png" />
 
-  <link rel="stylesheet" href="css/global.css?v=20260414m" />
-  <link rel="stylesheet" href="css/layout.css?v=20260414k" />
-  <link rel="stylesheet" href="css/components.css?v=20260414m" />
-  <link rel="stylesheet" href="css/animations.css?v=20260414k" />
+  <link rel="stylesheet" href="css/global.css?v=20260414n" />
+  <link rel="stylesheet" href="css/layout.css?v=20260414n" />
+  <link rel="stylesheet" href="css/components.css?v=20260414n" />
+  <link rel="stylesheet" href="css/animations.css?v=20260414n" />
 
   <!-- Schema.org strukturierte Daten: Organization + WebSite + LocalBusiness.
        Hilft Suchmaschinen, Google/Bing-Rich-Snippets und LLMs, den Kontext
@@ -89,7 +89,7 @@
   <!-- ========== NAVIGATION ========== -->
   <header class="nav" role="banner">
     <div class="nav__inner">
-      <a class="nav__brand" href="index.html" aria-label="i.appear Startseite"><img src="assets/svg/logos/logo-mark-weiss.svg?v=20260414m" alt="i.appear" /></a>
+      <a class="nav__brand" href="index.html" aria-label="i.appear Startseite"><img src="assets/svg/logos/logo-mark-weiss.svg?v=20260414n" alt="i.appear" /></a>
       <nav class="nav__links" aria-label="Hauptnavigation">
         <a href="stadtrundgaenge.html">Stadtrundgänge</a>
         <a href="features.html">Features</a>
@@ -146,6 +146,34 @@
 
     <!-- ========== SEKTION 2: HERO ========== -->
     <section class="section hero container">
+      <!-- Dekorative Hintergrund-Ebene: Signal-Punkte, die an duennen
+           Leitungen entlang laufen. Rekonstruiert aus Readymag-Widget
+           "glow-pure" (3 Varianten, alle gleich). Bleibt hinter allen
+           anderen Hero-Elementen, ist aria-hidden + pointer-events: none. -->
+      <div class="hero__glow" aria-hidden="true">
+        <svg viewBox="0 0 1000 500" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <filter id="hero-glow-pure" x="-100%" y="-100%" width="300%" height="300%">
+              <feGaussianBlur stdDeviation="3" result="blur"/>
+              <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+            </filter>
+          </defs>
+          <g class="hero__glow-wires" fill="none" stroke="#ffffff" stroke-width="1" stroke-dasharray="4,6" opacity=".18">
+            <path d="M500,50 V250"/>
+            <path d="M500,250 H250 V400"/>
+            <path d="M500,250 H750 V400"/>
+          </g>
+          <g filter="url(#hero-glow-pure)" fill="#ffffff" opacity=".4">
+            <circle cx="500" cy="50" r="4"/>
+            <circle cx="250" cy="400" r="4"/>
+            <circle cx="750" cy="400" r="4"/>
+          </g>
+          <circle class="hero__glow-sig sig-root"  filter="url(#hero-glow-pure)" fill="#fff" r="3"/>
+          <circle class="hero__glow-sig sig-left"  filter="url(#hero-glow-pure)" fill="#fff" r="3"/>
+          <circle class="hero__glow-sig sig-right" filter="url(#hero-glow-pure)" fill="#fff" r="3"/>
+        </svg>
+      </div>
+
       <!-- Linke Spalte: Claim-Text + Lorbeerkranz mit Awards (kleiner als vorher) -->
       <div class="hero__left">
         <p class="eyebrow hero__claim" aria-label="Die Plattform für digitale Erlebnisse">

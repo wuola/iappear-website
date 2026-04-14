@@ -210,9 +210,13 @@ Live-Vorschau: https://wuola.github.io/iappear-website/
 - **Team-Fotos** (Marilena + Maggy) — Nutzerin reicht nach, aktuell Platzhalter mit TODO-Kommentaren
 - **2 fehlende Vitrine-Bilder**: Florenz 2023, Podiumsdiskussion PH Vorarlberg
 - **2 Vitrine-Links Platzhalter**: "Schafferei Traumjob" + "Podiumsdiskussion PH" zeigen auf falsche Meetup-URL — Nutzerin liefert echte Links nach
-- **Restliche Widgets** aus `_doku/recon/widgets/` — nice-to-have Deko, nicht zwingend:
-  - `glow-pure-*.html` -> animierte Signal-Punkte auf Linien-Netzwerk (Hintergrund-Deko)
-  - `header-anim-container-27ac988ab3.html` -> "Die Plattform fuer digitale Erlebnisse" 4-Zeilen-Drift-Schriftzug fuer Startseite oben links
+- **Restliche Widgets** aus `_doku/recon/widgets/` — Stand nach Session 7.1 (2026-04-14):
+  - `glow-pure-*.html` -> **eingebaut** als `.hero__glow` SVG-Layer in `index.html` Hero, CSS-Animation in `components.css` (sig-root / sig-left / sig-right mit offset-path, dash-flow auf wires, `prefers-reduced-motion` respektiert)
+  - `header-anim-container-27ac988ab3.html` -> **eingebaut** als Drift-Hover auf `.hero__claim` in `components.css` (jede der 4 Zeilen driftet beim Hover leicht unterschiedlich)
+  - `i-appear-kranz-v4-fc4f90a579.svg` -> **nicht nötig**, identisch zu unserer `assets/svg/logos/lorbeerkranz.svg` (laeuft schon im Hero mit rotierenden Awards)
+  - `iappear-process-safe-1c5e16a08c.html` -> **nicht nötig**, unsere Version in `workflow.html` hat schon die exakten Labels aus dem Original (Idee & Konzept, Inhalte & Story, Medienproduktion, Abstimmung & Implementierung, Launch & Service)
+  - `ia-guide-container-*`, `ia-guide-nav-*`, `ia-emergency-toggle-*` -> **noch nicht abgeschlossen**: User Guide ist inhaltlich fertig, aber im Original gab es eine **tippende Hand** ("Mickey-Mouse-Hand") die die Icons in der App bedient. Widgets noch NICHT loeschen, Nutzerin will das Detail nachziehen.
+  - Rest (ia-icon-wrapper-*, iappear-scroll-top-container-*, menu-styles-*, iappear-logo-*.svg, network-container-*) -> eigenes sauberes Aequivalent existiert, Recon-Widgets koennen als archiviert gelten
   - (5-Schritt-Prozess fuer workflow.html — erledigt in Session 7)
   - (User Guide A+B Widgets — erledigt in Session 7, Bilder fehlen noch)
   - (Lorbeerkranz-Animation — laeuft schon)
