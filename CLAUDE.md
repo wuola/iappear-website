@@ -13,7 +13,9 @@ Ziel-Domain: iappear.at (Umleitung kommt ganz am Schluss)
 
 ## Berechtigungen (seit 2026-04-14)
 
-`.claude/settings.local.json` hat eine breite Allowlist — routinemaessige Operationen laufen ohne Rueckfrage: Edit/Write/Read, `git add/commit/push/diff/status/log/branch/checkout/stash/tag/fetch/pull`, `git reset --soft`, `python`, `cp/mv/mkdir/touch/ls`, `gh pr/api/run/issue`, WebSearch/WebFetch.
+`.claude/settings.local.json` hat eine breite Allowlist — routinemaessige Operationen laufen ohne Rueckfrage: Edit/Write/Read, `git add/commit/push/diff/status/log/branch/checkout/stash/tag/fetch/pull`, `git reset --soft`, `python`, `cp/mv/mkdir/touch/ls/cd`, `cat/head/tail/wc/echo`, `gh pr/api/run/issue`, WebSearch/WebFetch.
+
+**Wichtig zum Pattern-Matching:** Die Permission-Checks matchen gegen den Kommando-**Anfang**. Bei `cmd1 && cmd2` greift nur der Eintrag fuer `cmd1`. Deshalb nicht `cd "..." && git status ...` prefixen — das matcht `Bash(cd:*)`, nicht `Bash(git status:*)`. Stattdessen: Bash-Kommandos einzeln absetzen (Working Directory persistiert zwischen Calls) ODER mit `git -C "<pfad>" ...` arbeiten.
 
 **Deny-Liste als Sicherheitsnetz** — diese Befehle erfordern weiterhin Zustimmung der Nutzerin:
 - `git push --force` / `-f` / `--force-with-lease` (kein History-Overwrite auf GitHub)
@@ -202,7 +204,7 @@ Live-Vorschau: https://wuola.github.io/iappear-website/
 
 ### Was noch offen ist
 - **User Guide Phone-Screenshots** (Nutzerin liefert nach): pro Schritt 1 Bild, 8 insgesamt. Ablage `assets/images/user-guide/a1.png`..`a4.png` + `b1.png`..`b4.png`. Sobald da, im Script-Block von `user-guide.html` die `img: null` Eintraege auf den Pfad setzen.
-- **Netzwerk-Visualisierung Startseite** — Nutzerin will neu, der Versuch von 2026-04-13 (uncommitted auf main) ist nicht was sie wollte. Konzept offen.
+- **Netzwerk-Visualisierung Startseite** (Stand 2026-04-14): Refactor-Versuch vom 13.04. ist jetzt **committed + live** zum Anschauen (`ba6009f`). Zeigt 9 Dornbirner Rundgaenge (4 history links, 3 dentity rechts, 2 grow unten) verbunden mit 13 Stationen in der Mitte, geteilte Stationen werden automatisch groesser + farbig (mehrfarbige Ringe). Datenschicht `js/data/netzwerk.js` mit "HIER BEARBEITEN"-Pattern, Rendering in `js/network.js` (483 Zeilen: Layout-Algorithmus mit Abstossung, Bezier-Linien, Hover-Interaktion, Animation). **Stationen sind Platzhalter** (Marktplatz, Rotes Haus, Pfarrkirche, Mohrenbrauerei, Textilweg, Eisengasse, BORG Schoren, Hatlerstrasse, Zanzenberg, Gutle, Rappenloch, Messepark, Stadtarchiv) — echte Tour-Stations-Zuordnung muss die Nutzerin liefern oder aus echten Tour-Daten extrahieren. Nutzerin schaut sich's grade an und entscheidet: so lassen + echte Daten nachziehen, oder rollback auf Session-4.6 Version (134-Zeilen `network.js` mit 7 Knoten + Linien-Animation).
 - **Kategorie-Buttons im Hero** (Nutzerin Vermerk: "sollte glaub ich eigentlich anders ausschauen") — aktuell falsch als `.card__badge` in den Kategorie-Karten
 - **Hero-Layout** insgesamt — Nutzerin Vermerk: "da pass sowieso was mit dem layout nicht" — Feinschliff sobald alles drauf ist
 - **Team-Fotos** (Marilena + Maggy) — Nutzerin reicht nach, aktuell Platzhalter mit TODO-Kommentaren
