@@ -86,10 +86,10 @@
 }
 .hero__stage.is-drawn .hero__award {
   animation: award-rotate 18s ease-in-out infinite;
-  animation-delay: 2.2s;
+  animation-delay: 1.3s;
 }
-.hero__stage.is-drawn .hero__award.is-award-2 { animation-delay: 8.2s; }
-.hero__stage.is-drawn .hero__award.is-award-3 { animation-delay: 14.2s; }
+.hero__stage.is-drawn .hero__award.is-award-2 { animation-delay: 7.3s; }
+.hero__stage.is-drawn .hero__award.is-award-3 { animation-delay: 13.3s; }
 
 @keyframes award-rotate {
   0%               { opacity: 0; transform: translateY(8px); }
