@@ -44,6 +44,7 @@
    Mobile: alles untereinander gestapelt — Claim, Logo+Phones, Kategorie-Links.
    Ab 960px: 3-Spalten-Layout (links Claim, mitte Brand+Phones, rechts Kategorien). */
 .hero {
+  position: relative;            /* fuer absolut positionierte hero__social */
   min-height: auto;
   display: grid;
   grid-template-columns: 1fr;

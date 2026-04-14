@@ -102,21 +102,32 @@
 .cat-link__arrow { font-size: 1.4rem; }
 
 /* Im Hero (nur Landingpage) kompakter: kleinere Schrift, kein Padding,
-   ohne Trennlinien, Pfeil direkt neben Text. */
+   ohne Trennlinien. Fixe Breite damit alle 3 Pfeile auf einer Linie
+   rechts buendig stehen. Subtitel (ZEITREISEN etc.) leicht versetzt
+   direkt unter dem Titel. */
 .hero .cat-link {
   padding: 0;
-  font-size: .95rem;
+  font-size: 1rem;
   border-bottom: 0;
-  justify-content: flex-start;   /* Pfeil nicht mehr ans Ende pushen */
-  gap: .6rem;                    /* Pfeil nah am Text */
-  width: auto;                   /* nicht volle Spaltenbreite */
-  align-self: flex-start;        /* links buendig, nicht stretchen */
+  justify-content: space-between;  /* Titel links, Pfeil rechts */
+  align-items: center;
+  width: 210px;                    /* alle gleich breit -> Pfeile alignen */
+  align-self: flex-start;
+  line-height: 1.15;
 }
 .hero .cat-link small {
-  font-size: .7rem;
-  letter-spacing: .12em;
+  display: inline-block;
+  font-size: .68rem;
+  letter-spacing: .1em;
+  margin-top: 2px;
+  padding-left: .8em;              /* leicht versetzt zum Titel */
+  opacity: .85;
 }
-.hero .cat-link__arrow { font-size: 1rem; }
+.hero .cat-link__arrow {
+  font-size: 1.2rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
 
 /* --- Cards ---------------------------------------------------------------- */
 .card {
@@ -365,7 +376,17 @@ span.feature-list__icon {
   color: #fff;
 }
 @media (min-width: 960px) {
-  .hero__social { justify-content: flex-start; margin-top: var(--sp-2); }
+  /* Social-Icons in die rechte untere Ecke vom Hero.
+     Rausgenommen aus dem flex-Flow von hero__right damit
+     cat-links unabhaengig zentriert werden koennen. */
+  .hero__social {
+    position: absolute;
+    bottom: var(--sp-3);
+    right: var(--sp-3);
+    margin: 0;
+    padding: 0;
+    justify-content: flex-end;
+  }
 }
 
 /* --- Netzwerk-Visualisierung (v2) ----------------------------------------
