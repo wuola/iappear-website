@@ -204,6 +204,9 @@ Live-Vorschau: https://wuola.github.io/iappear-website/
 - Map-Kreis-Deko auf Kategorie-Seiten
 - Domain-Umleitung (ganz am Schluss)
 
+### Build-Schritt: Vitrine statisch
+Bei Aenderungen an `js/data/vitrine.js` MUSS einmal `python build.py` laufen, sonst ist der statische Kachel-Block in `vitrine.html` veraltet. Das Build-Script liest die 22 Eintraege aus der JS-Datei und rendert sie als HTML-Block zwischen `<!-- VITRINE-GRID-START -->` / `<!-- VITRINE-GRID-END -->` rein. Warum ueberhaupt? Weil LLM-Crawler (ChatGPT/Claude/Perplexity/Common Crawl) kein JavaScript rendern — nur was direkt im HTML steht, sehen sie. Der JS-Renderer in `vitrine.js` ist nur Notnagel-Fallback. Komplette Doku: `_doku/vitrine-bearbeiten.md`.
+
 ### Phone-Mockup-Konvention (wichtig fuer Feature-Sektion + Hero!)
 Ueberall wo ein Smartphone+Screen gezeigt werden soll (Hero, Features, Kategorie-Seiten), wird der **CSS-only Mockup** aus `components.css` verwendet — KEINE fertigen Mockup-Bilder!
 
