@@ -62,20 +62,17 @@ Ziel-Domain: iappear.at (Umleitung kommt ganz am Schluss)
 
 Jede Stadtseite hat TouristAttraction Schema, SEO-optimierte Meta-Tags und Breadcrumb: Startseite > Stadtrundgaenge > [Ort]. Neuer Ort? Seite erstellen, Pin in Karte (JS in stadtrundgaenge.html), Sitemap + Burger-Menue updaten.
 
-### Vitrine-Artikel (SEO-Seiten, in Arbeit):
+### Vitrine-Artikel (22/22 fertig):
 
-Ordner `vitrine/`, Breadcrumb: Startseite > Vitrine > [Artikel]. 3 von 22 fertig:
-- vitrine/askd-magazin-portrait-marilena-tumler.html
-- vitrine/smart-city-dornbirn-2022.html
-- vitrine/ars-electronica-2022.html
+Ordner `vitrine/`, Breadcrumb: Startseite > Vitrine > [Artikel]. Alle 22 Kacheln haben eigene SEO-Seiten.
 
-Template basiert auf Blog-Artikeln (`blog/was-ist-ein-digitaler-stadtrundgang.html`). Jede Seite hat Hero-Bild aus `assets/images/vitrine/`, Schema.org BlogPosting, Tags, CTA-Box, Link zum Original. `vitrine.js` verlinkt intern auf fertige Seiten, extern fuer noch nicht erstellte.
+Template basiert auf Blog-Artikeln (`blog/was-ist-ein-digitaler-stadtrundgang.html`). Jede Seite hat Hero-Bild aus `assets/images/vitrine/`, Schema.org BlogPosting, Tags, CTA-Box, Link zum Original. `vitrine.js` verlinkt intern auf alle Seiten. 2 Seiten ohne Bild: Florenz 2023, Podiumsdiskussion PH.
 
 ## Editierbare Datenbereiche (wichtig!)
 
 Diese Dateien sind so gebaut, dass die Nutzerin sie OHNE Code-Kenntnisse bearbeiten kann:
 
-- `js/data/vitrine.js` — Vitrine-Kacheln (22 Eintraege, Links zeigen teils auf interne Artikel-Seiten in `vitrine/`)
+- `js/data/vitrine.js` — Vitrine-Kacheln (22 Eintraege, alle Links zeigen auf interne Artikel-Seiten in `vitrine/`)
 - `js/data/rundgaenge.js` — Rundgaenge fuer alle 3 Kategorien
 
 Beide haben am Anfang einen klaren `HIER BEARBEITEN`-Block mit Anleitung.
@@ -94,7 +91,7 @@ Seit Session 6 zeigen alle Nav-Links auf eigene HTML-Seiten (features.html, vitr
 - Session 1 (Startseite): abgeschlossen
 - Session 2 (Kategorie-Subpages): abgeschlossen
 - Session 3 (Workflow / User Guide / Kontakt): abgeschlossen
-- Session 4 (Rechtliches): teilweise (Impressum + FAQs fertig, AGB + Datenschutz noch Stub)
+- Session 4 (Rechtliches): abgeschlossen (Impressum, FAQs, AGB, Datenschutz — alle mit Volltexten)
 - Session 4.5 (Recon-Sync mit Readymag-Editor, 2026-04-10):
   - Komplette Recon aller 11 Readymag-Pages in `_doku/recon/readymag-editor-*.md`
   - workflow.html, user-guide.html, impressum.html, i-dentity.html mit Recon-Texten gesynced
@@ -141,8 +138,16 @@ Seit Session 6 zeigen alle Nav-Links auf eigene HTML-Seiten (features.html, vitr
   - **Hero-Layout nach Readymag-Vorbild**: Lorbeerkranz + Awards kleiner und links, Logo kleiner, Phones nebeneinander (flex-wrap: nowrap) direkt unterm Logo, "JETZT STARTEN" Button unter den Phones, Social Media Icons (Instagram + LinkedIn) rechts unten. Alles above the fold sichtbar.
   - **Phone-Groessen**: `.phone` max 160px breit (vorher 220px), `.hero__logo` max 240px (vorher 460px)
   - **Vitrine-Links**: Alle 22 Kachel-Links aus Readymag extrahiert und in vitrine.js eingetragen (vorher alles `#`)
-  - **Vitrine-Artikel-Seiten (3/22)**: Eigene SEO-Seiten in `vitrine/` fuer askd Portrait, Smart City Dornbirn, Ars Electronica 2022. Template mit Hero-Bild, Schema.org, Breadcrumbs, Text aus Originalquellen, Link zum Original. vitrine.js verlinkt intern auf diese Seiten.
-  - **Cache-Bust**: vitrine.js auf `?v=4` in vitrine.html
+  - **Vitrine-Artikel-Seiten (22/22)**: Alle 22 Kacheln haben eigene SEO-Seiten in `vitrine/`. Template mit Hero-Bild, Schema.org BlogPosting, Breadcrumbs, Text aus Originalquellen, Link zum Original. vitrine.js verlinkt intern auf alle Seiten.
+  - **Vitrine-Bild-Zuordnungen korrigiert**: award.png→ISTD, inno.png→Re-Design, inno2.png→Tourismus-Sonderpreis
+  - **Cache-Bust**: vitrine.js auf `?v=6` in vitrine.html
+- Session 7 (Stand-Check + Aufraeumen + 2 Widgets, 2026-04-14):
+  - Alte claude/* Branches geloescht (friendly-burnell, heuristic-shtern, romantic-sutherland — waren alle in main gemerged)
+  - Stand verifiziert: AGB (15 Sections) + Datenschutz (36 Sections) sind **fertig**, nicht mehr Stub
+  - Lorbeerkranz-Animation mit rotierenden Awards (`data-laurel`, 3 Items, ~6s) laeuft im Hero
+  - **5-Schritt-Prozess in workflow.html**: Horizontale SVG mit 5 nummerierten Kreisen, Mobile-Fallback als gestackte Liste. Inline `<style>` + `<svg>` in `workflow.html`, isoliert von anderen Dateien.
+  - **User Guide komplett neu konzipiert**: Vorher war's EIN Toggle-Widget mit 2 Modi — falsch, weil Pfad A (Rundgaenge) und Pfad B (In meiner Naehe) tatsaechlich **zwei eigenstaendige App-Pfade** sind. Jetzt: ZWEI Widgets nebeneinander (`data-path="A"` / `"B"`), jedes mit eigener Schritt-Nav (1-4), Phone-Mockup, grossem Step-Label rechts. Mobile (<860px): Widgets stapeln. Daten-Struktur in `STEPS = {A: [...], B: [...]}` im Script-Block — `img: null` → Platzhalter, `img: 'pfad'` → echtes Bild. Bildordner: `assets/images/user-guide/` (a1-a4, b1-b4). Nutzerin liefert Screenshots nach.
+  - **Uncommitted auf main (liegen lassen!)**: Netzwerk-Viz Refactor-Versuch (js/data/netzwerk.js neu, js/network.js von ~200 auf 483 Zeilen, components.css, index.html). Nutzerin: "ist nicht was ich wollte" — NICHT committen, NICHT verwerfen, wartet auf neuen Ansatz
 
 ### Versionen und Rollback (wichtig!)
 
@@ -168,21 +173,20 @@ Branch `experiment/startseite-neu` bleibt als Backup erhalten — NICHT loeschen
 Live-Vorschau: https://wuola.github.io/iappear-website/
 
 ### Was noch offen ist
+- **User Guide Phone-Screenshots** (Nutzerin liefert nach): pro Schritt 1 Bild, 8 insgesamt. Ablage `assets/images/user-guide/a1.png`..`a4.png` + `b1.png`..`b4.png`. Sobald da, im Script-Block von `user-guide.html` die `img: null` Eintraege auf den Pfad setzen.
+- **Netzwerk-Visualisierung Startseite** — Nutzerin will neu, der Versuch von 2026-04-13 (uncommitted auf main) ist nicht was sie wollte. Konzept offen.
 - **Kategorie-Buttons im Hero** (Nutzerin Vermerk: "sollte glaub ich eigentlich anders ausschauen") — aktuell falsch als `.card__badge` in den Kategorie-Karten
 - **Hero-Layout** insgesamt — Nutzerin Vermerk: "da pass sowieso was mit dem layout nicht" — Feinschliff sobald alles drauf ist
 - **Team-Fotos** (Marilena + Maggy) — Nutzerin reicht nach, aktuell Platzhalter mit TODO-Kommentaren
 - **2 fehlende Vitrine-Bilder**: Florenz 2023, Podiumsdiskussion PH Vorarlberg
-- **19 Vitrine-Artikel-Seiten** noch zu erstellen (3/22 fertig, siehe Seitenstruktur oben)
 - **2 Vitrine-Links Platzhalter**: "Schafferei Traumjob" + "Podiumsdiskussion PH" zeigen auf falsche Meetup-URL — Nutzerin liefert echte Links nach
-- AGB & Datenschutz Volltexte (siehe `_doku/recon/readymag-editor-legal-toc.md`)
-- **Yellow Widgets** noch nicht eingebaut (siehe `_doku/recon/widgets/INDEX.md`):
-  - `ia-guide-container-*.html` -> User Guide Slider mit Bild/Video-Rotation
-  - `iappear-process-safe-1c5e16a08c.html` -> 5-Schritt-Prozess SVG fuer workflow.html
-  - `glow-pure-*.html` -> Glow-Effekt fuer i-dentity
-  - `ia-emergency-toggle-*.html` -> Toggle-Widget fuer i-history
-  - `header-anim-container-27ac988ab3.html` -> Startseite Header-Animation
-  - `i-appear-kranz-v4-fc4f90a579.svg` -> animierter Lorbeerkranz (Alternative zum statischen)
-- Awards-Animation auf dem Lorbeerkranz
+- **Restliche Widgets** aus `_doku/recon/widgets/` — nice-to-have Deko, nicht zwingend:
+  - `glow-pure-*.html` -> animierte Signal-Punkte auf Linien-Netzwerk (Hintergrund-Deko)
+  - `header-anim-container-27ac988ab3.html` -> "Die Plattform fuer digitale Erlebnisse" 4-Zeilen-Drift-Schriftzug fuer Startseite oben links
+  - (5-Schritt-Prozess fuer workflow.html — erledigt in Session 7)
+  - (User Guide A+B Widgets — erledigt in Session 7, Bilder fehlen noch)
+  - (Lorbeerkranz-Animation — laeuft schon)
+  - (Toggle Karte/Koffer — gehoert in den User Guide; aktuell weggelassen weil ohne echte Inhalte unnoetig komplex)
 - Map-Kreis-Deko auf Kategorie-Seiten
 - Domain-Umleitung (ganz am Schluss)
 

@@ -102,77 +102,214 @@
       <p><strong>Es gibt zwei Wege, die du gehen kannst:</strong></p>
     </section>
 
-    <!-- ========== INTERAKTIVE DEMO ==========
-         Portiert aus _doku/recon/widgets/ia-guide-container-*.html
-         4 Schritte + Toggle (Rundgaenge / In meiner Naehe).
-         Der Toggle wechselt die Visualisierung im Phone-Mockup und
-         passt den Text rechts an. -->
-    <section class="section container">
-      <div class="ia-demo" data-ia-demo>
-        <div class="ia-demo__toggle">
-          <button class="ia-demo__toggle-btn is-active" type="button" data-mode="rundgaenge">
-            <span class="ia-demo__toggle-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="3" y="8" width="18" height="12" rx="2"/>
-                <path d="M8 8V6a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
-              </svg>
-            </span>
-            Rundgaenge
-          </button>
-          <button class="ia-demo__toggle-btn" type="button" data-mode="naehe">
-            <span class="ia-demo__toggle-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <polygon points="1 6 8 2 15 6 22 2 22 18 15 22 8 18 1 22 1 6"/>
-                <line x1="8" y1="2" x2="8" y2="18"/>
-                <line x1="15" y1="6" x2="15" y2="22"/>
-              </svg>
-            </span>
-            In meiner Naehe
-          </button>
-        </div>
+    <!-- ========== INTERAKTIVE DEMO (2 Widgets nebeneinander) ==========
+         Nachgebaut aus _doku/recon/widgets/ia-guide-container-*.html (PATH A + PATH B).
+         Im Original waren das 2 Phone-Mockups nebeneinander mit getrennter
+         Schritt-Navigation, jeweils 4 Schritte. Wir machen das genauso.
 
-        <div class="ia-demo__stage">
-          <div class="phone ia-demo__phone">
-            <div class="phone__screen ia-demo__screen" data-ia-screen>
-              <div class="ia-demo__label">Schritt 1</div>
-              <div class="ia-demo__icon-large" data-ia-screen-icon aria-hidden="true">&#127758;</div>
-              <strong class="ia-demo__screen-title" data-ia-screen-title>Region waehlen</strong>
-            </div>
-          </div>
+         BILDER (Platzhalter — Nutzerin liefert nach):
+         Pfad: assets/images/user-guide/
+         Dateien: a1.png, a2.png, a3.png, a4.png  (Pfad A: Rundgaenge)
+                  b1.png, b2.png, b3.png, b4.png  (Pfad B: In meiner Naehe)
+         Sobald die Bilder im Ordner liegen, einfach unten im JS die
+         Eintraege "img: null" auf "img: 'assets/images/user-guide/aX.png'" setzen
+         (oder gleich alle Eintraege einkommentieren).
 
-          <div class="ia-demo__info">
-            <p class="eyebrow" data-ia-step>Schritt 1 von 4</p>
-            <h3 data-ia-title>Region waehlen</h3>
-            <p data-ia-text>Waehle die Region, in der du dich gerade befindest, oder lass i.appear deinen Standort erkennen.</p>
-            <div class="ia-demo__nav">
-              <button class="btn btn--ghost" type="button" data-ia-prev aria-label="Vorheriger Schritt">&larr;</button>
-              <button class="btn btn--ghost" type="button" data-ia-next aria-label="Naechster Schritt">&rarr;</button>
+         Mobile (<860px): Widgets stapeln untereinander. -->
+    <section class="section">
+      <div class="container">
+        <div class="ug-stage">
+
+          <!-- ============ PFAD A: RUNDGAENGE ============ -->
+          <article class="ug-widget" data-ug data-path="A">
+            <header class="ug-widget__head">
+              <span class="ug-widget__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1"/></svg>
+              </span>
+              <h3>Rundgaenge</h3>
+            </header>
+
+            <div class="ug-widget__nav">
+              <button type="button" class="ug-nav-btn" data-ug-prev aria-label="Schritt zurueck">&larr;</button>
+              <span class="ug-nav-label" data-ug-step>Schritt 1</span>
+              <button type="button" class="ug-nav-btn" data-ug-next aria-label="Naechster Schritt">&rarr;</button>
             </div>
-          </div>
+
+            <div class="ug-widget__body">
+              <div class="phone ug-phone">
+                <div class="phone__screen ug-screen" data-ug-screen>
+                  <!-- Wird per JS gefuellt: entweder <img> oder Platzhalter -->
+                </div>
+              </div>
+
+              <div class="ug-label" data-ug-label>
+                <span class="ug-label__num">1</span>
+                <span class="ug-label__text">REGION<br>WAEHLEN</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- ============ PFAD B: IN MEINER NAEHE ============ -->
+          <article class="ug-widget" data-ug data-path="B">
+            <header class="ug-widget__head">
+              <span class="ug-widget__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+              </span>
+              <h3>In meiner Naehe</h3>
+            </header>
+
+            <div class="ug-widget__nav">
+              <button type="button" class="ug-nav-btn" data-ug-prev aria-label="Schritt zurueck">&larr;</button>
+              <span class="ug-nav-label" data-ug-step>Schritt 1</span>
+              <button type="button" class="ug-nav-btn" data-ug-next aria-label="Naechster Schritt">&rarr;</button>
+            </div>
+
+            <div class="ug-widget__body">
+              <div class="phone ug-phone">
+                <div class="phone__screen ug-screen" data-ug-screen>
+                </div>
+              </div>
+
+              <div class="ug-label" data-ug-label>
+                <span class="ug-label__num">1</span>
+                <span class="ug-label__text">STANDORT<br>ERLAUBEN</span>
+              </div>
+            </div>
+          </article>
+
         </div>
       </div>
-    </section>
 
-    <section class="section container prose">
-      <h2>In 4 Schritten zum Erlebnis</h2>
-      <ol class="grid grid-2" style="list-style:none; padding:0; margin-top:var(--sp-3); gap:var(--sp-3)">
-        <li class="card">
-          <h3>1. Region waehlen</h3>
-          <p>Waehle die Region, in der du dich gerade befindest, oder lass i.appear deinen Standort erkennen.</p>
-        </li>
-        <li class="card">
-          <h3>2. Rundgang waehlen</h3>
-          <p>Suche dir einen Rundgang aus der Liste in deiner Region aus.</p>
-        </li>
-        <li class="card">
-          <h3>3. Station waehlen</h3>
-          <p>Auf der Karte siehst du alle Stationen des Rundgangs. Wandere zur Station &ndash; sie wird automatisch freigeschaltet, sobald du dort ankommst.</p>
-        </li>
-        <li class="card">
-          <h3>4. Inhalt waehlen</h3>
-          <p>Audio, Bilder, Videos, 3D-Modelle, AR &ndash; tippe auf das Element, das dich interessiert, und tauche ein.</p>
-        </li>
-      </ol>
+      <style>
+        .ug-stage {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: var(--sp-4);
+          margin-top: var(--sp-4);
+          align-items: start;
+        }
+        @media (max-width: 860px) {
+          .ug-stage { grid-template-columns: 1fr; gap: var(--sp-5); }
+        }
+
+        .ug-widget {
+          background: rgba(255,255,255,.02);
+          border: 1px solid rgba(255,255,255,.08);
+          border-radius: 24px;
+          padding: var(--sp-3) var(--sp-3) var(--sp-4);
+          display: flex;
+          flex-direction: column;
+          gap: var(--sp-2);
+        }
+        .ug-widget__head {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          color: #fff;
+        }
+        .ug-widget__head h3 {
+          margin: 0;
+          font-size: 1.4rem;
+          letter-spacing: .01em;
+        }
+        .ug-widget__icon {
+          display: inline-flex;
+          color: #fff;
+        }
+
+        .ug-widget__nav {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 14px;
+          background: rgba(0,0,0,.3);
+          border: 1px solid rgba(255,255,255,.1);
+          border-radius: 999px;
+          padding: 6px 10px;
+          align-self: center;
+          backdrop-filter: blur(4px);
+        }
+        .ug-nav-btn {
+          background: #1a1a1a;
+          border: 1px solid rgba(255,255,255,.18);
+          color: #fff;
+          width: 36px; height: 36px;
+          border-radius: 50%;
+          cursor: pointer;
+          font-size: 16px;
+          line-height: 1;
+          transition: background .2s, transform .2s;
+        }
+        .ug-nav-btn:hover { background: #2a2a2a; transform: scale(1.05); }
+        .ug-nav-label {
+          color: #fff;
+          font-size: .9rem;
+          min-width: 70px;
+          text-align: center;
+        }
+
+        .ug-widget__body {
+          display: grid;
+          grid-template-columns: minmax(0, 200px) 1fr;
+          gap: var(--sp-3);
+          align-items: center;
+          margin-top: var(--sp-2);
+        }
+
+        .ug-phone {
+          max-width: 200px;
+          margin: 0;
+        }
+        /* Platzhalter im Phone-Screen wenn kein Bild */
+        .ug-screen.is-placeholder {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: linear-gradient(180deg, #1a1a1a 0%, #0a0a0a 100%);
+          color: rgba(255,255,255,.4);
+          font-size: .75rem;
+          text-align: center;
+          padding: 12px;
+          line-height: 1.4;
+        }
+        .ug-screen img,
+        .ug-screen video {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+        }
+
+        .ug-label {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+          color: rgba(255,255,255,.55);
+          font-family: 'Roboto', sans-serif;
+        }
+        .ug-label__num {
+          font-size: 2.2rem;
+          font-weight: 300;
+          line-height: 1;
+          color: rgba(255,255,255,.7);
+        }
+        .ug-label__text {
+          font-size: 1.15rem;
+          font-weight: 600;
+          letter-spacing: .04em;
+          line-height: 1.2;
+        }
+
+        @media (max-width: 540px) {
+          .ug-widget__body {
+            grid-template-columns: 140px 1fr;
+            gap: var(--sp-2);
+          }
+          .ug-phone { max-width: 140px; }
+          .ug-label__num { font-size: 1.8rem; }
+          .ug-label__text { font-size: 1rem; }
+        }
+      </style>
     </section>
 
     <section class="section container prose">
@@ -207,66 +344,77 @@
   <a href="#" class="back-up" data-back-up aria-label="Nach oben"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" aria-hidden="true"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg></a>
   <script src="js/main.js"></script>
   <script>
-    // Interaktive User-Guide-Demo: Toggle + 4 Schritte
+    // ========== USER GUIDE: 2 unabhaengige Widgets (Pfad A + B) ==========
+    // Nutzerin liefert spaeter die Phone-Screenshots in assets/images/user-guide/.
+    // Sobald die Bilder da sind, einfach unten im STEPS-Objekt die Felder
+    // "img" auf den richtigen Pfad setzen — der Rest funktioniert von selbst.
     (function(){
-      const demo = document.querySelector('[data-ia-demo]');
-      if (!demo) return;
 
+      // HIER LIEGEN DIE STEP-DATEN.
+      // img: null = Platzhalter wird angezeigt
+      // img: 'assets/images/user-guide/a1.png' = Bild wird geladen
+      // label: kurzer grosser Text rechts neben dem Phone (max 2 Zeilen)
       const STEPS = {
-        rundgaenge: [
-          { t:'Region waehlen',  x:'Waehle die Region, in der du dich gerade befindest, oder lass i.appear deinen Standort erkennen.', i:'\u{1F30D}' },
-          { t:'Rundgang waehlen', x:'Suche dir einen Rundgang aus der Liste in deiner Region aus.', i:'\u{1F9F3}' },
-          { t:'Station waehlen',  x:'Auf der Karte siehst du alle Stationen des Rundgangs. Wandere zur Station.', i:'\u{1F4CD}' },
-          { t:'Inhalt waehlen',   x:'Audio, Bilder, Videos, 3D-Modelle, AR - tippe auf das Element, das dich interessiert.', i:'\u{1F3AC}' },
+        A: [
+          { num: 1, label: ['REGION',  'WAEHLEN'],         img: null, alt: 'App-Screen: Region waehlen' },
+          { num: 2, label: ['RUNDGANG','WAEHLEN'],         img: null, alt: 'App-Screen: Rundgang waehlen' },
+          { num: 3, label: ['STATION', 'WAEHLEN'],         img: null, alt: 'App-Screen: Station waehlen' },
+          { num: 4, label: ['INHALT',  'WAEHLEN'],         img: null, alt: 'App-Screen: Inhalt waehlen' },
         ],
-        naehe: [
-          { t:'Standort erlauben', x:'Erlaube i.appear den Zugriff auf deinen Standort, damit Stationen in der Naehe gefunden werden.', i:'\u{1F4F1}' },
-          { t:'Stationen in der Naehe', x:'i.appear listet alle Stationen im Umkreis deines Standortes.', i:'\u{1F5FA}' },
-          { t:'Station besuchen', x:'Gehe zur gewaehlten Station - sie wird automatisch freigeschaltet, sobald du dort ankommst.', i:'\u{1F6B6}' },
-          { t:'Inhalt waehlen',   x:'Entdecke Audio, AR, 3D-Modelle und mehr - direkt am Ort.', i:'\u{1F3AC}' },
+        B: [
+          { num: 1, label: ['STANDORT','ERLAUBEN'],        img: null, alt: 'App-Screen: Standort erlauben' },
+          { num: 2, label: ['STATIONEN','IN DER NAEHE'],   img: null, alt: 'App-Screen: Stationen in der Naehe' },
+          { num: 3, label: ['STATION', 'BESUCHEN'],        img: null, alt: 'App-Screen: Station besuchen' },
+          { num: 4, label: ['INHALT',  'WAEHLEN'],         img: null, alt: 'App-Screen: Inhalt waehlen' },
         ],
       };
 
-      let mode = 'rundgaenge';
-      let step = 0;
+      // Initialisiert ein einzelnes Widget (A oder B)
+      function initWidget(widgetEl) {
+        const path = widgetEl.dataset.path;          // "A" oder "B"
+        const steps = STEPS[path];
+        if (!steps) return;
 
-      const $ = (s) => demo.querySelector(s);
-      const stepLbl = $('[data-ia-step]');
-      const title   = $('[data-ia-title]');
-      const text    = $('[data-ia-text]');
-      const screenTitle = $('[data-ia-screen-title]');
-      const screenIcon  = $('[data-ia-screen-icon]');
-      const screenLabel = demo.querySelector('.ia-demo__label');
+        let i = 0;  // aktueller Schritt-Index (0..3)
 
-      function render() {
-        const cur = STEPS[mode][step];
-        stepLbl.textContent = `Schritt ${step+1} von 4`;
-        title.textContent = cur.t;
-        text.textContent = cur.x;
-        screenTitle.textContent = cur.t;
-        screenIcon.textContent = cur.i;
-        screenLabel.textContent = `Schritt ${step+1}`;
-      }
+        const screen   = widgetEl.querySelector('[data-ug-screen]');
+        const labelBox = widgetEl.querySelector('[data-ug-label]');
+        const stepLbl  = widgetEl.querySelector('[data-ug-step]');
+        const prevBtn  = widgetEl.querySelector('[data-ug-prev]');
+        const nextBtn  = widgetEl.querySelector('[data-ug-next]');
 
-      demo.querySelectorAll('[data-mode]').forEach(btn => {
-        btn.addEventListener('click', () => {
-          mode = btn.dataset.mode;
-          demo.querySelectorAll('[data-mode]').forEach(b => b.classList.toggle('is-active', b === btn));
-          step = 0;
+        function render() {
+          const s = steps[i];
+          // Step-Counter
+          stepLbl.textContent = 'Schritt ' + s.num;
+          // Label rechts (Nummer + 2 Zeilen Text)
+          labelBox.innerHTML =
+            '<span class="ug-label__num">' + s.num + '</span>' +
+            '<span class="ug-label__text">' + s.label.join('<br>') + '</span>';
+          // Phone-Screen: Bild oder Platzhalter
+          if (s.img) {
+            screen.classList.remove('is-placeholder');
+            screen.innerHTML = '<img src="' + s.img + '" alt="' + (s.alt || '') + '">';
+          } else {
+            screen.classList.add('is-placeholder');
+            screen.innerHTML = 'App-Screen<br>Pfad ' + path + ' &mdash;<br>Schritt ' + s.num + '<br><small>(Bild folgt)</small>';
+          }
+        }
+
+        prevBtn.addEventListener('click', function(){
+          i = (i - 1 + steps.length) % steps.length;
           render();
         });
-      });
+        nextBtn.addEventListener('click', function(){
+          i = (i + 1) % steps.length;
+          render();
+        });
 
-      demo.querySelector('[data-ia-prev]').addEventListener('click', () => {
-        step = (step - 1 + 4) % 4;
         render();
-      });
-      demo.querySelector('[data-ia-next]').addEventListener('click', () => {
-        step = (step + 1) % 4;
-        render();
-      });
+      }
 
-      render();
+      // Beide Widgets auf der Seite initialisieren
+      document.querySelectorAll('[data-ug]').forEach(initWidget);
     })();
   </script>
 </body>

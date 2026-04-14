@@ -154,6 +154,140 @@
       <p class="muted" style="margin-top:var(--sp-3)">Stationen koennen auch kategorienuebergreifend von verschiedenen Rundgaengen geteilt werden.</p>
     </section>
 
+    <!-- ========== 5-SCHRITT-PROZESS ==========
+         Portiert aus _doku/recon/widgets/iappear-process-safe-1c5e16a08c.html
+         Desktop: horizontales SVG mit 5 nummerierten Kreisen.
+         Mobile (<720px): stacked Liste als semantischer Fallback. -->
+    <section class="section container">
+      <h2 class="center">Vom Konzept zum Launch</h2>
+      <p class="muted center" style="margin-top:var(--sp-1)">Unser Prozess in 5 Schritten &ndash; flexibel und optional.</p>
+
+      <style>
+        .iappear-process {
+          width: 100%;
+          margin-top: var(--sp-4);
+          overflow: visible;
+        }
+        .iappear-process .process-svg {
+          display: block;
+          width: 100%;
+          height: auto;
+          overflow: visible;
+        }
+        .iappear-process .step-line-rect {
+          fill: #fff;
+          x: 13px;
+          width: 30px;
+          height: 2px;
+          y: -1px;
+        }
+        .iappear-process .step-circle {
+          stroke: #fff;
+          stroke-width: 2px;
+          fill: none;
+        }
+        .iappear-process .step-number {
+          fill: #fff;
+          font-family: 'Roboto', sans-serif;
+          font-size: 18px;
+          font-weight: 500;
+          text-anchor: middle;
+          dominant-baseline: central;
+        }
+        .iappear-process .step-label {
+          fill: #fff;
+          font-family: 'Roboto', sans-serif;
+          font-size: 16px;
+          text-anchor: middle;
+          letter-spacing: 0.03em;
+        }
+        .iappear-process .s1 { transform: translate(100px, 80px); }
+        .iappear-process .s2 { transform: translate(300px, 80px); }
+        .iappear-process .s3 { transform: translate(500px, 80px); }
+        .iappear-process .s4 { transform: translate(700px, 80px); }
+        .iappear-process .s5 { transform: translate(900px, 80px); }
+
+        /* Letzter Schritt: Linie weg, die fuehrt ins Nichts */
+        .iappear-process .s5 .step-line-rect { display: none; }
+
+        /* Mobile Fallback: Liste statt SVG */
+        .iappear-process__list {
+          display: none;
+          list-style: none;
+          padding: 0;
+          margin: var(--sp-3) 0 0;
+          gap: var(--sp-2);
+        }
+        .iappear-process__list li {
+          display: flex;
+          align-items: center;
+          gap: var(--sp-2);
+          padding: var(--sp-2) var(--sp-3);
+          border: 1px solid rgba(255,255,255,.15);
+          border-radius: 999px;
+        }
+        .iappear-process__list .num {
+          flex: 0 0 auto;
+          width: 40px; height: 40px;
+          display: inline-flex; align-items: center; justify-content: center;
+          border: 2px solid #fff;
+          border-radius: 50%;
+          font-weight: 500;
+        }
+        .iappear-process__list .lbl {
+          font-size: .95rem;
+        }
+
+        @media (max-width: 720px) {
+          .iappear-process .process-svg { display: none; }
+          .iappear-process__list { display: flex; flex-direction: column; }
+        }
+      </style>
+
+      <div class="iappear-process" aria-label="5-Schritt-Prozess">
+        <svg class="process-svg" viewBox="0 0 1100 220" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <g class="s1">
+            <rect class="step-line-rect"></rect>
+            <circle class="step-circle" cx="0" cy="0" r="28"></circle>
+            <text class="step-number" x="0" y="0">01</text>
+            <text class="step-label" x="0" y="70">Idee &amp; Konzept</text>
+          </g>
+          <g class="s2">
+            <rect class="step-line-rect"></rect>
+            <circle class="step-circle" cx="0" cy="0" r="28"></circle>
+            <text class="step-number" x="0" y="0">02</text>
+            <text class="step-label" x="0" y="70">Inhalte &amp; Story</text>
+          </g>
+          <g class="s3">
+            <rect class="step-line-rect"></rect>
+            <circle class="step-circle" cx="0" cy="0" r="28"></circle>
+            <text class="step-number" x="0" y="0">03</text>
+            <text class="step-label" x="0" y="70">Medienproduktion</text>
+          </g>
+          <g class="s4">
+            <rect class="step-line-rect"></rect>
+            <circle class="step-circle" cx="0" cy="0" r="28"></circle>
+            <text class="step-number" x="0" y="0">04</text>
+            <text class="step-label" x="0" y="64"><tspan x="0">Abstimmung &amp;</tspan><tspan x="0" dy="18">Implementierung</tspan></text>
+          </g>
+          <g class="s5">
+            <rect class="step-line-rect"></rect>
+            <circle class="step-circle" cx="0" cy="0" r="28"></circle>
+            <text class="step-number" x="0" y="0">05</text>
+            <text class="step-label" x="0" y="70">Launch &amp; Service</text>
+          </g>
+        </svg>
+
+        <ol class="iappear-process__list">
+          <li><span class="num">01</span><span class="lbl">Idee &amp; Konzept</span></li>
+          <li><span class="num">02</span><span class="lbl">Inhalte &amp; Story</span></li>
+          <li><span class="num">03</span><span class="lbl">Medienproduktion</span></li>
+          <li><span class="num">04</span><span class="lbl">Abstimmung &amp; Implementierung</span></li>
+          <li><span class="num">05</span><span class="lbl">Launch &amp; Service</span></li>
+        </ol>
+      </div>
+    </section>
+
     <section class="section container center">
       <p class="muted">Da unsere Rundgaenge sich konzeptionell voneinander unterscheiden, haben wir variierende Workflows. Diese sind aber flexibel und optional.</p>
       <p style="margin-top:var(--sp-2)">Du darfst dir das alles gerne durchlesen, du kannst uns aber auch einfach deine Fragen gleich schicken. Oder fuer erste Hilfe kommst du hier zu den <a href="faqs.html">FAQs</a>.</p>
