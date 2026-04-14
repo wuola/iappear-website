@@ -23,35 +23,36 @@
   transform: translateY(0);
 }
 
-/* --- Lorbeerkranz Draw-Anim (Hero) ----------------------------------------
-   Die beiden Kranz-Pfade haben pathLength="1000" (im SVG gesetzt), daher
-   koennen wir mit stroke-dasharray/-dashoffset 1000 unabhaengig von der
-   echten Pfadlaenge animieren. Start: Viewport-Eintritt via IntersectionObserver.
+/* --- Lorbeerkranz Reveal-Anim (Hero) --------------------------------------
+   Symmetrisch von unten nach oben: Ein clip-path-Kreis startet an der
+   Unterkante des Kranzes (50%, 100%) mit radius 0 und waechst nach aussen.
+   Dadurch erscheint zuerst der untere Treffpunkt beider Kranzhaelften,
+   danach wachsen linke und rechte Seite gleichzeitig nach oben.
+   Schneller als frueher (2.2s statt 5s). Start: IntersectionObserver.
 -------------------------------------------------------------------------- */
 .hero__laurel-svg {
   width: 100%;
   height: auto;
   display: block;
   shape-rendering: geometricPrecision;
+  /* Kranz ist initial unsichtbar, clip-path auf Radius 0 am unteren Ende */
+  clip-path: circle(0% at 50% 100%);
+  -webkit-clip-path: circle(0% at 50% 100%);
+  opacity: 0;
 }
 .hero__laurel-svg path {
   stroke: #fff;
   stroke-width: 2;
   fill: none;
-  stroke-dasharray: 1000;
-  stroke-dashoffset: 1000;
-  opacity: 0;
+  opacity: .4;
 }
-.hero__laurel.is-drawn .hero__laurel-svg path {
-  animation: laurel-draw 5s ease-out forwards;
+.hero__laurel.is-drawn .hero__laurel-svg {
+  animation: laurel-reveal 2.2s ease-out forwards;
 }
-.hero__laurel.is-drawn .hero__laurel-svg path:nth-child(2) {
-  animation-delay: .3s;
-}
-@keyframes laurel-draw {
-  0%   { opacity: 0;  stroke-dashoffset: 1000; }
-  5%   { opacity: .6; }
-  100% { opacity: .4; stroke-dashoffset: 0; }
+@keyframes laurel-reveal {
+  0%   { opacity: 0; clip-path: circle(0%   at 50% 100%); -webkit-clip-path: circle(0%   at 50% 100%); }
+  10%  { opacity: 1; }
+  100% { opacity: 1; clip-path: circle(130% at 50% 100%); -webkit-clip-path: circle(130% at 50% 100%); }
 }
 
 /* --- Awards-Rotator (im Kranz mittig) -------------------------------------
@@ -85,10 +86,10 @@
 }
 .hero__stage.is-drawn .hero__award {
   animation: award-rotate 18s ease-in-out infinite;
-  animation-delay: 5s;
+  animation-delay: 2.2s;
 }
-.hero__stage.is-drawn .hero__award.is-award-2 { animation-delay: 11s; }
-.hero__stage.is-drawn .hero__award.is-award-3 { animation-delay: 17s; }
+.hero__stage.is-drawn .hero__award.is-award-2 { animation-delay: 8.2s; }
+.hero__stage.is-drawn .hero__award.is-award-3 { animation-delay: 14.2s; }
 
 @keyframes award-rotate {
   0%               { opacity: 0; transform: translateY(8px); }
@@ -121,7 +122,8 @@
     animation-duration: .01ms !important;
     transition-duration: .01ms !important;
   }
-  .hero__laurel-svg path { stroke-dashoffset: 0; opacity: .4; }
+  .hero__laurel-svg { clip-path: none; -webkit-clip-path: none; opacity: 1; }
+  .hero__laurel-svg path { opacity: .4; }
   .hero__awards li { opacity: 1; transform: none; }
 }
 
