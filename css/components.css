@@ -179,7 +179,7 @@
    Innen kommt entweder Platzhaltertext oder spaeter ein <video> bzw. <img>
    mit object-fit: cover. Das Mockup hat eine Notch und feste Aspect-Ratio. */
 .phone {
-  width: clamp(120px, 20vw, 160px);
+  width: clamp(110px, 16vw, 140px);
   aspect-ratio: 9/19;
   border: 2px solid var(--c-text);
   border-radius: 22px;
@@ -276,7 +276,7 @@ span.feature-list__icon {
   line-height: 1;
 }
 .hero__logo {
-  width: clamp(120px, 18vw, 240px);
+  width: clamp(110px, 14vw, 190px);
   height: auto;
   display: block;
   margin: 0 auto;
@@ -320,13 +320,14 @@ span.feature-list__icon {
 }
 /* Phones direkt unter dem Logo, kein grosser Abstand. */
 .hero__phones {
-  margin-top: var(--sp-1);
+  margin-top: .5rem;
   justify-content: center;
   flex-wrap: nowrap;
+  gap: var(--sp-1);
 }
 /* CTA-Button im Hero */
 .hero__cta {
-  margin-top: var(--sp-2);
+  margin-top: var(--sp-1);
   font-size: .9rem;
   letter-spacing: .15em;
   border-radius: 999px;
@@ -350,142 +351,151 @@ span.feature-list__icon {
   .hero__social { justify-content: flex-end; }
 }
 
-/* --- Netzwerk-Visualisierung ---------------------------------------------
-   Layout-Quelle: _doku/recon/widgets/network-container-afa4fcac0b.html
-   Boxen + Linien sind in JS in Prozent eines 1000x900 viewBox positioniert.
-   Animation: zuerst werden die Linien ueber 8s gezeichnet, danach
-   blenden die Knoten ein. Wird per IntersectionObserver gestartet.
+/* --- Netzwerk-Visualisierung (v2) ----------------------------------------
+   Stations-Netzwerk: zeigt wie Rundgaenge sich Stationen teilen.
+   Touren links/rechts/unten (nach Kategorie), Stationen in der Mitte,
+   Verbindungslinien als Bezier-Kurven. Interaktiv per Hover/Touch.
+   Daten: js/data/netzwerk.js, Logik: js/network.js
    ------------------------------------------------------------------------ */
 .network-viz {
   position: relative;
   width: 100%;
-  aspect-ratio: 1000 / 900;
+  aspect-ratio: 1000 / 700;
   margin: 0 auto;
 }
-.network-viz__svg {
-  position: absolute; inset: 0;
-  width: 100%; height: 100%;
-  overflow: visible;
-  pointer-events: none;
-}
-.network-viz__line {
-  stroke: rgba(255,255,255,.5);
-  stroke-width: 3;
-  stroke-linecap: round;
-  stroke-dasharray: 2000;
-  stroke-dashoffset: 2000;
-  fill: none;
-}
-.network-viz.is-animating .network-viz__line {
-  animation: network-draw-lines 2.8s ease-in-out forwards;
-}
-
-.network-viz__node {
-  position: absolute;
-  border: 4px solid var(--c-text);
-  background: #000;
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  text-align: center;
-  padding: 6px;
-  overflow: hidden;
-  opacity: 0;
-  transform: scale(.8);
-  transform-origin: center;
-}
-.network-viz__node-bg {
-  position: absolute;
-  inset: 0;
+.nw-svg {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  z-index: 0;
-  opacity: .85;
+  overflow: visible;
 }
-.network-viz__node .network-viz__node-label,
-.network-viz__node .network-viz__node-tag {
-  position: relative;
-  z-index: 1;
-}
-/* Bei Knoten mit Bild: Label als klarer Text mit dunkler Shadow-Gradient, die
-   nur unten aufliegt, damit das Bild im oberen Bereich frei bleibt. */
-.network-viz__node.has-image::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to bottom, rgba(0,0,0,0) 40%, rgba(0,0,0,.75) 100%);
-  z-index: 0;
-  pointer-events: none;
-}
-.network-viz__node.has-image .network-viz__node-label {
-  align-self: end;
-  margin-bottom: 4px;
-  font-weight: 500;
-}
-.network-viz.is-animating .network-viz__node {
-  animation: network-fade-in .9s ease-out 1.5s forwards;
-}
-.network-viz__node.is-center {
-  background: #fff;
-  color: #000;
-  border-color: #fff;
-}
-.network-viz__node.is-soon {
+
+/* --- Verbindungslinien --------------------------------------------------- */
+.nw-line {
+  fill: none;
+  stroke-width: 1.5;
+  stroke-linecap: round;
   opacity: 0;
+  stroke-dasharray: 1500;
+  stroke-dashoffset: 1500;
+  transition: opacity .3s, stroke-width .3s;
 }
-.network-viz.is-animating .network-viz__node.is-soon {
-  animation: network-fade-in-soon .9s ease-out 1.5s forwards;
-}
-.network-viz__node-label {
-  font-family: var(--f-serif);
-  font-size: clamp(.55rem, .95vw, .8rem);
-  line-height: 1.2;
-  text-shadow: 0 0 4px rgba(0,0,0,.85), 0 0 2px rgba(0,0,0,.85);
-  word-break: normal;
-  overflow-wrap: break-word;
-  hyphens: auto;
-  padding: 0 2px;
-}
-.network-viz__node.is-center {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-.network-viz__node.is-center .network-viz__node-label {
-  text-shadow: none;
-  text-transform: uppercase;
-  letter-spacing: .05em;
-  font-size: clamp(.45rem, .7vw, .6rem);
-  word-break: keep-all;
-  white-space: normal;
-  line-height: 1.25;
-}
-.network-viz__node-tag {
-  display: block;
-  margin-top: 4px;
-  font-size: .55rem;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  opacity: .75;
+.network-viz.is-animating .nw-line {
+  opacity: .25;
+  animation: nw-draw 1.8s ease-out forwards;
 }
 
-@keyframes network-draw-lines {
-  from { stroke-dashoffset: 2000; }
-  to   { stroke-dashoffset: 0; }
+/* --- Stationen (Kreise + Labels) ----------------------------------------- */
+.nw-station {
+  opacity: 0;
+  transition: opacity .5s ease-out;
 }
-@keyframes network-fade-in {
-  from { opacity: 0; transform: scale(.8); }
-  to   { opacity: 1; transform: scale(1); }
+.nw-station.is-visible {
+  opacity: 1;
 }
-@keyframes network-fade-in-soon {
-  from { opacity: 0; transform: scale(.8); }
-  to   { opacity: .55; transform: scale(1); }
+.nw-dot {
+  fill: rgba(255,255,255,.7);
+  transition: fill .3s, r .3s;
+}
+.nw-station.is-shared .nw-dot {
+  fill: #fff;
+}
+.nw-ring {
+  fill: none;
+  stroke-width: 2.5;
+  opacity: .5;
+  transition: opacity .3s;
+}
+.nw-station.is-shared .nw-ring {
+  animation: nw-pulse 3.5s ease-in-out infinite;
+}
+.nw-station-name {
+  fill: rgba(255,255,255,.35);
+  font-size: 11px;
+  font-family: var(--f-sans, 'Roboto', sans-serif);
+  text-anchor: middle;
+  transition: fill .3s;
+}
+.nw-station-name.is-shared {
+  fill: rgba(255,255,255,.55);
+}
+.nw-station-count {
+  fill: rgba(255,255,255,0);
+  font-size: 9px;
+  font-family: var(--f-sans, 'Roboto', sans-serif);
+  text-anchor: middle;
+  transition: fill .3s;
 }
 
+/* --- Tour-Labels --------------------------------------------------------- */
+.nw-tour {
+  opacity: 0;
+  transition: opacity .5s ease-out;
+}
+.nw-tour.is-visible {
+  opacity: 1;
+}
+.nw-tour.is-visible.is-soon {
+  opacity: .45;
+}
+.nw-tour-name {
+  font-family: var(--f-serif, Georgia, serif);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: .02em;
+}
+.nw-tour-dot {
+  transition: r .3s;
+}
+.nw-tour-tag {
+  fill: rgba(255,255,255,.45);
+  font-size: 8px;
+  font-family: var(--f-sans, 'Roboto', sans-serif);
+  text-transform: uppercase;
+  letter-spacing: .12em;
+}
+
+/* --- Hover: Alles dimmen, Aktives hervorheben ---------------------------- */
+.network-viz.has-hover .nw-line                     { opacity: .04 !important; }
+.network-viz.has-hover .nw-line.is-active            { opacity: .7 !important; stroke-width: 2.5; }
+.network-viz.has-hover .nw-line.is-related           { opacity: .3 !important; stroke-dasharray: 6 4; }
+
+.network-viz.has-hover .nw-station.is-visible        { opacity: .12; }
+.network-viz.has-hover .nw-station.is-visible.is-active {
+  opacity: 1;
+}
+.network-viz.has-hover .nw-station.is-active .nw-dot {
+  filter: url(#nw-glow);
+}
+.network-viz.has-hover .nw-station.is-active .nw-station-name {
+  fill: #fff;
+}
+.network-viz.has-hover .nw-station.is-active .nw-station-count {
+  fill: rgba(255,255,255,.65);
+}
+.network-viz.has-hover .nw-station.is-active .nw-ring {
+  opacity: .9;
+  animation: none;
+}
+
+.network-viz.has-hover .nw-tour.is-visible           { opacity: .15; }
+.network-viz.has-hover .nw-tour.is-visible.is-active { opacity: 1; }
+.network-viz.has-hover .nw-tour.is-visible.is-related { opacity: .55; }
+
+/* --- Keyframes ----------------------------------------------------------- */
+@keyframes nw-draw {
+  to { stroke-dashoffset: 0; }
+}
+@keyframes nw-pulse {
+  0%, 100% { opacity: .35; }
+  50%      { opacity: .75; }
+}
+
+/* --- Reduced Motion ------------------------------------------------------ */
 @media (prefers-reduced-motion: reduce) {
-  .network-viz__line { stroke-dashoffset: 0; animation: none !important; }
-  .network-viz__node { opacity: 1; transform: none; animation: none !important; }
-  .network-viz__node.is-soon { opacity: .55; }
+  .nw-line { stroke-dashoffset: 0 !important; opacity: .25 !important; animation: none !important; }
+  .nw-station, .nw-tour { opacity: 1 !important; transition: none !important; }
+  .nw-tour.is-soon { opacity: .45 !important; }
+  .nw-ring { animation: none !important; opacity: .5 !important; }
 }
 
 /* --- Team / Ueber uns ----------------------------------------------------- */
