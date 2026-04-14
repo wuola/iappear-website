@@ -51,7 +51,9 @@
       "Bash(gh api:*)",
       "Bash(gh run:*)",
       "Bash(gh issue:*)",
-      "Bash(gh repo view:*)"
+      "Bash(gh repo view:*)",
+      "Bash(mkdir -p \"C:/Users/maggy/tmp_dl\")",
+      "Read(//c/Users/maggy/tmp_dl/**)"
     ],
     "deny": [
       "Bash(git push --force:*)",
