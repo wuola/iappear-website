@@ -11,6 +11,20 @@ Ziel-Domain: iappear.at (Umleitung kommt ganz am Schluss)
 - NICHT die bestehende Readymag-Seite anfassen
 - Innerhalb des Repos volle Autonomie für alle anderen Entscheidungen
 
+## Berechtigungen (seit 2026-04-14)
+
+`.claude/settings.local.json` hat eine breite Allowlist — routinemaessige Operationen laufen ohne Rueckfrage: Edit/Write/Read, `git add/commit/push/diff/status/log/branch/checkout/stash/tag/fetch/pull`, `git reset --soft`, `python`, `cp/mv/mkdir/touch/ls`, `gh pr/api/run/issue`, WebSearch/WebFetch.
+
+**Deny-Liste als Sicherheitsnetz** — diese Befehle erfordern weiterhin Zustimmung der Nutzerin:
+- `git push --force` / `-f` / `--force-with-lease` (kein History-Overwrite auf GitHub)
+- `git reset --hard` (keine uncommitteten Aenderungen wegwerfen)
+- `git checkout --` / `git restore` / `git clean` (Arbeitskopie schuetzen)
+- `git rebase` (keine History umschreiben)
+- `git branch -D` / `git tag -d` (keine Branches/Tags loeschen)
+- `rm` / `rmdir` / `del` (keine Dateiloeschung ohne OK)
+
+**Warum so:** Nutzerin ist keine Entwicklerin, will nicht bei jedem Schritt gefragt werden. Git-History + Deny-Liste garantieren dass nichts verloren gehen kann — schlimmster Fall ist "ein paar Commits zurueckrollen", aber nichts ist weg. Falls die Nutzerin doch mal einen der Deny-Befehle braucht, explizit fragen.
+
 ## Stack
 
 - HTML5, CSS3, Vanilla JavaScript
