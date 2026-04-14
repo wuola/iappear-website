@@ -57,12 +57,13 @@
   margin: var(--sp-2) 0 0 auto;  /* margin-left:auto -> rechts gedrueckt */
 }
 .menu__heading {
-  font-family: var(--f-serif); font-size: .7rem;
-  letter-spacing: .18em; text-transform: uppercase;
-  color: rgba(255,255,255,.55);
+  font-family: var(--f-serif); font-size: .95rem;
+  letter-spacing: .15em; text-transform: uppercase;
+  color: rgba(255,255,255,.75);
   margin: 0 0 var(--sp-1);
 }
-.menu__list { display: grid; gap: .15rem; list-style: none; padding: 0; margin: 0 0 var(--sp-2); }
+/* Liste eingerueckt damit die Ueberschrift visuell "drueber" sitzt */
+.menu__list { display: grid; gap: .15rem; list-style: none; padding: 0 0 0 1.2rem; margin: 0 0 var(--sp-2); }
 .menu__list a {
   font-family: var(--f-serif); font-size: 1rem;
   padding: .35rem 0; border-bottom: 1px solid rgba(255,255,255,.12);
