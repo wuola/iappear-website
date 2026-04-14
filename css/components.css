@@ -15,7 +15,8 @@
   padding: var(--sp-2) var(--sp-3);
   max-width: var(--maxw); margin: 0 auto;
 }
-.nav__brand { font-family: var(--f-serif); font-size: 1.1rem; letter-spacing: .05em; }
+.nav__brand { display: inline-flex; align-items: center; line-height: 0; }
+.nav__brand img { height: 32px; width: auto; display: block; }
 .nav__links {
   display: none; gap: var(--sp-3); font-size: .85rem;
   text-transform: uppercase; letter-spacing: .12em;
