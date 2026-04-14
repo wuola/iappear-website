@@ -101,6 +101,20 @@
 }
 .cat-link__arrow { font-size: 1.4rem; }
 
+/* Im Hero (nur Landingpage) kompakter: kleinere Schrift, weniger Padding,
+   ohne Trennlinien — sieht eleganter aus neben Logo+Phones. */
+.hero .cat-link {
+  padding: .35rem 0;
+  font-size: .95rem;
+  border-bottom: 0;
+  gap: var(--sp-2);
+}
+.hero .cat-link small {
+  font-size: .7rem;
+  letter-spacing: .12em;
+}
+.hero .cat-link__arrow { font-size: 1rem; }
+
 /* --- Cards ---------------------------------------------------------------- */
 .card {
   border: 1px solid rgba(255,255,255,.15);
