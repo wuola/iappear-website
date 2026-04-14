@@ -1,10 +1,10 @@
 /* iappear.at – vitrine.js
    ============================================================
-   HIER BEARBEITEN: Vitrine-Kacheln fuer die Startseite.
+   HIER BEARBEITEN: Vitrine-Kacheln für die Startseite.
    ------------------------------------------------------------
-   So fuegst du eine neue Kachel hinzu:
+   So fügst du eine neue Kachel hinzu:
      - Kopiere einen kompletten Block { ... },
-     - aendere "titel", "text", "link" und "bild"
+     - ändere "titel", "text", "link" und "bild"
      - Fertig. Speichern.
    Bilder liegen im Ordner assets/images/vitrine/. Wenn du kein
    Bild hast, lass "bild" leer ("") - dann kommt ein Platzhalter.
@@ -13,13 +13,13 @@
 window.IAPPEAR_VITRINE = [
   {
     titel: "askd:Magazin Portrait Marilena Tumler",
-    text: "Ein wunderschoenes Portrait vom askd:Magazin ueber Marilena Tumler.",
+    text: "Ein wunderschönes Portrait vom askd:Magazin über Marilena Tumler.",
     bild: "assets/images/vitrine/asked.png",
     link: "vitrine/askd-magazin-portrait-marilena-tumler.html"
   },
   {
     titel: "ARS Electronica 2022",
-    text: "2022 wurden die Rundgaenge Brigantium und Barockbaumeister auf der ARS Electronica ausgestellt.",
+    text: "2022 wurden die Rundgänge Brigantium und Barockbaumeister auf der ARS Electronica ausgestellt.",
     bild: "assets/images/vitrine/ars.png",
     link: "vitrine/ars-electronica-2022.html"
   },
@@ -37,7 +37,7 @@ window.IAPPEAR_VITRINE = [
   },
   {
     titel: "Digital In&Out vorarlberg museum",
-    text: "Ein Beitrag ueber das Projekt Digital In&Out in Kooperation mit dem vorarlberg museum.",
+    text: "Ein Beitrag über das Projekt Digital In&Out in Kooperation mit dem vorarlberg museum.",
     bild: "assets/images/vitrine/digi.png",
     link: "vitrine/digital-in-and-out.html"
   },
@@ -48,10 +48,10 @@ window.IAPPEAR_VITRINE = [
     link: "vitrine/innovation-call-2025.html"
   },
   {
-    titel: "i.appear in den Klassenraeumen",
-    text: "i.appear erobert die Klassenraeume in Vorarlberg: Medienbildung und Medienethik.",
+    titel: "i.appear in den Klassenräumen",
+    text: "i.appear erobert die Klassenräume in Vorarlberg: Medienbildung und Medienethik.",
     bild: "assets/images/vitrine/edu.png",
-    link: "vitrine/iappear-in-den-klassenraeumen.html"
+    link: "vitrine/iappear-in-den-klassenräumen.html"
   },
   {
     titel: "Florenz 2023 - Future of Education",
@@ -61,33 +61,33 @@ window.IAPPEAR_VITRINE = [
   },
   {
     titel: "ORF Vorarlberg Video",
-    text: "Video-Beitrag des ORF Vorarlberg ueber i.appear im Schulunterricht inklusive Rundgang in der Stadt.",
+    text: "Video-Beitrag des ORF Vorarlberg über i.appear im Schulunterricht inklusive Rundgang in der Stadt.",
     bild: "assets/images/vitrine/orf.png",
     link: "vitrine/orf-vorarlberg-video.html"
   },
   {
     titel: "Innovation Call Tourismus 2025",
-    text: "Zusaetzlich zum Innovation-Call-Preis erhielt i.appear die Auszeichnung 'Digitale Innovationen im Tourismus'. Juhu!",
+    text: "Zusätzlich zum Innovation-Call-Preis erhielt i.appear die Auszeichnung 'Digitale Innovationen im Tourismus'. Juhu!",
     bild: "assets/images/vitrine/inno2.png",
     link: "vitrine/innovation-call-tourismus-2025.html"
   },
   {
-    titel: "VN 'Koepfe von morgen'",
-    text: "Ehrung der VN: Marilena ist als eine der 'Koepfe von morgen' geehrt worden. Eine sehr coole Auszeichnung!",
+    titel: "VN 'Köpfe von morgen'",
+    text: "Ehrung der VN: Marilena ist als eine der 'Köpfe von morgen' geehrt worden. Eine sehr coole Auszeichnung!",
     bild: "assets/images/vitrine/kopf.png",
-    link: "vitrine/koepfe-von-morgen.html"
+    link: "vitrine/köpfe-von-morgen.html"
   },
   {
     titel: "Marke Vorarlberg Portrait",
-    text: "Ein tolles Portrait ueber Marilena Tumler als Pionierin in der Technik. Grosses Danke an die Marke Vorarlberg.",
+    text: "Ein tolles Portrait über Marilena Tumler als Pionierin in der Technik. Grosses Danke an die Marke Vorarlberg.",
     bild: "assets/images/vitrine/marke.png",
     link: "vitrine/marke-vorarlberg-portrait.html"
   },
   {
-    titel: "Bombenabwuerfe Feldkirch",
-    text: "Buch- und App-Praesentation zum Thema Bombenabwuerfe 1943 in Feldkirch. Ein Schulprojekt in i.grow.",
+    titel: "Bombenabwürfe Feldkirch",
+    text: "Buch- und App-Präsentation zum Thema Bombenabwürfe 1943 in Feldkirch. Ein Schulprojekt in i.grow.",
     bild: "assets/images/vitrine/buch.png",
-    link: "vitrine/bombenabwuerfe-feldkirch.html"
+    link: "vitrine/bombenabwürfe-feldkirch.html"
   },
   {
     titel: "Masters Thesis Ethik",
@@ -103,31 +103,31 @@ window.IAPPEAR_VITRINE = [
   },
   {
     titel: "VN Oktobertag Feldkirch",
-    text: "Ein VN-Artikel zum Schueler:innen-Projekt i.grow in Feldkirch (Ein Oktobertag). Die VN hat uns begleitet!",
+    text: "Ein VN-Artikel zum Schüler:innen-Projekt i.grow in Feldkirch (Ein Oktobertag). Die VN hat uns begleitet!",
     bild: "assets/images/vitrine/vol.png",
     link: "vitrine/vn-oktobertag-feldkirch.html"
   },
   {
     titel: "UX-Redesign Entwicklungsprozess",
-    text: "Eine coole Moeglichkeit, um den i.appear Entwicklungsprozess mit UX-Redesign aufzuarbeiten.",
+    text: "Eine coole Möglichkeit, um den i.appear Entwicklungsprozess mit UX-Redesign aufzuarbeiten.",
     bild: "assets/images/vitrine/ux.png",
     link: "vitrine/ux-redesign-entwicklungsprozess.html"
   },
   {
     titel: "Erster Artikel 2022",
-    text: "Einer der ersten Artikel ueber i.appear aus 2022. Seither ist viel passiert. Auf der Welt und mit dem App auch.",
+    text: "Einer der ersten Artikel über i.appear aus 2022. Seither ist viel passiert. Auf der Welt und mit dem App auch.",
     bild: "assets/images/vitrine/orf2.png",
     link: "vitrine/erster-artikel-2022.html"
   },
   {
     titel: "ISTD Siegerprojekt Stadtspuren",
-    text: "Wir sind stolz, dass der App-Rundgang Stadtspuren Teil des Siegerprojektes des ISTD war. Glueckwunsch an Saegenvier!",
+    text: "Wir sind stolz, dass der App-Rundgang Stadtspuren Teil des Siegerprojektes des ISTD war. Glückwunsch an Saegenvier!",
     bild: "assets/images/vitrine/award.png",
     link: "vitrine/istd-stadtspuren.html"
   },
   {
     titel: "Vortrag Bludenz - 'gen Z'",
-    text: "In Bludenz referierte Marilena Tumler ueber die Schnittstelle zwischen Lehre, Unternehmer:innentum und Wertekultur - 'gen Z'.",
+    text: "In Bludenz referierte Marilena Tumler über die Schnittstelle zwischen Lehre, Unternehmer:innentum und Wertekultur - 'gen Z'.",
     bild: "assets/images/vitrine/genz.png",
     link: "vitrine/vortrag-bludenz-gen-z.html"
   },
@@ -139,7 +139,7 @@ window.IAPPEAR_VITRINE = [
   },
   {
     titel: "Podiumsdiskussion PH Vorarlberg",
-    text: "Podiumsdiskussion: Digitale Kompetenzen im Spannungsfeld zwischen Kinderschutz und Kuenstlicher Intelligenz.",
+    text: "Podiumsdiskussion: Digitale Kompetenzen im Spannungsfeld zwischen Kinderschutz und Künstlicher Intelligenz.",
     bild: "",
     link: "vitrine/podiumsdiskussion-ph-vorarlberg.html"
   }
@@ -148,7 +148,7 @@ window.IAPPEAR_VITRINE = [
 // Rendert die Vitrine-Grid auf der Startseite.
 // Wenn ein "bild" gesetzt ist, wird es als <img loading="lazy"> angezeigt,
 // sonst kommt der Platzhalter mit dem Titel.
-// Lazy-loading laesst den Browser die Bilder erst runterladen wenn der Nutzer
+// Lazy-loading lässt den Browser die Bilder erst runterladen wenn der Nutzer
 // nah an die Vitrine scrollt - spart viel Bandbreite auf der Startseite.
 (function () {
   const grid = document.querySelector('[data-vitrine-grid]');

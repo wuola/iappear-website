@@ -1,13 +1,13 @@
-/* iappear.at – rundgaenge.js
+/* iappear.at – rundgänge.js
    ============================================================
-   HIER BEARBEITEN: Rundgang-Daten fuer Startseite & Kategorie-Seiten.
+   HIER BEARBEITEN: Rundgang-Daten für Startseite & Kategorie-Seiten.
    ------------------------------------------------------------
    Aufbau:
      window.IAPPEAR_RUNDGAENGE.history.regionen[ ... ]
        - "name"      = Region (z.B. Dornbirn, Feldkirch ...)
-       - "rundgaenge" = Liste der Rundgaenge in dieser Region
+       - "rundgänge" = Liste der Rundgänge in dieser Region
            - "titel" = Anzeige-Name
-           - "kurz"  = Kurztext (1-2 Saetze)
+           - "kurz"  = Kurztext (1-2 Sätze)
            - "status" = optional ("aktiv" oder "coming-soon")
    ============================================================ */
 
@@ -32,12 +32,12 @@ window.IAPPEAR_RUNDGAENGE = {
           },
           {
             titel: "125 Jahre 125 Bilder",
-            kurz: "Anlaesslich 125 Jahre Stadtarchiv Dornbirn: Ein Bild pro Jahr, 125 Geschichten am Originalort.",
+            kurz: "Anlässlich 125 Jahre Stadtarchiv Dornbirn: Ein Bild pro Jahr, 125 Geschichten am Originalort.",
             status: "aktiv"
           },
           {
             titel: "Frauenspuren",
-            kurz: "Frauen, die Dornbirn gepraegt haben. (Coming soon)",
+            kurz: "Frauen, die Dornbirn geprägt haben. (Coming soon)",
             status: "coming-soon"
           }
         ]
@@ -47,7 +47,7 @@ window.IAPPEAR_RUNDGAENGE = {
         rundgaenge: [
           {
             titel: "Brigantium",
-            kurz: "Roemisches Bregenz: Eine Zeitreise zurueck nach Brigantium mit 3D-Rekonstruktionen und Funden vor Ort.",
+            kurz: "Römisches Bregenz: Eine Zeitreise zurück nach Brigantium mit 3D-Rekonstruktionen und Funden vor Ort.",
             status: "aktiv"
           }
         ]
@@ -76,7 +76,7 @@ window.IAPPEAR_RUNDGAENGE = {
   },
 
   dentity: {
-    titel: "i.dentity – Regionale Identitaet",
+    titel: "i.dentity – Regionale Identität",
     farbe: "#769CA2",
     regionen: [
       {
@@ -84,12 +84,12 @@ window.IAPPEAR_RUNDGAENGE = {
         rundgaenge: [
           {
             titel: "Oberdorf Entdecken",
-            kurz: "Das Dornbirner Oberdorf interaktiv erkunden: Plaetze, Geschichten und Lieblingsorte.",
+            kurz: "Das Dornbirner Oberdorf interaktiv erkunden: Plätze, Geschichten und Lieblingsorte.",
             status: "aktiv"
           },
           {
             titel: "Innenstadt Erleben",
-            kurz: "Die Innenstadt mit allen Sinnen erleben &mdash; ein Rundgang fuer Einheimische und Gaeste.",
+            kurz: "Die Innenstadt mit allen Sinnen erleben &mdash; ein Rundgang für Einheimische und Gaeste.",
             status: "aktiv"
           },
           {
@@ -104,7 +104,7 @@ window.IAPPEAR_RUNDGAENGE = {
         rundgaenge: [
           {
             titel: "Sprechender Baum",
-            kurz: "Der sprechende Baum im Messepark: Ein interaktives Erlebnis fuer Familien.",
+            kurz: "Der sprechende Baum im Messepark: Ein interaktives Erlebnis für Familien.",
             status: "aktiv"
           }
         ]
@@ -121,12 +121,12 @@ window.IAPPEAR_RUNDGAENGE = {
         rundgaenge: [
           {
             titel: "hist.appear Schulversion",
-            kurz: "Die Schulversion von hist.appear &mdash; entwickelt mit Schueler:innen fuer den Unterricht.",
+            kurz: "Die Schulversion von hist.appear &mdash; entwickelt mit Schüler:innen für den Unterricht.",
             status: "aktiv"
           },
           {
             titel: "Buntes Dornbirn (i.grow)",
-            kurz: "Schueler:innen erzaehlen ihr Dornbirn: Vielfalt, Identitaet und persoenliche Sichtweisen.",
+            kurz: "Schüler:innen erzählen ihr Dornbirn: Vielfalt, Identität und persönliche Sichtweisen.",
             status: "aktiv"
           },
           {
@@ -141,12 +141,12 @@ window.IAPPEAR_RUNDGAENGE = {
         rundgaenge: [
           {
             titel: "Ein Oktobertag",
-            kurz: "Schueler:innen-Projekt in Feldkirch: Ein Tag im Oktober, multimedial erzaehlt.",
+            kurz: "Schüler:innen-Projekt in Feldkirch: Ein Tag im Oktober, multimedial erzählt.",
             status: "aktiv"
           },
           {
-            titel: "Bombenabwuerfe 1943",
-            kurz: "Buch- und App-Projekt zu den Bombenabwuerfen 1943 in Feldkirch.",
+            titel: "Bombenabwürfe 1943",
+            kurz: "Buch- und App-Projekt zu den Bombenabwürfen 1943 in Feldkirch.",
             status: "aktiv"
           }
         ]

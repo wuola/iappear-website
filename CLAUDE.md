@@ -160,6 +160,7 @@ Seit Session 6 zeigen alle Nav-Links auf eigene HTML-Seiten (features.html, vitr
     - **`.hero__left` als 4-Zeilen-Grid**: `grid-template-rows: auto 1fr auto 1.5fr`. Row 1 = Claim ("Die Plattform fuer digitale Erlebnisse") mit `margin-top: 2rem` (sonst rutscht der Text unter die fixed Nav). Row 3 = Stage/Laurel, **pixel-genau buendig mit i.history rechts** (265 vs 266). Row 4 hat `1.5fr` → leicht nach oben gebiased.
     - **`.hero`** hat jetzt `position: relative` damit `.hero__social` absolute greift.
     - Cache-Bust-Progression: `?v=20260414e` (Videos+shrink) → `f` (cat-link small) → `g` (cat-link centering) → `h` (cat-link center-fix) → `i` (rechtsbuendige Pfeile + Social absolute) → `j` (Grid hero__left) → `k` (claim margin-top fix).
+  - **UTF-8 Umlaute (ä/ö/ü) ueberall statt ae/oe/ue**: Alle sichtbaren Texte in 45 HTML-Dateien + `js/data/*.js` auf echte Umlaute umgestellt. Python-Whitelist-Script mit ~350 expliziten Wort-Mappings, damit "Quelle", "Dauer", "neue", "Frauen", "Auer" etc. NICHT versehentlich kaputt gehen. Ersetzt in: Text-Nodes, sicheren Attributen (title/alt/content/aria-label/placeholder), JSON-LD Schema.org Strings, inline `<script>`-Strings (nur Literale, nicht Identifier). NICHT angefasst: URLs, hrefs, Klassennamen, IDs, Dateipfade, CSS-Code, JS-Identifier wie `querySelector`. Eigennamen wie "Saegenvier" und "Mohrenbrauerei" uebersprungen. `ß` komplett uebersprungen (User-Entscheidung: "in oesterreich weiss eh niemand was sache ist" — bleibt `ss`). File-Namen wie `stadtrundgaenge.html` / `ueber-uns.html` bleiben als ASCII, nur der sichtbare Menuetext ist jetzt "Stadtrundgänge" / "Über uns".
 
 ### Versionen und Rollback (wichtig!)
 
@@ -222,6 +223,6 @@ Wenn du nochmal Inhalte aus dem Readymag-Editor holen musst, lies **zuerst** `_d
 
 - Mobile Responsive von Anfang an!
 - SEO Meta-Tags auf jeder Seite
-- HTML-Files nutzen ASCII-Konvention (ae/oe/ue/ss statt ae/oe/ue/ss) — bestehender Stil im Repo
+- **UTF-8 Umlaute ab Session 7 (2026-04-14)**: Sichtbare Texte verwenden echte ä/ö/ü. Nur im Code (CSS-Kommentare, JS-Identifier, Kommentare hier im CLAUDE.md) bleibt ae/oe/ue weil historisch so gewachsen. `ß` bleibt als `ss` geschrieben (User-Entscheidung: kein scharfes ß).
 - Nutzerin ist kein Developer — Kommentare im Code auf Deutsch und sehr verstaendlich halten
 - Eigenstaendig arbeiten, nicht bei jedem Schritt nachfragen
