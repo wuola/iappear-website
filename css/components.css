@@ -284,7 +284,7 @@ span.feature-list__icon {
 
 /* --- Kategorie-Karten: kleines Farb-Logo ueber dem Titel ----------------- */
 .card--kategorie .card__logo {
-  width: 56px;
+  width: 28px;
   height: auto;
   display: block;
   margin: 0 auto var(--sp-1);
