@@ -1113,9 +1113,11 @@ details.info-card[open] > *:not(summary) {
 }
 .page-header--category h1 {
   margin: 0;
+  font-family: "Roboto", system-ui, sans-serif;
+  font-weight: 900;            /* Roboto Black */
   font-size: clamp(2.6rem, 7vw, 5rem);
   line-height: 1;
-  letter-spacing: -.01em;
+  letter-spacing: -.02em;
 }
 .page-header--category .page-header__subtitle {
   margin: .2em 0 0;
