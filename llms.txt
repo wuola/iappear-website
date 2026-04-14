@@ -23,7 +23,7 @@ Die drei inhaltlichen Kategorien heissen i.history (historische Stadtrundgaenge,
 - [Ueber uns](https://iappear.at/ueber-uns/): Das Team (Marilena Tumler, Maggy Haidacher) und Partner/Foerdergeber.
 - [Alle Stadtrundgaenge](https://iappear.at/stadtrundgaenge/): Uebersicht aller Orte mit digitalen Stadtrundgaengen und Audioguides - mit interaktiver Karte.
 - [Stadtrundgang Dornbirn](https://iappear.at/stadtrundgang-dornbirn/): 10+ digitale Stadtrundgaenge und Audioguides in Dornbirn.
-- [Stadtrundgang Feldkirch](https://iappear.at/stadtrundgang-feldkirch/): Schulprojekte der MS Levis - Zusammenwachsen und Bombenabwuerfe 1943.
+- [Stadtrundgang Feldkirch](https://iappear.at/stadtrundgang-feldkirch/): Schulprojekte der MS Levis (Zusammenwachsen) und MS Oberau (Bombenabwuerfe 1943).
 - [Stadtrundgang Hard am Bodensee](https://iappear.at/stadtrundgang-hard/): Die See Runde - 200 Jahre Ortsgeschichte am Bodenseeufer.
 - [Stadtrundgang Au im Bregenzerwald](https://iappear.at/stadtrundgang-au/): Barockbaumeister Franz Beer - eine Reise von Au ueber Bregenz und Konstanz bis Bezau.
 - [Workflow und Leistungen](https://iappear.at/workflow/): Wie Projekte mit i.appear ablaufen - eigenen digitalen Stadtrundgang oder Audioguide erstellen lassen.

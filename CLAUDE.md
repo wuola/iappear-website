@@ -77,7 +77,7 @@ Ziel-Domain: iappear.at (Umleitung kommt ganz am Schluss)
 
 - stadtrundgaenge.html — Hub-Seite mit Leaflet-Karte + Ort-Karten (alle Standorte)
 - stadtrundgang-dornbirn.html — 10+ Touren, alle 3 Kategorien
-- stadtrundgang-feldkirch.html — 2 i.grow-Schulprojekte der MS Levis (Zusammenwachsen + Ein Oktobertag/Bombenabwuerfe 1943). **Barockbaumeister gehoert NICHT hierher — der ist nur in Au!**
+- stadtrundgang-feldkirch.html — 2 i.grow-Schulprojekte: MS Levis (Zusammenwachsen) + MS Oberau (Ein Oktobertag/Bombenabwuerfe 1943). **Barockbaumeister gehoert NICHT hierher — der ist nur in Au!**
 - stadtrundgang-hard.html — See Runde
 - stadtrundgang-au.html — Barockbaumeister Franz Beer
 
