@@ -1090,6 +1090,47 @@ details.info-card[open] > *:not(summary) {
   border-bottom: 1px solid rgba(255,255,255,.08);
 }
 
+/* --- Page-Header Variante "Kategorie" -----------------------------------
+   Wird auf den 3 Kategorie-Seiten (i-history, i-dentity, i-grow) verwendet:
+   - Target-Icon oben in Kategorie-Farbe
+   - h1 = Brand-Wort (i.history etc.) gross in Kategorie-Farbe
+   - kurzer Subtitle in Serif darunter
+   - laenger SEO-Lead in muted darunter (bleibt fuer Crawler indexiert)
+*/
+.page-header--category {
+  padding-top: var(--sp-5);
+  padding-bottom: var(--sp-5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-1);
+}
+.page-header--category .page-header__icon {
+  width: clamp(64px, 9vw, 96px);
+  height: auto;
+  display: block;
+  margin-bottom: var(--sp-2);
+}
+.page-header--category h1 {
+  margin: 0;
+  font-size: clamp(2.6rem, 7vw, 5rem);
+  line-height: 1;
+  letter-spacing: -.01em;
+}
+.page-header--category .page-header__subtitle {
+  margin: .2em 0 0;
+  font-family: var(--f-serif, Georgia, serif);
+  font-style: italic;
+  font-size: clamp(1.2rem, 2.4vw, 1.7rem);
+  opacity: .9;
+}
+.page-header--category .page-header__lead {
+  margin-top: var(--sp-2);
+  max-width: 56ch;
+  font-size: 1rem;
+  opacity: .7;
+}
+
 /* --- Breadcrumbs --------------------------------------------------------- */
 .breadcrumb {
   padding-top: calc(var(--sp-5) + 60px);
