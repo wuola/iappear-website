@@ -51,7 +51,7 @@ window.IAPPEAR_VITRINE = [
     titel: "i.appear in den Klassenräumen",
     text: "i.appear erobert die Klassenräume in Vorarlberg: Medienbildung und Medienethik.",
     bild: "assets/images/vitrine/edu.png",
-    link: "vitrine/iappear-in-den-klassenräumen.html"
+    link: "vitrine/iappear-in-den-klassenraeumen.html"
   },
   {
     titel: "Florenz 2023 - Future of Education",
@@ -75,7 +75,7 @@ window.IAPPEAR_VITRINE = [
     titel: "VN 'Köpfe von morgen'",
     text: "Ehrung der VN: Marilena ist als eine der 'Köpfe von morgen' geehrt worden. Eine sehr coole Auszeichnung!",
     bild: "assets/images/vitrine/kopf.png",
-    link: "vitrine/köpfe-von-morgen.html"
+    link: "vitrine/koepfe-von-morgen.html"
   },
   {
     titel: "Marke Vorarlberg Portrait",
@@ -87,7 +87,7 @@ window.IAPPEAR_VITRINE = [
     titel: "Bombenabwürfe Feldkirch",
     text: "Buch- und App-Präsentation zum Thema Bombenabwürfe 1943 in Feldkirch. Ein Schulprojekt in i.grow.",
     bild: "assets/images/vitrine/buch.png",
-    link: "vitrine/bombenabwürfe-feldkirch.html"
+    link: "vitrine/bombenabwuerfe-feldkirch.html"
   },
   {
     titel: "Masters Thesis Ethik",
@@ -145,14 +145,20 @@ window.IAPPEAR_VITRINE = [
   }
 ];
 
-// Rendert die Vitrine-Grid auf der Startseite.
-// Wenn ein "bild" gesetzt ist, wird es als <img loading="lazy"> angezeigt,
-// sonst kommt der Platzhalter mit dem Titel.
-// Lazy-loading lässt den Browser die Bilder erst runterladen wenn der Nutzer
-// nah an die Vitrine scrollt - spart viel Bandbreite auf der Startseite.
+// FALLBACK-RENDERER:
+// Ab Session 8 werden die 22 Vitrine-Kacheln statisch ins HTML gebaut
+// (via build.py, Block zwischen VITRINE-GRID-START / VITRINE-GRID-END in
+// vitrine.html). Das hat den Vorteil, dass Google & LLM-Crawler die Kacheln
+// auch ohne JavaScript sehen.
+//
+// Dieses Script hier laeuft nur noch als Notnagel: wenn das statische Grid
+// leer ist (z.B. weil jemand build.py vergessen hat), baut es die Kacheln
+// zur Laufzeit nach. Im Normalbetrieb macht es nichts und stoert nicht.
 (function () {
   const grid = document.querySelector('[data-vitrine-grid]');
   if (!grid || !window.IAPPEAR_VITRINE) return;
+  // Wenn das Grid bereits Kacheln hat (statisch gerendert), nicht anfassen.
+  if (grid.querySelector('.vitrine-card')) return;
   const esc = s => (s || '').replace(/"/g, '&quot;');
   grid.innerHTML = window.IAPPEAR_VITRINE.map(item => {
     const hasImg = !!item.bild;

@@ -22,10 +22,10 @@
   <link rel="icon" type="image/png" href="assets/favicon.png" />
   <link rel="apple-touch-icon" href="assets/favicon.png" />
 
-  <link rel="stylesheet" href="css/global.css?v=20260414k" />
-  <link rel="stylesheet" href="css/layout.css?v=20260414k" />
-  <link rel="stylesheet" href="css/components.css?v=20260414k" />
-  <link rel="stylesheet" href="css/animations.css?v=20260414k" />
+  <link rel="stylesheet" href="css/global.css?v=20260414l" />
+  <link rel="stylesheet" href="css/layout.css?v=20260414l" />
+  <link rel="stylesheet" href="css/components.css?v=20260414l" />
+  <link rel="stylesheet" href="css/animations.css?v=20260414l" />
 
   <script type="application/ld+json">
   {
@@ -98,10 +98,126 @@
       <p class="muted">Auszeichnungen, Presse, Artikel und Referenzen</p>
     </header>
 
-    <!-- Vitrine-Grid: Kacheln (wird von vitrine.js gerendert) -->
+    <!-- Vitrine-Grid: 22 Kacheln statisch im HTML (damit Google/LLMs sie ohne JS lesen).
+         Die Daten kommen aus js/data/vitrine.js. Wenn du dort was aenderst,
+         einmal `python build.py` laufen lassen — dann wird der Block unten
+         zwischen VITRINE-GRID-START und VITRINE-GRID-END automatisch neu generiert. -->
     <section class="section container">
       <h2>Auszeichnungen &amp; Presse</h2>
-      <div class="vitrine-grid" data-vitrine-grid style="margin-top:var(--sp-3)"></div>
+      <!-- VITRINE-GRID-START -->
+      <div class="vitrine-grid" data-vitrine-grid style="margin-top:var(--sp-3)">
+        <article class="vitrine-card">
+          <div class="vitrine-card__thumb"><img src="assets/images/vitrine/asked.png" alt="askd:Magazin Portrait Marilena Tumler" loading="lazy" decoding="async" /></div>
+          <p class="vitrine-card__text">Ein wunderschönes Portrait vom askd:Magazin über Marilena Tumler.</p>
+          <a href="vitrine/askd-magazin-portrait-marilena-tumler.html" class="vitrine-card__link">&ndash; zum Artikel &ndash;</a>
+        </article>
+        <article class="vitrine-card">
+          <div class="vitrine-card__thumb"><img src="assets/images/vitrine/ars.png" alt="ARS Electronica 2022" loading="lazy" decoding="async" /></div>
+          <p class="vitrine-card__text">2022 wurden die Rundgänge Brigantium und Barockbaumeister auf der ARS Electronica ausgestellt.</p>
+          <a href="vitrine/ars-electronica-2022.html" class="vitrine-card__link">&ndash; zum Artikel &ndash;</a>
+        </article>
+        <article class="vitrine-card">
+          <div class="vitrine-card__thumb"><img src="assets/images/vitrine/cityx.png" alt="Smart City Dornbirn 2022" loading="lazy" decoding="async" /></div>
+          <p class="vitrine-card__text">Marilena erhielt 2022 den Smart City Dornbirn Preis mit dem Siegerprojekt i.appear.</p>
+          <a href="vitrine/smart-city-dornbirn-2022.html" class="vitrine-card__link">&ndash; zum Artikel &ndash;</a>
+        </article>
+        <article class="vitrine-card">
+          <div class="vitrine-card__thumb"><img src="assets/images/vitrine/ars2.png" alt="Ars Electronica 2021 Garden Vorarlberg" loading="lazy" decoding="async" /></div>
+          <p class="vitrine-card__text">Hist.appear auf dem Symposium im vorarlberg museum im Rahmen des Ars Electronica 2021 Garden Vorarlberg.</p>
+          <a href="vitrine/ars-electronica-2021.html" class="vitrine-card__link">&ndash; zum Artikel &ndash;</a>
+        </article>
+        <article class="vitrine-card">
+          <div class="vitrine-card__thumb"><img src="assets/images/vitrine/digi.png" alt="Digital In&amp;Out vorarlberg museum" loading="lazy" decoding="async" /></div>
+          <p class="vitrine-card__text">Ein Beitrag über das Projekt Digital In&Out in Kooperation mit dem vorarlberg museum.</p>
+          <a href="vitrine/digital-in-and-out.html" class="vitrine-card__link">&ndash; zum Artikel &ndash;</a>
+        </article>
+        <article class="vitrine-card">
+          <div class="vitrine-card__thumb"><img src="assets/images/vitrine/inno.png" alt="Re-Design dank Preisgeld" loading="lazy" decoding="async" /></div>
+          <p class="vitrine-card__text">Wir haben uns beworben und gewonnen! Herzlichen Dank an die Jury! Das Preisgeld wurde in das Re-Design von i.appear gesteckt.</p>
+          <a href="vitrine/innovation-call-2025.html" class="vitrine-card__link">&ndash; zum Artikel &ndash;</a>
+        </article>
+        <article class="vitrine-card">
+          <div class="vitrine-card__thumb"><img src="assets/images/vitrine/edu.png" alt="i.appear in den Klassenräumen" loading="lazy" decoding="async" /></div>
+          <p class="vitrine-card__text">i.appear erobert die Klassenräume in Vorarlberg: Medienbildung und Medienethik.</p>
+          <a href="vitrine/iappear-in-den-klassenraeumen.html" class="vitrine-card__link">&ndash; zum Artikel &ndash;</a>
+        </article>
+        <article class="vitrine-card">
+          <div class="ph ph--square vitrine-card__thumb"><small>Florenz 2023 - Future of Education</small></div>
+          <p class="vitrine-card__text">Vortrag und Publikation auf der internationalen Konferenz 'The Future of Education' in Florenz 2023.</p>
+          <a href="vitrine/florenz-2023-future-of-education.html" class="vitrine-card__link">&ndash; zum Artikel &ndash;</a>
+        </article>
+        <article class="vitrine-card">
+          <div class="vitrine-card__thumb"><img src="assets/images/vitrine/orf.png" alt="ORF Vorarlberg Video" loading="lazy" decoding="async" /></div>
+          <p class="vitrine-card__text">Video-Beitrag des ORF Vorarlberg über i.appear im Schulunterricht inklusive Rundgang in der Stadt.</p>
+          <a href="vitrine/orf-vorarlberg-video.html" class="vitrine-card__link">&ndash; zum Artikel &ndash;</a>
+        </article>
+        <article class="vitrine-card">
+          <div class="vitrine-card__thumb"><img src="assets/images/vitrine/inno2.png" alt="Innovation Call Tourismus 2025" loading="lazy" decoding="async" /></div>
+          <p class="vitrine-card__text">Zusätzlich zum Innovation-Call-Preis erhielt i.appear die Auszeichnung 'Digitale Innovationen im Tourismus'. Juhu!</p>
+          <a href="vitrine/innovation-call-tourismus-2025.html" class="vitrine-card__link">&ndash; zum Artikel &ndash;</a>
+        </article>
+        <article class="vitrine-card">
+          <div class="vitrine-card__thumb"><img src="assets/images/vitrine/kopf.png" alt="VN 'Köpfe von morgen'" loading="lazy" decoding="async" /></div>
+          <p class="vitrine-card__text">Ehrung der VN: Marilena ist als eine der 'Köpfe von morgen' geehrt worden. Eine sehr coole Auszeichnung!</p>
+          <a href="vitrine/koepfe-von-morgen.html" class="vitrine-card__link">&ndash; zum Artikel &ndash;</a>
+        </article>
+        <article class="vitrine-card">
+          <div class="vitrine-card__thumb"><img src="assets/images/vitrine/marke.png" alt="Marke Vorarlberg Portrait" loading="lazy" decoding="async" /></div>
+          <p class="vitrine-card__text">Ein tolles Portrait über Marilena Tumler als Pionierin in der Technik. Grosses Danke an die Marke Vorarlberg.</p>
+          <a href="vitrine/marke-vorarlberg-portrait.html" class="vitrine-card__link">&ndash; zum Artikel &ndash;</a>
+        </article>
+        <article class="vitrine-card">
+          <div class="vitrine-card__thumb"><img src="assets/images/vitrine/buch.png" alt="Bombenabwürfe Feldkirch" loading="lazy" decoding="async" /></div>
+          <p class="vitrine-card__text">Buch- und App-Präsentation zum Thema Bombenabwürfe 1943 in Feldkirch. Ein Schulprojekt in i.grow.</p>
+          <a href="vitrine/bombenabwuerfe-feldkirch.html" class="vitrine-card__link">&ndash; zum Artikel &ndash;</a>
+        </article>
+        <article class="vitrine-card">
+          <div class="vitrine-card__thumb"><img src="assets/images/vitrine/master.png" alt="Masters Thesis Ethik" loading="lazy" decoding="async" /></div>
+          <p class="vitrine-card__text">Masters Thesis zur Verwendung immersiver Lernwelten im Ethikunterricht: i.appear als Fallbeispiel.</p>
+          <a href="vitrine/masters-thesis-ethik.html" class="vitrine-card__link">&ndash; zum Artikel &ndash;</a>
+        </article>
+        <article class="vitrine-card">
+          <div class="vitrine-card__thumb"><img src="assets/images/vitrine/master2.png" alt="Masters Thesis Geschichte" loading="lazy" decoding="async" /></div>
+          <p class="vitrine-card__text">Masters Thesis in Geschichte: Die wissenschaftlich fundierte Seite von i.appear.</p>
+          <a href="vitrine/masters-thesis-geschichte.html" class="vitrine-card__link">&ndash; zum Artikel &ndash;</a>
+        </article>
+        <article class="vitrine-card">
+          <div class="vitrine-card__thumb"><img src="assets/images/vitrine/vol.png" alt="VN Oktobertag Feldkirch" loading="lazy" decoding="async" /></div>
+          <p class="vitrine-card__text">Ein VN-Artikel zum Schüler:innen-Projekt i.grow in Feldkirch (Ein Oktobertag). Die VN hat uns begleitet!</p>
+          <a href="vitrine/vn-oktobertag-feldkirch.html" class="vitrine-card__link">&ndash; zum Artikel &ndash;</a>
+        </article>
+        <article class="vitrine-card">
+          <div class="vitrine-card__thumb"><img src="assets/images/vitrine/ux.png" alt="UX-Redesign Entwicklungsprozess" loading="lazy" decoding="async" /></div>
+          <p class="vitrine-card__text">Eine coole Möglichkeit, um den i.appear Entwicklungsprozess mit UX-Redesign aufzuarbeiten.</p>
+          <a href="vitrine/ux-redesign-entwicklungsprozess.html" class="vitrine-card__link">&ndash; zum Artikel &ndash;</a>
+        </article>
+        <article class="vitrine-card">
+          <div class="vitrine-card__thumb"><img src="assets/images/vitrine/orf2.png" alt="Erster Artikel 2022" loading="lazy" decoding="async" /></div>
+          <p class="vitrine-card__text">Einer der ersten Artikel über i.appear aus 2022. Seither ist viel passiert. Auf der Welt und mit dem App auch.</p>
+          <a href="vitrine/erster-artikel-2022.html" class="vitrine-card__link">&ndash; zum Artikel &ndash;</a>
+        </article>
+        <article class="vitrine-card">
+          <div class="vitrine-card__thumb"><img src="assets/images/vitrine/award.png" alt="ISTD Siegerprojekt Stadtspuren" loading="lazy" decoding="async" /></div>
+          <p class="vitrine-card__text">Wir sind stolz, dass der App-Rundgang Stadtspuren Teil des Siegerprojektes des ISTD war. Glückwunsch an Saegenvier!</p>
+          <a href="vitrine/istd-stadtspuren.html" class="vitrine-card__link">&ndash; zum Artikel &ndash;</a>
+        </article>
+        <article class="vitrine-card">
+          <div class="vitrine-card__thumb"><img src="assets/images/vitrine/genz.png" alt="Vortrag Bludenz - 'gen Z'" loading="lazy" decoding="async" /></div>
+          <p class="vitrine-card__text">In Bludenz referierte Marilena Tumler über die Schnittstelle zwischen Lehre, Unternehmer:innentum und Wertekultur - 'gen Z'.</p>
+          <a href="vitrine/vortrag-bludenz-gen-z.html" class="vitrine-card__link">&ndash; zum Artikel &ndash;</a>
+        </article>
+        <article class="vitrine-card">
+          <div class="vitrine-card__thumb"><img src="assets/images/vitrine/schaffarei.png" alt="Schafferei Traumjob" loading="lazy" decoding="async" /></div>
+          <p class="vitrine-card__text">Ein tolles Format: Die Schafferei bietet interessierten Personen ein Mittagessen mit ihrem Traumjob an. (12. November 2025)</p>
+          <a href="vitrine/schafferei-traumjob.html" class="vitrine-card__link">&ndash; zum Artikel &ndash;</a>
+        </article>
+        <article class="vitrine-card">
+          <div class="ph ph--square vitrine-card__thumb"><small>Podiumsdiskussion PH Vorarlberg</small></div>
+          <p class="vitrine-card__text">Podiumsdiskussion: Digitale Kompetenzen im Spannungsfeld zwischen Kinderschutz und Künstlicher Intelligenz.</p>
+          <a href="vitrine/podiumsdiskussion-ph-vorarlberg.html" class="vitrine-card__link">&ndash; zum Artikel &ndash;</a>
+        </article>
+      </div>
+      <!-- VITRINE-GRID-END -->
     </section>
 
     <!-- Artikel -->
@@ -142,6 +258,6 @@
 
   <a href="#" class="back-up" data-back-up aria-label="Nach oben"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" aria-hidden="true"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg></a>
   <script src="js/main.js"></script>
-  <script src="js/data/vitrine.js?v=6"></script>
+  <script src="js/data/vitrine.js?v=20260414l"></script>
 </body>
 </html>
