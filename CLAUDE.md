@@ -15,7 +15,12 @@ Ziel-Domain: iappear.at (Umleitung kommt ganz am Schluss)
 
 `.claude/settings.local.json` hat eine breite Allowlist — routinemaessige Operationen laufen ohne Rueckfrage: Edit/Write/Read, `git add/commit/push/diff/status/log/branch/checkout/stash/tag/fetch/pull`, `git reset --soft`, `python`, `cp/mv/mkdir/touch/ls/cd`, `cat/head/tail/wc/echo`, `gh pr/api/run/issue`, WebSearch/WebFetch.
 
-**Wichtig zum Pattern-Matching:** Die Permission-Checks matchen gegen den Kommando-**Anfang**. Bei `cmd1 && cmd2` greift nur der Eintrag fuer `cmd1`. Deshalb nicht `cd "..." && git status ...` prefixen — das matcht `Bash(cd:*)`, nicht `Bash(git status:*)`. Stattdessen: Bash-Kommandos einzeln absetzen (Working Directory persistiert zwischen Calls) ODER mit `git -C "<pfad>" ...` arbeiten.
+**Wichtig zum Pattern-Matching:** Die Permission-Checks matchen gegen den Kommando-**Anfang**, Token fuer Token.
+
+- **Falle 1 — `&&`-Chains:** Bei `cmd1 && cmd2` greift nur der Eintrag fuer `cmd1`. Also nicht `cd "..." && git status ...` prefixen — das matcht `Bash(cd:*)`, nicht `Bash(git status:*)`.
+- **Falle 2 — `git -C <pfad>` Prefix:** `git -C "<pfad>" reset HEAD file` matcht NICHT `Bash(git reset HEAD:*)`, weil der Token-Matcher vorne `git -C <pfad>` sieht. Das `-C <pfad>` schiebt sich zwischen `git` und den eigentlichen Subcommand. Darum ist jetzt `Bash(git -C:*)` in der Allowlist als Pauschal-Erlaubnis fuer jeden `git -C ...`-Aufruf.
+- **Empfohlene Praxis:** Am Anfang einer Arbeitsphase einmal `cd "<repo-pfad>"` als eigenen Bash-Call absetzen (matcht `Bash(cd:*)`), danach simple `git status` / `git commit` / `git push`-Calls ohne `-C`-Prefix. Working Directory persistiert zwischen Bash-Calls, die Standard-Git-Allowlist greift sauber.
+- `git -C` bleibt als **Fallback** erlaubt, falls mal kurzzeitig in einem anderen Verzeichnis gearbeitet wird.
 
 **Deny-Liste als Sicherheitsnetz** — diese Befehle erfordern weiterhin Zustimmung der Nutzerin:
 - `git push --force` / `-f` / `--force-with-lease` (kein History-Overwrite auf GitHub)
