@@ -56,79 +56,73 @@
      LAYOUT-FUNKTIONEN
      ================================================================ */
 
+  /* Zentrum & Radien fuer die konzentrischen Ringe */
+  var CX = W / 2, CY = H / 2;
+  var R_ROUTES   = 275;  /* Rundgaenge auf dem aeusseren Ring */
+  var R_STATIONS = 130;  /* Stationen auf dem inneren Ring */
+
   function layoutTouren() {
     var pos = [];
-    var groups = { history: [], dentity: [], grow: [] };
-    touren.forEach(function (t, i) { groups[t.kategorie].push(i); });
 
-    /* i.history — linke Spalte */
-    var h = groups.history;
-    var hSpace = Math.min(120, 380 / Math.max(h.length - 1, 1));
-    var hStart = (H * 0.65 - (h.length - 1) * hSpace) / 2 + 40;
-    h.forEach(function (i, n) {
-      pos[i] = { x: 10, y: hStart + n * hSpace, dotX: 160, anchor: 'start' };
+    /* Reihenfolge: history → dentity → grow im Uhrzeigersinn um den Ring */
+    var order = [];
+    ['history', 'dentity', 'grow'].forEach(function (kat) {
+      touren.forEach(function (t, i) {
+        if (t.kategorie === kat) order.push(i);
+      });
     });
 
-    /* i.dentity — rechte Spalte */
-    var d = groups.dentity;
-    var dSpace = Math.min(120, 380 / Math.max(d.length - 1, 1));
-    var dStart = (H * 0.65 - (d.length - 1) * dSpace) / 2 + 40;
-    d.forEach(function (i, n) {
-      pos[i] = { x: 990, y: dStart + n * dSpace, dotX: 840, anchor: 'end' };
-    });
-
-    /* i.grow — untere Reihe */
-    var g = groups.grow;
-    var gSpace = Math.min(220, 320 / Math.max(g.length - 1, 1));
-    var gStart = W / 2 - ((g.length - 1) * gSpace) / 2;
-    g.forEach(function (i, n) {
-      pos[i] = { x: gStart + n * gSpace, y: H - 20, dotX: gStart + n * gSpace, dotY: H - 80, anchor: 'middle' };
+    var N = order.length;
+    /* Start bei 12 Uhr (-90°), dann gleichmaessig verteilt im Uhrzeigersinn */
+    order.forEach(function (idx, slot) {
+      var angle = (-90 + (slot + 0.5) * (360 / N)) * Math.PI / 180;
+      var dx = Math.cos(angle), dy = Math.sin(angle);
+      var dotX = CX + dx * R_ROUTES;
+      var dotY = CY + dy * R_ROUTES;
+      /* Label etwas weiter aussen, in Radial-Richtung */
+      var labelX = CX + dx * (R_ROUTES + 38);
+      var labelY = CY + dy * (R_ROUTES + 38);
+      /* Text-Anker je nach Winkel */
+      var anchor;
+      if (dx > 0.15)       anchor = 'start';
+      else if (dx < -0.15) anchor = 'end';
+      else                 anchor = 'middle';
+      pos[idx] = { x: labelX, y: labelY, dotX: dotX, dotY: dotY, anchor: anchor, angle: angle };
     });
 
     return pos;
   }
 
   function layoutStationen() {
-    /* Schritt 1: Schwerpunkt der verbundenen Touren berechnen */
-    var pos = stationen.map(function (s) {
-      var cx = 0, cy = 0, n = 0;
+    /* Schwerpunkt-Winkel jeder Station bestimmen (Durchschnitt der Winkel ihrer Touren) */
+    var info = stationen.map(function (s, i) {
+      var sinSum = 0, cosSum = 0;
       s.touren.forEach(function (name) {
-        var i = tIdx[name];
-        if (i !== undefined && tourPos[i]) {
-          cx += tourPos[i].dotX;
-          cy += (tourPos[i].dotY || tourPos[i].y);
-          n++;
-        }
+        var ti = tIdx[name];
+        if (ti === undefined || !tourPos[ti]) return;
+        var ang = tourPos[ti].angle;
+        sinSum += Math.sin(ang);
+        cosSum += Math.cos(ang);
       });
-      if (n > 0) { cx /= n; cy /= n; }
-      /* Zum Zentrum ziehen, damit Stationen nicht am Rand kleben */
-      cx = W / 2 + (cx - W / 2) * 0.45;
-      cy = H * 0.42 + (cy - H * 0.42) * 0.45;
-      return { x: cx, y: cy };
+      var avg = Math.atan2(sinSum, cosSum);
+      return { idx: i, angle: avg };
     });
 
-    /* Schritt 2: Abstossung — Stationen duerfen sich nicht ueberlagern */
-    for (var iter = 0; iter < 120; iter++) {
-      for (var i = 0; i < pos.length; i++) {
-        for (var j = i + 1; j < pos.length; j++) {
-          var dx = pos[j].x - pos[i].x;
-          var dy = pos[j].y - pos[i].y;
-          var dist = Math.sqrt(dx * dx + dy * dy) || 1;
-          var minD = 72;
-          if (dist < minD) {
-            var push = (minD - dist) * 0.25;
-            var nx = dx / dist, ny = dy / dist;
-            pos[i].x -= nx * push;
-            pos[i].y -= ny * push;
-            pos[j].x += nx * push;
-            pos[j].y += ny * push;
-          }
-        }
-        /* Innerhalb des sichtbaren Bereichs halten */
-        pos[i].x = Math.max(230, Math.min(770, pos[i].x));
-        pos[i].y = Math.max(55, Math.min(555, pos[i].y));
-      }
-    }
+    /* Nach Winkel sortieren und gleichmaessig um den inneren Ring verteilen.
+       Dadurch bleibt der Ring sauber rund, Linien kreuzen sich minimal. */
+    info.sort(function (a, b) { return a.angle - b.angle; });
+
+    var N = info.length;
+    var pos = [];
+    info.forEach(function (item, slot) {
+      /* Gleichmaessig verteilt — Start auch bei -90° damit es zum Routen-Ring passt */
+      var angle = (-90 + (slot + 0.5) * (360 / N)) * Math.PI / 180;
+      pos[item.idx] = {
+        x: CX + Math.cos(angle) * R_STATIONS,
+        y: CY + Math.sin(angle) * R_STATIONS,
+        angle: angle
+      };
+    });
 
     return pos;
   }
@@ -167,23 +161,25 @@
 
     stationen.forEach(function (station, si) {
       var sp = stationPos[si];
-      station.touren.forEach(function (tourName, li) {
+      station.touren.forEach(function (tourName) {
         var ti = tIdx[tourName];
         if (ti === undefined) return;
         var tp = tourPos[ti];
         var fromX = tp.dotX;
         var fromY = tp.dotY || tp.y;
-        /* Kurven leicht variieren damit sich Linien nicht ueberlagern */
-        var curve = ((li % 2 === 0) ? 1 : -1) * (0.06 + li * 0.025);
 
-        var path = document.createElementNS(NS, 'path');
-        path.setAttribute('d', bezier(fromX, fromY, sp.x, sp.y, curve));
-        path.setAttribute('class', 'nw-line');
-        path.dataset.tour = tourName;
-        path.dataset.station = station.name;
-        path.style.stroke = FARBEN[touren[ti].kategorie];
-        path.style.animationDelay = (lineIdx * 0.06) + 's';
-        linesG.appendChild(path);
+        /* Gerade Linie zwischen Routen-Punkt und Stations-Punkt */
+        var line = document.createElementNS(NS, 'line');
+        line.setAttribute('x1', fromX);
+        line.setAttribute('y1', fromY);
+        line.setAttribute('x2', sp.x);
+        line.setAttribute('y2', sp.y);
+        line.setAttribute('class', 'nw-line');
+        line.dataset.tour = tourName;
+        line.dataset.station = station.name;
+        line.style.stroke = FARBEN[touren[ti].kategorie];
+        line.style.animationDelay = (lineIdx * 0.06) + 's';
+        linesG.appendChild(line);
         lineIdx++;
       });
     });
@@ -248,21 +244,36 @@
       circle.setAttribute('class', 'nw-dot');
       g.appendChild(circle);
 
-      /* Stations-Name */
+      /* Stations-Name — radial nach innen versetzt (Richtung Zentrum) */
+      var dxL = CX - sp.x, dyL = CY - sp.y;
+      var dL = Math.sqrt(dxL * dxL + dyL * dyL) || 1;
+      var labelOffset = r + 14;
+      var labelX = sp.x + (dxL / dL) * labelOffset;
+      var labelY = sp.y + (dyL / dL) * labelOffset;
+      /* Text-Anker je nach Innenseiten-Richtung */
+      var labelAnchor;
+      if ((dxL / dL) > 0.25)       labelAnchor = 'start';
+      else if ((dxL / dL) < -0.25) labelAnchor = 'end';
+      else                         labelAnchor = 'middle';
+
       var text = document.createElementNS(NS, 'text');
-      text.setAttribute('x', sp.x);
-      text.setAttribute('y', sp.y - r - 8);
+      text.setAttribute('x', labelX);
+      text.setAttribute('y', labelY);
       text.setAttribute('class', 'nw-station-name' + (shared ? ' is-shared' : ''));
+      text.style.textAnchor = labelAnchor;
+      text.style.dominantBaseline = 'middle';
       text.textContent = station.name;
       g.appendChild(text);
 
-      /* Anzahl Rundgaenge (sichtbar nur bei Hover) */
+      /* Anzahl Rundgaenge (sichtbar nur bei Hover) — weiter innen */
       if (shared) {
         var countLabel = document.createElementNS(NS, 'text');
-        countLabel.setAttribute('x', sp.x);
-        countLabel.setAttribute('y', sp.y + r + 16);
+        countLabel.setAttribute('x', sp.x + (dxL / dL) * (labelOffset + 14));
+        countLabel.setAttribute('y', sp.y + (dyL / dL) * (labelOffset + 14));
         countLabel.setAttribute('class', 'nw-station-count');
-        countLabel.textContent = count + ' Rundgaenge';
+        countLabel.style.textAnchor = labelAnchor;
+        countLabel.style.dominantBaseline = 'middle';
+        countLabel.textContent = count + ' Rundgänge';
         g.appendChild(countLabel);
       }
 
@@ -316,22 +327,6 @@
     svg.appendChild(toursG);
 
     container.appendChild(svg);
-  }
-
-
-  /* ================================================================
-     HILFSFUNKTIONEN
-     ================================================================ */
-
-  /* Bezier-Kurve zwischen zwei Punkten. curve steuert die Kruemmung. */
-  function bezier(x1, y1, x2, y2, curve) {
-    var mx = (x1 + x2) / 2;
-    var my = (y1 + y2) / 2;
-    var dx = x2 - x1;
-    var dy = y2 - y1;
-    var cx = mx + (-dy) * curve;
-    var cy = my + dx * curve;
-    return 'M' + x1 + ',' + y1 + ' Q' + cx + ',' + cy + ' ' + x2 + ',' + y2;
   }
 
 
