@@ -22,10 +22,10 @@
   <link rel="icon" type="image/png" href="assets/favicon.png" />
   <link rel="apple-touch-icon" href="assets/favicon.png" />
 
-  <link rel="stylesheet" href="css/global.css?v=20260414q" />
-  <link rel="stylesheet" href="css/layout.css?v=20260414q" />
-  <link rel="stylesheet" href="css/components.css?v=20260414q" />
-  <link rel="stylesheet" href="css/animations.css?v=20260414q" />
+  <link rel="stylesheet" href="css/global.css?v=20260414r" />
+  <link rel="stylesheet" href="css/layout.css?v=20260414r" />
+  <link rel="stylesheet" href="css/components.css?v=20260414r" />
+  <link rel="stylesheet" href="css/animations.css?v=20260414r" />
 
   <!-- Schema.org strukturierte Daten: Organization + WebSite + LocalBusiness.
        Hilft Suchmaschinen, Google/Bing-Rich-Snippets und LLMs, den Kontext
@@ -89,7 +89,7 @@
   <!-- ========== NAVIGATION ========== -->
   <header class="nav" role="banner">
     <div class="nav__inner">
-      <a class="nav__brand" href="index.html" aria-label="i.appear Startseite"><img src="assets/svg/logos/logo-mark-weiss.svg?v=20260414q" alt="i.appear" /></a>
+      <a class="nav__brand" href="index.html" aria-label="i.appear Startseite"><img src="assets/svg/logos/logo-mark-weiss.svg?v=20260414r" alt="i.appear" /></a>
       <nav class="nav__links" aria-label="Hauptnavigation">
         <a href="stadtrundgaenge.html">Stadtrundgänge</a>
         <a href="features.html">Features</a>
@@ -309,19 +309,39 @@
       <p class="eyebrow center">Die Bausteine unserer Stadtrundgänge</p>
 
       <div class="grid grid-4" style="margin-top:var(--sp-4)">
-        <article class="card center">
+        <article class="card card--teaser center">
+          <div class="phone phone--mini">
+            <div class="phone__screen">
+              <video src="assets/videos/features/3d.mp4" autoplay muted loop playsinline preload="metadata"></video>
+            </div>
+          </div>
           <h3>3D-Modelle</h3>
           <p class="muted">Dreidimensionale Objekte, die sich im Raum betrachten lassen &ndash; massgefertigt für jedes Projekt.</p>
         </article>
-        <article class="card center">
+        <article class="card card--teaser center">
+          <div class="phone phone--mini">
+            <div class="phone__screen">
+              <video src="assets/videos/features/ar.mp4" autoplay muted loop playsinline preload="metadata"></video>
+            </div>
+          </div>
           <h3>Augmented Reality</h3>
           <p class="muted">Sie brauchen es sich nicht vorstellen. Es taucht direkt auf Ihrem Display auf.</p>
         </article>
-        <article class="card center">
+        <article class="card card--teaser center">
+          <div class="phone phone--mini">
+            <div class="phone__screen">
+              <video src="assets/videos/features/audio.mp4" autoplay muted loop playsinline preload="metadata"></video>
+            </div>
+          </div>
           <h3>Audio-Guide</h3>
           <p class="muted">Professionelle Audio-Erstellung mit ausgewählten Speakern in Studioqualität.</p>
         </article>
-        <article class="card center">
+        <article class="card card--teaser center">
+          <div class="phone phone--mini">
+            <div class="phone__screen">
+              <video src="assets/videos/features/secret.mp4" autoplay muted loop playsinline preload="metadata"></video>
+            </div>
+          </div>
           <h3>Secret Stations</h3>
           <p class="muted">Geheime Orte entdecken, die nirgendwo sonst aufscheinen &ndash; ein besonderes Entdeckungserlebnis.</p>
         </article>
@@ -336,19 +356,34 @@
       <p class="eyebrow center">Entdecke unsere digitalen Touren und Audioguides</p>
 
       <div class="grid grid-4" style="margin-top:var(--sp-4)">
-        <a href="stadtrundgang-dornbirn.html" class="card center" style="text-decoration:none;color:inherit">
+        <a href="stadtrundgang-dornbirn.html" class="card card--teaser center" style="text-decoration:none;color:inherit">
+          <!-- Dornbirn hat alle 3 Kategorien → Trio -->
+          <div class="card__targets card__targets--trio" aria-hidden="true">
+            <img src="assets/svg/targets/target-gelb.svg" alt="" />
+            <img src="assets/svg/targets/target-blau.svg" alt="" />
+            <img src="assets/svg/targets/target-gruen.svg" alt="" />
+          </div>
           <h3>Dornbirn</h3>
           <p class="muted">10+ Rundgänge durch alle 3 Kategorien</p>
         </a>
-        <a href="stadtrundgang-feldkirch.html" class="card center" style="text-decoration:none;color:inherit">
+        <a href="stadtrundgang-feldkirch.html" class="card card--teaser center" style="text-decoration:none;color:inherit">
+          <div class="card__targets" aria-hidden="true">
+            <img src="assets/svg/targets/target-gruen.svg" alt="" />
+          </div>
           <h3>Feldkirch</h3>
           <p class="muted">Barockbaumeister &amp; Schulprojekte</p>
         </a>
-        <a href="stadtrundgang-hard.html" class="card center" style="text-decoration:none;color:inherit">
+        <a href="stadtrundgang-hard.html" class="card card--teaser center" style="text-decoration:none;color:inherit">
+          <div class="card__targets" aria-hidden="true">
+            <img src="assets/svg/targets/target-blau.svg" alt="" />
+          </div>
           <h3>Hard</h3>
           <p class="muted">Die See Runde am Bodensee</p>
         </a>
-        <a href="stadtrundgang-au.html" class="card center" style="text-decoration:none;color:inherit">
+        <a href="stadtrundgang-au.html" class="card card--teaser center" style="text-decoration:none;color:inherit">
+          <div class="card__targets" aria-hidden="true">
+            <img src="assets/svg/targets/target-gelb.svg" alt="" />
+          </div>
           <h3>Au</h3>
           <p class="muted">Barockbaumeister im Bregenzerwald</p>
         </a>
@@ -363,22 +398,26 @@
       <p class="eyebrow center">Auszeichnungen, Presse, Artikel und Referenzen</p>
 
       <div class="grid grid-4" style="margin-top:var(--sp-4)">
-        <article class="card center">
+        <a href="vitrine/smart-city-dornbirn-2022.html" class="card card--teaser center" style="text-decoration:none;color:inherit">
+          <div class="card__image"><img src="assets/images/vitrine/cityx.png" alt="Smart City Dornbirn Preis 2022" loading="lazy" /></div>
           <h3>Smart City Dornbirn</h3>
           <p class="muted">Siegerprojekt 2022</p>
-        </article>
-        <article class="card center">
+        </a>
+        <a href="vitrine/ars-electronica-2022.html" class="card card--teaser center" style="text-decoration:none;color:inherit">
+          <div class="card__image"><img src="assets/images/vitrine/ars.png" alt="Ars Electronica Ausstellung" loading="lazy" /></div>
           <h3>Ars Electronica</h3>
           <p class="muted">Ausstellung 2021 &amp; 2022</p>
-        </article>
-        <article class="card center">
+        </a>
+        <a href="vitrine/innovation-call-tourismus-2025.html" class="card card--teaser center" style="text-decoration:none;color:inherit">
+          <div class="card__image"><img src="assets/images/vitrine/inno2.png" alt="Innovation Call Tourismus 2025" loading="lazy" /></div>
           <h3>Innovation Call</h3>
           <p class="muted">Digitale Innovationen im Tourismus 2025</p>
-        </article>
-        <article class="card center">
+        </a>
+        <a href="vitrine/koepfe-von-morgen.html" class="card card--teaser center" style="text-decoration:none;color:inherit">
+          <div class="card__image"><img src="assets/images/vitrine/kopf.png" alt="VN Köpfe von morgen" loading="lazy" /></div>
           <h3>VN &bdquo;Köpfe von morgen&ldquo;</h3>
           <p class="muted">Ehrung für Marilena Tumler</p>
-        </article>
+        </a>
       </div>
 
       <p class="center" style="margin-top:var(--sp-4)"><a href="vitrine.html" class="btn">Zur Vitrine &rarr;</a></p>
