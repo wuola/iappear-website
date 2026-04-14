@@ -79,7 +79,14 @@
   width: 100%;
 }
 @media (min-width: 960px) {
-  .hero__right { gap: var(--sp-2); max-width: none; margin: 0; }
+  .hero__right {
+    gap: .4rem;                 /* Kategorien eng gestapelt */
+    max-width: none;
+    margin: 0;
+    justify-content: center;    /* vertikal mittig zum Phone-Mockup */
+    align-items: flex-start;    /* horizontal links buendig */
+    height: 100%;
+  }
 }
 
 .phones {

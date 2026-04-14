@@ -101,13 +101,16 @@
 }
 .cat-link__arrow { font-size: 1.4rem; }
 
-/* Im Hero (nur Landingpage) kompakter: kleinere Schrift, weniger Padding,
-   ohne Trennlinien — sieht eleganter aus neben Logo+Phones. */
+/* Im Hero (nur Landingpage) kompakter: kleinere Schrift, kein Padding,
+   ohne Trennlinien, Pfeil direkt neben Text. */
 .hero .cat-link {
-  padding: .35rem 0;
+  padding: 0;
   font-size: .95rem;
   border-bottom: 0;
-  gap: var(--sp-2);
+  justify-content: flex-start;   /* Pfeil nicht mehr ans Ende pushen */
+  gap: .6rem;                    /* Pfeil nah am Text */
+  width: auto;                   /* nicht volle Spaltenbreite */
+  align-self: flex-start;        /* links buendig, nicht stretchen */
 }
 .hero .cat-link small {
   font-size: .7rem;
@@ -362,7 +365,7 @@ span.feature-list__icon {
   color: #fff;
 }
 @media (min-width: 960px) {
-  .hero__social { justify-content: flex-end; }
+  .hero__social { justify-content: flex-start; margin-top: var(--sp-2); }
 }
 
 /* --- Netzwerk-Visualisierung (v2) ----------------------------------------
