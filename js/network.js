@@ -40,6 +40,12 @@
   var tIdx = {};
   touren.forEach(function (t, i) { tIdx[t.name] = i; });
 
+  /* Zentrum & Radien fuer die konzentrischen Ringe
+     (MUSS vor layoutTouren/layoutStationen stehen, sonst NaN wegen var-hoisting) */
+  var CX = W / 2, CY = H / 2;
+  var R_ROUTES   = 275;  /* Rundgaenge auf dem aeusseren Ring */
+  var R_STATIONS = 130;  /* Stationen auf dem inneren Ring */
+
   /* === Layout berechnen === */
   var tourPos = layoutTouren();
   var stationPos = layoutStationen();
@@ -55,11 +61,6 @@
   /* ================================================================
      LAYOUT-FUNKTIONEN
      ================================================================ */
-
-  /* Zentrum & Radien fuer die konzentrischen Ringe */
-  var CX = W / 2, CY = H / 2;
-  var R_ROUTES   = 275;  /* Rundgaenge auf dem aeusseren Ring */
-  var R_STATIONS = 130;  /* Stationen auf dem inneren Ring */
 
   function layoutTouren() {
     var pos = [];
