@@ -11,11 +11,15 @@
    ========================================================================== */
 
 .section {
-  padding: var(--sp-5) 0;
+  /* Nur vertikales Padding setzen — horizontales kommt von .container,
+     damit Sektionen mit beiden Klassen (z.B. "section hero container")
+     den Seitenrand nicht verlieren. */
+  padding-top: var(--sp-5);
+  padding-bottom: var(--sp-5);
   border-top: 1px solid rgba(255,255,255,.08);
 }
 @media (min-width: 720px) {
-  .section { padding: var(--sp-6) 0; }
+  .section { padding-top: var(--sp-6); padding-bottom: var(--sp-6); }
 }
 .section:first-of-type { border-top: 0; }
 
@@ -44,18 +48,21 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--sp-2);
-  padding: calc(var(--sp-3) + 40px) 0 var(--sp-2);
+  /* Nur top/bottom — horizontales Padding kommt von .container */
+  padding-top: calc(var(--sp-3) + 40px);
+  padding-bottom: var(--sp-2);
   align-items: center;
 }
 @media (min-width: 720px) {
-  .hero { gap: var(--sp-2); padding: calc(var(--sp-3) + 50px) 0 var(--sp-2); }
+  .hero { gap: var(--sp-2); padding-top: calc(var(--sp-3) + 50px); padding-bottom: var(--sp-2); }
 }
 @media (min-width: 960px) {
   .hero {
     min-height: 100vh;
     grid-template-columns: .8fr 1.6fr .8fr;
     gap: var(--sp-2);
-    padding: calc(var(--sp-2) + 50px) 0 var(--sp-1);
+    padding-top: calc(var(--sp-2) + 50px);
+    padding-bottom: var(--sp-1);
   }
 }
 .hero__left  {
