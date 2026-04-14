@@ -282,6 +282,14 @@ span.feature-list__icon {
   border-radius: 50%;
 }
 
+/* --- Kategorie-Karten: kleines Farb-Logo ueber dem Titel ----------------- */
+.card--kategorie .card__logo {
+  width: 56px;
+  height: auto;
+  display: block;
+  margin: 0 auto var(--sp-1);
+}
+
 /* --- Hero ----------------------------------------------------------------- */
 /* Glow-Signal-Layer: duenne gestrichelte Leitungen mit wandernden
    Signal-Punkten. Liegt hinter dem Hero-Inhalt. Rekonstruiert aus
