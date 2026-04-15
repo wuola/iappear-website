@@ -17,6 +17,8 @@ Ziel-Domain: iappear.at (Umleitung kommt ganz am Schluss)
 
 **`.claude/settings.local.json` ist jetzt ein leerer Stub** (nur `{ "permissions": { "allow": [], "deny": [] } }`) — Platzhalter fuer optionale, nicht-versionierte lokale Overrides. Bis Session 8.3 (15.04.2026) lagen die Regeln gesplittet zwischen settings.json und settings.local.json, was gelegentlich unvorhersehbares Permission-Verhalten produziert hat. Jetzt alles an einem Ort. Commit: `687e7ee`.
 
+**Schwester-Datei im Obsidian-Vault (seit Session 8.5, 15.04.2026):** Es gibt jetzt zusaetzlich `C:\Users\maggy\OneDrive\Dokumente\OBSIDIAN\.claude\settings.json` mit einer analogen Pauschal-Allowlist fuer Sessions, die direkt im Obsidian-Vault geoeffnet werden. Selbe Logik, selbe Deny-Liste, plus Read-Pauschalen auf den ganzen Vault, das iappear-website-Repo und `Desktop\Website_Neu`. Die dort liegende alte `settings.local.json` (~190 Zeilen Auto-Eintraege voller Storyblok/Volare-Curl-Befehle aus frueheren Hämmerle-Villa-/Oberdorf-Sessions) bleibt **unangetastet** — sie stoert nicht, kann irgendwann mal in einer eigenen Session aufgeraeumt werden. Beide Dateien wirken erst in der **naechsten** Session, nicht in der laufenden.
+
 **Wichtig zum Pattern-Matching:** Die Permission-Checks matchen gegen den Kommando-**Anfang**, Token fuer Token.
 
 - **Falle 1 — `&&`-Chains:** Bei `cmd1 && cmd2` greift nur der Eintrag fuer `cmd1`. Also nicht `cd "..." && git status ...` prefixen — das matcht `Bash(cd:*)`, nicht `Bash(git status:*)`.
