@@ -24,7 +24,7 @@
 
   <link rel="stylesheet" href="css/global.css?v=20260414ae" />
   <link rel="stylesheet" href="css/layout.css?v=20260414ae" />
-  <link rel="stylesheet" href="css/components.css?v=20260414ae" />
+  <link rel="stylesheet" href="css/components.css?v=20260415g" />
   <link rel="stylesheet" href="css/animations.css?v=20260414ae" />
 
   <script type="application/ld+json">
@@ -113,25 +113,24 @@
   <main>
     <nav class="breadcrumb container" aria-label="Breadcrumb"><ol><li><a href="index.html">Startseite</a></li><li><a href="stadtrundgaenge.html">Stadtrundgänge</a></li><li><span aria-current="page">Hard am Bodensee</span></li></ol></nav>
 
-    <header class="page-header container">
+    <header class="page-header page-header--hub container">
       <p class="eyebrow">i.appear in Hard</p>
       <h1>Digitaler Stadtrundgang Hard am Bodensee</h1>
-      <p class="muted">Audioguide und multimediale Tour entlang des Bodenseeufers</p>
-    </header>
-
-    <!-- Intro -->
-    <section class="section container">
-      <div class="prose">
+      <p class="page-header__subtitle">Audioguide und multimediale Tour entlang des Bodenseeufers</p>
+      <div class="page-header__intro">
         <p>Hard am Bodensee digital entdecken: Mit dem Stadtrundgang und Audioguide von i.appear erlebst du 200 Jahre Ortsgeschichte direkt am Bodenseeufer &ndash; multimedial, interaktiv und kostenlos. Alles läuft im Browser auf deinem Smartphone, <strong>ohne App-Download und ohne Registrierung</strong>.</p>
         <p>Die See Runde in Hard verbindet reale Schauplätze mit digitalen Erzählungen und macht lokale Geschichte im Stadtraum erfahrbar. Der Audioguide führt an Orten vorbei, die man sonst übersehen würde &ndash; und erzählt von den Menschen, die hier gelebt haben.</p>
       </div>
-    </section>
+      <ul class="hub-jumpnav" aria-label="Kategorien auf dieser Seite">
+        <li><a href="#history" class="hub-jumpnav__chip hub-jumpnav__chip--history">i.history <span class="hub-jumpnav__count">· 1</span></a></li>
+      </ul>
+    </header>
 
     <!-- See Runde -->
-    <section class="section container">
+    <section id="history" class="section container">
       <h2 class="c-history">See Runde</h2>
       <p class="eyebrow">i.history &ndash; Zeitreise durch Hard</p>
-      <div style="margin-top:var(--sp-3)">
+      <div class="grid grid-3" style="margin-top:var(--sp-3)">
 
         <article class="card">
           <h3 class="c-history">Die See Runde &ndash; 200 Jahre Ortsgeschichte am Bodensee</h3>

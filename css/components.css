@@ -178,6 +178,7 @@
   align-items: center;
   border: none;
   padding: var(--sp-3) var(--sp-2);
+  height: 100%;
 }
 .card--kategorie .card__icon {
   width: 56px; height: 56px;
@@ -199,7 +200,8 @@
 }
 .card--kategorie .btn {
   align-self: center;
-  margin-top: var(--sp-2);
+  margin-top: auto;
+  padding-top: var(--sp-2);
   border-radius: 999px;
 }
 
@@ -1133,9 +1135,122 @@ details.info-card[open] > *:not(summary) {
   opacity: .7;
 }
 
+/* --- Page-Header Variante "Hub" -----------------------------------------
+   Verwendet auf den Stadtrundgang-Unterseiten (Dornbirn, Feldkirch, Hard,
+   Au). Ziel: kompakter Hero-Block, damit die ersten Rundgang-Karten
+   direkt oben reinpeeken. Header und Intro-Text sind EINE Box, linksbuendig,
+   max-width 720px, deutlich weniger Vertikal-Raum als der zentrierte
+   Default-Header mit eigener Intro-Section darunter.
+*/
+.page-header--hub {
+  text-align: left;
+  max-width: 720px;
+  margin-left: 0;   /* linksbuendig im Container statt zentriert */
+  margin-right: auto;
+  padding-top: 0;
+  padding-bottom: var(--sp-2);
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-1);
+}
+.page-header--hub .eyebrow {
+  font-size: .8rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  opacity: .7;
+  margin: 0;
+}
+.page-header--hub h1 {
+  margin: 0;
+  font-family: "Roboto", system-ui, sans-serif;
+  font-weight: 900;
+  font-size: clamp(1.8rem, 4.2vw, 2.6rem);
+  line-height: 1.05;
+  letter-spacing: -.015em;
+}
+.page-header--hub .page-header__subtitle {
+  margin: 0;
+  font-family: var(--f-serif, Georgia, serif);
+  font-style: italic;
+  font-size: clamp(1rem, 1.8vw, 1.2rem);
+  opacity: .85;
+}
+.page-header--hub .page-header__intro {
+  margin: var(--sp-2) 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-1);
+}
+.page-header--hub .page-header__intro p {
+  margin: 0;
+  font-size: .95rem;
+  line-height: 1.55;
+  color: var(--c-text-muted);
+}
+/* Sektion direkt nach dem Hub-Header naeher ranziehen */
+.page-header--hub + .section {
+  padding-top: var(--sp-3);
+}
+
+
+/* --- Hub Jump-Nav (Kategorie-Chips auf Stadtrundgang-Unterseiten) --------
+   Kleine Chip-Leiste im Hub-Header mit klickbaren Ankerlinks auf die
+   Kategorie-Sektionen der Seite. Zeigt auf einen Blick, welche
+   Kategorien es auf dieser Stadt-Seite gibt.
+*/
+.hub-jumpnav {
+  list-style: none;
+  margin: var(--sp-2) 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-1);
+}
+.hub-jumpnav__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: .5em;
+  padding: .35em .8em;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  font-size: .85rem;
+  font-weight: 500;
+  text-decoration: none;
+  line-height: 1;
+  transition: background-color .15s, transform .15s;
+}
+.hub-jumpnav__chip::before {
+  content: "";
+  width: .55em;
+  height: .55em;
+  border-radius: 50%;
+  background: currentColor;
+  flex: none;
+}
+.hub-jumpnav__chip:hover,
+.hub-jumpnav__chip:focus-visible {
+  background-color: color-mix(in srgb, currentColor 15%, transparent);
+  transform: translateY(-1px);
+}
+.hub-jumpnav__chip--history { color: var(--c-history); }
+.hub-jumpnav__chip--dentity { color: var(--c-dentity); }
+.hub-jumpnav__chip--grow    { color: var(--c-grow); }
+.hub-jumpnav__chip--neutral { color: rgba(255,255,255,.75); }
+.hub-jumpnav__chip--soon    { color: rgba(255,255,255,.45); border-style: dashed; }
+.hub-jumpnav__count {
+  opacity: .7;
+  font-weight: 400;
+}
+
+/* Scroll-Anker: fixe Nav (~60px) einrechnen, damit Sprungziel nicht
+   unter der Nav verschwindet */
+.section[id],
+.ort-card[id] { scroll-margin-top: 80px; }
+
 /* --- Breadcrumbs --------------------------------------------------------- */
 .breadcrumb {
-  padding-top: calc(var(--sp-5) + 60px);
+  padding-top: calc(var(--sp-3) + 60px);
   padding-bottom: var(--sp-2);
   font-size: .8rem;
   letter-spacing: .05em;

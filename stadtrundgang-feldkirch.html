@@ -24,7 +24,7 @@
 
   <link rel="stylesheet" href="css/global.css?v=20260414ae" />
   <link rel="stylesheet" href="css/layout.css?v=20260414ae" />
-  <link rel="stylesheet" href="css/components.css?v=20260414ae" />
+  <link rel="stylesheet" href="css/components.css?v=20260415g" />
   <link rel="stylesheet" href="css/animations.css?v=20260414ae" />
 
   <!-- Breadcrumb + TouristAttraction Schema -->
@@ -114,25 +114,24 @@
   <main>
     <nav class="breadcrumb container" aria-label="Breadcrumb"><ol><li><a href="index.html">Startseite</a></li><li><a href="stadtrundgaenge.html">Stadtrundgänge</a></li><li><span aria-current="page">Feldkirch</span></li></ol></nav>
 
-    <header class="page-header container">
+    <header class="page-header page-header--hub container">
       <p class="eyebrow">i.appear in Feldkirch</p>
       <h1>Digitaler Stadtrundgang Feldkirch</h1>
-      <p class="muted">Audioguides und multimediale Touren in der mittelalterlichen Alpenstadt</p>
-    </header>
-
-    <!-- Intro -->
-    <section class="section container">
-      <div class="prose">
+      <p class="page-header__subtitle">Audioguides und multimediale Touren in der mittelalterlichen Alpenstadt</p>
+      <div class="page-header__intro">
         <p>Feldkirch digital entdecken: Mit den Stadtrundgängen und Audioguides von i.appear erlebst du Baukultur, Kriegsgeschichte und Medienbildung direkt in der Altstadt &ndash; multimedial, interaktiv und kostenlos. Alles läuft im Browser auf deinem Smartphone, <strong>ohne App-Download und ohne Registrierung</strong>.</p>
         <p>Feldkirch ist ein besonderer Ort für i.appear: Hier entstehen Schulprojekte, in denen Schüler:innen selbst zu Erzähler:innen ihrer Stadt werden. Von Demokratie und Zusammenleben bis zu den Bombenabwürfen 1943 &ndash; Geschichte wird im Stadtraum lebendig.</p>
       </div>
-    </section>
+      <ul class="hub-jumpnav" aria-label="Kategorien auf dieser Seite">
+        <li><a href="#grow" class="hub-jumpnav__chip hub-jumpnav__chip--grow">i.grow <span class="hub-jumpnav__count">· 2</span></a></li>
+      </ul>
+    </header>
 
     <!-- i.grow Rundgaenge -->
-    <section class="section container">
+    <section id="grow" class="section container">
       <h2 class="c-grow">Stadtrundgänge für Schulen</h2>
       <p class="eyebrow">i.grow &ndash; Medienbildung in Feldkirch</p>
-      <div class="grid grid-2" style="margin-top:var(--sp-3)">
+      <div class="grid grid-3" style="margin-top:var(--sp-3)">
 
         <article class="card">
           <h3 class="c-grow">Zusammenwachsen</h3>

@@ -24,7 +24,7 @@
 
   <link rel="stylesheet" href="css/global.css?v=20260414ae" />
   <link rel="stylesheet" href="css/layout.css?v=20260414ae" />
-  <link rel="stylesheet" href="css/components.css?v=20260414ae" />
+  <link rel="stylesheet" href="css/components.css?v=20260415g" />
   <link rel="stylesheet" href="css/animations.css?v=20260414ae" />
 
   <!-- Leaflet CSS fuer die Karte (OpenStreetMap, DSGVO-konform) -->
@@ -139,23 +139,25 @@
   <main>
     <nav class="breadcrumb container" aria-label="Breadcrumb"><ol><li><a href="index.html">Startseite</a></li><li><span aria-current="page">Stadtrundgänge</span></li></ol></nav>
 
-    <header class="page-header container">
+    <header class="page-header page-header--hub container">
       <p class="eyebrow">i.appear &ndash; digital city tours</p>
       <h1>Digitale Stadtrundgänge &amp; Audioguides</h1>
-      <p class="muted">Alle Orte auf einen Blick &ndash; in Vorarlberg, der Bodenseeregion und darüber hinaus</p>
-    </header>
-
-    <!-- Intro -->
-    <section class="section container">
-      <div class="prose">
+      <p class="page-header__subtitle">Alle Orte auf einen Blick &ndash; in Vorarlberg, der Bodenseeregion und darüber hinaus</p>
+      <div class="page-header__intro">
         <p>Mit den digitalen Stadtrundgängen und Audioguides von i.appear entdeckst du Orte in Vorarlberg und der Bodenseeregion auf eine neue Art: multimedial, interaktiv und kostenlos &ndash; direkt im Browser auf deinem Smartphone. An jeder Station erwarten dich 3D-Modelle, Augmented Reality, Audioguide-Beiträge, historische Fotografien und Videos.</p>
         <p>Unsere Stadtrundgänge verbinden <strong>Geschichte, Kultur, Tourismus und Medienbildung</strong>. Ob historische Zeitreise, regionaler Erlebnis-Audioguide oder Bildungsprojekt mit Schulen &ndash; wähle deinen Ort und starte deinen Rundgang. <strong>Ohne App-Download, ohne Registrierung, ohne Werbung.</strong></p>
       </div>
-    </section>
+      <ul class="hub-jumpnav" aria-label="Orte auf dieser Seite">
+        <li><a href="#ort-dornbirn" class="hub-jumpnav__chip hub-jumpnav__chip--neutral">Dornbirn <span class="hub-jumpnav__count">· 10+</span></a></li>
+        <li><a href="#ort-feldkirch" class="hub-jumpnav__chip hub-jumpnav__chip--neutral">Feldkirch <span class="hub-jumpnav__count">· 2</span></a></li>
+        <li><a href="#ort-hard" class="hub-jumpnav__chip hub-jumpnav__chip--neutral">Hard <span class="hub-jumpnav__count">· 1</span></a></li>
+        <li><a href="#ort-au" class="hub-jumpnav__chip hub-jumpnav__chip--neutral">Au <span class="hub-jumpnav__count">· 1</span></a></li>
+        <li><a href="#ort-bregenz" class="hub-jumpnav__chip hub-jumpnav__chip--soon">Bregenz <span class="hub-jumpnav__count">· bald</span></a></li>
+      </ul>
+    </header>
 
     <!-- Karte -->
     <section class="section container">
-      <h2>Unsere Standorte</h2>
       <div class="map-wrap" id="karte"></div>
     </section>
 
@@ -166,7 +168,7 @@
       <div class="ort-grid">
 
         <!-- Dornbirn -->
-        <a href="stadtrundgang-dornbirn.html" class="ort-card" style="text-decoration:none;color:inherit">
+        <a href="stadtrundgang-dornbirn.html" id="ort-dornbirn" class="ort-card" style="text-decoration:none;color:inherit">
           <h3>Dornbirn</h3>
           <p class="ort-count">10+ Stadtrundgänge &amp; Audioguides</p>
           <div class="ort-tags">
@@ -178,7 +180,7 @@
         </a>
 
         <!-- Feldkirch -->
-        <a href="stadtrundgang-feldkirch.html" class="ort-card" style="text-decoration:none;color:inherit">
+        <a href="stadtrundgang-feldkirch.html" id="ort-feldkirch" class="ort-card" style="text-decoration:none;color:inherit">
           <h3>Feldkirch</h3>
           <p class="ort-count">2 Stadtrundgänge</p>
           <div class="ort-tags">
@@ -188,7 +190,7 @@
         </a>
 
         <!-- Hard -->
-        <a href="stadtrundgang-hard.html" class="ort-card" style="text-decoration:none;color:inherit">
+        <a href="stadtrundgang-hard.html" id="ort-hard" class="ort-card" style="text-decoration:none;color:inherit">
           <h3>Hard am Bodensee</h3>
           <p class="ort-count">1 Stadtrundgang</p>
           <div class="ort-tags">
@@ -198,7 +200,7 @@
         </a>
 
         <!-- Au -->
-        <a href="stadtrundgang-au.html" class="ort-card" style="text-decoration:none;color:inherit">
+        <a href="stadtrundgang-au.html" id="ort-au" class="ort-card" style="text-decoration:none;color:inherit">
           <h3>Au im Bregenzerwald</h3>
           <p class="ort-count">1 Stadtrundgang</p>
           <div class="ort-tags">
@@ -208,7 +210,7 @@
         </a>
 
         <!-- Bregenz -->
-        <a href="stadtrundgang-bregenz.html" class="ort-card ort-card--soon" style="text-decoration:none;color:inherit">
+        <a href="stadtrundgang-bregenz.html" id="ort-bregenz" class="ort-card ort-card--soon" style="text-decoration:none;color:inherit">
           <h3>Bregenz</h3>
           <p class="ort-count">1 Stadtrundgang</p>
           <div class="ort-tags">

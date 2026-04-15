@@ -24,7 +24,7 @@
 
   <link rel="stylesheet" href="css/global.css?v=20260414ae" />
   <link rel="stylesheet" href="css/layout.css?v=20260414ae" />
-  <link rel="stylesheet" href="css/components.css?v=20260414ae" />
+  <link rel="stylesheet" href="css/components.css?v=20260415g" />
   <link rel="stylesheet" href="css/animations.css?v=20260414ae" />
 
   <script type="application/ld+json">
@@ -113,25 +113,24 @@
   <main>
     <nav class="breadcrumb container" aria-label="Breadcrumb"><ol><li><a href="index.html">Startseite</a></li><li><a href="stadtrundgaenge.html">Stadtrundgänge</a></li><li><span aria-current="page">Au im Bregenzerwald</span></li></ol></nav>
 
-    <header class="page-header container">
+    <header class="page-header page-header--hub container">
       <p class="eyebrow">i.appear im Bregenzerwald</p>
       <h1>Digitaler Stadtrundgang Au im Bregenzerwald</h1>
-      <p class="muted">Audioguide auf den Spuren der Vorarlberger Barockbaumeister</p>
-    </header>
-
-    <!-- Intro -->
-    <section class="section container">
-      <div class="prose">
+      <p class="page-header__subtitle">Audioguide auf den Spuren der Vorarlberger Barockbaumeister</p>
+      <div class="page-header__intro">
         <p>Au im Bregenzerwald digital entdecken: Der Barockbaumeister-Stadtrundgang und Audioguide von i.appear führt dich auf eine Reise durch die Geschichte der Vorarlberger Barockbaumeister-Schule &ndash; multimedial, interaktiv und kostenlos. Alles läuft im Browser auf deinem Smartphone, <strong>ohne App-Download und ohne Registrierung</strong>.</p>
         <p>Der Rundgang beginnt in Au, wo Franz Beer als Sohn einer Baumeisterfamilie aufwuchs, und führt über Bregenz und Konstanz bis nach Bezau. Eine Reise durch Baukultur, Biografien und Orte &ndash; erzählt vom Barockbaumeister selbst.</p>
       </div>
-    </section>
+      <ul class="hub-jumpnav" aria-label="Kategorien auf dieser Seite">
+        <li><a href="#history" class="hub-jumpnav__chip hub-jumpnav__chip--history">i.history <span class="hub-jumpnav__count">· 1</span></a></li>
+      </ul>
+    </header>
 
     <!-- Barockbaumeister -->
-    <section class="section container">
+    <section id="history" class="section container">
       <h2 class="c-history">Barockbaumeister</h2>
       <p class="eyebrow">i.history &ndash; Zeitreise durch den Bregenzerwald und die Bodenseeregion</p>
-      <div style="margin-top:var(--sp-3)">
+      <div class="grid grid-3" style="margin-top:var(--sp-3)">
 
         <article class="card">
           <h3 class="c-history">Barockbaumeister Franz Beer &ndash; Eine Reise durch drei Jahrhunderte</h3>

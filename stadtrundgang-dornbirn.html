@@ -24,7 +24,7 @@
 
   <link rel="stylesheet" href="css/global.css?v=20260414ae" />
   <link rel="stylesheet" href="css/layout.css?v=20260414ae" />
-  <link rel="stylesheet" href="css/components.css?v=20260414ae" />
+  <link rel="stylesheet" href="css/components.css?v=20260415g" />
   <link rel="stylesheet" href="css/animations.css?v=20260414ae" />
 
   <!-- Breadcrumb + TouristAttraction Schema -->
@@ -114,25 +114,26 @@
   <main>
     <nav class="breadcrumb container" aria-label="Breadcrumb"><ol><li><a href="index.html">Startseite</a></li><li><a href="stadtrundgaenge.html">Stadtrundgänge</a></li><li><span aria-current="page">Dornbirn</span></li></ol></nav>
 
-    <header class="page-header container">
+    <header class="page-header page-header--hub container">
       <p class="eyebrow">i.appear in Dornbirn</p>
       <h1>Digitaler Stadtrundgang Dornbirn</h1>
-      <p class="muted">Alle Audioguides und multimedialen Touren auf einen Blick</p>
-    </header>
-
-    <!-- Intro -->
-    <section class="section container">
-      <div class="prose">
+      <p class="page-header__subtitle">Alle Audioguides und multimedialen Touren auf einen Blick</p>
+      <div class="page-header__intro">
         <p>Dornbirn digital entdecken: Mit den Stadtrundgängen und Audioguides von i.appear erlebst du Geschichte, Kultur und regionale Identität direkt vor Ort &ndash; multimedial, interaktiv und kostenlos. Alles läuft im Browser auf deinem Smartphone, <strong>ohne App-Download und ohne Registrierung</strong>.</p>
         <p>Unsere Stadtrundgänge in Dornbirn decken drei Themenwelten ab: historische Zeitreisen, regionale Erlebnisse und Medienbildung für Schulen. An jeder Station erwarten dich 3D-Modelle, Augmented Reality, Audioguide-Beiträge, Videos und interaktive Karten.</p>
       </div>
-    </section>
+      <ul class="hub-jumpnav" aria-label="Kategorien auf dieser Seite">
+        <li><a href="#history" class="hub-jumpnav__chip hub-jumpnav__chip--history">i.history <span class="hub-jumpnav__count">· 4</span></a></li>
+        <li><a href="#dentity" class="hub-jumpnav__chip hub-jumpnav__chip--dentity">i.dentity <span class="hub-jumpnav__count">· 3</span></a></li>
+        <li><a href="#grow" class="hub-jumpnav__chip hub-jumpnav__chip--grow">i.grow <span class="hub-jumpnav__count">· 2</span></a></li>
+      </ul>
+    </header>
 
     <!-- i.history Rundgaenge -->
-    <section class="section container">
+    <section id="history" class="section container">
       <h2 class="c-history">Historische Stadtrundgänge</h2>
       <p class="eyebrow">i.history &ndash; Zeitreisen durch Dornbirn</p>
-      <div class="grid grid-2" style="margin-top:var(--sp-3)">
+      <div class="grid grid-3" style="margin-top:var(--sp-3)">
 
         <article class="card">
           <h3 class="c-history">hist.appear</h3>
@@ -163,10 +164,10 @@
     </section>
 
     <!-- i.dentity Rundgaenge -->
-    <section class="section container">
+    <section id="dentity" class="section container">
       <h2 class="c-dentity">Kultur &amp; Tourismus Stadtrundgänge</h2>
       <p class="eyebrow">i.dentity &ndash; Regionale Identität in Dornbirn</p>
-      <div class="grid grid-2" style="margin-top:var(--sp-3)">
+      <div class="grid grid-3" style="margin-top:var(--sp-3)">
 
         <article class="card">
           <h3 class="c-dentity">Innenstadt erleben</h3>
@@ -191,10 +192,10 @@
     </section>
 
     <!-- i.grow Rundgaenge -->
-    <section class="section container">
+    <section id="grow" class="section container">
       <h2 class="c-grow">Stadtrundgänge für Schulen</h2>
       <p class="eyebrow">i.grow &ndash; Medienbildung und Demokratiebildung in Dornbirn</p>
-      <div class="grid grid-2" style="margin-top:var(--sp-3)">
+      <div class="grid grid-3" style="margin-top:var(--sp-3)">
 
         <article class="card">
           <h3 class="c-grow">hist.appear (Schul-Variante)</h3>
