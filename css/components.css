@@ -762,17 +762,20 @@ span.feature-list__icon {
    Auf index.html sitzt zusaetzlich der Partner-Block (.footer__partner)
    VOR diesen drei Ebenen. */
 
+/* Brand-Zeile steht nur noch auf der Landingpage (unter Partner-Block).
+   Wenig vertikaler Luftraum, damit der Block nicht dominiert. */
 .footer__brand {
   text-align: center;
+  margin-top: var(--sp-2);
   margin-bottom: var(--sp-1);
 }
 .footer__brand h4 {
   font-family: var(--f-serif, Georgia, serif);
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   font-weight: 400;
   letter-spacing: .02em;
   margin: 0;
-  opacity: .9;
+  opacity: .85;
 }
 
 .footer__contact {
@@ -780,9 +783,9 @@ span.feature-list__icon {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: var(--sp-1) var(--sp-3);
-  margin-bottom: var(--sp-3);
-  font-size: .85rem;
+  gap: .4rem var(--sp-3);
+  margin: 0 0 var(--sp-2);
+  font-size: .82rem;
   color: var(--c-text-muted);
   list-style: none;
   padding: 0;
@@ -807,7 +810,7 @@ span.feature-list__icon {
    noch .footer__kontakt verwendet wird — sollte eigentlich leer sein. */
 .footer__kontakt { display: none; }
 
-.footer__partner { margin-bottom: var(--sp-4); }
+.footer__partner { margin-bottom: var(--sp-3); }
 .partner-grid {
   display: grid; gap: var(--sp-2);
   grid-template-columns: repeat(2, 1fr);
