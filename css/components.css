@@ -754,12 +754,58 @@ span.feature-list__icon {
    rechts enthaelt alle Links, der Footer-Block war reine Dopplung.
    Stattdessen gibt's eine schlanke .footer__legal Leiste am Ende. */
 
-.footer__kontakt { margin-bottom: var(--sp-5); }
-.kontakt-liste li {
-  display: flex; align-items: flex-start; gap: .6em;
-  padding: .25em 0;
+/* --- Einheitlicher Basis-Footer (alle Seiten seit Session 8.5) -----------
+   Aufbau in 3 Ebenen, alle zentriert, schlank:
+   1. .footer__brand      – Brand + Tagline ("i.appear — Digital City Tours")
+   2. .footer__contact    – Adresse · Telefon · E-Mail als eine Zeile
+   3. .footer__bottom     – Copyright · Legal-Nav · nach oben
+   Auf index.html sitzt zusaetzlich der Partner-Block (.footer__partner)
+   VOR diesen drei Ebenen. */
+
+.footer__brand {
+  text-align: center;
+  margin-bottom: var(--sp-1);
 }
-.kontakt-liste a { text-decoration: underline; opacity: .9; }
+.footer__brand h4 {
+  font-family: var(--f-serif, Georgia, serif);
+  font-size: 1.1rem;
+  font-weight: 400;
+  letter-spacing: .02em;
+  margin: 0;
+  opacity: .9;
+}
+
+.footer__contact {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: var(--sp-1) var(--sp-3);
+  margin-bottom: var(--sp-3);
+  font-size: .85rem;
+  color: var(--c-text-muted);
+  list-style: none;
+  padding: 0;
+}
+.footer__contact li {
+  display: inline-flex;
+  align-items: center;
+  gap: .4em;
+}
+.footer__contact a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color .15s, opacity .15s;
+}
+.footer__contact a:hover {
+  border-bottom-color: currentColor;
+  opacity: 1;
+}
+
+/* Alter Kontakt-Block, nur noch als Kompatibilitaet falls irgendwo
+   noch .footer__kontakt verwendet wird — sollte eigentlich leer sein. */
+.footer__kontakt { display: none; }
 
 .footer__partner { margin-bottom: var(--sp-4); }
 .partner-grid {
