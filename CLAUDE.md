@@ -11,9 +11,11 @@ Ziel-Domain: iappear.at (Umleitung kommt ganz am Schluss)
 - NICHT die bestehende Readymag-Seite anfassen
 - Innerhalb des Repos volle Autonomie für alle anderen Entscheidungen
 
-## Berechtigungen (seit 2026-04-14)
+## Berechtigungen (seit 2026-04-14, konsolidiert 2026-04-15)
 
-`.claude/settings.local.json` hat eine breite Allowlist — routinemaessige Operationen laufen ohne Rueckfrage: Edit/Write/Read, `git add/commit/push/diff/status/log/branch/checkout/stash/tag/fetch/pull`, `git reset --soft`, `python`, `cp/mv/mkdir/touch/ls/cd`, `cat/head/tail/wc/echo`, `gh pr/api/run/issue`, WebSearch/WebFetch.
+**Eine Quelle der Wahrheit:** `.claude/settings.json`. Die Datei hat eine breite Allowlist — routinemaessige Operationen laufen ohne Rueckfrage: Edit/Write/Read, `git add/commit/push/diff/status/log/branch/checkout/stash/tag/fetch/pull`, `git reset --soft`, `python`, `node/npm/npx`, `cp/mv/mkdir/touch/ls/cd`, `cat/head/tail/wc/echo`, `gh pr/api/run/issue`, WebSearch/WebFetch, Read-Zugriff auf die beiden Obsidian-Ordner (`---Claude---` und `----WEBSITE NEU MIT HTML----`), MCP Claude_Preview + Claude_in_Chrome.
+
+**`.claude/settings.local.json` ist jetzt ein leerer Stub** (nur `{ "permissions": { "allow": [], "deny": [] } }`) — Platzhalter fuer optionale, nicht-versionierte lokale Overrides. Bis Session 8.3 (15.04.2026) lagen die Regeln gesplittet zwischen settings.json und settings.local.json, was gelegentlich unvorhersehbares Permission-Verhalten produziert hat. Jetzt alles an einem Ort. Commit: `687e7ee`.
 
 **Wichtig zum Pattern-Matching:** Die Permission-Checks matchen gegen den Kommando-**Anfang**, Token fuer Token.
 
