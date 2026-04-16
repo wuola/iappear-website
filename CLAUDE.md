@@ -195,7 +195,8 @@ Seit Session 6 zeigen alle Nav-Links auf eigene HTML-Seiten (features.html, vitr
   - **Kategorie-Varianten** (`.btn--history/--dentity/--grow`): Stroke + Hintergrund in halbtransparenter Kategorie-Farbe, Shadow/Highlight/Blur von den zentralen Variablen.
   - **Netzwerk-Viz groessere Schriften**: Tour-Labels (aeusserer Ring) 13→20px, Station-Labels (innerer Ring) 11→13px, "coming soon" Tag 8→10px, Station-Count 9→11px. Tour-Dots r=5→8 (deutlich groesser). Label-Offset 38→48 (mehr Abstand Dot↔Label). ViewBox 1000x700→1100x780 (mehr Platz am Rand). Innerer Ring R=130→165, aeusserer R=275→290. Mitte bleibt bei 13 Platzhalter-Stationen etwas eng — loest sich mit echten Daten.
   - **Stadtrundgang-Karten auf Landingpage**: Bunte Target-Icons (gelb/blau/gruen je nach Kategorie) ersetzt durch **ein weisses Target** pro Karte. Darunter jetzt **Glassy-Chips** mit Kategorie-Name und Anzahl (z.B. "i.history · 4", "i.dentity · 3", "i.grow · 2") — konsistent mit dem Design auf den Stadtrundgang-Unterseiten.
-  - **Commit**: `7894b4a`. Live: https://wuola.github.io/iappear-website/
+  - **Automatische Rundgang-Counts via build.py** (`58d9a1b`): `rundgaenge.js` ist jetzt die einzige Quelle der Wahrheit fuer alle Rundgang-Zahlen. Neues `stadt`-Feld pro Region mappt auf City-Slugs (z.B. "Messepark Dornbirn" → dornbirn, "Bodenseeregion" → hard). `build.py` zaehlt pro Stadt + Kategorie und injiziert Ergebnisse in 6 HTML-Dateien via Marker-Kommentare. Drei Marker-Typen: `COUNT:slug` (Zahltext), `CHIPS:kategorie:slug` (Glassy-Chips), `CHIPS:hub` (Hub-Chips). Getestet mit Dummy-Rundgang (Feldkirch +1 history, Zahl ging korrekt von 2 auf 3 und zurueck). Workflow: `rundgaenge.js` bearbeiten → `python build.py` → committen.
+  - **Commits**: `7894b4a` (Glassy + Netzwerk + Karten), `6dc483d` (Cache-Bust Fix), `58d9a1b` (Auto-Counts). Live: https://wuola.github.io/iappear-website/
 
 - Session 8.5 (Footer vereinheitlicht + Copyright als Marke, 2026-04-15):
   - **Problem**: Der Footer war zwischen Landingpage und Unterseiten komplett inkonsistent. Landingpage hatte einen breiten `.footer__kontakt`-Block (Brand + Adresse + Telefon + E-Mail + Web), der auf der vollen Footer-Breite lag aber nur ~40% Text hatte → wirkte "lost" laut Nutzerin. Alle 44 Unterseiten hatten nur eine einzige Zeile Copyright + "zurück zur Startseite →" und **keine Legal-Links** (Impressumspflicht DACH!). Die Adresse klebte im Copyright-Text mit drin ("© Marilena Tumler e.U. – Mozartstrasse 5 | 16, 6850 Dornbirn") — mischte zwei Dinge. Zusätzlich hatten `agb.html` und `datenschutz.html` noch den alten Pre-Session-8.2 `.footer__grid`-Quicklinks-Block drin (beim Session-8.2-Cleanup übersehen).
@@ -288,8 +289,16 @@ Live-Vorschau: https://wuola.github.io/iappear-website/
 - Map-Kreis-Deko auf Kategorie-Seiten
 - Domain-Umleitung (ganz am Schluss)
 
-### Build-Schritt: Vitrine statisch
-Bei Aenderungen an `js/data/vitrine.js` MUSS einmal `python build.py` laufen, sonst ist der statische Kachel-Block in `vitrine.html` veraltet. Das Build-Script liest die 22 Eintraege aus der JS-Datei und rendert sie als HTML-Block zwischen `<!-- VITRINE-GRID-START -->` / `<!-- VITRINE-GRID-END -->` rein. Warum ueberhaupt? Weil LLM-Crawler (ChatGPT/Claude/Perplexity/Common Crawl) kein JavaScript rendern — nur was direkt im HTML steht, sehen sie. Der JS-Renderer in `vitrine.js` ist nur Notnagel-Fallback. Komplette Doku: `_doku/vitrine-bearbeiten.md`.
+### Build-Schritt: `python build.py`
+Bei Aenderungen an `js/data/vitrine.js` ODER `js/data/rundgaenge.js` MUSS einmal `python build.py` laufen. Das Script macht zwei Dinge:
+
+1. **Vitrine-Kacheln**: Liest `vitrine.js` → rendert HTML zwischen `<!-- VITRINE-GRID-START -->` / `<!-- VITRINE-GRID-END -->` in `vitrine.html`.
+2. **Rundgang-Counts** (seit Session 9): Liest `rundgaenge.js` → zaehlt Rundgaenge pro Stadt und Kategorie → injiziert Ergebnisse in 6 HTML-Dateien (index.html, stadtrundgaenge.html, 4 Stadtseiten). Marker-Typen:
+   - `<!-- COUNT:stadtslug:START -->...<!-- COUNT:stadtslug:END -->` — Zahltext ("10 Stadtrundgaenge & Audioguides")
+   - `<!-- CHIPS:kategorie:stadtslug:START -->...<!-- CHIPS:kategorie:stadtslug:END -->` — Glassy Kategorie-Chips
+   - `<!-- CHIPS:hub:START -->...<!-- CHIPS:hub:END -->` — Hub-Chips auf stadtrundgaenge.html
+
+Wichtig: `rundgaenge.js` braucht pro Region ein `stadt`-Feld (City-Slug), damit das Script weiss welche Region zu welcher Stadt gehoert (z.B. `stadt: "dornbirn"` fuer "Messepark Dornbirn"). Neue Stadt? In `build.py` die STAEDTE/STADT_ORDER Dicts erweitern.
 
 ### Phone-Mockup-Konvention (wichtig fuer Feature-Sektion + Hero!)
 Ueberall wo ein Smartphone+Screen gezeigt werden soll (Hero, Features, Kategorie-Seiten), wird der **CSS-only Mockup** aus `components.css` verwendet — KEINE fertigen Mockup-Bilder!
