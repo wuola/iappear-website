@@ -196,7 +196,8 @@ Seit Session 6 zeigen alle Nav-Links auf eigene HTML-Seiten (features.html, vitr
   - **Netzwerk-Viz groessere Schriften**: Tour-Labels (aeusserer Ring) 13→20px, Station-Labels (innerer Ring) 11→13px, "coming soon" Tag 8→10px, Station-Count 9→11px. Tour-Dots r=5→8 (deutlich groesser). Label-Offset 38→48 (mehr Abstand Dot↔Label). ViewBox 1000x700→1100x780 (mehr Platz am Rand). Innerer Ring R=130→165, aeusserer R=275→290. Mitte bleibt bei 13 Platzhalter-Stationen etwas eng — loest sich mit echten Daten.
   - **Stadtrundgang-Karten auf Landingpage**: Bunte Target-Icons (gelb/blau/gruen je nach Kategorie) ersetzt durch **ein weisses Target** pro Karte. Darunter jetzt **Glassy-Chips** mit Kategorie-Name und Anzahl (z.B. "i.history · 4", "i.dentity · 3", "i.grow · 2") — konsistent mit dem Design auf den Stadtrundgang-Unterseiten.
   - **Automatische Rundgang-Counts via build.py** (`58d9a1b`): `rundgaenge.js` ist jetzt die einzige Quelle der Wahrheit fuer alle Rundgang-Zahlen. Neues `stadt`-Feld pro Region mappt auf City-Slugs (z.B. "Messepark Dornbirn" → dornbirn, "Bodenseeregion" → hard). `build.py` zaehlt pro Stadt + Kategorie und injiziert Ergebnisse in 6 HTML-Dateien via Marker-Kommentare. Drei Marker-Typen: `COUNT:slug` (Zahltext), `CHIPS:kategorie:slug` (Glassy-Chips), `CHIPS:hub` (Hub-Chips). Getestet mit Dummy-Rundgang (Feldkirch +1 history, Zahl ging korrekt von 2 auf 3 und zurueck). Workflow: `rundgaenge.js` bearbeiten → `python build.py` → committen.
-  - **Commits**: `7894b4a` (Glassy + Netzwerk + Karten), `6dc483d` (Cache-Bust Fix), `58d9a1b` (Auto-Counts). Live: https://wuola.github.io/iappear-website/
+  - **Automatische Stadt-Infrastruktur via build.py** (`bcc40d3`): Neuer `IAPPEAR_STAEDTE` Config-Block in `rundgaenge.js` mit Koordinaten, Anzeigename und Subtitle pro Stadt. build.py liest die Config dynamisch (statt hardcoded) und generiert bei einem neuen Ort automatisch: (a) eine neue `stadtrundgang-{slug}.html` Stadtseite mit Breadcrumbs, Schema.org, Kategorie-Sektionen und Tour-Cards aus den Rundgang-Daten, (b) einen Leaflet-Karten-Pin auf der Hub-Seite via `MAP-MARKERS`-Marker, (c) einen Sitemap-Eintrag via `STADTRUNDGANG-URLS`-Marker, (d) einen llms.txt-Eintrag via `STADTRUNDGANG-LINKS`-Marker. Bestehende Stadtseiten werden NICHT ueberschrieben. Getestet mit Dummy-Ort "Schwarzach" (angelegt, geprueft, entfernt). Ort-Cards auf der Hub-Seite bleiben manuell (schuetzt hand-geschriebene Texte).
+  - **Commits**: `7894b4a` (Glassy + Netzwerk + Karten), `6dc483d` (Cache-Bust Fix), `58d9a1b` (Auto-Counts), `bcc40d3` (Auto-Staedte). Live: https://wuola.github.io/iappear-website/
 
 - Session 8.5 (Footer vereinheitlicht + Copyright als Marke, 2026-04-15):
   - **Problem**: Der Footer war zwischen Landingpage und Unterseiten komplett inkonsistent. Landingpage hatte einen breiten `.footer__kontakt`-Block (Brand + Adresse + Telefon + E-Mail + Web), der auf der vollen Footer-Breite lag aber nur ~40% Text hatte → wirkte "lost" laut Nutzerin. Alle 44 Unterseiten hatten nur eine einzige Zeile Copyright + "zurück zur Startseite →" und **keine Legal-Links** (Impressumspflicht DACH!). Die Adresse klebte im Copyright-Text mit drin ("© Marilena Tumler e.U. – Mozartstrasse 5 | 16, 6850 Dornbirn") — mischte zwei Dinge. Zusätzlich hatten `agb.html` und `datenschutz.html` noch den alten Pre-Session-8.2 `.footer__grid`-Quicklinks-Block drin (beim Session-8.2-Cleanup übersehen).
@@ -298,7 +299,13 @@ Bei Aenderungen an `js/data/vitrine.js` ODER `js/data/rundgaenge.js` MUSS einmal
    - `<!-- CHIPS:kategorie:stadtslug:START -->...<!-- CHIPS:kategorie:stadtslug:END -->` — Glassy Kategorie-Chips
    - `<!-- CHIPS:hub:START -->...<!-- CHIPS:hub:END -->` — Hub-Chips auf stadtrundgaenge.html
 
-Wichtig: `rundgaenge.js` braucht pro Region ein `stadt`-Feld (City-Slug), damit das Script weiss welche Region zu welcher Stadt gehoert (z.B. `stadt: "dornbirn"` fuer "Messepark Dornbirn"). Neue Stadt? In `build.py` die STAEDTE/STADT_ORDER Dicts erweitern.
+Wichtig: `rundgaenge.js` braucht pro Region ein `stadt`-Feld (City-Slug), damit das Script weiss welche Region zu welcher Stadt gehoert (z.B. `stadt: "dornbirn"` fuer "Messepark Dornbirn").
+
+**Neuen Ort hinzufuegen (seit Session 9):**
+1. In `IAPPEAR_STAEDTE` (am Ende von `rundgaenge.js`) den neuen Ort eintragen: `slug: { name: "...", lat: ..., lng: ..., subtitle: "..." }`
+2. Rundgaenge mit `stadt: "neuer-slug"` in den Kategorie-Bloecken eintragen
+3. `python build.py` → generiert automatisch: Stadtseite, Karten-Pin, Sitemap, llms.txt, alle Counts
+4. Optional: Ort-Card auf Hub-Seite manuell hinzufuegen (Copy-Paste von bestehender Card, Marker setzen)
 
 ### Phone-Mockup-Konvention (wichtig fuer Feature-Sektion + Hero!)
 Ueberall wo ein Smartphone+Screen gezeigt werden soll (Hero, Features, Kategorie-Seiten), wird der **CSS-only Mockup** aus `components.css` verwendet — KEINE fertigen Mockup-Bilder!
