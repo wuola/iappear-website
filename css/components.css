@@ -1302,8 +1302,10 @@ details.info-card[open] > *:not(summary) {
 .hub-jumpnav__chip {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: .5em;
   padding: .35em .8em;
+  min-width: 9.5em;
   border: 1px solid color-mix(in srgb, currentColor 40%, transparent);
   border-radius: 999px;
   font-size: .85rem;
