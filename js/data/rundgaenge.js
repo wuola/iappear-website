@@ -19,6 +19,7 @@ window.IAPPEAR_RUNDGAENGE = {
     regionen: [
       {
         name: "Dornbirn",
+        stadt: "dornbirn",
         rundgaenge: [
           {
             titel: "hist.appear",
@@ -44,6 +45,7 @@ window.IAPPEAR_RUNDGAENGE = {
       },
       {
         name: "Bregenz",
+        stadt: "bregenz",
         rundgaenge: [
           {
             titel: "Brigantium",
@@ -54,6 +56,7 @@ window.IAPPEAR_RUNDGAENGE = {
       },
       {
         name: "Au im Bregenzerwald",
+        stadt: "au",
         rundgaenge: [
           {
             titel: "Barockbaumeister",
@@ -64,6 +67,7 @@ window.IAPPEAR_RUNDGAENGE = {
       },
       {
         name: "Bodenseeregion",
+        stadt: "hard",
         rundgaenge: [
           {
             titel: "Seerunde",
@@ -81,6 +85,7 @@ window.IAPPEAR_RUNDGAENGE = {
     regionen: [
       {
         name: "Dornbirn",
+        stadt: "dornbirn",
         rundgaenge: [
           {
             titel: "Oberdorf Entdecken",
@@ -101,6 +106,7 @@ window.IAPPEAR_RUNDGAENGE = {
       },
       {
         name: "Messepark Dornbirn",
+        stadt: "dornbirn",
         rundgaenge: [
           {
             titel: "Sprechender Baum",
@@ -118,6 +124,7 @@ window.IAPPEAR_RUNDGAENGE = {
     regionen: [
       {
         name: "Dornbirn",
+        stadt: "dornbirn",
         rundgaenge: [
           {
             titel: "hist.appear Schulversion",
@@ -138,6 +145,7 @@ window.IAPPEAR_RUNDGAENGE = {
       },
       {
         name: "Feldkirch",
+        stadt: "feldkirch",
         rundgaenge: [
           {
             titel: "Ein Oktobertag",
