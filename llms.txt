@@ -22,10 +22,13 @@ Die drei inhaltlichen Kategorien heissen i.history (historische Stadtrundgaenge,
 - [Vitrine](https://iappear.at/vitrine/): Auszeichnungen, Pressebeitraege und Referenzen - Smart City, Ars Electronica, Innovation Call.
 - [Ueber uns](https://iappear.at/ueber-uns/): Das Team (Marilena Tumler, Maggy Haidacher) und Partner/Foerdergeber.
 - [Alle Stadtrundgaenge](https://iappear.at/stadtrundgaenge/): Uebersicht aller Orte mit digitalen Stadtrundgaengen und Audioguides - mit interaktiver Karte.
-- [Stadtrundgang Dornbirn](https://iappear.at/stadtrundgang-dornbirn/): 10+ digitale Stadtrundgaenge und Audioguides in Dornbirn.
-- [Stadtrundgang Feldkirch](https://iappear.at/stadtrundgang-feldkirch/): Schulprojekte der MS Levis (Zusammenwachsen) und MS Oberau (Bombenabwuerfe 1943).
-- [Stadtrundgang Hard am Bodensee](https://iappear.at/stadtrundgang-hard/): Die See Runde - 200 Jahre Ortsgeschichte am Bodenseeufer.
-- [Stadtrundgang Au im Bregenzerwald](https://iappear.at/stadtrundgang-au/): Barockbaumeister Franz Beer - eine Reise von Au ueber Bregenz und Konstanz bis Bezau.
+<!-- STADTRUNDGANG-LINKS:START -->
+- [Stadtrundgang Dornbirn](https://iappear.at/stadtrundgang-dornbirn/): 10 Rundgaenge. Alle Audioguides und multimedialen Touren auf einen Blick.
+- [Stadtrundgang Feldkirch](https://iappear.at/stadtrundgang-feldkirch/): 2 Rundgaenge. Audioguides und multimediale Touren in der mittelalterlichen Alpenstadt.
+- [Stadtrundgang Hard am Bodensee](https://iappear.at/stadtrundgang-hard/): 1 Rundgaenge. Audioguide und multimediale Tour entlang des Bodenseeufers.
+- [Stadtrundgang Au im Bregenzerwald](https://iappear.at/stadtrundgang-au/): 1 Rundgaenge. Audioguide auf den Spuren der Vorarlberger Barockbaumeister.
+- [Stadtrundgang Bregenz](https://iappear.at/stadtrundgang-bregenz/): 1 Rundgaenge. Römisches Bregenz und mehr.
+<!-- STADTRUNDGANG-LINKS:END -->
 - [Workflow und Leistungen](https://iappear.at/workflow/): Wie Projekte mit i.appear ablaufen - eigenen digitalen Stadtrundgang oder Audioguide erstellen lassen.
 - [User Guide](https://iappear.at/user-guide/): Nutzung der Web-App Schritt fuer Schritt.
 - [Kontakt](https://iappear.at/kontakt/): Kontaktmoeglichkeiten fuer Anfragen, Workshops, Kooperationen.

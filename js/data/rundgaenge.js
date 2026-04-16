@@ -162,3 +162,20 @@ window.IAPPEAR_RUNDGAENGE = {
     ]
   }
 };
+
+
+/* ============================================================
+   STAEDTE-CONFIG — Koordinaten, Anzeigename und Untertitel
+   fuer jede Stadt. build.py liest das fuer Karten-Pins,
+   Stadtseiten-Generierung, Sitemap und llms.txt.
+
+   Reihenfolge = Anzeigereihenfolge auf der Hub-Seite.
+   "soon: true" = Ort wird als "bald" angezeigt (gestrichelt).
+   ============================================================ */
+window.IAPPEAR_STAEDTE = {
+  dornbirn:  { name: "Dornbirn",           lat: 47.4125, lng: 9.7417, subtitle: "Alle Audioguides und multimedialen Touren auf einen Blick" },
+  feldkirch: { name: "Feldkirch",          lat: 47.2387, lng: 9.5983, subtitle: "Audioguides und multimediale Touren in der mittelalterlichen Alpenstadt" },
+  hard:      { name: "Hard am Bodensee",   lat: 47.4856, lng: 9.6928, subtitle: "Audioguide und multimediale Tour entlang des Bodenseeufers" },
+  au:        { name: "Au im Bregenzerwald", lat: 47.3167, lng: 9.9833, subtitle: "Audioguide auf den Spuren der Vorarlberger Barockbaumeister" },
+  bregenz:   { name: "Bregenz",            lat: 47.5033, lng: 9.7472, subtitle: "Römisches Bregenz und mehr", soon: true }
+};

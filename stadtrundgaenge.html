@@ -156,8 +156,8 @@
         <!-- CHIPS:hub:START -->
         <li><a href="#ort-dornbirn" class="hub-jumpnav__chip hub-jumpnav__chip--neutral">Dornbirn <span class="hub-jumpnav__count">&middot; 10</span></a></li>
         <li><a href="#ort-feldkirch" class="hub-jumpnav__chip hub-jumpnav__chip--neutral">Feldkirch <span class="hub-jumpnav__count">&middot; 2</span></a></li>
-        <li><a href="#ort-hard" class="hub-jumpnav__chip hub-jumpnav__chip--neutral">Hard <span class="hub-jumpnav__count">&middot; 1</span></a></li>
-        <li><a href="#ort-au" class="hub-jumpnav__chip hub-jumpnav__chip--neutral">Au <span class="hub-jumpnav__count">&middot; 1</span></a></li>
+        <li><a href="#ort-hard" class="hub-jumpnav__chip hub-jumpnav__chip--neutral">Hard am Bodensee <span class="hub-jumpnav__count">&middot; 1</span></a></li>
+        <li><a href="#ort-au" class="hub-jumpnav__chip hub-jumpnav__chip--neutral">Au im Bregenzerwald <span class="hub-jumpnav__count">&middot; 1</span></a></li>
         <li><a href="#ort-bregenz" class="hub-jumpnav__chip hub-jumpnav__chip--soon">Bregenz <span class="hub-jumpnav__count">&middot; bald</span></a></li>
         <!-- CHIPS:hub:END -->
       </ul>
@@ -297,13 +297,15 @@
       maxZoom: 17
     }).addTo(map);
 
+    <!-- MAP-MARKERS:START -->
     var orte = [
-      { name: 'Dornbirn',           lat: 47.4125, lng: 9.7417, count: '10+', url: 'stadtrundgang-dornbirn.html' },
-      { name: 'Feldkirch',          lat: 47.2387, lng: 9.5983, count: '2',   url: 'stadtrundgang-feldkirch.html' },
-      { name: 'Hard am Bodensee',   lat: 47.4856, lng: 9.6928, count: '1',   url: 'stadtrundgang-hard.html' },
-      { name: 'Au (Bregenzerwald)', lat: 47.3167, lng: 9.9833, count: '1',   url: 'stadtrundgang-au.html' },
-      { name: 'Bregenz',            lat: 47.5033, lng: 9.7472, count: '1',   url: 'stadtrundgang-bregenz.html' }
+      { name: 'Dornbirn', lat: 47.4125, lng: 9.7417, count: '10', url: 'stadtrundgang-dornbirn.html' },
+      { name: 'Feldkirch', lat: 47.2387, lng: 9.5983, count: '2', url: 'stadtrundgang-feldkirch.html' },
+      { name: 'Hard am Bodensee', lat: 47.4856, lng: 9.6928, count: '1', url: 'stadtrundgang-hard.html' },
+      { name: 'Au im Bregenzerwald', lat: 47.3167, lng: 9.9833, count: '1', url: 'stadtrundgang-au.html' },
+      { name: 'Bregenz', lat: 47.5033, lng: 9.7472, count: '1', url: 'stadtrundgang-bregenz.html' }
     ];
+    <!-- MAP-MARKERS:END -->
 
     var icon = L.divIcon({
       className: '',
