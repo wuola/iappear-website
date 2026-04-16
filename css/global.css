@@ -86,6 +86,23 @@
 
   /* Motion */
   --ease: cubic-bezier(.2,.7,.2,1);
+
+  /* Glassy-Look — zentrale Stellschrauben fuer alle Glas-Komponenten
+     (Buttons, Chips, Tags). Hier drehen = ueberall aendern. */
+  --glass-bg: rgba(255,255,255,.06);           /* Hintergrund-Schimmer */
+  --glass-border: rgba(255,255,255,.25);        /* Stroke-Transparenz (weiss) */
+  --glass-shadow-top: rgba(0,0,0,.35);          /* Inner-Shadow oben (Tiefe) */
+  --glass-shadow-bottom: rgba(0,0,0,.2);        /* Inner-Shadow unten */
+  --glass-highlight: rgba(255,255,255,.12);     /* Licht-Kante oben am Stroke */
+  --glass-glow: rgba(255,255,255,.04);          /* aeusserer Glow */
+  --glass-blur: 12px;                           /* Backdrop-Blur */
+  /* Hover-Zustand */
+  --glass-bg-hover: rgba(255,255,255,.12);
+  --glass-border-hover: rgba(255,255,255,.4);
+  --glass-shadow-top-hover: rgba(0,0,0,.4);
+  --glass-shadow-bottom-hover: rgba(0,0,0,.25);
+  --glass-highlight-hover: rgba(255,255,255,.2);
+  --glass-glow-hover: rgba(255,255,255,.08);
 }
 
 /* Reset */

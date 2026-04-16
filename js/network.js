@@ -23,7 +23,7 @@
   if (!data || !data.touren || !data.stationen) return;
 
   /* === Konstanten === */
-  var W = 1000, H = 700;
+  var W = 1100, H = 780;
   var NS = 'http://www.w3.org/2000/svg';
   var touren = data.touren;
   var stationen = data.stationen;
@@ -43,8 +43,8 @@
   /* Zentrum & Radien fuer die konzentrischen Ringe
      (MUSS vor layoutTouren/layoutStationen stehen, sonst NaN wegen var-hoisting) */
   var CX = W / 2, CY = H / 2;
-  var R_ROUTES   = 275;  /* Rundgaenge auf dem aeusseren Ring */
-  var R_STATIONS = 130;  /* Stationen auf dem inneren Ring */
+  var R_ROUTES   = 290;  /* Rundgaenge auf dem aeusseren Ring */
+  var R_STATIONS = 165;  /* Stationen auf dem inneren Ring */
 
   /* === Layout berechnen === */
   var tourPos = layoutTouren();
@@ -81,8 +81,8 @@
       var dotX = CX + dx * R_ROUTES;
       var dotY = CY + dy * R_ROUTES;
       /* Label etwas weiter aussen, in Radial-Richtung */
-      var labelX = CX + dx * (R_ROUTES + 38);
-      var labelY = CY + dy * (R_ROUTES + 38);
+      var labelX = CX + dx * (R_ROUTES + 48);
+      var labelY = CY + dy * (R_ROUTES + 48);
       /* Text-Anker je nach Winkel */
       var anchor;
       if (dx > 0.15)       anchor = 'start';
@@ -296,7 +296,7 @@
       var dot = document.createElementNS(NS, 'circle');
       dot.setAttribute('cx', tp.dotX);
       dot.setAttribute('cy', tp.dotY || tp.y);
-      dot.setAttribute('r', 5);
+      dot.setAttribute('r', 8);
       dot.setAttribute('class', 'nw-tour-dot');
       dot.style.fill = FARBEN[tour.kategorie];
       g.appendChild(dot);
