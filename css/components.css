@@ -567,9 +567,6 @@ span.feature-list__icon {
   .hero .cat-link { align-self: center; }
   .hero .hero__right { gap: .4rem; }
 
-  /* Hero-Gap zwischen Button und Cat-Link-Block reduzieren */
-  .hero.container { gap: .6rem; }
-
   /* Social-Icons rechts im Container, Icons enger aneinander */
   .hero .hero__social {
     justify-content: flex-end;
