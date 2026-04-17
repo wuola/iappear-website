@@ -563,9 +563,9 @@ span.feature-list__icon {
   .hero__stage     { margin-top: var(--sp-1); }
   .eyebrow.hero__claim { display: none; }
 
-  /* Kategorie-Links: zentriert statt linksbuendig, enger an den CTA */
+  /* Kategorie-Links: zentriert, eng gestapelt, mit Luft zum CTA */
   .hero .cat-link { align-self: center; }
-  .hero .hero__right { gap: .4rem; }
+  .hero .hero__right { gap: .4rem; margin-top: var(--sp-2); }
 
   /* Social-Icons rechts im Container, Icons enger aneinander */
   .hero .hero__social {
