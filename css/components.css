@@ -620,6 +620,12 @@ span.feature-list__icon {
   aspect-ratio: 1000 / 700;
   margin: 0 auto;
 }
+/* Mobile: Hochkant-Ellipse — fuellt schmalen Screen vertikal.
+   JS (network.js) wechselt dabei auch die Koordinaten auf Ellipsen-Layout. */
+@media (max-width: 719px) {
+  .network-viz { aspect-ratio: 700 / 1100; max-width: 420px; }
+}
+
 .nw-svg {
   width: 100%;
   height: 100%;

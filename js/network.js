@@ -22,8 +22,6 @@
   var data = window.IAPPEAR_NETZWERK;
   if (!data || !data.touren || !data.stationen) return;
 
-  /* === Konstanten === */
-  var W = 1100, H = 780;
   var NS = 'http://www.w3.org/2000/svg';
   var touren = data.touren;
   var stationen = data.stationen;
@@ -40,22 +38,55 @@
   var tIdx = {};
   touren.forEach(function (t, i) { tIdx[t.name] = i; });
 
-  /* Zentrum & Radien fuer die konzentrischen Ringe
-     (MUSS vor layoutTouren/layoutStationen stehen, sonst NaN wegen var-hoisting) */
-  var CX = W / 2, CY = H / 2;
-  var R_ROUTES   = 290;  /* Rundgaenge auf dem aeusseren Ring */
-  var R_STATIONS = 165;  /* Stationen auf dem inneren Ring */
+  /* === Geometrie: Landscape fuer Desktop, Portrait (hochkant-Ellipse) fuer Mobile ===
+     Die Ringe werden auf Mobile zu einer stehenden Ellipse gestreckt, damit die
+     ganze Grafik in einen hochkanten Screen passt und Labels lesbar bleiben. */
+  var MQ_PORTRAIT = window.matchMedia('(max-width: 719px)');
+  var W, H, CX, CY, RX_ROUTES, RY_ROUTES, RX_STATIONS, RY_STATIONS, LABEL_OFFSET;
+  var tourPos, stationPos;
 
-  /* === Layout berechnen === */
-  var tourPos = layoutTouren();
-  var stationPos = layoutStationen();
-
-  /* === Rendern === */
-  render();
-
-  /* === Interaktion + Animation === */
+  applyGeometry();
+  layoutAndRender();
   setupHover();
   setupAnimation();
+
+  /* Bei Media-Query-Wechsel (Rotation, Resize) neu rendern */
+  if (MQ_PORTRAIT.addEventListener) {
+    MQ_PORTRAIT.addEventListener('change', function () {
+      applyGeometry();
+      layoutAndRender();
+      setupHover();
+      /* Ohne Re-Animation direkt sichtbar machen */
+      container.classList.add('is-animating');
+      container.querySelectorAll('.nw-station, .nw-tour').forEach(function (el) {
+        el.classList.add('is-visible');
+      });
+    });
+  }
+
+  function applyGeometry() {
+    if (MQ_PORTRAIT.matches) {
+      /* Portrait: schmale, hohe Ellipse — fuellt Mobile-Screen vertikal */
+      W = 700; H = 1100;
+      CX = W / 2; CY = H / 2;
+      RX_ROUTES   = 235; RY_ROUTES   = 440;
+      RX_STATIONS = 125; RY_STATIONS = 245;
+      LABEL_OFFSET = 38;
+    } else {
+      /* Landscape: Kreise (wie bisher) */
+      W = 1100; H = 780;
+      CX = W / 2; CY = H / 2;
+      RX_ROUTES   = 290; RY_ROUTES   = 290;
+      RX_STATIONS = 165; RY_STATIONS = 165;
+      LABEL_OFFSET = 48;
+    }
+  }
+
+  function layoutAndRender() {
+    tourPos = layoutTouren();
+    stationPos = layoutStationen();
+    render();
+  }
 
 
   /* ================================================================
@@ -74,15 +105,16 @@
     });
 
     var N = order.length;
-    /* Start bei 12 Uhr (-90°), dann gleichmaessig verteilt im Uhrzeigersinn */
+    /* Start bei 12 Uhr (-90°), dann gleichmaessig verteilt im Uhrzeigersinn.
+       Positionen auf einer Ellipse (RX/RY), Labels nach aussen versetzt. */
     order.forEach(function (idx, slot) {
       var angle = (-90 + (slot + 0.5) * (360 / N)) * Math.PI / 180;
       var dx = Math.cos(angle), dy = Math.sin(angle);
-      var dotX = CX + dx * R_ROUTES;
-      var dotY = CY + dy * R_ROUTES;
-      /* Label etwas weiter aussen, in Radial-Richtung */
-      var labelX = CX + dx * (R_ROUTES + 48);
-      var labelY = CY + dy * (R_ROUTES + 48);
+      var dotX = CX + dx * RX_ROUTES;
+      var dotY = CY + dy * RY_ROUTES;
+      /* Label: vom Punkt aus in Richtung (dx,dy) weiter nach aussen */
+      var labelX = dotX + dx * LABEL_OFFSET;
+      var labelY = dotY + dy * LABEL_OFFSET;
       /* Text-Anker je nach Winkel */
       var anchor;
       if (dx > 0.15)       anchor = 'start';
@@ -119,8 +151,8 @@
       /* Gleichmaessig verteilt — Start auch bei -90° damit es zum Routen-Ring passt */
       var angle = (-90 + (slot + 0.5) * (360 / N)) * Math.PI / 180;
       pos[item.idx] = {
-        x: CX + Math.cos(angle) * R_STATIONS,
-        y: CY + Math.sin(angle) * R_STATIONS,
+        x: CX + Math.cos(angle) * RX_STATIONS,
+        y: CY + Math.sin(angle) * RY_STATIONS,
         angle: angle
       };
     });
