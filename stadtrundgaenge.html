@@ -85,6 +85,13 @@
     .leaflet-popup-tip { background: #1a1a1a; }
     .leaflet-popup-content a { color: #fff; text-decoration: underline; }
 
+    /* Weisses i.appear-Target als Map-Marker */
+    .iappear-map-target {
+      filter: drop-shadow(0 0 4px rgba(0,0,0,.6)) drop-shadow(0 0 8px rgba(255,255,255,.25));
+      transition: transform .2s ease;
+    }
+    .iappear-map-target:hover { transform: scale(1.15); }
+
     /* Coming-soon Karte */
     .ort-card--soon { opacity: .55; }
     .ort-card--soon h3::after { content: " (bald)"; font-size: .75em; color: var(--c-text-muted); font-weight: 400; }
@@ -307,12 +314,14 @@
     ];
     <!-- MAP-MARKERS:END -->
 
-    var icon = L.divIcon({
-      className: '',
-      html: '<div style="width:14px;height:14px;background:#fff;border-radius:50%;border:3px solid #D3A54A;box-shadow:0 0 8px rgba(211,165,74,.5)"></div>',
-      iconSize: [14, 14],
-      iconAnchor: [7, 7],
-      popupAnchor: [0, -12]
+    // Weisses i.appear-Target als Marker, mit leichtem Drop-Shadow damit es
+    // auf der dunklen Karte gut lesbar ist.
+    var icon = L.icon({
+      iconUrl: 'assets/svg/targets/target-weiss.svg',
+      iconSize: [30, 30],
+      iconAnchor: [15, 15],
+      popupAnchor: [0, -16],
+      className: 'iappear-map-target'
     });
 
     orte.forEach(function (o) {
