@@ -49,8 +49,10 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--sp-2);
-  /* Nur top/bottom — horizontales Padding kommt von .container */
-  padding-top: calc(var(--sp-2) + 40px);
+  /* Nur top/bottom — horizontales Padding kommt von .container.
+     Top-Padding > Nav-Hoehe (~74px) damit der Lorbeerkranz nicht
+     von der fixen Navigation ueberdeckt wird. */
+  padding-top: calc(var(--sp-2) + 80px);
   padding-bottom: var(--sp-1);
   align-items: center;
 }
