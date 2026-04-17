@@ -555,10 +555,13 @@ span.feature-list__icon {
   height: auto;
   display: block;
 }
-/* Mobile: Kranz kleiner, aber Awards-Text-Groesse bleibt (kommt aus clamp()) */
+/* Mobile: Kranz kleiner, aber Awards-Text-Groesse bleibt (kommt aus clamp()).
+   Claim "Die Plattform fuer digitale Erlebnisse" auf Mobile ausgeblendet,
+   damit Hero oben kompakter wird. */
 @media (max-width: 719px) {
   .hero__laurel-svg { max-width: 160px; margin: 0 auto; }
   .hero__stage     { margin-top: var(--sp-1); }
+  .eyebrow.hero__claim { display: none; }
 }
 /* Awards-Rotator: absolut positioniert, mittig im Kranz */
 .hero__awards-rotator {
