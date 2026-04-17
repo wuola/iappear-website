@@ -24,7 +24,7 @@
 
   <link rel="stylesheet" href="css/global.css?v=20260416b" />
   <link rel="stylesheet" href="css/layout.css?v=20260417a" />
-  <link rel="stylesheet" href="css/components.css?v=20260417i" />
+  <link rel="stylesheet" href="css/components.css?v=20260417o" />
   <link rel="stylesheet" href="css/animations.css?v=20260414ae" />
 
   <!-- Schema.org strukturierte Daten: Organization + WebSite + LocalBusiness.
@@ -402,23 +402,23 @@
       <h2 class="section-title center">Vitrine</h2>
       <p class="eyebrow center">Auszeichnungen, Presse, Artikel und Referenzen</p>
 
-      <div class="grid grid-4" style="margin-top:var(--sp-4)">
-        <a href="vitrine/smart-city-dornbirn-2022.html" class="card card--teaser center" style="text-decoration:none;color:inherit">
+      <div class="grid grid-4 vitrine-rotator" data-vitrine-rotator style="margin-top:var(--sp-4)">
+        <a href="vitrine/smart-city-dornbirn-2022.html" class="card card--teaser center vitrine-slot" data-slot="0" style="text-decoration:none;color:inherit">
           <div class="card__image"><img src="assets/images/vitrine/cityx.png" alt="Smart City Dornbirn Preis 2022" loading="lazy" /></div>
           <h3>Smart City Dornbirn</h3>
           <p class="muted">Siegerprojekt 2022</p>
         </a>
-        <a href="vitrine/ars-electronica-2022.html" class="card card--teaser center" style="text-decoration:none;color:inherit">
+        <a href="vitrine/ars-electronica-2022.html" class="card card--teaser center vitrine-slot" data-slot="1" style="text-decoration:none;color:inherit">
           <div class="card__image"><img src="assets/images/vitrine/ars.png" alt="Ars Electronica Ausstellung" loading="lazy" /></div>
           <h3>Ars Electronica</h3>
           <p class="muted">Ausstellung 2021 &amp; 2022</p>
         </a>
-        <a href="vitrine/innovation-call-tourismus-2025.html" class="card card--teaser center" style="text-decoration:none;color:inherit">
+        <a href="vitrine/innovation-call-tourismus-2025.html" class="card card--teaser center vitrine-slot" data-slot="2" style="text-decoration:none;color:inherit">
           <div class="card__image"><img src="assets/images/vitrine/inno2.png" alt="Innovation Call Tourismus 2025" loading="lazy" /></div>
           <h3>Innovation Call</h3>
           <p class="muted">Digitale Innovationen im Tourismus 2025</p>
         </a>
-        <a href="vitrine/koepfe-von-morgen.html" class="card card--teaser center" style="text-decoration:none;color:inherit">
+        <a href="vitrine/koepfe-von-morgen.html" class="card card--teaser center vitrine-slot" data-slot="3" style="text-decoration:none;color:inherit">
           <div class="card__image"><img src="assets/images/vitrine/kopf.png" alt="VN Köpfe von morgen" loading="lazy" /></div>
           <h3>VN &bdquo;Köpfe von morgen&ldquo;</h3>
           <p class="muted">Ehrung für Marilena Tumler</p>
@@ -495,6 +495,8 @@
   <script src="js/main.js"></script>
   <script src="js/data/rundgaenge.js?v=2"></script>
   <script src="js/data/netzwerk.js?v=2"></script>
+  <script src="js/data/vitrine.js?v=7"></script>
   <script src="js/network.js?v=8"></script>
+  <script src="js/vitrine-teaser.js?v=4"></script>
 </body>
 </html>

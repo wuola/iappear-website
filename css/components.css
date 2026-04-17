@@ -364,7 +364,27 @@ span.feature-list__icon {
   align-items: center;
   text-align: center;
 }
-.card--teaser h3 { margin-top: var(--sp-2); }
+.card--teaser h3 {
+  margin-top: var(--sp-2);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 2.6em;
+}
+.card--teaser p.muted {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Rotator: sanftes Cross-Fade beim Wechsel einer Kachel.
+   Nur der INHALT (Bild, Titel, Subtitle) fadet, der Kartenrahmen bleibt stehen. */
+.vitrine-slot > * {
+  transition: opacity .6s cubic-bezier(.4, 0, .2, 1);
+}
+.vitrine-slot.is-swapping > * { opacity: 0; }
 
 /* Mini-Phone fuer die Features-Karten: kleinerer Mockup mit proportional
    angepassten Radien und kleinerer Notch, gleiche 9:19 Aspect-Ratio. */
@@ -409,14 +429,16 @@ span.feature-list__icon {
   height: 34px;
 }
 
-/* Vitrine-Teaser: Bild fuellt die Kartenbreite, 16/10 Crop */
+/* Vitrine-Teaser: fixer quadratischer Bildrahmen. Alle Bilder werden
+   gleich gross dargestellt und ggf. zentriert zugeschnitten (cover).
+   Damit wirkt der Teaser unabhaengig davon welches Bild gerade drin ist
+   immer konsistent. */
 .card--teaser .card__image {
   width: 100%;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 1 / 1;
   overflow: hidden;
-  border-radius: var(--radius-s, 8px);
   margin-bottom: var(--sp-2);
-  background: rgba(255,255,255,.03);
+  background: transparent;
 }
 .card--teaser .card__image img {
   width: 100%;
