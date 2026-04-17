@@ -66,12 +66,14 @@
 
   function applyGeometry() {
     if (MQ_PORTRAIT.matches) {
-      /* Portrait: schmale, hohe Ellipse — fuellt Mobile-Screen vertikal */
-      W = 700; H = 1100;
+      /* Portrait: schmale, hohe Ellipse — fuellt Mobile-Screen vertikal.
+         viewBox 900x1300 gibt links/rechts ~200 Einheiten Rand-Padding,
+         damit lange Labels ("Sprechender Baum" etc.) sauber reinpassen. */
+      W = 900; H = 1300;
       CX = W / 2; CY = H / 2;
-      RX_ROUTES   = 235; RY_ROUTES   = 440;
-      RX_STATIONS = 125; RY_STATIONS = 245;
-      LABEL_OFFSET = 38;
+      RX_ROUTES   = 225; RY_ROUTES   = 480;
+      RX_STATIONS = 125; RY_STATIONS = 260;
+      LABEL_OFFSET = 32;
     } else {
       /* Landscape: Kreise (wie bisher) */
       W = 1100; H = 780;
@@ -86,6 +88,30 @@
     tourPos = layoutTouren();
     stationPos = layoutStationen();
     render();
+  }
+
+  /* Split Labels mit Leerzeichen in 2 Zeilen, damit lange Namen wie
+     "Sprechender Baum" oder "Innenstadt Erleben" nicht ueber den Rand
+     laufen. Zentriert um den urspruenglichen y-Wert (dy symmetrisch). */
+  function applyWrappedLabel(textEl, name, x) {
+    var idx = name.lastIndexOf(' ');
+    /* Nur wrappen wenn es wirklich 2 Teile gibt und beide > 1 Zeichen sind */
+    if (idx <= 0 || idx >= name.length - 1) {
+      textEl.textContent = name;
+      return;
+    }
+    var l1 = name.substring(0, idx);
+    var l2 = name.substring(idx + 1);
+    var t1 = document.createElementNS(NS, 'tspan');
+    t1.setAttribute('x', x);
+    t1.setAttribute('dy', '-0.5em');
+    t1.textContent = l1;
+    textEl.appendChild(t1);
+    var t2 = document.createElementNS(NS, 'tspan');
+    t2.setAttribute('x', x);
+    t2.setAttribute('dy', '1.1em');
+    t2.textContent = l2;
+    textEl.appendChild(t2);
   }
 
 
@@ -295,7 +321,7 @@
       text.setAttribute('class', 'nw-station-name' + (shared ? ' is-shared' : ''));
       text.style.textAnchor = labelAnchor;
       text.style.dominantBaseline = 'middle';
-      text.textContent = station.name;
+      applyWrappedLabel(text, station.name, labelX);
       g.appendChild(text);
 
       /* Anzahl Rundgaenge (sichtbar nur bei Hover) — weiter innen */
@@ -341,7 +367,7 @@
       text.setAttribute('dominant-baseline', 'middle');
       text.setAttribute('class', 'nw-tour-name');
       text.style.fill = FARBEN[tour.kategorie];
-      text.textContent = tour.name;
+      applyWrappedLabel(text, tour.name, tp.x);
       g.appendChild(text);
 
       /* "coming soon" Tag */
