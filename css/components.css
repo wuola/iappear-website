@@ -557,11 +557,25 @@ span.feature-list__icon {
 }
 /* Mobile: Kranz kleiner, aber Awards-Text-Groesse bleibt (kommt aus clamp()).
    Claim "Die Plattform fuer digitale Erlebnisse" auf Mobile ausgeblendet,
-   damit Hero oben kompakter wird. */
+   damit Hero oben kompakter wird. Cat-Links zentriert, Social rechts. */
 @media (max-width: 719px) {
   .hero__laurel-svg { max-width: 160px; margin: 0 auto; }
   .hero__stage     { margin-top: var(--sp-1); }
   .eyebrow.hero__claim { display: none; }
+
+  /* Kategorie-Links: zentriert statt linksbuendig, enger an den CTA */
+  .hero .cat-link { align-self: center; }
+  .hero .hero__right { gap: .4rem; }
+
+  /* Hero-Gap zwischen Button und Cat-Link-Block reduzieren */
+  .hero.container { gap: .6rem; }
+
+  /* Social-Icons rechts im Container, Icons enger aneinander */
+  .hero .hero__social {
+    justify-content: flex-end;
+    gap: .5rem;
+    margin-top: var(--sp-2);
+  }
 }
 /* Awards-Rotator: absolut positioniert, mittig im Kranz */
 .hero__awards-rotator {
