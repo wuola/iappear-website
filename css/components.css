@@ -1271,13 +1271,23 @@ details.info-card[open] > *:not(summary) {
    - kurzer Subtitle in Serif darunter
    - laenger SEO-Lead in muted darunter (bleibt fuer Crawler indexiert)
 */
+/* 2-Spalten-Layout: links Brand-Block (Logo + h1 + Subtitle + SEO-Lead),
+   rechts Story-Block (erzaehlerische Headline + Body-Text).
+   Mobile <860px: stapelt untereinander. */
 .page-header--category {
   padding-top: var(--sp-3);
   padding-bottom: var(--sp-3);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--sp-1);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+  gap: var(--sp-4);
+  align-items: start;
+  text-align: left;            /* ueberschreibt center vom generischen .page-header */
+}
+@media (max-width: 860px) {
+  .page-header--category {
+    grid-template-columns: 1fr;
+    gap: var(--sp-3);
+  }
 }
 .page-header--category .page-header__icon {
   width: clamp(44px, 6vw, 64px);
@@ -1292,6 +1302,7 @@ details.info-card[open] > *:not(summary) {
   font-size: clamp(1.9rem, 4.5vw, 3.2rem);
   line-height: 1;
   letter-spacing: -.02em;
+  text-align: left;
 }
 .page-header--category .page-header__subtitle {
   margin: .2em 0 0;
@@ -1299,12 +1310,50 @@ details.info-card[open] > *:not(summary) {
   font-style: italic;
   font-size: clamp(1rem, 1.7vw, 1.25rem);
   opacity: .9;
+  text-align: left;
 }
 .page-header--category .page-header__lead {
-  margin-top: var(--sp-1);
+  margin-top: var(--sp-2);
+  max-width: 32ch;
+  font-size: .85rem;
+  opacity: .6;
+  line-height: 1.5;
+}
+/* Brand-Block links (Logo + h1 + Subtitle + SEO-Lead, vertikal gestapelt) */
+.page-header--category .page-header__brand {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+/* Story-Block rechts (Headline + Body-Text) */
+.page-header--category .page-header__story {
+  margin: 0;
+  align-self: center;
   max-width: 56ch;
-  font-size: .92rem;
-  opacity: .7;
+}
+.page-header--category .page-header__story-headline {
+  margin: 0 0 var(--sp-2) 0;
+  font-family: var(--f-serif, Georgia, serif);
+  font-weight: 600;
+  font-style: italic;
+  font-size: clamp(1.4rem, 2.4vw, 1.9rem);
+  line-height: 1.15;
+  color: var(--c-text);
+  opacity: .95;
+}
+.page-header--category .page-header__story-body {
+  margin: 0;
+  font-size: .98rem;
+  line-height: 1.6;
+  opacity: .8;
+}
+@media (max-width: 860px) {
+  .page-header--category .page-header__story-headline {
+    font-size: clamp(1.2rem, 4vw, 1.6rem);
+  }
+  .page-header--category .page-header__story-body {
+    font-size: .9rem;
+  }
 }
 
 /* --- Page-Header Variante "Hub" -----------------------------------------
