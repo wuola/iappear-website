@@ -135,23 +135,101 @@
       </div>
     </section>
 
+    <!-- ========== VIELFAELTIGE MOEGLICHKEITEN — als 4-Box-Diagramm =============
+         4 Boxen aussen herum, gepunktete Linien zur leeren Center-Box.
+         Top: Bestehendes digitalisieren — Left: Informationsstationen
+         Right: Neue Rundgaenge im Team — Bottom: Stationen werden geteilt
+         Mobile <860px: Linien aus, Boxen stacken in Reihenfolge top→left→right→bottom. -->
+    <style>
+      .options-diagram {
+        position: relative;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: var(--sp-3);
+        max-width: 1100px;
+        margin: var(--sp-4) auto 0;
+      }
+      .options-diagram__box {
+        background: rgba(255,255,255,.04);
+        border: 1px solid rgba(255,255,255,.18);
+        border-radius: var(--radius-card);
+        padding: var(--sp-3);
+        margin: 0;
+        font-size: .92rem;
+        line-height: 1.55;
+        color: var(--c-text-muted);
+        position: relative;
+        z-index: 2;
+      }
+      .options-diagram__box p { margin: 0; }
+      .options-diagram__box--top    { grid-column: 2; grid-row: 1; }
+      .options-diagram__box--left   { grid-column: 1; grid-row: 2; }
+      .options-diagram__box--right  { grid-column: 3; grid-row: 2; }
+      .options-diagram__box--bottom { grid-column: 2; grid-row: 3; }
+
+      /* Center: leere gestrichelte Box als Anker fuer die Linien */
+      .options-diagram__center {
+        grid-column: 2; grid-row: 2;
+        position: relative;
+        border: 1px dashed rgba(255,255,255,.18);
+        border-radius: var(--radius-card);
+        min-height: 80px;
+      }
+      /* Vertikale gepunktete Linie durch Center (Top↔Bottom) */
+      .options-diagram__center::before {
+        content: "";
+        position: absolute;
+        left: 50%; top: calc(-1 * var(--sp-3)); bottom: calc(-1 * var(--sp-3));
+        width: 0;
+        border-left: 2px dotted rgba(255,255,255,.28);
+        transform: translateX(-50%);
+        z-index: 1;
+      }
+      /* Horizontale gepunktete Linie durch Center (Left↔Right) */
+      .options-diagram__center::after {
+        content: "";
+        position: absolute;
+        top: 50%; left: calc(-1 * var(--sp-3)); right: calc(-1 * var(--sp-3));
+        height: 0;
+        border-top: 2px dotted rgba(255,255,255,.28);
+        transform: translateY(-50%);
+        z-index: 1;
+      }
+
+      @media (max-width: 860px) {
+        .options-diagram {
+          grid-template-columns: 1fr;
+          grid-auto-rows: auto;
+          gap: var(--sp-2);
+        }
+        .options-diagram__box--top,
+        .options-diagram__box--left,
+        .options-diagram__box--right,
+        .options-diagram__box--bottom {
+          grid-column: 1;
+          grid-row: auto;
+        }
+        .options-diagram__center { display: none; }
+      }
+    </style>
+
     <section class="section container">
       <h2>Vielfältige Möglichkeiten</h2>
-      <div class="grid grid-3" style="margin-top:var(--sp-3)">
-        <article class="card">
-          <h3>Bestehendes digitalisieren</h3>
+      <div class="options-diagram">
+        <article class="options-diagram__box options-diagram__box--top">
           <p>In i.appear können bestehende Rundgänge digitalisiert und erweitert werden.</p>
         </article>
-        <article class="card">
-          <h3>Informationsstationen</h3>
+        <article class="options-diagram__box options-diagram__box--left">
           <p>Zudem lassen sich Informationsstationen für relevante Orientierungspunkte einpflegen, die auf Rundgänge oder zusammenhängende Stationen verweisen. So werden alle Elemente innerhalb der App zu einem flächendeckenden digitalen Netzwerk verknüpft, das auf der interaktiven Karte für die Nutzer:innen sichtbar wird.</p>
         </article>
-        <article class="card">
-          <h3>Neue Rundgänge im Team</h3>
+        <div class="options-diagram__center" aria-hidden="true"></div>
+        <article class="options-diagram__box options-diagram__box--right">
           <p>Zusammen mit unserem interdisziplinären Team können neue Rundgänge erarbeitet oder bestehende Konzepte neu gedacht werden. Durch das Teilen von Stationen lassen sich neue und vorhandene Rundgänge flexibel miteinander verbinden.</p>
         </article>
+        <article class="options-diagram__box options-diagram__box--bottom">
+          <p>Stationen können auch kategorienübergreifend von verschiedenen Rundgängen geteilt werden.</p>
+        </article>
       </div>
-      <p class="muted" style="margin-top:var(--sp-3)">Stationen können auch kategorienübergreifend von verschiedenen Rundgängen geteilt werden.</p>
     </section>
 
     <!-- ========== 5-SCHRITT-PROZESS ==========
@@ -288,10 +366,64 @@
       </div>
     </section>
 
-    <section class="section container center">
-      <p class="muted">Da unsere Rundgänge sich konzeptionell voneinander unterscheiden, haben wir variierende Workflows. Diese sind aber flexibel und optional.</p>
-      <p style="margin-top:var(--sp-2)">Du darfst dir das alles gerne durchlesen, du kannst uns aber auch einfach deine Fragen gleich schicken. Oder für erste Hilfe kommst du hier zu den <a href="faqs.html">FAQs</a>.</p>
-      <a href="kontakt.html" class="btn" style="margin-top:var(--sp-3)">Projekt anfragen &rarr;</a>
+    <!-- ========== FUER DETAILS — Erklaertext links + Mini-Kontaktformular rechts =========
+         Mobile <720px: stapelt untereinander. -->
+    <style>
+      .for-details {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--sp-4);
+        align-items: start;
+      }
+      .for-details__text p { margin: 0 0 var(--sp-2); line-height: 1.65; }
+      .for-details__text p:last-child { margin-bottom: 0; }
+      .for-details__form-wrap {
+        background: rgba(255,255,255,.03);
+        border: 1px solid rgba(255,255,255,.12);
+        border-radius: var(--radius-card);
+        padding: var(--sp-3);
+      }
+      .for-details__mail {
+        display: flex; align-items: center; justify-content: center;
+        flex-direction: column; gap: 6px;
+        margin: 0 0 var(--sp-3);
+        text-align: center;
+      }
+      .for-details__mail svg { width: 32px; height: 32px; opacity: .85; }
+      .for-details__mail a {
+        color: var(--c-text); opacity: .85;
+        text-decoration: none; font-size: .95rem;
+      }
+      .for-details__mail a:hover { opacity: 1; text-decoration: underline; }
+      @media (max-width: 720px) {
+        .for-details { grid-template-columns: 1fr; gap: var(--sp-3); }
+      }
+    </style>
+
+    <section class="section container">
+      <h2>Für Details</h2>
+      <div class="for-details" style="margin-top:var(--sp-3)">
+        <div class="for-details__text">
+          <p>Da unsere Rundgänge sich konzeptionell voneinander unterscheiden, haben wir variierende Workflows. Diese sind aber flexibel und optional.</p>
+          <p>Du darfst dir das gerne alles durchlesen, du kannst uns aber auch einfach deine Fragen gleich schicken.</p>
+          <p>Oder für erste Hilfe kommst du hier zu den <a href="faqs.html">FAQs</a>.</p>
+        </div>
+        <div class="for-details__form-wrap">
+          <p class="for-details__mail">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6l-10 7L2 6"/></svg>
+            <a href="mailto:info@iappear.app">info@iappear.app</a>
+          </p>
+          <form class="form" method="post" action="#" aria-label="Schnellanfrage">
+            <label for="wf-name">Name</label>
+            <input id="wf-name" name="name" type="text" required />
+            <label for="wf-mail">E-Mail</label>
+            <input id="wf-mail" name="email" type="email" required />
+            <label for="wf-text">Nachricht</label>
+            <textarea id="wf-text" name="text" rows="4" required></textarea>
+            <button type="submit" class="btn">Absenden</button>
+          </form>
+        </div>
+      </div>
     </section>
   </main>
 
