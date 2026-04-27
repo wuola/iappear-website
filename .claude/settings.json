@@ -91,5 +91,18 @@
       "Bash(git tag -d:*)",
       "Bash(git update-ref:*)"
     ]
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "ACTIVE=$(gh api user --jq .login 2>/dev/null); if [ \"$ACTIVE\" != \"wuola\" ]; then gh auth switch -u wuola 2>&1 && echo \"[wuola-guard] gh-Account von $ACTIVE auf wuola umgestellt\"; else echo \"[wuola-guard] OK: gh-Account ist wuola\"; fi",
+            "statusMessage": "Identitaets-Check (gh wuola)"
+          }
+        ]
+      }
+    ]
   }
 }
