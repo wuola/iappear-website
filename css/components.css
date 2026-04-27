@@ -179,8 +179,11 @@
   border-radius: var(--radius-card);
   padding: var(--sp-3);
   display: flex; flex-direction: column; gap: var(--sp-2);
-  height: 100%;
 }
+/* Cards in einem Grid auf gleiche Hoehe strecken (Buttons unten gleich hoch).
+   Nur fuer DIRECT-Children eines .grid Containers — andere Cards bleiben
+   auto-height (z.B. workflow.html wo Cards in einer DIV-Spalte gestapelt sind). */
+.grid > .card { height: 100%; }
 .card > .btn { margin-top: auto; }
 .card__title { font-family: var(--f-serif); }
 

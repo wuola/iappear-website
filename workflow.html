@@ -24,7 +24,7 @@
 
   <link rel="stylesheet" href="css/global.css?v=20260427a" />
   <link rel="stylesheet" href="css/layout.css?v=20260414ae" />
-  <link rel="stylesheet" href="css/components.css?v=20260427g" />
+  <link rel="stylesheet" href="css/components.css?v=20260427h" />
   <link rel="stylesheet" href="css/animations.css?v=20260414ae" />
   <!-- Breadcrumb strukturierte Daten -->
   <script type="application/ld+json">
@@ -132,103 +132,6 @@
           </article>
         </div>
 
-      </div>
-    </section>
-
-    <!-- ========== VIELFAELTIGE MOEGLICHKEITEN — als 4-Box-Diagramm =============
-         4 Boxen aussen herum, gepunktete Linien zur leeren Center-Box.
-         Top: Bestehendes digitalisieren — Left: Informationsstationen
-         Right: Neue Rundgaenge im Team — Bottom: Stationen werden geteilt
-         Mobile <860px: Linien aus, Boxen stacken in Reihenfolge top→left→right→bottom. -->
-    <style>
-      .options-diagram {
-        position: relative;
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        gap: var(--sp-3);
-        max-width: 1100px;
-        margin: var(--sp-4) auto 0;
-      }
-      .options-diagram__box {
-        background: rgba(255,255,255,.04);
-        border: 1px solid rgba(255,255,255,.18);
-        border-radius: var(--radius-card);
-        padding: var(--sp-3);
-        margin: 0;
-        font-size: .92rem;
-        line-height: 1.55;
-        color: var(--c-text-muted);
-        position: relative;
-        z-index: 2;
-      }
-      .options-diagram__box p { margin: 0; }
-      .options-diagram__box--top    { grid-column: 2; grid-row: 1; }
-      .options-diagram__box--left   { grid-column: 1; grid-row: 2; }
-      .options-diagram__box--right  { grid-column: 3; grid-row: 2; }
-      .options-diagram__box--bottom { grid-column: 2; grid-row: 3; }
-
-      /* Center: leere gestrichelte Box als Anker fuer die Linien */
-      .options-diagram__center {
-        grid-column: 2; grid-row: 2;
-        position: relative;
-        border: 1px dashed rgba(255,255,255,.18);
-        border-radius: var(--radius-card);
-        min-height: 80px;
-      }
-      /* Vertikale gepunktete Linie durch Center (Top↔Bottom) */
-      .options-diagram__center::before {
-        content: "";
-        position: absolute;
-        left: 50%; top: calc(-1 * var(--sp-3)); bottom: calc(-1 * var(--sp-3));
-        width: 0;
-        border-left: 2px dotted rgba(255,255,255,.28);
-        transform: translateX(-50%);
-        z-index: 1;
-      }
-      /* Horizontale gepunktete Linie durch Center (Left↔Right) */
-      .options-diagram__center::after {
-        content: "";
-        position: absolute;
-        top: 50%; left: calc(-1 * var(--sp-3)); right: calc(-1 * var(--sp-3));
-        height: 0;
-        border-top: 2px dotted rgba(255,255,255,.28);
-        transform: translateY(-50%);
-        z-index: 1;
-      }
-
-      @media (max-width: 860px) {
-        .options-diagram {
-          grid-template-columns: 1fr;
-          grid-auto-rows: auto;
-          gap: var(--sp-2);
-        }
-        .options-diagram__box--top,
-        .options-diagram__box--left,
-        .options-diagram__box--right,
-        .options-diagram__box--bottom {
-          grid-column: 1;
-          grid-row: auto;
-        }
-        .options-diagram__center { display: none; }
-      }
-    </style>
-
-    <section class="section container">
-      <h2>Vielfältige Möglichkeiten</h2>
-      <div class="options-diagram">
-        <article class="options-diagram__box options-diagram__box--top">
-          <p>In i.appear können bestehende Rundgänge digitalisiert und erweitert werden.</p>
-        </article>
-        <article class="options-diagram__box options-diagram__box--left">
-          <p>Zudem lassen sich Informationsstationen für relevante Orientierungspunkte einpflegen, die auf Rundgänge oder zusammenhängende Stationen verweisen. So werden alle Elemente innerhalb der App zu einem flächendeckenden digitalen Netzwerk verknüpft, das auf der interaktiven Karte für die Nutzer:innen sichtbar wird.</p>
-        </article>
-        <div class="options-diagram__center" aria-hidden="true"></div>
-        <article class="options-diagram__box options-diagram__box--right">
-          <p>Zusammen mit unserem interdisziplinären Team können neue Rundgänge erarbeitet oder bestehende Konzepte neu gedacht werden. Durch das Teilen von Stationen lassen sich neue und vorhandene Rundgänge flexibel miteinander verbinden.</p>
-        </article>
-        <article class="options-diagram__box options-diagram__box--bottom">
-          <p>Stationen können auch kategorienübergreifend von verschiedenen Rundgängen geteilt werden.</p>
-        </article>
       </div>
     </section>
 
@@ -363,6 +266,103 @@
           <li><span class="num">04</span><span class="lbl">Abstimmung &amp; Implementierung</span></li>
           <li><span class="num">05</span><span class="lbl">Launch &amp; Service</span></li>
         </ol>
+      </div>
+    </section>
+
+    <!-- ========== VIELFAELTIGE MOEGLICHKEITEN — als 4-Box-Diagramm =============
+         4 Boxen aussen herum, gepunktete Linien zur leeren Center-Box.
+         Top: Bestehendes digitalisieren — Left: Informationsstationen
+         Right: Neue Rundgaenge im Team — Bottom: Stationen werden geteilt
+         Mobile <860px: Linien aus, Boxen stacken in Reihenfolge top→left→right→bottom. -->
+    <style>
+      .options-diagram {
+        position: relative;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: var(--sp-3);
+        max-width: 1100px;
+        margin: var(--sp-4) auto 0;
+      }
+      .options-diagram__box {
+        background: rgba(255,255,255,.04);
+        border: 1px solid rgba(255,255,255,.18);
+        border-radius: var(--radius-card);
+        padding: var(--sp-3);
+        margin: 0;
+        font-size: .92rem;
+        line-height: 1.55;
+        color: var(--c-text-muted);
+        position: relative;
+        z-index: 2;
+      }
+      .options-diagram__box p { margin: 0; }
+      .options-diagram__box--top    { grid-column: 2; grid-row: 1; }
+      .options-diagram__box--left   { grid-column: 1; grid-row: 2; }
+      .options-diagram__box--right  { grid-column: 3; grid-row: 2; }
+      .options-diagram__box--bottom { grid-column: 2; grid-row: 3; }
+
+      /* Center: leere gestrichelte Box als Anker fuer die Linien */
+      .options-diagram__center {
+        grid-column: 2; grid-row: 2;
+        position: relative;
+        border: 1px dashed rgba(255,255,255,.18);
+        border-radius: var(--radius-card);
+        min-height: 80px;
+      }
+      /* Vertikale gepunktete Linie durch Center (Top↔Bottom) */
+      .options-diagram__center::before {
+        content: "";
+        position: absolute;
+        left: 50%; top: calc(-1 * var(--sp-3)); bottom: calc(-1 * var(--sp-3));
+        width: 0;
+        border-left: 2px dotted rgba(255,255,255,.28);
+        transform: translateX(-50%);
+        z-index: 1;
+      }
+      /* Horizontale gepunktete Linie durch Center (Left↔Right) */
+      .options-diagram__center::after {
+        content: "";
+        position: absolute;
+        top: 50%; left: calc(-1 * var(--sp-3)); right: calc(-1 * var(--sp-3));
+        height: 0;
+        border-top: 2px dotted rgba(255,255,255,.28);
+        transform: translateY(-50%);
+        z-index: 1;
+      }
+
+      @media (max-width: 860px) {
+        .options-diagram {
+          grid-template-columns: 1fr;
+          grid-auto-rows: auto;
+          gap: var(--sp-2);
+        }
+        .options-diagram__box--top,
+        .options-diagram__box--left,
+        .options-diagram__box--right,
+        .options-diagram__box--bottom {
+          grid-column: 1;
+          grid-row: auto;
+        }
+        .options-diagram__center { display: none; }
+      }
+    </style>
+
+    <section class="section container">
+      <h2>Vielfältige Möglichkeiten</h2>
+      <div class="options-diagram">
+        <article class="options-diagram__box options-diagram__box--top">
+          <p>In i.appear können bestehende Rundgänge digitalisiert und erweitert werden.</p>
+        </article>
+        <article class="options-diagram__box options-diagram__box--left">
+          <p>Zudem lassen sich Informationsstationen für relevante Orientierungspunkte einpflegen, die auf Rundgänge oder zusammenhängende Stationen verweisen. So werden alle Elemente innerhalb der App zu einem flächendeckenden digitalen Netzwerk verknüpft, das auf der interaktiven Karte für die Nutzer:innen sichtbar wird.</p>
+        </article>
+        <div class="options-diagram__center" aria-hidden="true"></div>
+        <article class="options-diagram__box options-diagram__box--right">
+          <p>Zusammen mit unserem interdisziplinären Team können neue Rundgänge erarbeitet oder bestehende Konzepte neu gedacht werden. Durch das Teilen von Stationen lassen sich neue und vorhandene Rundgänge flexibel miteinander verbinden.</p>
+        </article>
+        <article class="options-diagram__box options-diagram__box--bottom">
+          <p>Stationen können auch kategorienübergreifend von verschiedenen Rundgängen geteilt werden.</p>
+        </article>
       </div>
     </section>
 
