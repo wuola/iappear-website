@@ -239,31 +239,29 @@
       </div>
     </section>
 
-    <!-- ========== INTERAKTIVE DEMO (2 Widgets nebeneinander) ==========
-         Nachgebaut aus _doku/recon/widgets/ia-guide-container-*.html (PATH A + PATH B).
-         Im Original waren das 2 Phone-Mockups nebeneinander mit getrennter
-         Schritt-Navigation, jeweils 4 Schritte. Wir machen das genauso.
-
-         BILDER (Platzhalter — Nutzerin liefert nach):
-         Pfad: assets/images/user-guide/
-         Dateien: a1.png, a2.png, a3.png, a4.png  (Pfad A: Rundgaenge)
-                  b1.png, b2.png, b3.png, b4.png  (Pfad B: In meiner Naehe)
-         Sobald die Bilder im Ordner liegen, einfach unten im JS die
-         Eintraege "img: null" auf "img: 'assets/images/user-guide/aX.png'" setzen
-         (oder gleich alle Eintraege einkommentieren).
-
-         Mobile (<860px): Widgets stapeln untereinander. -->
+    <!-- ========== INTERAKTIVE DEMO (1:1 Original-Logik aus Readymag) ==========
+         Pfad A (links): klassischer Wizard mit 4 Schritten + Toggle Karte/Koffer.
+                         Schritt 1 hat Mickey-Hand-Tipp (verschwindet nach erstem Klick).
+                         Schritt 4 zeigt 6 Feature-Icons statt Toggle.
+         Pfad B (rechts): Wizard mit Verzweigung in Schritt 2.
+                         Schritt 1: Karte mit Pins.
+                         Schritt 2: Decision-Pop-up auf Phone + 2 Buttons unten ("Station" / "Route").
+                         Schritt 3 ("Station"-Pfad): Detailansicht + 6 Feature-Icons.
+                         Schritt 4 ("Route"-Pfad): Rundgang als Karte/Liste + Toggle.
+         Bilder: assets/images/user-guide/ (a1-koffer/karte, a2-koffer/karte, a3-koffer/karte,
+                                            a4, b1, b2, b2-tipp, b3, b4-koffer/karte)
+         Mobile (<860px): Widgets stapeln. -->
     <section class="section">
       <div class="container">
         <div class="ug-stage">
 
-          <!-- ============ PFAD A: RUNDGAENGE ============ -->
-          <article class="ug-widget" data-ug data-path="A">
+          <!-- ============ PFAD A: MIT RUNDGANG ============ -->
+          <article class="ug-widget" data-ug-a>
             <header class="ug-widget__head">
               <span class="ug-widget__icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1"/></svg>
               </span>
-              <h3>Rundgänge</h3>
+              <h3>Mit Rundgang</h3>
             </header>
 
             <div class="ug-widget__nav">
@@ -274,25 +272,53 @@
 
             <div class="ug-widget__body">
               <div class="phone ug-phone">
-                <div class="phone__screen ug-screen" data-ug-screen>
-                  <!-- Wird per JS gefuellt: entweder <img> oder Platzhalter -->
-                </div>
+                <div class="phone__screen ug-screen" data-ug-screen></div>
               </div>
-
               <div class="ug-label" data-ug-label>
                 <span class="ug-label__num">1</span>
-                <span class="ug-label__text">REGION<br>WAEHLEN</span>
+                <span class="ug-label__text">REGION<br>WÄHLEN</span>
               </div>
+            </div>
+
+            <!-- Toggle Karte/Koffer (nur Schritte 1-3) + Mickey-Hand-Tipp (nur S1) -->
+            <div class="ug-toggle-zone" data-ug-toggle-zone>
+              <div class="ug-toggle is-koffer" data-ug-toggle>
+                <div class="ug-toggle__track">
+                  <div class="ug-toggle__thumb"></div>
+                  <div class="ug-toggle__icons">
+                    <span class="ug-toggle__slot ug-toggle__slot--karte" aria-label="Karte">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 8 2 15 6 22 2 22 18 15 22 8 18 1 22 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="15" y1="6" x2="15" y2="22"/></svg>
+                    </span>
+                    <span class="ug-toggle__slot ug-toggle__slot--koffer" aria-label="Koffer">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="12" rx="2"/><path d="M8 8V6a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                    </span>
+                  </div>
+                </div>
+                <div class="ug-mickey" data-ug-mickey aria-hidden="true">
+                  <div class="ug-ripple"></div>
+                  <svg class="ug-hand" viewBox="0 0 584.32 649.73" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M72.07,142.16l78.01,214.29c.67,1.67.33,3.01-1.34,3.68-1.34.67-2.34,0-3.35-1l-39.51-42.86c-25.78-27.79-58.59-29.8-84.04-8.37-28.79,24.44-29.13,60.94-1,95.42l112.16,135.6c84.71,102.45,184.15,134.26,295.31,93.75,132.93-48.21,189.51-170.09,135.94-317.41l-25.11-68.64c-26.11-72.66-76-102.46-134.6-82.03-15.74-20.42-39.84-27.45-65.96-18.08-9.04,3.35-17.75,8.37-26.12,14.73-17.08-22.1-43.53-30.13-70.98-20.42-7.37,2.68-14.4,6.7-21.09,11.38l-38.17-104.46C167.83,7.89,131.67-8.85,94.51,4.54c-37.5,13.73-54.24,49.55-39.84,89.4l2.68,7.37M413.93,588.81c-87.72,32.14-170.09,15.74-247.43-77.68l-112.17-134.93c-12.05-14.06-12.05-27.79-1.34-37.16,10.04-9.04,23.77-6.03,34.82,5.36l77.34,80.02c13.06,13.39,24.44,14.73,35.49,10.71,13.06-4.69,18.75-18.75,13.39-33.15L95.51,75.86c-5.02-13.39,1.01-26.12,13.73-30.8,13.06-4.69,25.11,1.67,30.14,15.07l84.71,232.7c4.02,11.05,16.41,16.07,27.46,12.05,10.71-4.02,16.41-15.74,12.39-26.45l-30.47-84.04c4.69-4.35,11.05-8.71,17.41-11.05,15.74-5.69,28.8,1.34,34.82,17.75l26.79,73.33c4.02,11.38,16.41,15.74,27.12,11.72,10.38-3.68,17.08-14.73,12.72-26.45l-21.76-59.26c4.69-4.69,11.05-9.04,17.41-11.38,15.74-5.69,28.79,1.34,34.82,17.75l17.75,48.88c4.35,11.72,16.74,16.07,27.46,12.05,10.38-3.68,16.74-15.07,12.72-26.45l-13.39-36.16c28.12-10.05,54.58,12.72,72.65,62.95l21.09,57.25c45.87,126.56,4.02,222.99-107.14,263.5Z"/></svg>
+                </div>
+              </div>
+            </div>
+
+            <!-- 6er Feature-Icon-Grid (nur Schritt 4) -->
+            <div class="ug-features" data-ug-features aria-hidden="true">
+              <span class="ug-feature" title="3D / AR"><svg viewBox="0 0 68 67" fill="none"><path class="ug-feature__bg" d="M67 33C67 50.7 52.5 65.5 34 65C15.5 65.5 1 50.7 1 33C1 15.3 15.5 0.5 34 1C52.5 0.5 67 15.3 67 33Z"/><g class="ug-feature__sym"><path d="M47.15 38.34V26.71C47.15 26.20 47.01 25.70 46.76 25.26C46.50 24.82 46.14 24.45 45.70 24.20L35.53 18.39C35.09 18.13 34.58 18 34.07 18C33.56 18 33.06 18.13 32.62 18.39L22.45 24.20C22.01 24.45 21.65 24.82 21.39 25.26C21.14 25.70 21 26.20 21 26.71V38.34C21 38.84 21.14 39.35 21.39 39.79C21.65 40.23 22.01 40.59 22.45 40.85L32.62 46.66C33.06 46.91 33.56 47.05 34.07 47.05C34.58 47.05 35.09 46.91 35.53 46.66L45.70 40.85C46.14 40.59 46.50 40.23 46.76 39.79C47.01 39.35 47.15 38.84 47.15 38.34Z"/><path d="M21.39 25.20L34.07 32.54L46.76 25.20"/><path d="M34.07 47.17V32.52"/></g></svg></span>
+              <span class="ug-feature" title="Speech / Comic"><svg viewBox="0 0 68 67" fill="none"><path class="ug-feature__bg" d="M67 33C67 50.7 52.5 65.5 34 65C15.5 65.5 1 50.7 1 33C1 15.3 15.5 0.5 34 1C52.5 0.5 67 15.3 67 33Z"/><g class="ug-feature__sym"><path d="M17.7 40.68C17.87 41.39 18.24 42.05 18.75 42.58C19.27 43.11 19.91 43.49 20.62 43.70C23.22 44.33 33.60 44.33 33.60 44.33C33.60 44.33 43.99 44.33 46.58 43.64C47.29 43.43 47.94 43.05 48.45 42.52C48.97 41.99 49.33 41.33 49.51 40.62C49.99 37.98 50.22 35.31 50.21 32.63C50.22 29.94 49.99 27.24 49.51 24.59C49.31 23.89 48.94 23.26 48.43 22.76C47.91 22.25 47.28 21.88 46.58 21.69C43.99 21 33.60 21 33.60 21C33.60 21 23.22 21 20.62 21.69C19.91 21.89 19.27 22.28 18.75 22.81C18.24 23.34 17.87 23.99 17.70 24.71C17.22 27.32 16.99 29.98 17.00 32.63C16.98 35.33 17.22 38.02 17.70 40.68Z"/><path d="M43.05 39.85L38.49 32.03L34.05 39.92L43.05 39.85Z"/><path d="M34.09 39.92L29.50 28.17L25.09 39.99L34.09 39.92Z"/><circle cx="34.99" cy="27.99" r="2.25" class="ug-sun"/></g></svg></span>
+              <span class="ug-feature" title="Video"><svg viewBox="0 0 68 67" fill="none"><path class="ug-feature__bg" d="M67 33C67 50.7 52.5 65.5 34 65C15.5 65.5 1 50.7 1 33C1 15.3 15.5 0.5 34 1C52.5 0.5 67 15.3 67 33Z"/><g class="ug-feature__sym"><path d="M49.51 24.65C49.33 23.94 48.97 23.28 48.45 22.75C47.94 22.22 47.29 21.83 46.58 21.63C43.99 21 33.60 21 33.60 21C33.60 21 23.22 21 20.62 21.69C19.91 21.90 19.27 22.28 18.75 22.81C18.24 23.34 17.87 24 17.70 24.71C17.22 27.35 16.99 30.02 17.00 32.70C16.98 35.39 17.22 38.09 17.70 40.74C17.89 41.44 18.27 42.07 18.78 42.57C19.29 43.08 19.93 43.45 20.62 43.64C23.22 44.33 33.60 44.33 33.60 44.33C33.60 44.33 43.99 44.33 46.58 43.64C47.29 43.44 47.94 43.05 48.45 42.52C48.97 41.99 49.33 41.34 49.51 40.62C49.98 38.01 50.21 35.35 50.20 32.70C50.22 30 49.99 27.31 49.51 24.65Z"/><path d="M30.21 37.63L38.89 32.70L30.21 27.76V37.63Z"/></g></svg></span>
+              <span class="ug-feature" title="Text"><svg viewBox="0 0 68 67" fill="none"><path class="ug-feature__bg" d="M67 33C67 50.7 52.5 65.5 34 65C15.5 65.5 1 50.7 1 33C1 15.3 15.5 0.5 34 1C52.5 0.5 67 15.3 67 33Z"/><g class="ug-feature__sym"><path d="M45.22 28.78H18"/><path d="M53 21H18"/><path d="M53 36.55H18"/><path d="M45.22 44.33H18"/></g></svg></span>
+              <span class="ug-feature" title="Audio"><svg viewBox="0 0 68 67" fill="none"><path class="ug-feature__bg" d="M67 33C67 50.7 52.5 65.5 34 65C15.5 65.5 1 50.7 1 33C1 15.3 15.5 0.5 34 1C52.5 0.5 67 15.3 67 33Z"/><g class="ug-feature__sym"><path d="M31.85 22.12L23.60 28.72H17V38.62H23.60L31.85 45.22V22.12Z"/><path d="M45.17 22C48.26 25.09 50 29.29 50 33.67C50 38.04 48.26 42.24 45.17 45.33M39.34 27.83C40.89 29.37 41.76 31.47 41.76 33.66C41.76 35.85 40.89 37.94 39.34 39.49"/></g></svg></span>
+              <span class="ug-feature" title="Quiz"><svg viewBox="0 0 68 67" fill="none"><path class="ug-feature__bg" d="M67 33C67 50.7 52.5 65.5 34 65C15.5 65.5 1 50.7 1 33C1 15.3 15.5 0.5 34 1C52.5 0.5 67 15.3 67 33Z"/><g class="ug-feature__sym"><path stroke-width="2.4" d="M34.50 18.60C42.78 19.27 45.77 22.24 46.65 25.24C47.62 28.52 46.39 32.68 44.46 36.24L44.43 36.31L44.40 36.38C43.11 39.41 42.89 41.93 43.09 43.89C41.75 43.07 39.94 42.03 37.53 40.77L35.84 39.89L35.68 39.81C34.93 39.49 34.05 39.49 33.31 39.83L33.16 39.90C29.58 41.78 27.11 43.21 25.42 44.21C25.44 44.06 25.46 43.91 25.48 43.76C25.73 41.66 25.54 38.94 24.08 35.71C21.58 29.70 22.17 25.71 24.06 23.16C26.03 20.52 29.74 18.94 34.50 18.60Z"/><path class="ug-glyph" d="M34.59 27.38C34.59 30.49 30.85 30.46 31.80 33.69H29.88C28.69 30.06 32.41 29.67 32.41 27.60C32.41 26.42 31 25.58 28.71 25.49L28.97 23.68C32.68 23.79 34.59 25.51 34.59 27.38ZM32.11 35.93C32.11 36.63 31.58 37.18 30.85 37.18C30.15 37.18 29.60 36.63 29.60 35.93C29.60 35.23 30.15 34.69 30.85 34.69C31.58 34.69 32.11 35.23 32.11 35.93ZM40.06 23.83L39.75 33.69H38.07L37.73 23.83H40.06ZM40.15 35.93C40.15 36.63 39.60 37.18 38.90 37.18C38.18 37.18 37.62 36.63 37.62 35.93C37.62 35.23 38.18 34.69 38.90 34.69C39.60 34.69 40.15 35.23 40.15 35.93Z"/></g></svg></span>
             </div>
           </article>
 
-          <!-- ============ PFAD B: IN MEINER NAEHE ============ -->
-          <article class="ug-widget" data-ug data-path="B">
+          <!-- ============ PFAD B: IN DER NÄHE ============ -->
+          <article class="ug-widget" data-ug-b>
             <header class="ug-widget__head">
               <span class="ug-widget__icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
               </span>
-              <h3>In meiner Nähe</h3>
+              <h3>In der Nähe</h3>
             </header>
 
             <div class="ug-widget__nav">
@@ -304,12 +330,46 @@
             <div class="ug-widget__body">
               <div class="phone ug-phone">
                 <div class="phone__screen ug-screen" data-ug-screen>
+                  <!-- Decision-Tipp Overlay (nur Schritt 2) -->
+                  <img class="ug-tip-overlay" data-ug-tip src="assets/images/user-guide/b2-tipp.png" alt="" hidden>
                 </div>
               </div>
-
               <div class="ug-label" data-ug-label>
                 <span class="ug-label__num">1</span>
-                <span class="ug-label__text">STANDORT<br>ERLAUBEN</span>
+                <span class="ug-label__text">KARTE</span>
+              </div>
+            </div>
+
+            <!-- Decision-Buttons (nur Schritt 2) -->
+            <div class="ug-decision" data-ug-decision aria-hidden="true">
+              <button type="button" class="ug-decision-btn" data-ug-decision-station>Station ansehen</button>
+              <button type="button" class="ug-decision-btn" data-ug-decision-route>Ganzen Rundgang</button>
+            </div>
+
+            <!-- 6er Feature-Icon-Grid (nur Schritt 3) -->
+            <div class="ug-features" data-ug-features aria-hidden="true">
+              <span class="ug-feature" title="3D / AR"><svg viewBox="0 0 68 67" fill="none"><path class="ug-feature__bg" d="M67 33C67 50.7 52.5 65.5 34 65C15.5 65.5 1 50.7 1 33C1 15.3 15.5 0.5 34 1C52.5 0.5 67 15.3 67 33Z"/><g class="ug-feature__sym"><path d="M47.15 38.34V26.71C47.15 26.20 47.01 25.70 46.76 25.26C46.50 24.82 46.14 24.45 45.70 24.20L35.53 18.39C35.09 18.13 34.58 18 34.07 18C33.56 18 33.06 18.13 32.62 18.39L22.45 24.20C22.01 24.45 21.65 24.82 21.39 25.26C21.14 25.70 21 26.20 21 26.71V38.34C21 38.84 21.14 39.35 21.39 39.79C21.65 40.23 22.01 40.59 22.45 40.85L32.62 46.66C33.06 46.91 33.56 47.05 34.07 47.05C34.58 47.05 35.09 46.91 35.53 46.66L45.70 40.85C46.14 40.59 46.50 40.23 46.76 39.79C47.01 39.35 47.15 38.84 47.15 38.34Z"/><path d="M21.39 25.20L34.07 32.54L46.76 25.20"/><path d="M34.07 47.17V32.52"/></g></svg></span>
+              <span class="ug-feature" title="Speech / Comic"><svg viewBox="0 0 68 67" fill="none"><path class="ug-feature__bg" d="M67 33C67 50.7 52.5 65.5 34 65C15.5 65.5 1 50.7 1 33C1 15.3 15.5 0.5 34 1C52.5 0.5 67 15.3 67 33Z"/><g class="ug-feature__sym"><path d="M17.7 40.68C17.87 41.39 18.24 42.05 18.75 42.58C19.27 43.11 19.91 43.49 20.62 43.70C23.22 44.33 33.60 44.33 33.60 44.33C33.60 44.33 43.99 44.33 46.58 43.64C47.29 43.43 47.94 43.05 48.45 42.52C48.97 41.99 49.33 41.33 49.51 40.62C49.99 37.98 50.22 35.31 50.21 32.63C50.22 29.94 49.99 27.24 49.51 24.59C49.31 23.89 48.94 23.26 48.43 22.76C47.91 22.25 47.28 21.88 46.58 21.69C43.99 21 33.60 21 33.60 21C33.60 21 23.22 21 20.62 21.69C19.91 21.89 19.27 22.28 18.75 22.81C18.24 23.34 17.87 23.99 17.70 24.71C17.22 27.32 16.99 29.98 17.00 32.63C16.98 35.33 17.22 38.02 17.70 40.68Z"/><path d="M43.05 39.85L38.49 32.03L34.05 39.92L43.05 39.92Z"/><path d="M34.09 39.92L29.50 28.17L25.09 39.99L34.09 39.92Z"/><circle cx="34.99" cy="27.99" r="2.25" class="ug-sun"/></g></svg></span>
+              <span class="ug-feature" title="Video"><svg viewBox="0 0 68 67" fill="none"><path class="ug-feature__bg" d="M67 33C67 50.7 52.5 65.5 34 65C15.5 65.5 1 50.7 1 33C1 15.3 15.5 0.5 34 1C52.5 0.5 67 15.3 67 33Z"/><g class="ug-feature__sym"><path d="M49.51 24.65C49.33 23.94 48.97 23.28 48.45 22.75C47.94 22.22 47.29 21.83 46.58 21.63C43.99 21 33.60 21 33.60 21C33.60 21 23.22 21 20.62 21.69C19.91 21.90 19.27 22.28 18.75 22.81C18.24 23.34 17.87 24 17.70 24.71C17.22 27.35 16.99 30.02 17.00 32.70C16.98 35.39 17.22 38.09 17.70 40.74C17.89 41.44 18.27 42.07 18.78 42.57C19.29 43.08 19.93 43.45 20.62 43.64C23.22 44.33 33.60 44.33 33.60 44.33C33.60 44.33 43.99 44.33 46.58 43.64C47.29 43.44 47.94 43.05 48.45 42.52C48.97 41.99 49.33 41.34 49.51 40.62C49.98 38.01 50.21 35.35 50.20 32.70C50.22 30 49.99 27.31 49.51 24.65Z"/><path d="M30.21 37.63L38.89 32.70L30.21 27.76V37.63Z"/></g></svg></span>
+              <span class="ug-feature" title="Text"><svg viewBox="0 0 68 67" fill="none"><path class="ug-feature__bg" d="M67 33C67 50.7 52.5 65.5 34 65C15.5 65.5 1 50.7 1 33C1 15.3 15.5 0.5 34 1C52.5 0.5 67 15.3 67 33Z"/><g class="ug-feature__sym"><path d="M45.22 28.78H18"/><path d="M53 21H18"/><path d="M53 36.55H18"/><path d="M45.22 44.33H18"/></g></svg></span>
+              <span class="ug-feature" title="Audio"><svg viewBox="0 0 68 67" fill="none"><path class="ug-feature__bg" d="M67 33C67 50.7 52.5 65.5 34 65C15.5 65.5 1 50.7 1 33C1 15.3 15.5 0.5 34 1C52.5 0.5 67 15.3 67 33Z"/><g class="ug-feature__sym"><path d="M31.85 22.12L23.60 28.72H17V38.62H23.60L31.85 45.22V22.12Z"/><path d="M45.17 22C48.26 25.09 50 29.29 50 33.67C50 38.04 48.26 42.24 45.17 45.33M39.34 27.83C40.89 29.37 41.76 31.47 41.76 33.66C41.76 35.85 40.89 37.94 39.34 39.49"/></g></svg></span>
+              <span class="ug-feature" title="Quiz"><svg viewBox="0 0 68 67" fill="none"><path class="ug-feature__bg" d="M67 33C67 50.7 52.5 65.5 34 65C15.5 65.5 1 50.7 1 33C1 15.3 15.5 0.5 34 1C52.5 0.5 67 15.3 67 33Z"/><g class="ug-feature__sym"><path stroke-width="2.4" d="M34.50 18.60C42.78 19.27 45.77 22.24 46.65 25.24C47.62 28.52 46.39 32.68 44.46 36.24L44.43 36.31L44.40 36.38C43.11 39.41 42.89 41.93 43.09 43.89C41.75 43.07 39.94 42.03 37.53 40.77L35.84 39.89L35.68 39.81C34.93 39.49 34.05 39.49 33.31 39.83L33.16 39.90C29.58 41.78 27.11 43.21 25.42 44.21C25.44 44.06 25.46 43.91 25.48 43.76C25.73 41.66 25.54 38.94 24.08 35.71C21.58 29.70 22.17 25.71 24.06 23.16C26.03 20.52 29.74 18.94 34.50 18.60Z"/><path class="ug-glyph" d="M34.59 27.38C34.59 30.49 30.85 30.46 31.80 33.69H29.88C28.69 30.06 32.41 29.67 32.41 27.60C32.41 26.42 31 25.58 28.71 25.49L28.97 23.68C32.68 23.79 34.59 25.51 34.59 27.38ZM32.11 35.93C32.11 36.63 31.58 37.18 30.85 37.18C30.15 37.18 29.60 36.63 29.60 35.93C29.60 35.23 30.15 34.69 30.85 34.69C31.58 34.69 32.11 35.23 32.11 35.93ZM40.06 23.83L39.75 33.69H38.07L37.73 23.83H40.06ZM40.15 35.93C40.15 36.63 39.60 37.18 38.90 37.18C38.18 37.18 37.62 36.63 37.62 35.93C37.62 35.23 38.18 34.69 38.90 34.69C39.60 34.69 40.15 35.23 40.15 35.93Z"/></g></svg></span>
+            </div>
+
+            <!-- Toggle Karte/Koffer (nur Schritt 4 — Route-Pfad) -->
+            <div class="ug-toggle-zone" data-ug-toggle-zone>
+              <div class="ug-toggle is-koffer" data-ug-toggle>
+                <div class="ug-toggle__track">
+                  <div class="ug-toggle__thumb"></div>
+                  <div class="ug-toggle__icons">
+                    <span class="ug-toggle__slot ug-toggle__slot--karte" aria-label="Karte">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 8 2 15 6 22 2 22 18 15 22 8 18 1 22 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="15" y1="6" x2="15" y2="22"/></svg>
+                    </span>
+                    <span class="ug-toggle__slot ug-toggle__slot--koffer" aria-label="Koffer">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="12" rx="2"/><path d="M8 8V6a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
           </article>
@@ -334,114 +394,165 @@
           border: 1px solid rgba(255,255,255,.08);
           border-radius: 24px;
           padding: var(--sp-3) var(--sp-3) var(--sp-4);
-          display: flex;
-          flex-direction: column;
+          display: flex; flex-direction: column;
           gap: var(--sp-2);
         }
-        .ug-widget__head {
-          display: flex;
-          align-items: center;
-          gap: 12px;
-          color: #fff;
-        }
-        .ug-widget__head h3 {
-          margin: 0;
-          font-size: 1.4rem;
-          letter-spacing: .01em;
-        }
-        .ug-widget__icon {
-          display: inline-flex;
-          color: #fff;
-        }
+        .ug-widget__head { display: flex; align-items: center; gap: 12px; color: #fff; }
+        .ug-widget__head h3 { margin: 0; font-size: 1.4rem; letter-spacing: .01em; }
+        .ug-widget__icon { display: inline-flex; color: #fff; }
 
         .ug-widget__nav {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 14px;
-          background: rgba(0,0,0,.3);
-          border: 1px solid rgba(255,255,255,.1);
-          border-radius: 999px;
-          padding: 6px 10px;
-          align-self: center;
+          display: flex; align-items: center; justify-content: center; gap: 14px;
+          background: rgba(0,0,0,.3); border: 1px solid rgba(255,255,255,.1);
+          border-radius: 999px; padding: 6px 10px; align-self: center;
           backdrop-filter: blur(4px);
         }
         .ug-nav-btn {
-          background: #1a1a1a;
-          border: 1px solid rgba(255,255,255,.18);
-          color: #fff;
-          width: 36px; height: 36px;
-          border-radius: 50%;
-          cursor: pointer;
-          font-size: 16px;
-          line-height: 1;
-          transition: background .2s, transform .2s;
+          background: #1a1a1a; border: 1px solid rgba(255,255,255,.18); color: #fff;
+          width: 36px; height: 36px; border-radius: 50%; cursor: pointer;
+          font-size: 16px; line-height: 1; transition: background .2s, transform .2s;
         }
         .ug-nav-btn:hover { background: #2a2a2a; transform: scale(1.05); }
-        .ug-nav-label {
-          color: #fff;
-          font-size: .9rem;
-          min-width: 70px;
-          text-align: center;
-        }
+        .ug-nav-btn[hidden] { visibility: hidden; }
+        .ug-nav-label { color: #fff; font-size: .9rem; min-width: 70px; text-align: center; }
 
         .ug-widget__body {
-          display: grid;
-          grid-template-columns: minmax(0, 200px) 1fr;
-          gap: var(--sp-3);
-          align-items: center;
-          margin-top: var(--sp-2);
+          display: grid; grid-template-columns: minmax(0, 200px) 1fr;
+          gap: var(--sp-3); align-items: center; margin-top: var(--sp-2);
         }
-
-        .ug-phone {
-          max-width: 200px;
-          margin: 0;
+        .ug-phone { max-width: 200px; margin: 0; }
+        .ug-screen { position: relative; }
+        .ug-screen img:not(.ug-tip-overlay), .ug-screen video {
+          width: 100%; height: 100%; object-fit: cover; display: block;
         }
-        /* Platzhalter im Phone-Screen wenn kein Bild */
-        .ug-screen.is-placeholder {
-          display: flex;
-          align-items: center;
-          justify-content: center;
+        .ug-screen.is-empty {
+          display: flex; align-items: center; justify-content: center;
           background: linear-gradient(180deg, #1a1a1a 0%, #0a0a0a 100%);
-          color: rgba(255,255,255,.4);
-          font-size: .75rem;
-          text-align: center;
-          padding: 12px;
-          line-height: 1.4;
+          color: rgba(255,255,255,.4); font-size: .75rem; text-align: center;
+          padding: 12px; line-height: 1.4;
         }
-        .ug-screen img,
-        .ug-screen video {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          display: block;
+        /* Decision-Tipp als Overlay auf Phone-Screen (Schritt B2) */
+        /* Specificity hochziehen + !important, weil components.css `.phone__screen img`
+           per Default 100% width/height + object-fit:cover macht. */
+        .ug-screen .ug-tip-overlay {
+          position: absolute !important;
+          left: 50% !important; top: 50% !important;
+          transform: translate(-50%, -50%) !important;
+          width: 78% !important; height: auto !important;
+          object-fit: contain !important;
+          z-index: 3; pointer-events: none;
+          filter: drop-shadow(0 8px 24px rgba(0,0,0,.6));
+        }
+        .ug-screen .ug-tip-overlay[hidden] { display: none !important; }
+
+        .ug-label { display: flex; flex-direction: column; gap: 8px; color: rgba(255,255,255,.55); font-family: 'Roboto', sans-serif; }
+        .ug-label__num { font-size: 2.2rem; font-weight: 300; line-height: 1; color: rgba(255,255,255,.7); }
+        .ug-label__text { font-size: 1.15rem; font-weight: 600; letter-spacing: .04em; line-height: 1.2; }
+
+        /* === TOGGLE Karte/Koffer === */
+        .ug-toggle-zone {
+          display: none; justify-content: center; margin-top: var(--sp-3);
+          position: relative;
+        }
+        .ug-toggle-zone[data-active] { display: flex; }
+        .ug-toggle {
+          position: relative; width: 78px; height: 34px; cursor: pointer;
+          isolation: isolate;
+        }
+        .ug-toggle__track {
+          position: relative; width: 100%; height: 100%;
+          background: rgba(30,30,30,.6); border: 1.5px solid rgba(255,255,255,.2);
+          border-radius: 999px; overflow: hidden; box-sizing: border-box;
+          backdrop-filter: blur(4px);
+        }
+        .ug-toggle__thumb {
+          position: absolute; top: -1px; left: -1px;
+          width: 34px; height: 34px;
+          background: #2A2A2A; border-radius: 50%;
+          border: 1.5px solid rgba(255,255,255,.1); box-sizing: border-box;
+          z-index: 1;
+          transition: transform .4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .ug-toggle.is-koffer .ug-toggle__thumb { transform: translateX(44px); }
+        .ug-toggle__icons {
+          position: absolute; inset: 0;
+          display: flex; align-items: center; justify-content: space-between;
+          padding: 0 9px; box-sizing: border-box;
+          z-index: 2; pointer-events: none;
+        }
+        .ug-toggle__slot { display: flex; align-items: center; justify-content: center; width: 16px; height: 16px; }
+        .ug-toggle__slot svg { width: 16px; height: 16px; transition: color .3s; }
+        .ug-toggle:not(.is-koffer) .ug-toggle__slot--karte svg { color: #fff; }
+        .ug-toggle.is-koffer .ug-toggle__slot--koffer svg { color: #fff; }
+        .ug-toggle:not(.is-koffer) .ug-toggle__slot--koffer svg,
+        .ug-toggle.is-koffer .ug-toggle__slot--karte svg { color: #666; }
+
+        /* Mickey-Hand-Tipp (auf Toggle Pfad A Schritt 1) */
+        .ug-mickey {
+          position: absolute; top: 32px; left: 8px;
+          width: 24px; height: auto; pointer-events: none; z-index: 10;
+          animation: ugMickeyGroove 2.8s ease-in-out infinite;
+        }
+        .ug-hand { width: 100%; height: auto; filter: drop-shadow(1px 3px 5px rgba(0,0,0,.4)); }
+        .ug-hand path { fill: #fff; }
+        .ug-ripple {
+          position: absolute; top: 30%; left: 30%; width: 16px; height: 16px;
+          background: rgba(255,255,255,.5); border-radius: 50%;
+          transform: translate(-50%, -50%) scale(0);
+          animation: ugRipple 2.8s ease-in-out infinite;
+        }
+        .ug-mickey[hidden] { display: none; }
+        @keyframes ugMickeyGroove {
+          0%, 100% { transform: rotate(-12deg) translateX(0); }
+          15%, 85% { transform: rotate(-12deg) translateX(0); }
+          50%, 65% { transform: rotate(12deg) translateX(48px); }
+        }
+        @keyframes ugRipple {
+          0%, 100%, 15%, 50%, 85% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+          5%, 55% { transform: translate(-50%, -50%) scale(0); opacity: 1; }
+          12%, 62% { transform: translate(-50%, -50%) scale(2.5); opacity: 0; }
         }
 
-        .ug-label {
-          display: flex;
-          flex-direction: column;
-          gap: 8px;
-          color: rgba(255,255,255,.55);
-          font-family: 'Roboto', sans-serif;
+        /* === DECISION BUTTONS (Pfad B Schritt 2) === */
+        .ug-decision {
+          display: none; justify-content: center; gap: 10px;
+          margin-top: var(--sp-3); flex-wrap: wrap;
         }
-        .ug-label__num {
-          font-size: 2.2rem;
-          font-weight: 300;
-          line-height: 1;
-          color: rgba(255,255,255,.7);
+        .ug-decision[data-active] { display: flex; }
+        .ug-decision-btn {
+          background: rgba(255,255,255,.06); border: 1.5px solid rgba(255,255,255,.18);
+          color: #fff; padding: 8px 16px; border-radius: 999px;
+          font-size: .85rem; font-family: 'Roboto', sans-serif; cursor: pointer;
+          backdrop-filter: blur(6px); transition: all .2s;
         }
-        .ug-label__text {
-          font-size: 1.15rem;
-          font-weight: 600;
-          letter-spacing: .04em;
-          line-height: 1.2;
+        .ug-decision-btn:hover { background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.35); transform: translateY(-1px); }
+
+        /* === FEATURE-ICON-GRID (6 Stück, 3×2) === */
+        .ug-features {
+          display: none;
+          grid-template-columns: repeat(6, auto);
+          gap: 8px; justify-content: center;
+          margin-top: var(--sp-3);
         }
+        .ug-features[data-active] { display: grid; }
+        @media (max-width: 540px) {
+          .ug-features { grid-template-columns: repeat(3, auto); gap: 6px; }
+        }
+        .ug-feature {
+          display: inline-flex; width: 36px; height: 36px;
+          backdrop-filter: blur(5px);
+          border-radius: 50%;
+        }
+        .ug-feature svg { width: 100%; height: 100%; overflow: visible; }
+        .ug-feature__bg { fill: rgba(255,255,255,.08); stroke: rgba(255,255,255,.2); stroke-width: 1px; }
+        .ug-feature__sym path:not(.ug-glyph), .ug-feature__sym circle {
+          stroke: #fff; stroke-width: 1.5px; stroke-linecap: round; stroke-linejoin: round; fill: none;
+        }
+        .ug-feature__sym .ug-glyph { fill: #fff; stroke: none; }
+        .ug-feature__sym .ug-sun { fill: #fff; stroke: none; }
 
         @media (max-width: 540px) {
-          .ug-widget__body {
-            grid-template-columns: 140px 1fr;
-            gap: var(--sp-2);
-          }
+          .ug-widget__body { grid-template-columns: 140px 1fr; gap: var(--sp-2); }
           .ug-phone { max-width: 140px; }
           .ug-label__num { font-size: 1.8rem; }
           .ug-label__text { font-size: 1rem; }
@@ -488,77 +599,184 @@
   <a href="#" class="back-up" data-back-up aria-label="Nach oben"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" aria-hidden="true"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg></a>
   <script src="js/main.js"></script>
   <script>
-    // ========== USER GUIDE: 2 unabhängige Widgets (Pfad A + B) ==========
-    // Nutzerin liefert später die Phone-Screenshots in assets/images/user-guide/.
-    // Sobald die Bilder da sind, einfach unten im STEPS-Objekt die Felder
-    // "img" auf den richtigen Pfad setzen — der Rest funktioniert von selbst.
+    // ========== USER GUIDE: Pfad A (Wizard mit Toggle) ==========
+    // Schritte 1-3: Toggle Karte/Koffer (Phone-Bild wechselt)
+    // Schritt 1: Mickey-Hand-Tipp auf Toggle (verschwindet nach 1. Klick)
+    // Schritt 4: kein Toggle, dafuer 6 Feature-Icons
     (function(){
+      const widget = document.querySelector('[data-ug-a]');
+      if (!widget) return;
 
-      // HIER LIEGEN DIE STEP-DATEN.
-      // img: null = Platzhalter wird angezeigt
-      // img: 'assets/images/user-guide/a1.png' = Bild wird geladen
-      // label: kurzer grosser Text rechts neben dem Phone (max 2 Zeilen)
-      const STEPS = {
-        A: [
-          { num: 1, label: ['REGION',  'WAEHLEN'],         img: null, alt: 'App-Screen: Region wählen' },
-          { num: 2, label: ['RUNDGANG','WAEHLEN'],         img: null, alt: 'App-Screen: Rundgang wählen' },
-          { num: 3, label: ['STATION', 'WAEHLEN'],         img: null, alt: 'App-Screen: Station wählen' },
-          { num: 4, label: ['INHALT',  'WAEHLEN'],         img: null, alt: 'App-Screen: Inhalt wählen' },
-        ],
-        B: [
-          { num: 1, label: ['STANDORT','ERLAUBEN'],        img: null, alt: 'App-Screen: Standort erlauben' },
-          { num: 2, label: ['STATIONEN','IN DER NAEHE'],   img: null, alt: 'App-Screen: Stationen in der Nähe' },
-          { num: 3, label: ['STATION', 'BESUCHEN'],        img: null, alt: 'App-Screen: Station besuchen' },
-          { num: 4, label: ['INHALT',  'WAEHLEN'],         img: null, alt: 'App-Screen: Inhalt wählen' },
-        ],
-      };
+      const STEPS = [
+        { num: 1, label: ['REGION', 'WÄHLEN'],   karte: 'assets/images/user-guide/a1-karte.png',   koffer: 'assets/images/user-guide/a1-koffer.png',   alt: 'App-Screen: Region wählen' },
+        { num: 2, label: ['RUNDGANG', 'WÄHLEN'], karte: 'assets/images/user-guide/a2-karte.png',   koffer: 'assets/images/user-guide/a2-koffer.png',   alt: 'App-Screen: Rundgang wählen' },
+        { num: 3, label: ['STATION', 'WÄHLEN'],  karte: 'assets/images/user-guide/a3-karte.png',   koffer: 'assets/images/user-guide/a3-koffer.png',   alt: 'App-Screen: Station wählen' },
+        { num: 4, label: ['INHALT', 'WÄHLEN'],   karte: 'assets/images/user-guide/a4.png',         koffer: 'assets/images/user-guide/a4.png',          alt: 'App-Screen: Inhalt wählen' }
+      ];
 
-      // Initialisiert ein einzelnes Widget (A oder B)
-      function initWidget(widgetEl) {
-        const path = widgetEl.dataset.path;          // "A" oder "B"
-        const steps = STEPS[path];
-        if (!steps) return;
+      let stepIdx = 0;            // 0..3
+      let isKoffer = true;        // Default: Koffer
+      let mickeyClicked = false;  // Mickey verschwindet nach 1. Klick
 
-        let i = 0;  // aktueller Schritt-Index (0..3)
+      const screen   = widget.querySelector('[data-ug-screen]');
+      const labelBox = widget.querySelector('[data-ug-label]');
+      const stepLbl  = widget.querySelector('[data-ug-step]');
+      const prev     = widget.querySelector('[data-ug-prev]');
+      const next     = widget.querySelector('[data-ug-next]');
+      const toggleZone = widget.querySelector('[data-ug-toggle-zone]');
+      const toggle     = widget.querySelector('[data-ug-toggle]');
+      const mickey     = widget.querySelector('[data-ug-mickey]');
+      const features   = widget.querySelector('[data-ug-features]');
 
-        const screen   = widgetEl.querySelector('[data-ug-screen]');
-        const labelBox = widgetEl.querySelector('[data-ug-label]');
-        const stepLbl  = widgetEl.querySelector('[data-ug-step]');
-        const prevBtn  = widgetEl.querySelector('[data-ug-prev]');
-        const nextBtn  = widgetEl.querySelector('[data-ug-next]');
+      function render() {
+        const s = STEPS[stepIdx];
+        stepLbl.textContent = 'Schritt ' + s.num;
+        labelBox.innerHTML = '<span class="ug-label__num">' + s.num + '</span><span class="ug-label__text">' + s.label.join('<br>') + '</span>';
+        const src = isKoffer ? s.koffer : s.karte;
+        screen.innerHTML = '<img src="' + src + '" alt="' + s.alt + '">';
 
-        function render() {
-          const s = steps[i];
-          // Step-Counter
-          stepLbl.textContent = 'Schritt ' + s.num;
-          // Label rechts (Nummer + 2 Zeilen Text)
-          labelBox.innerHTML =
-            '<span class="ug-label__num">' + s.num + '</span>' +
-            '<span class="ug-label__text">' + s.label.join('<br>') + '</span>';
-          // Phone-Screen: Bild oder Platzhalter
-          if (s.img) {
-            screen.classList.remove('is-placeholder');
-            screen.innerHTML = '<img src="' + s.img + '" alt="' + (s.alt || '') + '">';
-          } else {
-            screen.classList.add('is-placeholder');
-            screen.innerHTML = 'App-Screen<br>Pfad ' + path + ' &mdash;<br>Schritt ' + s.num + '<br><small>(Bild folgt)</small>';
-          }
+        // Schritte 1-3: Toggle anzeigen, Schritt 4: Feature-Icons
+        if (stepIdx === 3) {
+          toggleZone.removeAttribute('data-active');
+          features.setAttribute('data-active', '');
+        } else {
+          toggleZone.setAttribute('data-active', '');
+          features.removeAttribute('data-active');
         }
 
-        prevBtn.addEventListener('click', function(){
-          i = (i - 1 + steps.length) % steps.length;
-          render();
-        });
-        nextBtn.addEventListener('click', function(){
-          i = (i + 1) % steps.length;
-          render();
-        });
+        // Mickey-Hand: nur Schritt 1, nur wenn noch nicht geklickt
+        if (mickey) {
+          if (stepIdx === 0 && !mickeyClicked) mickey.removeAttribute('hidden');
+          else mickey.setAttribute('hidden', '');
+        }
 
-        render();
+        // Toggle-Klassen synchronisieren
+        toggle.classList.toggle('is-koffer', isKoffer);
       }
 
-      // Beide Widgets auf der Seite initialisieren
-      document.querySelectorAll('[data-ug]').forEach(initWidget);
+      toggle.addEventListener('click', function(){
+        mickeyClicked = true;
+        isKoffer = !isKoffer;
+        render();
+      });
+      prev.addEventListener('click', function(){
+        stepIdx = (stepIdx - 1 + STEPS.length) % STEPS.length;
+        render();
+      });
+      next.addEventListener('click', function(){
+        stepIdx = (stepIdx + 1) % STEPS.length;
+        render();
+      });
+
+      render();
+    })();
+
+    // ========== USER GUIDE: Pfad B (Wizard mit Verzweigung) ==========
+    // Schritt 1: nur Bild
+    // Schritt 2: Bild + Decision-Tipp-Overlay + 2 Buttons unten ("Station" → S3, "Route" → S4)
+    // Schritt 3 (Station-Pfad): Bild + 6 Feature-Icons unten
+    // Schritt 4 (Route-Pfad): Bild + Toggle Karte/Koffer unten
+    // Naechster-Pfeil in Schritt 2 ausgeblendet (man muss klicken).
+    // ←: 3→2, 4→2; →: 3→1 (Loop), 4→3
+    (function(){
+      const widget = document.querySelector('[data-ug-b]');
+      if (!widget) return;
+
+      const STEPS = {
+        1: { label: ['KARTE'],       img: 'assets/images/user-guide/b1.png',      alt: 'App-Screen: Karte mit Pins' },
+        2: { label: ['ENTSCHEIDEN'], img: 'assets/images/user-guide/b2.png',      alt: 'App-Screen: Station ansehen oder ganzen Rundgang' },
+        3: { label: ['INHALT'],      img: 'assets/images/user-guide/b3.png',      alt: 'App-Screen: Inhalt einer Station' },
+        4: {
+          label: ['RUNDGANG'],
+          karte:  'assets/images/user-guide/b4-karte.png',
+          koffer: 'assets/images/user-guide/b4-koffer.png',
+          alt: 'App-Screen: ganzer Rundgang'
+        }
+      };
+
+      let step = 1;            // 1, 2, 3 oder 4
+      let isKoffer = false;    // Default Pfad B Schritt 4: Karte (laut Original)
+
+      const screen   = widget.querySelector('[data-ug-screen]');
+      const tipImg   = widget.querySelector('[data-ug-tip]');
+      const labelBox = widget.querySelector('[data-ug-label]');
+      const stepLbl  = widget.querySelector('[data-ug-step]');
+      const prev     = widget.querySelector('[data-ug-prev]');
+      const next     = widget.querySelector('[data-ug-next]');
+      const decision   = widget.querySelector('[data-ug-decision]');
+      const btnStation = widget.querySelector('[data-ug-decision-station]');
+      const btnRoute   = widget.querySelector('[data-ug-decision-route]');
+      const features    = widget.querySelector('[data-ug-features]');
+      const toggleZone  = widget.querySelector('[data-ug-toggle-zone]');
+      const toggle      = widget.querySelector('[data-ug-toggle]');
+
+      function render() {
+        const s = STEPS[step];
+        stepLbl.textContent = 'Schritt ' + step;
+        labelBox.innerHTML = '<span class="ug-label__num">' + step + '</span><span class="ug-label__text">' + s.label.join('<br>') + '</span>';
+
+        // Phone-Bild (Schritt 4 hat 2 Varianten je nach Toggle)
+        let src;
+        if (step === 4) {
+          src = isKoffer ? s.koffer : s.karte;
+          toggle.classList.toggle('is-koffer', isKoffer);
+        } else {
+          src = s.img;
+        }
+
+        // Tip-Overlay nicht mit innerHTML wegnudeln — bleibt als Kind drin
+        const oldImg = screen.querySelector('img:not(.ug-tip-overlay)');
+        if (oldImg) oldImg.remove();
+        const newImg = document.createElement('img');
+        newImg.src = src; newImg.alt = s.alt;
+        screen.insertBefore(newImg, tipImg);
+
+        // Tip-Overlay nur in Schritt 2
+        if (step === 2) tipImg.removeAttribute('hidden');
+        else tipImg.setAttribute('hidden', '');
+
+        // Decision-Buttons nur in Schritt 2
+        if (step === 2) decision.setAttribute('data-active', '');
+        else decision.removeAttribute('data-active');
+
+        // Feature-Icons nur in Schritt 3
+        if (step === 3) features.setAttribute('data-active', '');
+        else features.removeAttribute('data-active');
+
+        // Toggle nur in Schritt 4
+        if (step === 4) toggleZone.setAttribute('data-active', '');
+        else toggleZone.removeAttribute('data-active');
+
+        // Naechster-Pfeil in Schritt 2 ausblenden
+        if (step === 2) next.setAttribute('hidden', '');
+        else next.removeAttribute('hidden');
+      }
+
+      btnStation.addEventListener('click', function(){ step = 3; render(); });
+      btnRoute.addEventListener('click',   function(){ step = 4; render(); });
+
+      toggle.addEventListener('click', function(){
+        isKoffer = !isKoffer;
+        render();
+      });
+
+      prev.addEventListener('click', function(){
+        // ←: 1→4, 2→1, 3→2, 4→2
+        if (step === 4) step = 2;
+        else if (step === 1) step = 4;
+        else step = step - 1;
+        render();
+      });
+      next.addEventListener('click', function(){
+        // →: 1→2, 2→(blocked), 3→1 (Loop), 4→3
+        if (step === 2) return;
+        if (step === 3) step = 1;
+        else if (step === 4) step = 3;
+        else step = step + 1;
+        render();
+      });
+
+      render();
     })();
   </script>
 </body>
