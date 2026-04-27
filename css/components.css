@@ -217,6 +217,28 @@
 }
 .vitrine-card__link:hover { opacity: 1; text-decoration: underline; }
 
+/* Hover-Effekt: Card hebt sich an + Bild zoomt dezent + heller Border-Glow */
+.vitrine-card {
+  transition: transform .25s cubic-bezier(.4, 0, .2, 1);
+}
+.vitrine-card__thumb {
+  transition: border-color .25s ease, box-shadow .25s ease;
+}
+.vitrine-card__thumb img {
+  transition: transform .35s cubic-bezier(.4, 0, .2, 1);
+}
+.vitrine-card:hover { transform: translateY(-3px); }
+.vitrine-card:hover .vitrine-card__thumb {
+  border-color: rgba(255,255,255,.28);
+  box-shadow: 0 12px 28px rgba(0,0,0,.45);
+}
+.vitrine-card:hover .vitrine-card__thumb img { transform: scale(1.04); }
+@media (prefers-reduced-motion: reduce) {
+  .vitrine-card, .vitrine-card__thumb, .vitrine-card__thumb img { transition: none; }
+  .vitrine-card:hover { transform: none; }
+  .vitrine-card:hover .vitrine-card__thumb img { transform: none; }
+}
+
 /* --- Kategorie-Cards (Startseite) ---------------------------------------- */
 .card--kategorie {
   text-align: center;
