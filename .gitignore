@@ -134,3 +134,7 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# Lokale Editor-/Tool-Configs (gehoeren nicht ins Repo)
+.obsidian/
+.claude/worktrees/
