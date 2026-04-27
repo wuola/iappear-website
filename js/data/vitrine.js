@@ -56,7 +56,7 @@ window.IAPPEAR_VITRINE = [
   {
     titel: "Florenz 2023 - Future of Education",
     text: "Vortrag und Publikation auf der internationalen Konferenz 'The Future of Education' in Florenz 2023.",
-    bild: "",
+    bild: "assets/images/vitrine/florenz.png",
     link: "vitrine/florenz-2023-future-of-education.html"
   },
   {
