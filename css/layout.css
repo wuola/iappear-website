@@ -16,12 +16,31 @@
      den Seitenrand nicht verlieren. */
   padding-top: var(--sp-5);
   padding-bottom: var(--sp-5);
-  border-top: 1px solid rgba(255,255,255,.08);
+  position: relative;
 }
 @media (min-width: 720px) {
   .section { padding-top: var(--sp-6); padding-bottom: var(--sp-6); }
 }
-.section:first-of-type { border-top: 0; }
+/* Sektions-Trenner als zarter Lichtstreifen: Mitte voll, Raender weich
+   ausgefadet. Wirkt eleganter als eine durchgehende Linie quer ueber den
+   Bildschirm. Wird per ::before geloest, damit der first-of-type leicht
+   ohne Linie bleibt. */
+.section + .section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(720px, 85%);
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(255,255,255,.18) 50%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
 
 .grid { display: grid; gap: var(--sp-3); }
 .grid-2 { grid-template-columns: 1fr; }
