@@ -407,6 +407,19 @@
                 <div class="phone__screen ug-screen" data-ug-screen>
                   <!-- Decision-Tipp Overlay (nur Schritt 2) -->
                   <img class="ug-tip-overlay" data-ug-tip src="assets/images/user-guide/b2-tipp.png" alt="" hidden>
+                  <!-- Schritt-1 Overlays: User-Pin (mittig) + GPS-Indikator (unten rechts, pulsiert) -->
+                  <div class="ug-b1-overlays" data-ug-b1-overlays hidden aria-hidden="true">
+                    <span class="ug-b1-user">
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <polygon points="12 3 19 21 12 17 5 21" fill="#fff" stroke="rgba(0,0,0,.4)" stroke-width="1" stroke-linejoin="round"/>
+                      </svg>
+                    </span>
+                    <span class="ug-b1-gps">
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <polygon points="12 4 19 20 12 16 5 20" fill="#fff" stroke-linejoin="round"/>
+                      </svg>
+                    </span>
+                  </div>
                 </div>
               </div>
               <div class="ug-label" data-ug-label>
@@ -524,6 +537,53 @@
           filter: drop-shadow(0 8px 24px rgba(0,0,0,.6));
         }
         .ug-screen .ug-tip-overlay[hidden] { display: none !important; }
+
+        /* === Pfad B Schritt 1: User-Standort + GPS-Indikator als Overlay ===
+           Sind im b1.png nicht drin, deshalb hier als SVG-Overlay reingefaked. */
+        .ug-b1-overlays {
+          position: absolute; inset: 0;
+          pointer-events: none;
+          z-index: 3;
+        }
+        .ug-b1-overlays[hidden] { display: none; }
+        /* Weisser User-Pin mittig — Standortmarker auf der Karte */
+        .ug-b1-user {
+          position: absolute;
+          top: 56%; left: 50%;
+          transform: translate(-50%, -50%);
+          width: 22px; height: 22px;
+          border-radius: 50%;
+          background: rgba(255,255,255,.95);
+          border: 2px solid rgba(255,255,255,.5);
+          display: flex; align-items: center; justify-content: center;
+          box-shadow: 0 2px 6px rgba(0,0,0,.4);
+        }
+        .ug-b1-user svg { width: 12px; height: 12px; }
+        /* Blauer GPS-Indikator unten rechts — pulsiert subtil */
+        .ug-b1-gps {
+          position: absolute;
+          bottom: 8%; right: 6%;
+          width: 26px; height: 26px;
+          border-radius: 50%;
+          background: #3B9AFF;
+          display: flex; align-items: center; justify-content: center;
+          box-shadow: 0 0 0 0 rgba(59,154,255,.6);
+          animation: ug-b1-gps-pulse 2.2s ease-in-out infinite;
+        }
+        .ug-b1-gps svg { width: 14px; height: 14px; }
+        @keyframes ug-b1-gps-pulse {
+          0%, 100% {
+            box-shadow: 0 0 0 0 rgba(59,154,255,.55), 0 2px 6px rgba(0,0,0,.4);
+            transform: scale(1);
+          }
+          50% {
+            box-shadow: 0 0 0 8px rgba(59,154,255,0), 0 2px 6px rgba(0,0,0,.4);
+            transform: scale(1.06);
+          }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .ug-b1-gps { animation: none; }
+        }
 
         .ug-label {
           display: flex; flex-direction: column;
@@ -795,6 +855,7 @@
       const features    = widget.querySelector('[data-ug-features]');
       const toggleZone  = widget.querySelector('[data-ug-toggle-zone]');
       const toggle      = widget.querySelector('[data-ug-toggle]');
+      const b1Overlays  = widget.querySelector('[data-ug-b1-overlays]');
 
       function render() {
         const s = STEPS[step];
@@ -836,6 +897,12 @@
         // Naechster-Pfeil in Schritt 2 ausblenden
         if (step === 2) next.setAttribute('hidden', '');
         else next.removeAttribute('hidden');
+
+        // Schritt-1 Overlays (User-Pin + GPS-Indikator) nur in Schritt 1
+        if (b1Overlays) {
+          if (step === 1) b1Overlays.removeAttribute('hidden');
+          else b1Overlays.setAttribute('hidden', '');
+        }
       }
 
       btnStation.addEventListener('click', function(){ step = 3; render(); });
