@@ -100,6 +100,16 @@
          Animiert: Tasse-Dampf (Die Idee) + Zahnraeder (Das Konzept)
          als sanfte Endlos-Loops. Andere Symbole statisch. -->
     <style>
+      .workflow-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--sp-2) var(--sp-3);
+        align-items: stretch;
+      }
+      .workflow-grid h2 { margin: 0; }
+      @media (max-width: 720px) {
+        .workflow-grid { grid-template-columns: 1fr; }
+      }
       /* .card hat global flex-direction: column — hier mit hoeherer
          Specificity auf row umstellen, sonst stapelt das Icon ueber den Text. */
       .card.workflow-step { flex-direction: row; align-items: flex-start; gap: var(--sp-2); }
@@ -108,7 +118,7 @@
         color: var(--c-text); opacity: .85;
         margin-top: .15rem;
       }
-      .workflow-step__icon svg { width: 100%; height: 100%; display: block; overflow: visible; }
+      .workflow-step__icon svg { width: 100%; height: 100%; display: block; }
       .workflow-step__body { flex: 1; min-width: 0; }
       .workflow-step__body > * { margin: 0; }
       .workflow-step__body h3 { margin-bottom: .5rem; }
@@ -125,133 +135,193 @@
         50%      { opacity: .85; transform: translateY(-2px); }
       }
 
-      /* Zahnraeder: drehen langsam gegeneinander */
-      .icon-gear-1 {
-        transform-origin: 14px 16px;
+      /* Zahnraeder: rotieren um eigenes bbox-Center.
+         Vorher hatte ich px-Werte als transform-origin gesetzt — bei
+         transform-box: fill-box werden die ab bbox-top-left gemessen,
+         deshalb kreiste das kleine Zahnrad voll daneben. center fixt das. */
+      .icon-gear-1, .icon-gear-2 {
+        transform-origin: center;
         transform-box: fill-box;
-        animation: icon-gear-spin 8s linear infinite;
       }
-      .icon-gear-2 {
-        transform-origin: 28px 27px;
-        transform-box: fill-box;
-        animation: icon-gear-spin 6s linear infinite reverse;
-      }
+      .icon-gear-1 { animation: icon-gear-spin 8s linear infinite; }
+      .icon-gear-2 { animation: icon-gear-spin 6s linear infinite reverse; }
       @keyframes icon-gear-spin { to { transform: rotate(360deg); } }
 
+      /* Das Angebot: hinteres Doc ploppt subtil */
+      .icon-doc-back { animation: icon-doc-shift 4s ease-in-out infinite; }
+      @keyframes icon-doc-shift {
+        0%, 100% { transform: translate(0, 0); }
+        50%      { transform: translate(-1px, -1px); }
+      }
+
+      /* Der Vertrag: Haekchen pulsiert */
+      .icon-check { animation: icon-check-pulse 2.5s ease-in-out infinite; }
+      @keyframes icon-check-pulse {
+        0%, 100% { opacity: .6; }
+        50%      { opacity: 1; }
+      }
+
+      /* Das Team: Personen nicken minimal, leicht versetzt */
+      .icon-person-1 { animation: icon-person-nod 3.5s ease-in-out infinite; }
+      .icon-person-2 { animation: icon-person-nod 3.5s ease-in-out infinite -1.5s; }
+      @keyframes icon-person-nod {
+        0%, 100% { transform: translateY(0); }
+        50%      { transform: translateY(-1px); }
+      }
+
+      /* Der Content: Sparkles blinken in versetzten Phasen */
+      .icon-sparkle { animation: icon-sparkle-blink 3s ease-in-out infinite; }
+      .icon-sparkle-2 { animation-delay: -1s; }
+      .icon-sparkle-3 { animation-delay: -2s; }
+      @keyframes icon-sparkle-blink {
+        0%, 100% { opacity: .25; }
+        50%      { opacity: 1; }
+      }
+
       @media (prefers-reduced-motion: reduce) {
-        .icon-steam, .icon-gear-1, .icon-gear-2 { animation: none; opacity: .85; }
+        .icon-steam, .icon-gear-1, .icon-gear-2,
+        .icon-doc-back, .icon-check, .icon-person-1, .icon-person-2,
+        .icon-sparkle { animation: none; opacity: .85; }
       }
     </style>
 
     <section class="section container">
-      <div class="grid grid-2">
+      <div class="workflow-grid">
 
-        <div>
-          <h2>Auftakt</h2>
-          <article class="card workflow-step">
-            <span class="workflow-step__icon" aria-hidden="true">
-              <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <path class="icon-steam icon-steam-1" d="M14 13 Q16 10 14 6"/>
-                <path class="icon-steam icon-steam-2" d="M20 13 Q22 10 20 6"/>
-                <path class="icon-steam icon-steam-3" d="M26 13 Q28 10 26 6"/>
-                <path d="M9 17 L31 17"/>
-                <path d="M11 17 L11 28 Q11 32 15 32 L24 32 Q28 32 28 28 L28 17"/>
-                <path d="M28 19 Q34 19 34 23 Q34 27 28 27"/>
-              </svg>
-            </span>
-            <div class="workflow-step__body">
-              <h3>Die Idee</h3>
-              <p>Wir können ganz unverbindlich bei einer Tasse Tee oder Kaffee über deine Idee sprechen. Natürlich können wir auch gerne telefonieren, emailen, whatsappen, videocallen, teamsen, morsen oder Brieftauben versenden und oder empfangen.</p>
-            </div>
-          </article>
-          <article class="card workflow-step" style="margin-top:var(--sp-2)">
-            <span class="workflow-step__icon" aria-hidden="true">
-              <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <h2>Auftakt</h2>
+        <h2>Leistungen</h2>
+
+        <article class="card workflow-step">
+          <span class="workflow-step__icon" aria-hidden="true">
+            <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path class="icon-steam icon-steam-1" d="M14 13 Q16 10 14 6"/>
+              <path class="icon-steam icon-steam-2" d="M20 13 Q22 10 20 6"/>
+              <path class="icon-steam icon-steam-3" d="M26 13 Q28 10 26 6"/>
+              <path d="M9 17 L31 17"/>
+              <path d="M11 17 L11 28 Q11 32 15 32 L24 32 Q28 32 28 28 L28 17"/>
+              <path d="M28 19 Q34 19 34 23 Q34 27 28 27"/>
+            </svg>
+          </span>
+          <div class="workflow-step__body">
+            <h3>Die Idee</h3>
+            <p>Wir können ganz unverbindlich bei einer Tasse Tee oder Kaffee über deine Idee sprechen. Natürlich können wir auch gerne telefonieren, emailen, whatsappen, videocallen, teamsen, morsen oder Brieftauben versenden und oder empfangen.</p>
+          </div>
+        </article>
+
+        <article class="card workflow-step">
+          <span class="workflow-step__icon" aria-hidden="true">
+            <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <g class="icon-gear-1">
+                <circle cx="14" cy="16" r="3"/>
+                <path d="M14 8 L14 6 M14 24 L14 26 M6 16 L8 16 M20 16 L22 16 M19.7 10.3 L21.1 8.9 M6.9 23.1 L8.3 21.7 M19.7 21.7 L21.1 23.1 M6.9 8.9 L8.3 10.3"/>
+              </g>
+              <g class="icon-gear-2">
+                <circle cx="28" cy="27" r="2"/>
+                <path d="M28 22 L28 21 M28 32 L28 33 M23 27 L24 27 M32 27 L33 27 M31.5 23.5 L32.2 22.8 M24.5 30.5 L23.8 31.2 M31.5 30.5 L32.2 31.2 M24.5 23.5 L23.8 22.8"/>
+              </g>
+            </svg>
+          </span>
+          <div class="workflow-step__body">
+            <h3>Das Konzept</h3>
+            <p>Entweder du bringst einen fertigen Plan mit und wir setzen ihn um, oder wir setzen uns zusammen an den Tisch und entwickeln die Strategie für deine Tour von Null auf. Oder wir machen es komplett alleine, und du kontrollierst es nur noch.</p>
+          </div>
+        </article>
+
+        <article class="card workflow-step">
+          <span class="workflow-step__icon" aria-hidden="true">
+            <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <g class="icon-doc-back">
                 <rect x="8" y="6" width="18" height="22" rx="1.5" opacity=".5"/>
                 <line x1="12" y1="11" x2="22" y2="11" opacity=".5"/>
                 <line x1="12" y1="15" x2="20" y2="15" opacity=".5"/>
-                <rect x="14" y="12" width="18" height="22" rx="1.5" fill="#0a0a0a"/>
-                <line x1="18" y1="18" x2="28" y2="18"/>
-                <line x1="18" y1="22" x2="26" y2="22"/>
-                <line x1="18" y1="26" x2="28" y2="26"/>
-              </svg>
-            </span>
-            <div class="workflow-step__body">
-              <h3>Das Angebot</h3>
-              <p>Wenn wir die Idee konkretisiert haben, bekommst du von uns ein Angebot. Meistens aber eher zwei Angebote. Ehrlicherweise meist ein finanzierbares und eines, das alle deine Wünsche enthält. Ja, es geht uns doch allen so!</p>
-            </div>
-          </article>
-          <article class="card workflow-step" style="margin-top:var(--sp-2)">
-            <span class="workflow-step__icon" aria-hidden="true">
-              <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="9" y="6" width="22" height="28" rx="1.5"/>
-                <line x1="13" y1="12" x2="27" y2="12"/>
-                <line x1="13" y1="16" x2="23" y2="16"/>
-                <path d="M14 24 L18 28 L26 20" stroke-width="2"/>
-              </svg>
-            </span>
-            <div class="workflow-step__body">
-              <h3>Der Vertrag</h3>
-              <p>Wir haben viele verschiedene Möglichkeiten, wie Verträge aussehen können. Manche sind einmalige Projekte, andere mit Service-Vertrag über einen längeren Zeitraum. Jedenfalls sind sie alle legal. Und übrigens auch Nutzer:innen freundlich.</p>
-            </div>
-          </article>
-        </div>
+              </g>
+              <rect x="14" y="12" width="18" height="22" rx="1.5" fill="#0a0a0a"/>
+              <line x1="18" y1="18" x2="28" y2="18"/>
+              <line x1="18" y1="22" x2="26" y2="22"/>
+              <line x1="18" y1="26" x2="28" y2="26"/>
+            </svg>
+          </span>
+          <div class="workflow-step__body">
+            <h3>Das Angebot</h3>
+            <p>Wenn wir die Idee konkretisiert haben, bekommst du von uns ein Angebot. Meistens aber eher zwei Angebote. Ehrlicherweise meist ein finanzierbares und eines, das alle deine Wünsche enthält. Ja, es geht uns doch allen so!</p>
+          </div>
+        </article>
 
-        <div>
-          <h2>Leistungen</h2>
-          <article class="card workflow-step">
-            <span class="workflow-step__icon" aria-hidden="true">
-              <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <g class="icon-gear-1">
-                  <circle cx="14" cy="16" r="3"/>
-                  <path d="M14 8 L14 6 M14 24 L14 26 M6 16 L8 16 M20 16 L22 16 M19.7 10.3 L21.1 8.9 M6.9 23.1 L8.3 21.7 M19.7 21.7 L21.1 23.1 M6.9 8.9 L8.3 10.3"/>
-                </g>
-                <g class="icon-gear-2">
-                  <circle cx="28" cy="27" r="2"/>
-                  <path d="M28 22 L28 21 M28 32 L28 33 M23 27 L24 27 M32 27 L33 27 M31.5 23.5 L32.2 22.8 M24.5 30.5 L23.8 31.2 M31.5 30.5 L32.2 31.2 M24.5 23.5 L23.8 22.8"/>
-                </g>
-              </svg>
-            </span>
-            <div class="workflow-step__body">
-              <h3>Das Konzept</h3>
-              <p>Entweder du bringst einen fertigen Plan mit und wir setzen ihn um, oder wir setzen uns zusammen an den Tisch und entwickeln die Strategie für deine Tour von Null auf. Oder wir machen es komplett alleine, und du kontrollierst es nur noch.</p>
-            </div>
-          </article>
-          <article class="card workflow-step" style="margin-top:var(--sp-2)">
-            <span class="workflow-step__icon" aria-hidden="true">
-              <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <article class="card workflow-step">
+          <span class="workflow-step__icon" aria-hidden="true">
+            <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <g class="icon-person-1">
                 <circle cx="14" cy="13" r="4"/>
                 <path d="M7 32 Q7 22 14 22 Q21 22 21 32"/>
+              </g>
+              <g class="icon-person-2">
                 <circle cx="27" cy="15" r="4"/>
                 <path d="M20 34 Q20 24 27 24 Q34 24 34 34"/>
-              </svg>
-            </span>
-            <div class="workflow-step__body">
-              <h3>Das Team</h3>
-              <p>Wir klinken uns einfach bei deinen Partnern und Archiven ein oder übernehmen das komplette Projektmanagement selbst. Wir arbeiten so, wie es in deine Struktur passt.</p>
-            </div>
-          </article>
-          <article class="card workflow-step" style="margin-top:var(--sp-2)">
-            <span class="workflow-step__icon" aria-hidden="true">
-              <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M20 11 L11 17 L11 27 L20 33 L29 27 L29 17 Z"/>
-                <line x1="11" y1="17" x2="20" y2="22"/>
-                <line x1="29" y1="17" x2="20" y2="22"/>
-                <line x1="20" y1="22" x2="20" y2="33"/>
-                <circle cx="6" cy="11" r="1" fill="currentColor" stroke="none"/>
-                <circle cx="34" cy="9" r="1.4" fill="currentColor" stroke="none"/>
-                <circle cx="33" cy="33" r="1" fill="currentColor" stroke="none"/>
-              </svg>
-            </span>
-            <div class="workflow-step__body">
-              <h3>Der Content</h3>
-              <p>Du hast schon Material? Dann integrieren wir es. Dir fehlt der &bdquo;Wow-Effekt&ldquo;? Dann produzieren wir High-End-Stuff wie 3D-Modelle, AR, Audio oder Video dazu. Wir können also jeden Schritt übernehmen aber lieben Co-Creation!</p>
-            </div>
-          </article>
-        </div>
+              </g>
+            </svg>
+          </span>
+          <div class="workflow-step__body">
+            <h3>Das Team</h3>
+            <p>Wir klinken uns einfach bei deinen Partnern und Archiven ein oder übernehmen das komplette Projektmanagement selbst. Wir arbeiten so, wie es in deine Struktur passt.</p>
+          </div>
+        </article>
+
+        <article class="card workflow-step">
+          <span class="workflow-step__icon" aria-hidden="true">
+            <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="6" width="22" height="28" rx="1.5"/>
+              <line x1="13" y1="12" x2="27" y2="12"/>
+              <line x1="13" y1="16" x2="23" y2="16"/>
+              <path class="icon-check" d="M14 24 L18 28 L26 20" stroke-width="2"/>
+            </svg>
+          </span>
+          <div class="workflow-step__body">
+            <h3>Der Vertrag</h3>
+            <p>Wir haben viele verschiedene Möglichkeiten, wie Verträge aussehen können. Manche sind einmalige Projekte, andere mit Service-Vertrag über einen längeren Zeitraum. Jedenfalls sind sie alle legal. Und übrigens auch Nutzer:innen freundlich.</p>
+          </div>
+        </article>
+
+        <article class="card workflow-step">
+          <span class="workflow-step__icon" aria-hidden="true">
+            <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 11 L11 17 L11 27 L20 33 L29 27 L29 17 Z"/>
+              <line x1="11" y1="17" x2="20" y2="22"/>
+              <line x1="29" y1="17" x2="20" y2="22"/>
+              <line x1="20" y1="22" x2="20" y2="33"/>
+              <circle class="icon-sparkle icon-sparkle-1" cx="6" cy="11" r="1" fill="currentColor" stroke="none"/>
+              <circle class="icon-sparkle icon-sparkle-2" cx="34" cy="9" r="1.4" fill="currentColor" stroke="none"/>
+              <circle class="icon-sparkle icon-sparkle-3" cx="33" cy="33" r="1" fill="currentColor" stroke="none"/>
+            </svg>
+          </span>
+          <div class="workflow-step__body">
+            <h3>Der Content</h3>
+            <p>Du hast schon Material? Dann integrieren wir es. Dir fehlt der &bdquo;Wow-Effekt&ldquo;? Dann produzieren wir High-End-Stuff wie 3D-Modelle, AR, Audio oder Video dazu. Wir können also jeden Schritt übernehmen aber lieben Co-Creation!</p>
+          </div>
+        </article>
 
       </div>
     </section>
+
+    <!-- Sync: alle 6 Cards auf gleiche Hoehe (max der gemessenen). -->
+    <script>
+      (function () {
+        function syncWorkflowCards() {
+          var cards = document.querySelectorAll('.workflow-step');
+          if (!cards.length) return;
+          cards.forEach(function (c) { c.style.minHeight = ''; });
+          var max = 0;
+          cards.forEach(function (c) { if (c.offsetHeight > max) max = c.offsetHeight; });
+          if (max > 0) cards.forEach(function (c) { c.style.minHeight = max + 'px'; });
+        }
+        if (document.readyState === 'complete') syncWorkflowCards();
+        else window.addEventListener('load', syncWorkflowCards);
+        var t;
+        window.addEventListener('resize', function () {
+          clearTimeout(t);
+          t = setTimeout(syncWorkflowCards, 200);
+        });
+      })();
+    </script>
 
     <!-- ========== 5-SCHRITT-PROZESS ==========
          Portiert aus _doku/recon/widgets/iappear-process-safe-1c5e16a08c.html
