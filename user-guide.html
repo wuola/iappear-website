@@ -405,8 +405,6 @@
             <div class="ug-widget__body">
               <div class="phone ug-phone">
                 <div class="phone__screen ug-screen" data-ug-screen>
-                  <!-- Decision-Tipp Overlay (nur Schritt 2) -->
-                  <img class="ug-tip-overlay" data-ug-tip src="assets/images/user-guide/b2-tipp.png" alt="" hidden>
                   <!-- Schritt-1 Overlays: User-Pin (mittig) + GPS-Indikator (unten rechts, pulsiert) -->
                   <div class="ug-b1-overlays" data-ug-b1-overlays hidden aria-hidden="true">
                     <span class="ug-b1-user">
@@ -894,7 +892,6 @@
       let isKoffer = false;    // Default Pfad B Schritt 4: Karte (laut Original)
 
       const screen   = widget.querySelector('[data-ug-screen]');
-      const tipImg   = widget.querySelector('[data-ug-tip]');
       const labelBox = widget.querySelector('[data-ug-label]');
       const stepLbl  = widget.querySelector('[data-ug-step]');
       const prev     = widget.querySelector('[data-ug-prev]');
@@ -921,16 +918,12 @@
           src = s.img;
         }
 
-        // Tip-Overlay nicht mit innerHTML wegnudeln — bleibt als Kind drin
+        // Phone-Bild swapen — Overlays (b1) bleiben als Kind drin
         const oldImg = screen.querySelector('img:not(.ug-tip-overlay)');
         if (oldImg) oldImg.remove();
         const newImg = document.createElement('img');
         newImg.src = src; newImg.alt = s.alt;
-        screen.insertBefore(newImg, tipImg);
-
-        // Tip-Overlay nur in Schritt 2
-        if (step === 2) tipImg.removeAttribute('hidden');
-        else tipImg.setAttribute('hidden', '');
+        screen.insertBefore(newImg, screen.firstChild);
 
         // Decision-Buttons nur in Schritt 2
         if (step === 2) decision.setAttribute('data-active', '');
