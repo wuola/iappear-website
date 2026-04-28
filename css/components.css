@@ -1010,7 +1010,24 @@ span.feature-list__icon {
   text-align: center;
   margin-bottom: var(--sp-4);
   padding: var(--sp-3) var(--sp-3) var(--sp-4);
-  border-bottom: 1px solid rgba(255,255,255,.12);
+  position: relative;
+}
+/* Zarter Lichtstreifen statt harter Trennlinie nach unten. */
+.partner-uniwien::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: min(720px, 85%);
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(255,255,255,.18) 50%,
+    transparent 100%
+  );
+  pointer-events: none;
 }
 .partner-uniwien .partner-logo {
   aspect-ratio: auto;
@@ -1049,9 +1066,26 @@ span.feature-list__icon {
 .footer__bottom {
   display: flex; align-items: center; justify-content: space-between;
   margin-top: var(--sp-4); padding-top: var(--sp-3);
-  border-top: 1px solid rgba(255,255,255,.1);
   color: var(--c-text-muted);
   flex-wrap: wrap; gap: var(--sp-2) var(--sp-3);
+  position: relative;
+}
+/* Zarter Lichtstreifen statt harter Trennlinie nach oben. */
+.footer__bottom::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  width: min(720px, 85%);
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(255,255,255,.18) 50%,
+    transparent 100%
+  );
+  pointer-events: none;
 }
 /* Schlanke Legal-Leiste in der Mitte des Footer-Bottoms.
    Ersetzt den frueheren breiten Quicklinks-Block. */
