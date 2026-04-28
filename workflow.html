@@ -323,139 +323,216 @@
       })();
     </script>
 
-    <!-- ========== 5-SCHRITT-PROZESS ==========
-         Portiert aus _doku/recon/widgets/iappear-process-safe-1c5e16a08c.html
-         Desktop: horizontales SVG mit 5 nummerierten Kreisen.
-         Mobile (<720px): stacked Liste als semantischer Fallback. -->
+    <!-- ========== 5-SCHRITT-PROZESS — vertikale Timeline ==========
+         Eine Reise durch den i.appear-Prozess: 5 Cards untereinander
+         mit Nummer, kleinem Symbol, Title und 1-2 Saetzen Beschreibung.
+         Verbindungslinie zwischen den Cards als zarter Lichtstreifen.
+         Cards faden beim Scroll nacheinander ein (IntersectionObserver). -->
     <section class="section container">
       <h2 class="center">Vom Konzept zum Launch</h2>
       <p class="muted center" style="margin-top:var(--sp-1)">Unser Prozess in 5 Schritten &ndash; flexibel und optional.</p>
 
       <style>
-        .iappear-process {
-          width: 100%;
-          margin-top: var(--sp-4);
-          overflow: visible;
-        }
-        .iappear-process .process-svg {
-          display: block;
-          width: 100%;
-          height: auto;
-          overflow: visible;
-        }
-        .iappear-process .step-line-rect {
-          fill: #fff;
-          x: 13px;
-          width: 30px;
-          height: 2px;
-          y: -1px;
-        }
-        .iappear-process .step-circle {
-          stroke: #fff;
-          stroke-width: 2px;
-          fill: none;
-        }
-        .iappear-process .step-number {
-          fill: #fff;
-          font-family: 'Roboto', sans-serif;
-          font-size: 18px;
-          font-weight: 500;
-          text-anchor: middle;
-          dominant-baseline: central;
-        }
-        .iappear-process .step-label {
-          fill: #fff;
-          font-family: 'Roboto', sans-serif;
-          font-size: 16px;
-          text-anchor: middle;
-          letter-spacing: 0.03em;
-        }
-        .iappear-process .s1 { transform: translate(100px, 80px); }
-        .iappear-process .s2 { transform: translate(300px, 80px); }
-        .iappear-process .s3 { transform: translate(500px, 80px); }
-        .iappear-process .s4 { transform: translate(700px, 80px); }
-        .iappear-process .s5 { transform: translate(900px, 80px); }
-
-        /* Letzter Schritt: Linie weg, die fuehrt ins Nichts */
-        .iappear-process .s5 .step-line-rect { display: none; }
-
-        /* Mobile Fallback: Liste statt SVG */
-        .iappear-process__list {
-          display: none;
+        .timeline {
           list-style: none;
           padding: 0;
-          margin: var(--sp-3) 0 0;
-          gap: var(--sp-2);
+          margin: var(--sp-5) auto 0;
+          max-width: 720px;
+          position: relative;
         }
-        .iappear-process__list li {
-          display: flex;
-          align-items: center;
-          gap: var(--sp-2);
-          padding: var(--sp-2) var(--sp-3);
-          border: 1px solid rgba(255,255,255,.15);
-          border-radius: 999px;
+        .timeline__step {
+          display: grid;
+          grid-template-columns: 56px 40px 1fr;
+          gap: 0 var(--sp-3);
+          align-items: start;
+          padding-bottom: var(--sp-5);
+          position: relative;
+          opacity: 0;
+          transform: translateY(20px);
+          transition: opacity .7s var(--ease), transform .7s var(--ease);
         }
-        .iappear-process__list .num {
-          flex: 0 0 auto;
-          width: 40px; height: 40px;
-          display: inline-flex; align-items: center; justify-content: center;
-          border: 2px solid #fff;
-          border-radius: 50%;
-          font-weight: 500;
-        }
-        .iappear-process__list .lbl {
-          font-size: .95rem;
+        .timeline__step.is-in { opacity: 1; transform: translateY(0); }
+        .timeline__step:last-child { padding-bottom: 0; }
+
+        /* Zarte Verbindungslinie zwischen den Steps — durch die Mitte der
+           Icon-Spalte (links 56 + gap 24 + halbes Icon 20 = 100px). */
+        .timeline__step:not(:last-child)::before {
+          content: "";
+          position: absolute;
+          left: 100px;
+          top: 56px;
+          bottom: var(--sp-2);
+          width: 1px;
+          background: linear-gradient(
+            to bottom,
+            rgba(255,255,255,.25) 0%,
+            rgba(255,255,255,.05) 100%
+          );
+          pointer-events: none;
         }
 
-        @media (max-width: 720px) {
-          .iappear-process .process-svg { display: none; }
-          .iappear-process__list { display: flex; flex-direction: column; }
+        .timeline__num {
+          font-family: var(--f-serif);
+          font-size: 2rem;
+          font-weight: 600;
+          color: var(--c-text-muted);
+          line-height: 1;
+          letter-spacing: -.02em;
+          text-align: right;
+        }
+        .timeline__icon {
+          width: 40px; height: 40px;
+          color: var(--c-text);
+          opacity: .85;
+          margin-top: .15rem;
+        }
+        .timeline__icon svg { width: 100%; height: 100%; display: block; }
+        .timeline__body { grid-column: 3; }
+        .timeline__body h3 {
+          margin: 0 0 .5rem;
+          font-family: var(--f-serif);
+          font-size: 1.3rem;
+        }
+        .timeline__body p {
+          margin: 0;
+          color: var(--c-text-muted);
+          line-height: 1.55;
+        }
+
+        /* Symbol-Animationen */
+        .icon-bulb-glow { animation: icon-bulb-pulse 2.8s ease-in-out infinite; transform-origin: center; transform-box: fill-box; }
+        @keyframes icon-bulb-pulse {
+          0%, 100% { opacity: .55; transform: scale(.92); }
+          50%      { opacity: 1;   transform: scale(1.08); }
+        }
+        .icon-rocket-flame { animation: icon-rocket-flicker 1.2s ease-in-out infinite; transform-origin: center top; transform-box: fill-box; }
+        @keyframes icon-rocket-flicker {
+          0%, 100% { opacity: .8;  transform: scaleY(.85); }
+          50%      { opacity: 1;   transform: scaleY(1.15); }
+        }
+
+        /* Mobile: Layout ein bisschen kompakter */
+        @media (max-width: 540px) {
+          .timeline__step { grid-template-columns: 44px 36px 1fr; gap: 0 var(--sp-2); }
+          .timeline__step:not(:last-child)::before { left: 80px; }
+          .timeline__num { font-size: 1.5rem; }
+          .timeline__icon { width: 36px; height: 36px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .timeline__step { opacity: 1; transform: none; transition: none; }
+          .icon-bulb-glow, .icon-rocket-flame { animation: none; opacity: .85; }
         }
       </style>
 
-      <div class="iappear-process" aria-label="5-Schritt-Prozess">
-        <svg class="process-svg" viewBox="0 0 1100 220" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <g class="s1">
-            <rect class="step-line-rect"></rect>
-            <circle class="step-circle" cx="0" cy="0" r="28"></circle>
-            <text class="step-number" x="0" y="0">01</text>
-            <text class="step-label" x="0" y="70">Idee &amp; Konzept</text>
-          </g>
-          <g class="s2">
-            <rect class="step-line-rect"></rect>
-            <circle class="step-circle" cx="0" cy="0" r="28"></circle>
-            <text class="step-number" x="0" y="0">02</text>
-            <text class="step-label" x="0" y="70">Inhalte &amp; Story</text>
-          </g>
-          <g class="s3">
-            <rect class="step-line-rect"></rect>
-            <circle class="step-circle" cx="0" cy="0" r="28"></circle>
-            <text class="step-number" x="0" y="0">03</text>
-            <text class="step-label" x="0" y="70">Medienproduktion</text>
-          </g>
-          <g class="s4">
-            <rect class="step-line-rect"></rect>
-            <circle class="step-circle" cx="0" cy="0" r="28"></circle>
-            <text class="step-number" x="0" y="0">04</text>
-            <text class="step-label" x="0" y="64"><tspan x="0">Abstimmung &amp;</tspan><tspan x="0" dy="18">Implementierung</tspan></text>
-          </g>
-          <g class="s5">
-            <rect class="step-line-rect"></rect>
-            <circle class="step-circle" cx="0" cy="0" r="28"></circle>
-            <text class="step-number" x="0" y="0">05</text>
-            <text class="step-label" x="0" y="70">Launch &amp; Service</text>
-          </g>
-        </svg>
+      <ol class="timeline" aria-label="5-Schritt-Prozess">
+        <li class="timeline__step">
+          <span class="timeline__num">01</span>
+          <span class="timeline__icon" aria-hidden="true">
+            <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle class="icon-bulb-glow" cx="20" cy="16" r="7" fill="currentColor" opacity=".15" stroke="none"/>
+              <path d="M20 6 Q12 6 12 14 Q12 18 14 21 L14 25 L26 25 L26 21 Q28 18 28 14 Q28 6 20 6 Z"/>
+              <line x1="15" y1="28" x2="25" y2="28"/>
+              <line x1="16" y1="31" x2="24" y2="31"/>
+              <path d="M17 17 L20 19 L23 17"/>
+            </svg>
+          </span>
+          <div class="timeline__body">
+            <h3>Idee &amp; Konzept</h3>
+            <p>Wir starten mit deiner Idee &ndash; egal ob schon konkret oder noch grobe Vorstellung. Aus dem Gespräch entwickeln wir gemeinsam das Konzept und definieren Ziel, Zielgruppe und Reichweite.</p>
+          </div>
+        </li>
 
-        <ol class="iappear-process__list">
-          <li><span class="num">01</span><span class="lbl">Idee &amp; Konzept</span></li>
-          <li><span class="num">02</span><span class="lbl">Inhalte &amp; Story</span></li>
-          <li><span class="num">03</span><span class="lbl">Medienproduktion</span></li>
-          <li><span class="num">04</span><span class="lbl">Abstimmung &amp; Implementierung</span></li>
-          <li><span class="num">05</span><span class="lbl">Launch &amp; Service</span></li>
-        </ol>
-      </div>
+        <li class="timeline__step">
+          <span class="timeline__num">02</span>
+          <span class="timeline__icon" aria-hidden="true">
+            <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 11 L8 25 Q8 27 10 27 L17 27 L20 32 L23 27 L30 27 Q32 27 32 25 L32 11 Q32 9 30 9 L10 9 Q8 9 8 11 Z"/>
+              <line x1="13" y1="15" x2="27" y2="15"/>
+              <line x1="13" y1="19" x2="24" y2="19"/>
+              <line x1="13" y1="23" x2="26" y2="23"/>
+            </svg>
+          </span>
+          <div class="timeline__body">
+            <h3>Inhalte &amp; Story</h3>
+            <p>Welche Geschichten willst du erzählen? Wir recherchieren mit dir und deinen Quellen, strukturieren die Inhalte zu einer roten Erzähl-Linie und entwickeln den Tonfall, der zu dir und deinem Ort passt.</p>
+          </div>
+        </li>
+
+        <li class="timeline__step">
+          <span class="timeline__num">03</span>
+          <span class="timeline__icon" aria-hidden="true">
+            <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="8" width="22" height="16" rx="1.5"/>
+              <circle cx="14" cy="13" r="1.5" fill="currentColor" stroke="none"/>
+              <path d="M11 22 L16 17 L20 21 L25 16 L29 20"/>
+              <path d="M6 30 Q9 28 12 30 Q15 32 18 30 Q21 28 24 30 Q27 32 30 30 Q33 28 34 30"/>
+            </svg>
+          </span>
+          <div class="timeline__body">
+            <h3>Medienproduktion</h3>
+            <p>3D-Modelle, Audio, Video, Bilder, Texte &ndash; wir produzieren alle Medien-Bausteine. Eigenes Material kannst du einbringen, alles andere produzieren wir on top.</p>
+          </div>
+        </li>
+
+        <li class="timeline__step">
+          <span class="timeline__num">04</span>
+          <span class="timeline__icon" aria-hidden="true">
+            <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="8" y="6" width="24" height="28" rx="1.5"/>
+              <path d="M12 13 L14 15 L17 12"/>
+              <line x1="20" y1="13" x2="28" y2="13"/>
+              <path d="M12 20 L14 22 L17 19"/>
+              <line x1="20" y1="20" x2="28" y2="20"/>
+              <path d="M12 27 L14 29 L17 26"/>
+              <line x1="20" y1="27" x2="28" y2="27"/>
+            </svg>
+          </span>
+          <div class="timeline__body">
+            <h3>Abstimmung &amp; Implementierung</h3>
+            <p>Du bekommst regelmäßig Zwischenstände zu sehen und gibst Feedback. Wir setzen alles in der i.appear-Plattform um, integrieren Karten, Routen und interaktive Stationen.</p>
+          </div>
+        </li>
+
+        <li class="timeline__step">
+          <span class="timeline__num">05</span>
+          <span class="timeline__icon" aria-hidden="true">
+            <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 5 Q26 9 26 17 L26 25 Q26 27 24 27 L16 27 Q14 27 14 25 L14 17 Q14 9 20 5 Z"/>
+              <circle cx="20" cy="15" r="2.5"/>
+              <path d="M14 22 L9 28 L14 26"/>
+              <path d="M26 22 L31 28 L26 26"/>
+              <path class="icon-rocket-flame" d="M16 27 L18 33 L20 28 L22 33 L24 27"/>
+            </svg>
+          </span>
+          <div class="timeline__body">
+            <h3>Launch &amp; Service</h3>
+            <p>Live-Schaltung, Test vor Ort, Schulung deines Teams. Auf Wunsch betreuen wir den Rundgang langfristig &ndash; Updates, neue Inhalte und technische Wartung inklusive.</p>
+          </div>
+        </li>
+      </ol>
     </section>
+
+    <!-- Reveal-on-Scroll fuer Timeline-Steps -->
+    <script>
+      (function () {
+        var steps = document.querySelectorAll('.timeline__step');
+        if (!steps.length) return;
+        if (!('IntersectionObserver' in window)) {
+          steps.forEach(function (s) { s.classList.add('is-in'); });
+          return;
+        }
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) {
+              e.target.classList.add('is-in');
+              io.unobserve(e.target);
+            }
+          });
+        }, { threshold: 0.2, rootMargin: '0px 0px -10% 0px' });
+        steps.forEach(function (s) { io.observe(s); });
+      })();
+    </script>
 
     <!-- ========== VIELFAELTIGE MOEGLICHKEITEN — als 4-Box-Diagramm =============
          4 Boxen aussen herum, gepunktete Linien zur leeren Center-Box.
