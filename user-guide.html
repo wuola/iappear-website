@@ -158,8 +158,15 @@
         display: flex;
         flex-wrap: wrap;
         align-items: center;
+        justify-content: center;  /* horizontal zentriert — wirkt v.a. auf mobile besser */
         gap: .6rem;
         min-height: 92px;
+      }
+      /* Step 1+2 Visualen sind kleiner und wirken zu tief gegenueber den Pills
+         in Step 3 — leichter Up-Nudge fuer optische Mitte. */
+      .sg-step:nth-child(1) .sg-step__visual,
+      .sg-step:nth-child(2) .sg-step__visual {
+        transform: translateY(-8px);
       }
       .sg-step__visual img { display: block; height: auto; }
       .sg-step__visual svg { display: block; }
@@ -220,8 +227,9 @@
       /* Step-4 Icon-Grid: Icons leuchten nacheinander auf */
       .sg-icons-grid {
         display: grid;
-        grid-template-columns: repeat(3, auto);
-        gap: .35rem;
+        grid-template-columns: repeat(3, 40px);
+        gap: .15rem;
+        justify-content: center;
         align-items: center;
       }
       .sg-icons-grid img {
