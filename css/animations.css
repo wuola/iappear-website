@@ -13,6 +13,24 @@
   50%      { opacity: .4; }
 }
 
+/* --- Logo + Subtitle Fade-in beim Seitenladen ----------------------------
+   Subtiler Einblend-Effekt fuer das i.appear Logo + 'digital city tours'.
+   Einmalig beim Laden, nicht in Endlosschleife. Subtitle leicht versetzt
+   (Stagger), damit's wie ein leichter Schwung wirkt. */
+@keyframes hero-brand-in {
+  from { opacity: 0; transform: scale(.96); }
+  to   { opacity: 1; transform: scale(1); }
+}
+.hero__logo {
+  animation: hero-brand-in .7s var(--ease) backwards;
+}
+.hero__subtitle {
+  animation: hero-brand-in .7s var(--ease) .15s backwards;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero__logo, .hero__subtitle { animation: none; }
+}
+
 .reveal {
   opacity: 0;
   transform: translateY(16px);

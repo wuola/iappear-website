@@ -23,7 +23,7 @@
 .nav__links a { opacity: .85; }
 .nav__links a:hover { opacity: 1; border-bottom: 1px solid var(--c-text); }
 
-@media (min-width: 1000px) { .nav__links { display: flex; } }
+@media (min-width: 720px) { .nav__links { display: flex; } }
 
 .nav__burger {
   width: 42px; height: 42px;
