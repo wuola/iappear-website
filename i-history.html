@@ -257,15 +257,6 @@
         mapDiv.className = 'rundgang-map__leaflet';
         container.appendChild(mapDiv);
 
-        // Stadt-Label als HTML-Layer (oben drauf)
-        const stadt = container.getAttribute('data-stadt');
-        if (stadt) {
-          const label = document.createElement('div');
-          label.className = 'rundgang-map__stadt-label';
-          label.textContent = stadt;
-          container.appendChild(label);
-        }
-
         // Leaflet-Map ohne Interaktion
         const map = L.map(mapDiv, {
           zoomControl: false,
@@ -279,9 +270,11 @@
           tap: false
         });
 
-        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {
+        // Carto dark_all mit {r} fuer Retina-Aufloesung (schaerfere Labels).
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
           maxZoom: 19,
-          attribution: ''
+          attribution: '',
+          subdomains: 'abcd'
         }).addTo(map);
 
         // Auf Stationen-Bounding-Box zoomen
@@ -299,6 +292,21 @@
         stations.forEach(function(s){
           L.marker([s.lat, s.lng], { icon: targetIcon, interactive: false, keyboard: false }).addTo(map);
         });
+
+        // invalidateSize in 2 Phasen: direkt + 200ms spaeter (nach
+        // moeglichem Reflow). Loest den 'weisser Fleck'-Bug wenn der
+        // Container beim Init noch nicht die finale Hoehe hatte. */
+        function rerender(){ map.invalidateSize(); map.fitBounds(bounds, { padding: [24, 24] }); }
+        setTimeout(rerender, 50);
+        setTimeout(rerender, 300);
+        // ResizeObserver fuer spaetere Layout-Aenderungen (z.B. font load)
+        if ('ResizeObserver' in window) {
+          let last = 0;
+          new ResizeObserver(function(){
+            const now = Date.now();
+            if (now - last > 200) { last = now; rerender(); }
+          }).observe(container);
+        }
       }
 
       // Lazy-Load: erst initialisieren wenn Karte ins Viewport kommt
