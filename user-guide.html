@@ -164,28 +164,9 @@
       .sg-step__visual img { display: block; height: auto; }
       .sg-step__visual svg { display: block; }
 
-      /* Punkt-Pfeile zwischen den Cards (nur 4-Spalten-Layout, Desktop) */
-      @media (min-width: 1000px) {
-        .sg-step:not(:last-child)::after {
-          content: "···";
-          position: absolute;
-          right: calc(var(--sp-4) * -1 - .25rem);
-          bottom: 1.5rem;
-          color: rgba(255,255,255,.45);
-          font-size: 1.4rem;
-          letter-spacing: .15em;
-          line-height: 1;
-          animation: sg-arrow-flow 1.8s ease-in-out infinite;
-        }
-      }
-      @keyframes sg-arrow-flow {
-        0%, 100% { opacity: .25; transform: translateX(-3px); }
-        50%      { opacity: 1;   transform: translateX(2px); }
-      }
-
       /* Step-1 Visuals: i.appear-Target + Navigation-Pfeil */
       .sg-target {
-        width: 40px; height: 40px;
+        width: 32px; height: 32px;
         animation: sg-target-pulse 2.6s ease-in-out infinite;
         transform-origin: center;
       }
@@ -194,7 +175,7 @@
         50%      { transform: scale(1.06); opacity: 1; }
       }
       .sg-arrow-nav {
-        width: 38px; height: 38px;
+        width: 32px; height: 32px;
         animation: sg-arrow-wobble 4s ease-in-out infinite;
         transform-origin: center;
         transform-box: fill-box;
@@ -291,7 +272,7 @@
             <h3 class="sg-step__title">Karte oder Koffer</h3>
             <p class="sg-step__desc">Unten in der App wechselst du jederzeit zwischen Stadt-Karte und Rundgang-Koffer.</p>
             <div class="sg-step__visual">
-              <img class="sg-toggle-anim" src="assets/svg/buttons/karte.svg" alt="Umschalter zwischen Karte und Rundgang-Koffer" width="120" height="55" />
+              <img class="sg-toggle-anim" src="assets/svg/buttons/karte.svg" alt="Umschalter zwischen Karte und Rundgang-Koffer" width="96" height="44" />
             </div>
           </li>
 
