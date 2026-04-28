@@ -28,10 +28,30 @@
 .nav__burger {
   width: 42px; height: 42px;
   display: inline-flex; align-items: center; justify-content: center;
-  border: 1px solid var(--c-text); border-radius: var(--radius);
+  border: 1px solid var(--glass-border); border-radius: var(--radius);
+  background: var(--glass-bg);
+  box-shadow:
+    inset 0 2px 6px var(--glass-shadow-top),
+    inset 0 -2px 4px var(--glass-shadow-bottom),
+    inset 0 1px 0 var(--glass-highlight),
+    0 0 20px var(--glass-glow);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  cursor: pointer;
+  transition: all .3s var(--ease);
+}
+.nav__burger:hover {
+  background: var(--glass-bg-hover);
+  border-color: var(--glass-border-hover);
+  box-shadow:
+    inset 0 2px 8px var(--glass-shadow-top-hover),
+    inset 0 -2px 5px var(--glass-shadow-bottom-hover),
+    inset 0 1px 0 var(--glass-highlight-hover),
+    0 0 30px var(--glass-glow-hover);
 }
 .nav__burger span, .nav__burger span::before, .nav__burger span::after {
   content: ""; display: block; width: 18px; height: 2px; background: var(--c-text); position: relative;
+  border-radius: 1px;
 }
 .nav__burger span::before { position: absolute; top: -6px; left: 0; }
 .nav__burger span::after  { position: absolute; top:  6px; left: 0; }
