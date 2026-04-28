@@ -95,25 +95,17 @@
       <p class="page-header__subtitle">In zwei Wegen durch die App &ndash; egal ob du einen Rundgang gebucht hast oder Stationen in deiner Nähe entdecken willst.</p>
     </header>
 
-    <section class="section container prose">
-      <h2>Short Guide</h2>
-      <p>Zuerst besuchst du die Web-App <a href="https://iappear.app">iappear.app</a>.</p>
-      <p><strong>Es gibt zwei Wege, die du gehen kannst:</strong></p>
-    </section>
-
-    <!-- ========== SHORT GUIDE: 4 SCHRITTE NEBENEINANDER ==========
-         Rekonstruiert aus Readymag-Screenshot der User-Guide-Seite.
-         Desktop: 4 Spalten. Mobile: stapelt untereinander.
-         Icons kommen aus assets/svg/buttons/ und assets/svg/icons/ —
-         das sind die fertigen Glass-Morphism-Pill-Buttons aus dem
-         Original-Design (karte.svg, ar.svg, images.svg, text.svg,
-         audio.svg, video.svg, quiz.svg).
-         Step 1 hat Inline-SVGs (Target-Kreis + Navigation-Pfeil) weil
-         dafuer kein fertiges Asset existiert. -->
+    <!-- ========== SHORT GUIDE: 4-Schritt-Reise durch die App ==========
+         Eine zusammenhaengende Mini-Reise: 4 Cards mit kleiner Pill-Nummer,
+         Title, 1-Satz-Erklaerung und animiertem Visual. Auf Desktop
+         laufen kleine Punkt-Pfeile zwischen den Cards. Animationen pro
+         Visual machen die App-Mechanik visuell erfahrbar (Target pulsiert,
+         Toggle wackelt, Pills pulsieren versetzt, Icons leuchten nacheinander). -->
     <style>
-      .short-guide {
-        padding-top: var(--sp-4);
-        padding-bottom: var(--sp-5);
+      .short-guide { padding-top: var(--sp-4); padding-bottom: var(--sp-5); }
+      .sg-lead {
+        max-width: 600px;
+        margin: var(--sp-1) auto var(--sp-5);
       }
       .short-guide__grid {
         display: grid;
@@ -121,6 +113,8 @@
         gap: var(--sp-5) var(--sp-4);
         max-width: 1100px;
         margin: 0 auto;
+        list-style: none;
+        padding: 0;
       }
       @media (min-width: 720px) {
         .short-guide__grid { grid-template-columns: repeat(2, 1fr); }
@@ -128,21 +122,36 @@
       @media (min-width: 1000px) {
         .short-guide__grid { grid-template-columns: repeat(4, 1fr); }
       }
-      .sg-step { display: flex; flex-direction: column; gap: .8rem; }
+      .sg-step {
+        display: flex; flex-direction: column; gap: .6rem;
+        position: relative;
+      }
+      /* Pill-Nummer (vorher riesige Serif-Zahl) */
       .sg-step__num {
+        display: inline-block;
+        width: fit-content;
         font-family: var(--f-serif, serif);
-        font-weight: 900;
-        font-size: clamp(3.5rem, 6vw, 5rem);
-        line-height: 1;
-        color: #fff;
+        font-weight: 600;
+        font-size: .8rem;
+        letter-spacing: .12em;
+        padding: .25rem .7rem;
+        background: rgba(255,255,255,.08);
+        border-radius: 999px;
+        color: var(--c-text-muted);
       }
       .sg-step__title {
         font-family: var(--f-serif, serif);
         font-weight: 600;
-        font-size: 1.35rem;
-        line-height: 1.2;
+        font-size: 1.25rem;
+        line-height: 1.25;
         color: #fff;
+        margin: .1rem 0 0;
+      }
+      .sg-step__desc {
         margin: 0;
+        color: var(--c-text-muted);
+        font-size: .9rem;
+        line-height: 1.55;
       }
       .sg-step__visual {
         margin-top: .8rem;
@@ -150,80 +159,158 @@
         flex-wrap: wrap;
         align-items: center;
         gap: .8rem;
-        min-height: 70px;
+        min-height: 80px;
       }
       .sg-step__visual img { display: block; height: auto; }
       .sg-step__visual svg { display: block; }
-      /* Step-1 Icons: Target-Kreis + Navigation-Pfeil */
-      .sg-icon-circle {
-        width: 52px; height: 52px;
+
+      /* Punkt-Pfeile zwischen den Cards (nur 4-Spalten-Layout, Desktop) */
+      @media (min-width: 1000px) {
+        .sg-step:not(:last-child)::after {
+          content: "···";
+          position: absolute;
+          right: calc(var(--sp-4) * -1 - .25rem);
+          bottom: 1.5rem;
+          color: rgba(255,255,255,.45);
+          font-size: 1.4rem;
+          letter-spacing: .15em;
+          line-height: 1;
+          animation: sg-arrow-flow 1.8s ease-in-out infinite;
+        }
       }
+      @keyframes sg-arrow-flow {
+        0%, 100% { opacity: .25; transform: translateX(-3px); }
+        50%      { opacity: 1;   transform: translateX(2px); }
+      }
+
+      /* Step-1 Visuals: i.appear-Target + Navigation-Pfeil */
+      .sg-target {
+        width: 52px; height: 52px;
+        animation: sg-target-pulse 2.6s ease-in-out infinite;
+        transform-origin: center;
+      }
+      @keyframes sg-target-pulse {
+        0%, 100% { transform: scale(.94); opacity: .85; }
+        50%      { transform: scale(1.06); opacity: 1; }
+      }
+      .sg-arrow-nav {
+        width: 44px; height: 44px;
+        animation: sg-arrow-wobble 4s ease-in-out infinite;
+        transform-origin: center;
+        transform-box: fill-box;
+      }
+      @keyframes sg-arrow-wobble {
+        0%, 100% { transform: rotate(-10deg); }
+        50%      { transform: rotate(10deg); }
+      }
+
+      /* Step-2 Visual: Toggle-SVG wackelt subtil + Glow */
+      .sg-toggle-anim {
+        animation: sg-toggle-shake 4s ease-in-out infinite;
+        transform-origin: center;
+        transform-box: fill-box;
+      }
+      @keyframes sg-toggle-shake {
+        0%, 100% { transform: rotate(-1.5deg); }
+        50%      { transform: rotate(1.5deg); }
+      }
+
       /* Step-3 Pill-Buttons (Station 1 / Station 2) */
       .sg-pill-col { display: flex; flex-direction: column; gap: .6rem; }
       .sg-pill {
         display: inline-flex; align-items: center; justify-content: center;
         min-width: 130px;
-        padding: .75rem 1.6rem;
+        padding: .65rem 1.4rem;
         border-radius: 999px;
         background: rgba(255,255,255,.06);
         border: 1.5px solid rgba(255,255,255,.12);
         color: rgba(255,255,255,.85);
-        font-size: .95rem;
+        font-size: .9rem;
         font-weight: 400;
         backdrop-filter: blur(6px);
+        animation: sg-pill-glow 2.6s ease-in-out infinite;
       }
-      /* Step-4 Icon-Grid: 3 Spalten, 2 Reihen */
+      .sg-pill-col .sg-pill:nth-child(2) { animation-delay: -1.3s; }
+      @keyframes sg-pill-glow {
+        0%, 100% { background: rgba(255,255,255,.05); border-color: rgba(255,255,255,.12); }
+        50%      { background: rgba(255,255,255,.13); border-color: rgba(255,255,255,.32); }
+      }
+
+      /* Step-4 Icon-Grid: Icons leuchten nacheinander auf */
       .sg-icons-grid {
         display: grid;
         grid-template-columns: repeat(3, auto);
         gap: .5rem;
         align-items: center;
       }
-      .sg-icons-grid img { width: 52px; height: 52px; }
+      .sg-icons-grid img {
+        width: 52px; height: 52px;
+        animation: sg-icon-glow 3s ease-in-out infinite;
+      }
+      .sg-icons-grid img:nth-child(1) { animation-delay: 0s; }
+      .sg-icons-grid img:nth-child(2) { animation-delay: -.5s; }
+      .sg-icons-grid img:nth-child(3) { animation-delay: -1s; }
+      .sg-icons-grid img:nth-child(4) { animation-delay: -1.5s; }
+      .sg-icons-grid img:nth-child(5) { animation-delay: -2s; }
+      .sg-icons-grid img:nth-child(6) { animation-delay: -2.5s; }
+      @keyframes sg-icon-glow {
+        0%, 100% { opacity: .5; transform: scale(1); }
+        50%      { opacity: 1; transform: scale(1.06); }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .sg-step::after,
+        .sg-target, .sg-arrow-nav, .sg-toggle-anim,
+        .sg-pill, .sg-icons-grid img { animation: none; opacity: .9; }
+      }
     </style>
 
     <section class="section short-guide" aria-label="Kurz-Anleitung in 4 Schritten">
       <div class="container">
-        <div class="short-guide__grid">
+        <h2 class="center">In 4 Schritten zum Erlebnis</h2>
+        <p class="muted center sg-lead">
+          Zuerst öffnest du die Web-App auf <a href="https://iappear.app">iappear.app</a> &ndash; und dann geht's los:
+        </p>
 
-          <div class="sg-step">
-            <span class="sg-step__num">1</span>
-            <h3 class="sg-step__title">Region oder Standort auswählen</h3>
+        <ol class="short-guide__grid">
+
+          <li class="sg-step">
+            <span class="sg-step__num">01</span>
+            <h3 class="sg-step__title">Standort wählen</h3>
+            <p class="sg-step__desc">Auf der Startseite siehst du alle Regionen. Wähl deine Stadt oder lass dich orten.</p>
             <div class="sg-step__visual">
-              <!-- Target-Kreis -->
-              <svg class="sg-icon-circle" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <circle cx="26" cy="26" r="22" stroke="white" stroke-opacity=".85" stroke-width="2"/>
-                <circle cx="26" cy="26" r="3" fill="white" fill-opacity=".85"/>
-              </svg>
-              <!-- Navigation-Pfeil -->
-              <svg class="sg-icon-circle" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <img class="sg-target" src="assets/svg/targets/target-weiss.svg" alt="" aria-hidden="true" />
+              <svg class="sg-arrow-nav" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <path d="M26 8 L38 40 L26 34 L14 40 Z" stroke="white" stroke-opacity=".85" stroke-width="2" stroke-linejoin="round" fill="none"/>
               </svg>
             </div>
-          </div>
+          </li>
 
-          <div class="sg-step">
-            <span class="sg-step__num">2</span>
-            <h3 class="sg-step__title">Zwischen Karte und Station navigieren</h3>
+          <li class="sg-step">
+            <span class="sg-step__num">02</span>
+            <h3 class="sg-step__title">Karte oder Koffer</h3>
+            <p class="sg-step__desc">Unten in der App wechselst du jederzeit zwischen Stadt-Karte und Rundgang-Koffer.</p>
             <div class="sg-step__visual">
-              <img src="assets/svg/buttons/karte.svg" alt="Umschalter zwischen Karte und Rundgang-Koffer" width="154" height="70" />
+              <img class="sg-toggle-anim" src="assets/svg/buttons/karte.svg" alt="Umschalter zwischen Karte und Rundgang-Koffer" width="154" height="70" />
             </div>
-          </div>
+          </li>
 
-          <div class="sg-step">
-            <span class="sg-step__num">3</span>
-            <h3 class="sg-step__title">Station auswählen</h3>
+          <li class="sg-step">
+            <span class="sg-step__num">03</span>
+            <h3 class="sg-step__title">Station öffnen</h3>
+            <p class="sg-step__desc">Tippe auf eine Station &ndash; egal ob auf der Karte oder in der Liste.</p>
             <div class="sg-step__visual">
               <div class="sg-pill-col">
                 <div class="sg-pill">Station 1</div>
                 <div class="sg-pill">Station 2</div>
               </div>
             </div>
-          </div>
+          </li>
 
-          <div class="sg-step">
-            <span class="sg-step__num">4</span>
-            <h3 class="sg-step__title">Inhalt auswählen</h3>
+          <li class="sg-step">
+            <span class="sg-step__num">04</span>
+            <h3 class="sg-step__title">Inhalt erleben</h3>
+            <p class="sg-step__desc">3D, AR, Audio, Video, Bilder, Texte oder Quiz &ndash; pro Station unterschiedlich.</p>
             <div class="sg-step__visual sg-icons-grid">
               <img src="assets/svg/icons/ar.svg" alt="AR" width="52" height="52" />
               <img src="assets/svg/icons/images.svg" alt="Bilder" width="52" height="52" />
@@ -232,9 +319,9 @@
               <img src="assets/svg/icons/video.svg" alt="Video" width="52" height="52" />
               <img src="assets/svg/icons/quiz.svg" alt="Quiz" width="52" height="52" />
             </div>
-          </div>
+          </li>
 
-        </div>
+        </ol>
       </div>
     </section>
 
