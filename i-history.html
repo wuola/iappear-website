@@ -26,6 +26,8 @@
   <link rel="stylesheet" href="css/layout.css?v=20260428a" />
   <link rel="stylesheet" href="css/components.css?v=20260428k" />
   <link rel="stylesheet" href="css/animations.css?v=20260428a" />
+  <!-- Leaflet CSS fuer Mini-Karten der Rundgaenge (lazy-loaded) -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
   <!-- Breadcrumb strukturierte Daten -->
   <script type="application/ld+json">
   {
@@ -115,7 +117,7 @@
         </article>
 
         <article class="card">
-          <div class="ph ph--wide">Bild: Stadtspuren</div>
+          <div class="rundgang-map" data-rundgang="stadtspuren" data-stadt="Dornbirn" aria-hidden="true"></div>
           <h3 class="c-history">Stadtspuren</h3>
           <p>Im Rundgang Stadtspuren entdeckst du entlang der Dornbirner Ach und des Müllerbachs die Industrie- und Stadtgeschichte Dornbirns. Als zweiter historischer Rundgang in i.appear ist Stadtspuren mit hist.appear vernetzt und teilt an manchen Orten Stationen, dort, wo sich Raum, Zeit und Themen überschneiden. Die Stationen sind digital und physisch im Stadtraum verankert, mit Tafeln, Sitzgelegenheiten und Fahrradabstellplätzen. Gestaltet von den Saegenvier.</p>
           <p>Pro Station öffnen sich zwei Perspektiven: Industrie und Gesellschaft. Die Route führt meist dem Wasser entlang vom Gütle bis ins Forach, vorbei an historischen Bauwerken, restaurierten Maschinen und lebensgrossen Illustrationen von Nikolay Uzunov. Inhaltlich wurde der Rundgang vom Dornbirner Stadtarchiv ausgearbeitet, insbesondere von Werner Matt und Klaus Fessler. Zum Rundgang ist auch ein gleichnamiges Buch erschienen, das es im Stadtarchiv Dornbirn zu erwerben gibt.</p>
@@ -188,5 +190,133 @@
 
   <a href="#" class="back-up" data-back-up aria-label="Nach oben"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" aria-hidden="true"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg></a>
   <script src="js/main.js"></script>
+
+  <!-- Mini-Rundgang-Karten: echte Leaflet-Karten als Hintergrund + Stationen
+       als weisse Targets-Marker. Lazy-loaded via IntersectionObserver, sodass
+       Tile-Requests erst beim Reinscrollen losgehen. Karten sind nicht
+       interaktiv (kein Zoom/Drag) — reine Visualisierung. -->
+  <style>
+    .rundgang-map {
+      aspect-ratio: 16/9;
+      background: rgba(0,0,0,.4);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+    }
+    .rundgang-map__leaflet { width: 100%; height: 100%; }
+    .rundgang-map__leaflet .leaflet-container { background: #1a1a1a; }
+    .rundgang-map__stadt-label {
+      position: absolute;
+      bottom: 8px; right: 12px;
+      z-index: 500;
+      color: rgba(255,255,255,.85);
+      font-size: 11px;
+      font-family: 'Roboto', sans-serif;
+      letter-spacing: .04em;
+      text-shadow: 0 1px 3px rgba(0,0,0,.9);
+      pointer-events: none;
+    }
+    .rundgang-map__marker {
+      filter: drop-shadow(0 0 3px rgba(0,0,0,.6)) drop-shadow(0 0 5px rgba(255,255,255,.2));
+    }
+  </style>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+  <script>
+    (function(){
+      const RUNDGANG_DATA = {
+        stadtspuren: [
+          { lat: 47.410708152965725, lng: 9.73208128698655 },
+          { lat: 47.393872629408506, lng: 9.766168076057422 },
+          { lat: 47.409117, lng: 9.735243 },
+          { lat: 47.400475, lng: 9.753767 },
+          { lat: 47.389988723801736, lng: 9.777290930059426 },
+          { lat: 47.408862, lng: 9.738761 },
+          { lat: 47.425896, lng: 9.737353 },
+          { lat: 47.403888, lng: 9.747002 },
+          { lat: 47.427657854928235, lng: 9.734940291996006 },
+          { lat: 47.411971, lng: 9.731074 },
+          { lat: 47.401149, lng: 9.752579 },
+          { lat: 47.397804, lng: 9.758845 },
+          { lat: 47.422364, lng: 9.737695 },
+          { lat: 47.40940487599439, lng: 9.73868315581976 },
+          { lat: 47.406684, lng: 9.743992 },
+          { lat: 47.42067, lng: 9.735485 },
+          { lat: 47.413659, lng: 9.743086 },
+          { lat: 47.4057774749824, lng: 9.752289812164324 }
+        ]
+      };
+
+      function initRundgangMap(container) {
+        const key = container.getAttribute('data-rundgang');
+        const stations = RUNDGANG_DATA[key];
+        if (!stations || !stations.length || !window.L) return;
+
+        // Map-Container
+        const mapDiv = document.createElement('div');
+        mapDiv.className = 'rundgang-map__leaflet';
+        container.appendChild(mapDiv);
+
+        // Stadt-Label als HTML-Layer (oben drauf)
+        const stadt = container.getAttribute('data-stadt');
+        if (stadt) {
+          const label = document.createElement('div');
+          label.className = 'rundgang-map__stadt-label';
+          label.textContent = stadt;
+          container.appendChild(label);
+        }
+
+        // Leaflet-Map ohne Interaktion
+        const map = L.map(mapDiv, {
+          zoomControl: false,
+          attributionControl: false,
+          dragging: false,
+          scrollWheelZoom: false,
+          doubleClickZoom: false,
+          boxZoom: false,
+          keyboard: false,
+          touchZoom: false,
+          tap: false
+        });
+
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {
+          maxZoom: 19,
+          attribution: ''
+        }).addTo(map);
+
+        // Auf Stationen-Bounding-Box zoomen
+        const bounds = L.latLngBounds(stations.map(function(s){ return [s.lat, s.lng]; }));
+        map.fitBounds(bounds, { padding: [24, 24] });
+
+        // i.appear-Targets als Marker
+        const targetIcon = L.divIcon({
+          className: 'rundgang-map__marker',
+          html: '<svg viewBox="0 0 16 16" width="16" height="16" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="6.5" fill="none" stroke="white" stroke-width="1.5"/><circle cx="8" cy="8" r="2" fill="white"/></svg>',
+          iconSize: [16, 16],
+          iconAnchor: [8, 8]
+        });
+
+        stations.forEach(function(s){
+          L.marker([s.lat, s.lng], { icon: targetIcon, interactive: false, keyboard: false }).addTo(map);
+        });
+      }
+
+      // Lazy-Load: erst initialisieren wenn Karte ins Viewport kommt
+      const containers = document.querySelectorAll('.rundgang-map[data-rundgang]');
+      if (!('IntersectionObserver' in window) || !window.L) {
+        containers.forEach(initRundgangMap);
+        return;
+      }
+      const obs = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          if (e.isIntersecting) {
+            initRundgangMap(e.target);
+            obs.unobserve(e.target);
+          }
+        });
+      }, { rootMargin: '150px' });
+      containers.forEach(function(el){ obs.observe(el); });
+    })();
+  </script>
 </body>
 </html>
