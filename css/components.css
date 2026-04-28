@@ -1463,6 +1463,16 @@ details.info-card[open] > *:not(summary) {
   flex-wrap: wrap;
   gap: var(--sp-1);
 }
+/* Innerhalb der Stadtrundgang-Teaser-Karten auf der Landingpage: Block fuer
+   3 vertikal gestackte Chips reservieren UND ans untere Karten-Ende ankoppeln
+   (margin-top: auto). So sitzen einzelne Chips bei Karten mit 1 Tag exakt
+   auf der Hoehe der mittleren Chip bei Dornbirn (3 Tags), unabhaengig vom
+   Inhalt darueber. */
+.card--teaser .hub-jumpnav {
+  min-height: calc(3 * 1.45rem + 2 * var(--sp-1));
+  align-content: center;
+  margin-top: auto;
+}
 .hub-jumpnav__chip {
   display: inline-flex;
   align-items: center;
