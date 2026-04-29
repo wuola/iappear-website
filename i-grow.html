@@ -24,8 +24,9 @@
 
   <link rel="stylesheet" href="css/global.css?v=20260427a" />
   <link rel="stylesheet" href="css/layout.css?v=20260428a" />
-  <link rel="stylesheet" href="css/components.css?v=20260428k" />
+  <link rel="stylesheet" href="css/components.css?v=20260429a" />
   <link rel="stylesheet" href="css/animations.css?v=20260428a" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
   <!-- Breadcrumb strukturierte Daten -->
   <script type="application/ld+json">
   {
@@ -196,12 +197,12 @@
       <h2>Stadtrundgänge für Schulen &ndash; Dornbirn</h2>
       <div class="grid grid-2" style="margin-top:var(--sp-3)">
         <article class="card">
-          <div class="ph ph--wide">Bild: hist.appear Schulversion</div>
+          <div class="rundgang-map" data-rundgang="hist-appear" data-kategorie="grow" aria-hidden="true"></div>
           <h3 class="c-grow">hist.appear (Schulversion)</h3>
           <p>Sende deine Schüler:innen auf eine Zeitreise durch das historische Dornbirn. Entlang einer interaktiven Karte und einem farblich codierten Zeitstrahl kann in unterschiedliche Epochen eingetaucht werden. In den 11 interaktiven Stationen werden die Inhalte multimedial und immersiv erlebbar, direkt dort, wo die Geschichte geschah. Inhaltlich spannt hist.appear einen Bogen von Hexenverfolgungen über das Bürgertum der späten Neuzeit und Industriegeschichte bis hin zu Migration im 20. und 21. Jahrhundert. Ergänzend stehen Begleitmaterialien zur Verfügung.</p>
         </article>
         <article class="card">
-          <div class="ph ph--wide">Bild: Buntes Dornbirn</div>
+          <div class="rundgang-map" data-rundgang="immersive-ethik" data-kategorie="grow" aria-hidden="true"></div>
           <h3 class="c-grow">Buntes Dornbirn</h3>
           <p>Der Ethik-Rundgang &bdquo;Buntes Dornbirn&ldquo; bietet ein Komplettpaket zum Thema der pluralen Gesellschaft. Schüler:innen begegnen Menschen aus unterschiedlichen Generationen und Lebenswelten, hören Stimmen aus verschiedenen Bubbles und lernen Geschichten kennen. Der Rundgang lädt dazu ein, Perspektiven zu wechseln. Der Rundgang ist lehrplanbezogen aufgebaut und wird durch ausgearbeitete Stundenbilder und Arbeitsblätter ergänzt.</p>
           <p><em>Wichtig: Nimm Kontakt mit uns auf, damit wir zentrale Stationen für dich und deine Schüler:innen freischalten können.</em></p>
@@ -214,13 +215,13 @@
       <h2>Schulprojekte &ndash; Feldkirch</h2>
       <div class="grid grid-2" style="margin-top:var(--sp-3)">
         <article class="card">
-          <div class="ph ph--wide">Bild: Zusammenwachsen</div>
+          <div class="rundgang-map" data-rundgang="zusammenwachsen" data-kategorie="grow" aria-hidden="true"></div>
           <h3 class="c-grow">Zusammenwachsen</h3>
           <p>Im Projekt &bdquo;Zusammenwachsen&ldquo; arbeiteten die Schüler:innen der MS Levis rund um die Frage: Was hält uns zusammen? Und welche Werte teilen wir? Gemeinsam erarbeiteten die Jugendlichen ihre persönlichen Werte, erzählten in Interviews davon, schrieben Geschichten dazu und übersetzten diese in Bilder, Animationen, Fotos und kurze Filme. So entstand ein Rundgang mit vielen bunten Facetten, getragen von den Stimmen und Erfahrungen der Schüler:innen. Ermöglicht durch &bdquo;Kunst ist Klasse&ldquo; des Bundesministeriums für Kunst und Kultur.</p>
           <a href="https://iappear.app/de/routes/feldkirch/zusammen-wachsen-ms-levis-?view=list" class="btn btn--grow">Zum Rundgang &rarr;</a>
         </article>
         <article class="card">
-          <div class="ph ph--wide">Bild: Ein Oktobertag</div>
+          <div class="rundgang-map" data-rundgang="ein-oktobertag" data-kategorie="grow" aria-hidden="true"></div>
           <h3 class="c-grow">Ein Oktobertag</h3>
           <p>Im i.grow-Projekt &bdquo;Ein Oktobertag&ldquo; arbeiteten die Schüler:innen der MS Oberau zu den Bombenabwürfen über Feldkirch im Jahr 1943. Gemeinsam näherten wir uns dem Thema des Zweiten Weltkriegs über Fragen, Gespräche, Recherche und kreative Methoden. Fünf Stationen führen nun jung und alt von der Feldkircher Innenstadt zum Antoniushaus. Ermöglicht durch &bdquo;Kunst ist Klasse&ldquo; des Bundesministeriums für Kunst und Kultur und in Zusammenarbeit mit Erika Kronabitter sowie einem Beitrag von Klangkünstler Arno Oeri.</p>
           <a href="https://iappear.app/de/routes/feldkirch/ein-oktobertag?view=list" class="btn btn--grow">Zum Rundgang &rarr;</a>
@@ -269,5 +270,10 @@
 
   <a href="#" class="back-up" data-back-up aria-label="Nach oben"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" aria-hidden="true"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg></a>
   <script src="js/main.js"></script>
+
+  <!-- Mini-Rundgang-Karten (siehe css/components.css und js/rundgang-map.js) -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+  <script src="js/data/rundgang-stationen.js"></script>
+  <script src="js/rundgang-map.js"></script>
 </body>
 </html>
