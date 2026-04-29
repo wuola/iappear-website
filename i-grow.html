@@ -24,7 +24,7 @@
 
   <link rel="stylesheet" href="css/global.css?v=20260427a" />
   <link rel="stylesheet" href="css/layout.css?v=20260428a" />
-  <link rel="stylesheet" href="css/components.css?v=20260429g" />
+  <link rel="stylesheet" href="css/components.css?v=20260429j" />
   <link rel="stylesheet" href="css/animations.css?v=20260428a" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
   <!-- Breadcrumb strukturierte Daten -->
@@ -100,8 +100,33 @@
       <div class="page-header__story">
         <h2 class="page-header__story-headline">Vom Konsumieren zum Gestalten</h2>
         <p class="page-header__story-body">Mit i.grow werden Schüler:innen zu Gestalter:innen ihrer Lerninhalte. In Workshops erleben sie Themen in ihrem eigenen Lebenskontext und stellen sich die Frage: &bdquo;Was hat das mit mir zu tun?&ldquo; Sie bringen ihre Perspektiven ein und schaffen Rundgänge, die für sie und ihre Peers besonders spannend sind. Dabei lernen sie nicht nur technische Skills, sondern setzen sich auch kritisch mit Medienethik und digitalem Storytelling auseinander.</p>
+        <div class="page-header__story-cta">
+          <a class="hub-jumpnav__chip hub-jumpnav__chip--grow" href="#rundgaenge-dornbirn">zu den Rundgängen &darr;</a>
+        </div>
       </div>
     </header>
+
+    <!-- Zielgruppen und Formate (war frueher weiter unten, in Session 14c
+         direkt unter den Header gezogen damit Besucher sofort sehen
+         wer angesprochen ist). H2 + Jump-Chips nebeneinander damit Besucher
+         sofort sehen koennen "es gibt Rundgaenge weiter unten". -->
+    <section class="section container">
+      <h2>Für wen ist i.grow?</h2>
+      <div class="grid grid-3" style="margin-top:var(--sp-3)">
+        <article class="card">
+          <h3 class="c-grow">Lehrkräfte</h3>
+          <p>Fertige Stadtrundgänge mit Audioguide und didaktischem Begleitmaterial für den Unterricht in Geschichte, Ethik, Digitaler Grundbildung oder dem neuen Pflichtfach Medien und Demokratie.</p>
+        </article>
+        <article class="card">
+          <h3 class="c-grow">Schulklassen &amp; Projektwochen</h3>
+          <p>Workshops, in denen Schüler:innen eigene digitale Stadtrundgänge erstellen &ndash; von der Recherche über die Medienproduktion bis zur Veröffentlichung. Ideal für Projektwochen oder semesterbegleitende Projekte.</p>
+        </article>
+        <article class="card">
+          <h3 class="c-grow">Bildungsinstitutionen</h3>
+          <p>Kooperationen mit Pädagogischen Hochschulen, Fachhochschulen und Bildungsdirektionen zur Entwicklung neuer Formate für Medienkompetenz, Demokratiebildung und KI-Bildung im Unterricht.</p>
+        </article>
+      </div>
+    </section>
 
     <section class="section container">
       <div class="prose">
@@ -141,7 +166,14 @@
       </div>
     </section>
 
-    <!-- Partner -->
+    <!-- ============================================================
+         PARTNER & NETZWERK — TEMPORAER AUSGEBLENDET (Session 14c, 2026-04-29)
+         Maggy: "Den brauchen wir erst zu einem spaeteren Zeitpunkt".
+         Block bleibt im HTML als Kommentar — wenn die Sektion wieder rein
+         soll, einfach diesen Kommentar-Block entfernen (oeffnendes <!-- und
+         schliessendes Markup-Tag) und die Section steht wieder.
+         ============================================================ -->
+    <!--
     <section class="section container">
       <h2>Partner &amp; Netzwerk</h2>
       <p class="muted">Gemeinsam mit Bildungsinstitutionen und Fördergebern</p>
@@ -172,6 +204,10 @@
         </article>
       </div>
     </section>
+    -->
+    <!-- ============================================================
+         ENDE PARTNER & NETZWERK (ausgeblendet)
+         ============================================================ -->
 
     <section class="section container">
       <h2>Prinzipien unserer Medienbildungs-Workshops</h2>
@@ -193,7 +229,7 @@
       </div>
     </section>
 
-    <section class="section container">
+    <section id="rundgaenge-dornbirn" class="section container">
       <h2>Stadtrundgänge für Schulen &ndash; Dornbirn</h2>
       <div class="grid grid-2" style="margin-top:var(--sp-3)">
         <article class="card">
@@ -211,7 +247,7 @@
       </div>
     </section>
 
-    <section class="section container">
+    <section id="rundgaenge-feldkirch" class="section container">
       <h2>Schulprojekte &ndash; Feldkirch</h2>
       <div class="grid grid-2" style="margin-top:var(--sp-3)">
         <article class="card">
@@ -225,25 +261,6 @@
           <h3 class="c-grow">Ein Oktobertag</h3>
           <p>Im i.grow-Projekt &bdquo;Ein Oktobertag&ldquo; arbeiteten die Schüler:innen der MS Oberau zu den Bombenabwürfen über Feldkirch im Jahr 1943. Gemeinsam näherten wir uns dem Thema des Zweiten Weltkriegs über Fragen, Gespräche, Recherche und kreative Methoden. Fünf Stationen führen nun jung und alt von der Feldkircher Innenstadt zum Antoniushaus. Ermöglicht durch &bdquo;Kunst ist Klasse&ldquo; des Bundesministeriums für Kunst und Kultur und in Zusammenarbeit mit Erika Kronabitter sowie einem Beitrag von Klangkünstler Arno Oeri.</p>
           <a href="https://iappear.app/de/routes/feldkirch/ein-oktobertag?view=list" class="btn btn--grow">Zum Rundgang &rarr;</a>
-        </article>
-      </div>
-    </section>
-
-    <!-- Zielgruppen und Formate -->
-    <section class="section container">
-      <h2>Für wen ist i.grow?</h2>
-      <div class="grid grid-3" style="margin-top:var(--sp-3)">
-        <article class="card">
-          <h3 class="c-grow">Lehrkräfte</h3>
-          <p>Fertige Stadtrundgänge mit Audioguide und didaktischem Begleitmaterial für den Unterricht in Geschichte, Ethik, Digitaler Grundbildung oder dem neuen Pflichtfach Medien und Demokratie.</p>
-        </article>
-        <article class="card">
-          <h3 class="c-grow">Schulklassen &amp; Projektwochen</h3>
-          <p>Workshops, in denen Schüler:innen eigene digitale Stadtrundgänge erstellen &ndash; von der Recherche über die Medienproduktion bis zur Veröffentlichung. Ideal für Projektwochen oder semesterbegleitende Projekte.</p>
-        </article>
-        <article class="card">
-          <h3 class="c-grow">Bildungsinstitutionen</h3>
-          <p>Kooperationen mit Pädagogischen Hochschulen, Fachhochschulen und Bildungsdirektionen zur Entwicklung neuer Formate für Medienkompetenz, Demokratiebildung und KI-Bildung im Unterricht.</p>
         </article>
       </div>
     </section>

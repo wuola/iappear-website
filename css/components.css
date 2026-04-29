@@ -1609,6 +1609,14 @@ details.info-card[open] > *:not(summary) {
 .hub-jumpnav__chip--history { color: var(--c-history); }
 .hub-jumpnav__chip--dentity { color: var(--c-dentity); }
 .hub-jumpnav__chip--grow    { color: var(--c-grow); }
+
+/* CTA-Chip am Ende des Page-Header Story-Blocks — rechts ausgerichtet,
+   mit Abstand nach oben zum Body-Text. */
+.page-header__story-cta {
+  margin-top: var(--sp-3);
+  display: flex;
+  justify-content: flex-end;
+}
 .hub-jumpnav__chip--neutral { color: rgba(255,255,255,.75); }
 .hub-jumpnav__chip--soon    { color: rgba(255,255,255,.45); font-style: italic; }
 .hub-jumpnav__count {
