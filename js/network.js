@@ -80,12 +80,13 @@
       RX_STATIONS = 125; RY_STATIONS = 260;
       LABEL_OFFSET = 32;
     } else {
-      /* Landscape: Kreise. Stations-Ring deutlich groesser fuer 18+
-         Stationen, Tour-Ring ebenfalls leicht nach aussen. */
+      /* Landscape: Kreise. Stations-Punkte clustern enger ums Zentrum,
+         dafuer ihre Labels weit nach aussen versetzt — gibt jedem Label
+         mehr Bogenlaenge im aeusseren Ring und damit Lese-Raum. */
       W = 1100; H = 780;
       CX = W / 2; CY = H / 2;
       RX_ROUTES   = 310; RY_ROUTES   = 310;
-      RX_STATIONS = 200; RY_STATIONS = 200;
+      RX_STATIONS = 130; RY_STATIONS = 130;
       LABEL_OFFSET = 48;
     }
   }
@@ -373,13 +374,17 @@
       circle.setAttribute('class', 'nw-dot');
       g.appendChild(circle);
 
-      /* Stations-Name — radial nach innen versetzt (Richtung Zentrum) */
-      var dxL = CX - sp.x, dyL = CY - sp.y;
+      /* Stations-Name — radial nach AUSSEN versetzt. Optional kann
+         pro Station ein `labelOffsetExtra` (in der Daten-Datei) gesetzt
+         werden, um einzelne Labels weiter vom Punkt wegzurücken,
+         falls sie sonst mit Nachbarn kollidieren. */
+      var dxL = sp.x - CX, dyL = sp.y - CY;
       var dL = Math.sqrt(dxL * dxL + dyL * dyL) || 1;
-      var labelOffset = r + 14;
+      var extra = (station.labelOffsetExtra | 0);
+      var labelOffset = r + 30 + extra;
       var labelX = sp.x + (dxL / dL) * labelOffset;
       var labelY = sp.y + (dyL / dL) * labelOffset;
-      /* Text-Anker je nach Innenseiten-Richtung */
+      /* Text-Anker je nach Aussenseiten-Richtung (Label "haengt" am Anker) */
       var labelAnchor;
       if ((dxL / dL) > 0.25)       labelAnchor = 'start';
       else if ((dxL / dL) < -0.25) labelAnchor = 'end';

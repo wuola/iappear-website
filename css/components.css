@@ -827,14 +827,14 @@ span.feature-list__icon {
   animation: nw-pulse 3.5s ease-in-out infinite;
 }
 .nw-station-name {
-  fill: rgba(255,255,255,.35);
-  font-size: 13px;
+  fill: rgba(255,255,255,.55);
+  font-size: 14px;
   font-family: var(--f-sans, 'Roboto', sans-serif);
   text-anchor: middle;
   transition: fill .3s;
 }
 .nw-station-name.is-shared {
-  fill: rgba(255,255,255,.55);
+  fill: rgba(255,255,255,.8);
 }
 .nw-station-count {
   fill: rgba(255,255,255,0);
@@ -876,7 +876,7 @@ span.feature-list__icon {
    nur auf ~420px breite skaliert — sonst sind Labels zu klein. */
 @media (max-width: 719px) {
   .nw-tour-name    { font-size: 28px; }
-  .nw-station-name { font-size: 17px; }
+  .nw-station-name { font-size: 22px; }
   .nw-station-count{ font-size: 14px; }
   .nw-tour-tag     { font-size: 13px; }
 }

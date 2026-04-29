@@ -91,6 +91,7 @@ window.IAPPEAR_NETZWERK = {
     { vonStation: "Rheintalhaus",          nachTour: "hist.appear"  },
     { vonStation: "Messehochhaus",         nachTour: "Stadtspuren"  },
     { vonStation: "Musikschule",           nachTour: "Frauenspuren" },
+    { vonStation: "Handel & Markt",        nachTour: "Sprechender Baum" },
 
     /* Station-Verlinkungen: "siehe Station Y" */
     { vonStation: "Kirche St. Martin",     nachStation: "Marktstrasse" },
@@ -100,8 +101,13 @@ window.IAPPEAR_NETZWERK = {
     { vonStation: "Schlossguggerhaus",     nachStation: "Zanzenberg Ausblick" },
     { vonStation: "Die Wurzeln Dornbirns", nachStation: "Sägen" },
 
-    /* Tour→Station: thematischer Verweis von einer Tour auf eine konkrete Station
-       in einer anderen Tour (Buntes Dornbirn / Ethik bezieht sich auf Migration). */
-    { vonTour: "Buntes Dornbirn",          nachStation: "Migration" }
+    /* Tour→Station: thematische Verweise von einer Tour auf konkrete
+       Stations in einer anderen Tour. */
+    { vonTour: "Buntes Dornbirn",          nachStation: "Migration" },
+    { vonTour: "Buntes Dornbirn",          nachStation: "Handel & Markt" },
+    { vonTour: "125 Jahre",                nachStation: "Handel & Markt" },
+    { vonTour: "125 Jahre",                nachStation: "Messehochhaus" },
+    { vonTour: "hist.appear Schule",       nachStation: "Rotes Haus" },
+    { vonTour: "hist.appear Schule",       nachStation: "Rheintalhaus" }
   ]
 };
