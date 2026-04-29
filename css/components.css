@@ -779,6 +779,29 @@ span.feature-list__icon {
   animation: nw-draw 1.8s ease-out forwards;
 }
 
+/* --- Verlinkungen (textuelle Verweise, gestrichelt) -----------------------
+   Bewusst gestrichelt + dezent, klar unterscheidbar von durchgezogenen
+   Tour-Stations-Linien. is-tour-link nutzt Tour-Farbe, is-station-link
+   eine neutrale weisse Linie. */
+.nw-verlinkung {
+  fill: none;
+  stroke-width: 1;
+  stroke-dasharray: 4 4;
+  stroke-linecap: round;
+  opacity: 0;
+  transition: opacity .4s ease-out;
+  pointer-events: none;
+}
+.nw-verlinkung.is-station-link { stroke: rgba(255,255,255,.45); }
+.network-viz.is-animating .nw-verlinkung {
+  opacity: .55;
+  transition-delay: 1.4s;
+}
+.nw-verlinkung.is-tour-link { opacity: 0; }
+.network-viz.is-animating .nw-verlinkung.is-tour-link { opacity: .45; }
+.network-viz.has-hover .nw-verlinkung { opacity: .12; }
+.network-viz.has-hover .nw-verlinkung.is-active { opacity: .9; stroke-width: 1.5; }
+
 /* --- Stationen (Kreise + Labels) ----------------------------------------- */
 .nw-station {
   opacity: 0;
