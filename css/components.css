@@ -671,8 +671,10 @@ span.feature-list__icon {
    Claim "Die Plattform fuer digitale Erlebnisse" auf Mobile ausgeblendet,
    damit Hero oben kompakter wird. Cat-Links zentriert, Social rechts. */
 @media (max-width: 719px) {
-  .hero__laurel-svg { max-width: 160px; margin: 0 auto; }
-  .hero__stage     { margin-top: var(--sp-1); }
+  /* Mobile: Lorbeerkranz + Awards-Rotator komplett ausblenden — die Awards-Labels
+     uebereinander mit dem kleineren Kranz wirkten gestaucht, Hero ist
+     ohne Stage kompakter und fokussierter auf Phones + CTA. */
+  .hero__stage     { display: none; }
   .eyebrow.hero__claim { display: none; }
 
   /* Kategorie-Links: zentriert, eng gestapelt, mit Luft zum CTA */
