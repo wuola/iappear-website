@@ -33,12 +33,10 @@ In der Storyblok-Koordinaten-MD bereits mit ⚠ markiert.
 
 ## Stationen weit ausserhalb des Hauptgebiets
 
-**Frauenspuren (Dornbirn):**
-- Station 1 "Überblick" liegt auf 47.389988 / 9.777290 — das ist im **Gütle**, weit ausserhalb der Innenstadt
-- Die anderen 9 Stationen sind alle im Innenstadt-Bereich
-- Folge: Mini-Karte zoomt auto auf die Bounding Box → die ganze Karte wird sehr weit, Innenstadt-Stations clustern in einem kleinen Bereich oben
-
-**Was tun?** Entweder Station 1 echte Koordinate in der Innenstadt geben, oder bei der Karten-Darstellung Station 1 ausnehmen.
+~~**Frauenspuren (Dornbirn):**~~ ✓ behoben 2026-04-29
+- Station 1 "Überblick" lag auf 47.389988 / 9.777290 (Gütle) — vermutlich Datenfehler (gleiche Koord wie Stadtspuren-Gütle)
+- In `js/data/rundgang-stationen.js` korrigiert auf 47.413833 / 9.742232 (Innenstadt)
+- TODO: Storyblok auch noch updaten, sonst weicht es bei nächster Daten-Re-Sync wieder ab
 
 **Barockbaumeister (Au):**
 Die 6 Stationen verteilen sich extrem weit:
@@ -76,4 +74,5 @@ Beim Mapping HTML-Card → Stationen-Daten gab es zwei nicht 100% sichere Zuordn
 ## Karten mit nur 1 Station
 
 **Messepark — Der sprechende Baum** (i-dentity): nur 1 Station
-→ Mini-Karte zeigt einen einzelnen Punkt zentriert. Ggf. visuell schwach. Alternativ später anders darstellen (z.B. statisches Foto statt Karte, oder weiter rauszoomen damit man Dornbirn sieht und den Punkt im Kontext).
+→ Renderer setzt bei `stations.length === 1` einen festen Zoom (14, Stadtteil-Ebene), statt
+   `fitBounds` was auf maxZoom reinzoomen würde. Damit sieht man Strassen+Kontext.

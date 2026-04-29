@@ -65,8 +65,15 @@
       subdomains: 'abcd'
     }).addTo(map);
 
-    const bounds = window.L.latLngBounds(stations.map(function(s){ return [s.lat, s.lng]; }));
-    map.fitBounds(bounds, { padding: [24, 24] });
+    // Bei 1 Stations-Punkt: fester Zoom statt fitBounds (sonst zoomt
+    // Leaflet auf maxZoom rein -> nur eine schwarze Flaeche zu sehen).
+    let bounds = null;
+    if (stations.length === 1) {
+      map.setView([stations[0].lat, stations[0].lng], 14);
+    } else {
+      bounds = window.L.latLngBounds(stations.map(function(s){ return [s.lat, s.lng]; }));
+      map.fitBounds(bounds, { padding: [24, 24] });
+    }
 
     const icon = buildIcon(color);
     stations.forEach(function(s){
@@ -75,7 +82,10 @@
 
     // invalidateSize in 2 Phasen: direkt + 300ms spaeter (loest 'weisser
     // Fleck'-Bug wenn Container beim Init noch nicht die finale Hoehe hatte).
-    function rerender(){ map.invalidateSize(); map.fitBounds(bounds, { padding: [24, 24] }); }
+    function rerender(){
+      map.invalidateSize();
+      if (bounds) map.fitBounds(bounds, { padding: [24, 24] });
+    }
     setTimeout(rerender, 50);
     setTimeout(rerender, 300);
 

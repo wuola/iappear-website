@@ -385,6 +385,16 @@
 .ph--square { aspect-ratio: 1/1; }
 .ph--wide   { aspect-ratio: 16/9; }
 .ph--tall   { aspect-ratio: 3/4; }
+/* "Coming soon" Variante: schwarz statt Streifen, dezenter Hinweistext */
+.ph--soon {
+  background: #0a0a0a;
+  border: 1px solid rgba(255,255,255,.08);
+  color: rgba(255,255,255,.45);
+  font-family: var(--ff-serif, serif);
+  font-style: italic;
+  font-size: 1rem;
+  letter-spacing: .02em;
+}
 
 /* --- Mini-Rundgang-Karten (Leaflet) -------------------------------------- */
 /* Werden auf den Kategorie-Seiten (i-history/i-dentity/i-grow) via
