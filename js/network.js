@@ -80,7 +80,7 @@
       W = 900; H = 1300;
       CX = W / 2; CY = H / 2;
       RX_ROUTES   = 270; RY_ROUTES   = 510;
-      RX_STATIONS = 125; RY_STATIONS = 260;
+      RX_STATIONS = 160; RY_STATIONS = 320;
       LABEL_OFFSET = 38;
     } else {
       /* Landscape: Kreise. Stations-Punkte clustern enger ums Zentrum,
