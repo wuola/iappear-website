@@ -140,7 +140,7 @@ window.IAPPEAR_VITRINE = [
   {
     titel: "Podiumsdiskussion PH Vorarlberg",
     text: "Podiumsdiskussion: Digitale Kompetenzen im Spannungsfeld zwischen Kinderschutz und Künstlicher Intelligenz.",
-    bild: "",
+    bild: "assets/images/vitrine/podium.png",
     link: "vitrine/podiumsdiskussion-ph-vorarlberg.html"
   }
 ];
@@ -166,11 +166,12 @@ window.IAPPEAR_VITRINE = [
       ? `<div class="vitrine-card__thumb"><img src="${esc(item.bild)}" alt="${esc(item.titel)}" loading="lazy" decoding="async" /></div>`
       : `<div class="ph ph--square vitrine-card__thumb"><small>${esc(item.titel)}</small></div>`;
     return `
-      <article class="vitrine-card">
+      <a class="vitrine-card" href="${esc(item.link)}">
         ${thumb}
+        <h3 class="vitrine-card__title">${item.titel}</h3>
         <p class="vitrine-card__text">${item.text}</p>
-        <a href="${esc(item.link)}" class="vitrine-card__link">&ndash; zum Artikel &ndash;</a>
-      </article>
+        <span class="vitrine-card__link">&ndash; zum Artikel &ndash;</span>
+      </a>
     `;
   }).join('');
 })();

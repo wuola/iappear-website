@@ -221,6 +221,14 @@
 
 .vitrine-card {
   display: flex; flex-direction: column; gap: var(--sp-1);
+  height: 100%;
+  text-decoration: none;
+  color: inherit;
+}
+.vitrine-card:focus-visible {
+  outline: 2px solid rgba(255,255,255,.6);
+  outline-offset: 4px;
+  border-radius: var(--radius-card);
 }
 .vitrine-card__thumb {
   position: relative;
@@ -239,6 +247,14 @@
 .vitrine-card .ph.vitrine-card__thumb {
   background-color: transparent;
 }
+.vitrine-card__title {
+  font-family: var(--f-serif);
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.3;
+  margin: var(--sp-1) 0 0;
+  color: var(--c-text);
+}
 .vitrine-card__text {
   font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   font-size: .78rem; line-height: 1.5;
@@ -247,10 +263,12 @@
 .vitrine-card__link {
   font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   font-size: .8rem;
-  text-decoration: none;
-  opacity: .85;
+  opacity: .7;
+  margin-top: auto;
+  padding-top: var(--sp-1);
+  align-self: flex-start;
 }
-.vitrine-card__link:hover { opacity: 1; text-decoration: underline; }
+.vitrine-card:hover .vitrine-card__link { opacity: 1; text-decoration: underline; }
 
 /* Hover-Effekt: Card hebt sich an + Bild zoomt dezent + heller Border-Glow */
 .vitrine-card {

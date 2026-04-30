@@ -86,13 +86,14 @@ def render_grid(items) -> str:
                 f'<small>{titel}</small>'
                 '</div>'
             )
-        lines.append('        <article class="vitrine-card">')
+        lines.append(f'        <a class="vitrine-card" href="{esc_attr(link)}">')
         lines.append(thumb)
+        lines.append(f'          <h3 class="vitrine-card__title">{titel}</h3>')
         lines.append(f'          <p class="vitrine-card__text">{text}</p>')
         lines.append(
-            f'          <a href="{esc_attr(link)}" class="vitrine-card__link">&ndash; zum Artikel &ndash;</a>'
+            '          <span class="vitrine-card__link">&ndash; zum Artikel &ndash;</span>'
         )
-        lines.append('        </article>')
+        lines.append('        </a>')
     lines.append('      </div>')
     return "\n".join(lines)
 
