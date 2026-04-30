@@ -413,10 +413,15 @@
       var labelOffset = r + 30 + extra;
       var labelX = sp.x + (dxL / dL) * labelOffset;
       var labelY = sp.y + (dyL / dL) * labelOffset;
-      /* Text-Anker je nach Aussenseiten-Richtung (Label "haengt" am Anker) */
+      /* Text-Anker je nach Aussenseiten-Richtung (Label "haengt" am Anker).
+         Threshold 0.08 (nicht 0.25): auch Stations leicht neben der vertikalen
+         Mittellinie kriegen seitliche Anker. Sonst bekommen Stations am
+         oberen/unteren Pol der Ellipse beide 'middle' und ihre Labels
+         ueberlappen mittig. Mit niedrigerem Threshold weichen sie seitlich
+         aus (links/rechts vom Punkt). */
       var labelAnchor;
-      if ((dxL / dL) > 0.25)       labelAnchor = 'start';
-      else if ((dxL / dL) < -0.25) labelAnchor = 'end';
+      if ((dxL / dL) > 0.08)       labelAnchor = 'start';
+      else if ((dxL / dL) < -0.08) labelAnchor = 'end';
       else                         labelAnchor = 'middle';
 
       var text = document.createElementNS(NS, 'text');
