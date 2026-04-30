@@ -1245,6 +1245,21 @@ span.feature-list__icon {
 }
 .back-up-inline:hover { opacity: 1; }
 
+/* Mobile-Footer: Quicklinks oben, Copyright drunter, "nach oben"-Inline-Link
+   weg (der floating Pfeil rechts unten reicht). Plus enger row-gap zwischen
+   den Quicklink-Zeilen (waren default sp-2 = 16px, jetzt 5px). */
+@media (max-width: 720px) {
+  .footer__bottom {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--sp-2);
+  }
+  .footer__bottom small { order: 2; }
+  .footer__legal { order: 1; row-gap: .3rem; }
+  .back-up-inline { display: none; }
+}
+
 /* .back-up Definition steht unten bei den Breadcrumbs - hier nur Placeholder */
 
 /* --- Formular ------------------------------------------------------------- */
