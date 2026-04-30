@@ -498,7 +498,7 @@ Live-Vorschau: https://wuola.github.io/iappear-website/
 - **Kategorie-Buttons im Hero** — seit Session 9 haben die Stadtrundgang-Karten auf der Landingpage Glassy-Chips statt bunter Targets. Die Kategorie-Karten (i.history/i.dentity/i.grow) haben ebenfalls Glassy-Buttons. Offener Punkt war `.card__badge` — pruefen ob das noch irgendwo falsch sitzt.
 - **Hero-Layout** insgesamt — Nutzerin Vermerk: "da pass sowieso was mit dem layout nicht" — Feinschliff sobald alles drauf ist
 - ~~Vitrine-Bilder~~ ✓ ALLE 22 SLOTS GEFUELLT seit Session 15 (2026-04-30): Marilenas Wetransfer-Lieferung + NEU/-Ordner ausgetauscht, Podiumsdiskussion PH endlich mit `podium.png` befuellt. Bilder optimiert auf 1200x1200 PNG (62MB → 16MB).
-- **2 Vitrine-Links Platzhalter**: "Schafferei Traumjob" + "Podiumsdiskussion PH" zeigen auf falsche Meetup-URL — Nutzerin liefert echte Links nach
+- ~~2 Vitrine-Links Platzhalter~~ ✓ ERLEDIGT 2026-04-30 (Commit `f9c0d78`): Schafferei Traumjob → `schaffarei.at/archiv/ar-spezialistin-marilena-tumler`, Podiumsdiskussion PH → `mediasres.at` (Beitrag vom 12.01.2026). Beide als ordentliche "Zum Original-Beitrag auf DOMAIN →" Links im article-body, vor dem Tags-Block (etablierter Stil). **Damit ist die Vitrine komplett fertig.**
 - **Restliche Widgets** aus `_doku/recon/widgets/` — Stand nach Session 7.1 (2026-04-14):
   - `glow-pure-*.html` -> **eingebaut** als `.hero__glow` SVG-Layer in `index.html` Hero, CSS-Animation in `components.css` (sig-root / sig-left / sig-right mit offset-path, dash-flow auf wires, `prefers-reduced-motion` respektiert)
   - `header-anim-container-27ac988ab3.html` -> **eingebaut** als Drift-Hover auf `.hero__claim` in `components.css` (jede der 4 Zeilen driftet beim Hover leicht unterschiedlich)
