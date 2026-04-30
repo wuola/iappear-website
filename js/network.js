@@ -24,12 +24,14 @@
 
   var NS = 'http://www.w3.org/2000/svg';
   var touren = data.touren;
-  var stationen = data.stationen;
-  var verlinkungen = data.verlinkungen || [];
+  /* stationen / verlinkungen / sIdx werden in applyDataFilter() gesetzt —
+     je nach Viewport (Mobile blendet Cluster-enge Stations aus). */
+  var stationen, verlinkungen, sIdx;
 
-  /* Stations-Name → Index Lookup (fuer Verlinkungen) */
-  var sIdx = {};
-  stationen.forEach(function (s, i) { sIdx[s.name] = i; });
+  /* Auf Mobile zu kleine Cluster-Stations bewusst ausblenden, weil sie
+     mit anderen ueberlappen und auf engem Screen nicht lesbar sind.
+     Verlinkungen die zu/von diesen Stations fuehren werden auch entfernt. */
+  var MOBILE_HIDDEN_STATIONS = ['Musikschule', 'Messehochhaus'];
 
   /* Farben aus CSS-Variablen */
   var cs = getComputedStyle(document.documentElement);
@@ -50,6 +52,7 @@
   var W, H, CX, CY, RX_ROUTES, RY_ROUTES, RX_STATIONS, RY_STATIONS, LABEL_OFFSET;
   var tourPos, stationPos;
 
+  applyDataFilter();
   applyGeometry();
   layoutAndRender();
   setupHover();
@@ -58,6 +61,7 @@
   /* Bei Media-Query-Wechsel (Rotation, Resize) neu rendern */
   if (MQ_PORTRAIT.addEventListener) {
     MQ_PORTRAIT.addEventListener('change', function () {
+      applyDataFilter();
       applyGeometry();
       layoutAndRender();
       setupHover();
@@ -67,6 +71,28 @@
         el.classList.add('is-visible');
       });
     });
+  }
+
+  /* Filtert Stationen und Verlinkungen je nach Viewport.
+     Auf Mobile fallen die Stationen aus MOBILE_HIDDEN_STATIONS raus,
+     plus alle Verlinkungen die zu/von diesen Stationen fuehren.
+     Dadurch verteilen sich die verbleibenden Stationen automatisch
+     lockerer auf dem Stations-Ring (mehr Bogenlaenge pro Station). */
+  function applyDataFilter() {
+    var hide = MQ_PORTRAIT.matches ? MOBILE_HIDDEN_STATIONS : [];
+    var hideSet = {};
+    hide.forEach(function (n) { hideSet[n] = true; });
+
+    stationen = data.stationen.filter(function (s) {
+      return !hideSet[s.name];
+    });
+    verlinkungen = (data.verlinkungen || []).filter(function (l) {
+      return !hideSet[l.vonStation] && !hideSet[l.nachStation];
+    });
+
+    /* Stations-Name → Index Lookup neu aufbauen */
+    sIdx = {};
+    stationen.forEach(function (s, i) { sIdx[s.name] = i; });
   }
 
   function applyGeometry() {
