@@ -23,9 +23,10 @@
   <link rel="apple-touch-icon" href="assets/favicon.png" />
 
   <link rel="stylesheet" href="css/global.css?v=20260427a" />
-  <link rel="stylesheet" href="css/layout.css?v=20260428a" />
-  <link rel="stylesheet" href="css/components.css?v=20260430a" />
+  <link rel="stylesheet" href="css/layout.css?v=20260429b" />
+  <link rel="stylesheet" href="css/components.css?v=20260430c" />
   <link rel="stylesheet" href="css/animations.css?v=20260428a" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
   <!-- Breadcrumb strukturierte Daten -->
   <script type="application/ld+json">
   {
@@ -114,7 +115,7 @@
       <div class="grid grid-2" style="margin-top:var(--sp-3)">
 
         <article class="card">
-          <div class="ph ph--wide">Bild: Sprechender Baum</div>
+          <div class="rundgang-map" data-rundgang="sprechender-baum" data-kategorie="dentity" aria-hidden="true"></div>
           <h3 class="c-dentity">Messepark &ndash; Der sprechende Baum</h3>
           <p>Der sprechende Baum im Messepark Dornbirn ist eine Kindheitserinnerung für viele Menschen in Dornbirn. Über Jahre war er verschwunden, einsam in einem Lager, bis er wiedergefunden und neu aufgestellt wurde. Doch die Zeit hatte ihre Spuren hinterlassen, der Baum war zu alt geworden, um sich zu bewegen und zu sprechen wie früher. Deshalb haben wir ihn als 3D-Modell in die Augmented Reality geholt.</p>
           <p>Jetzt bewegt er sich wieder, lächelt, erzählt seine alten Geschichten und bringt ein Stück gemeinsamer Erinnerung zurück in den Alltag. Für Kinder gibt es alle Geschichten von früher auch im Audioguide, ergänzt durch ein Quiz, das zum Zuhören, Mitdenken und Entdecken einlädt.</p>
@@ -122,7 +123,7 @@
         </article>
 
         <article class="card">
-          <div class="ph ph--wide">Bild: Innenstadt erleben</div>
+          <div class="rundgang-map" data-rundgang="innenstadt-erkunden" data-kategorie="dentity" aria-hidden="true"></div>
           <h3 class="c-dentity">Innenstadt erleben</h3>
           <p>An 11 Stationen bekommst du kompakte, gut zugängliche Einblicke in die Stadt, ihre Geschichte und ihre Besonderheiten, ideal für eine erste Stadttour und für Tourist:innen oder für alle, die i.appear erstmal kennenlernen wollen. Der Rundgang führt dich zu den Hotspots von Dornbirn und verbindet digitales Erkunden mit dem echten Stadterlebnis.</p>
           <p>Gleichzeitig ist er mit vier weiteren Rundgängen verknüpft und lädt dazu ein, an manchen Stellen abzubiegen und noch tiefer in einzelne Geschichten hinein-zu-stöbern. Du wechselst spielerisch zwischen App und Strasse, zwischen Zuhören und Schauen, zwischen Entdecken, Kaffeetrinken und Bummeln.</p>
@@ -130,7 +131,7 @@
         </article>
 
         <article class="card">
-          <div class="ph ph--wide">Bild: Oberdorf entdecken</div>
+          <div class="rundgang-map" data-rundgang="oberdorf-entdecken" data-kategorie="dentity" aria-hidden="true"></div>
           <h3 class="c-dentity">Oberdorf entdecken</h3>
           <p>Mit dem Rundgang &bdquo;Oberdorf entdecken&ldquo; lernst du eine andere, ruhigere Seite von Dornbirn kennen. Aehnlich wie bei &bdquo;Innenstadt erleben&ldquo; führt dich der Rundgang durch den Bezirk, diesmal durch das Oberdorf, einem Stadtteil voller Villen, Geschichten und kleinen Geheimnissen.</p>
           <p>Du gehst vorbei an einem längst vergessenen Wehrturm, den du in der Augmented Reality in alter Pracht erlebst. Du bleibst stehen am ältesten Haus Dornbirns, in dessen Garten heute wie vor hunderten Jahren wieder Wein angebaut wird. Eine Verbindung zu einem anderen Rundgang lädt dich sogleich auf den Zanzenberg ein &mdash; dem besten Aussichtspunkt Dornbirns mit Blick bis zum Bodensee.</p>
@@ -173,5 +174,10 @@
 
   <a href="#" class="back-up" data-back-up aria-label="Nach oben"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" aria-hidden="true"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg></a>
   <script src="js/main.js"></script>
+
+  <!-- Mini-Rundgang-Karten (siehe css/components.css und js/rundgang-map.js) -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+  <script src="js/data/rundgang-stationen.js?v=20260429b"></script>
+  <script src="js/rundgang-map.js?v=20260429b"></script>
 </body>
 </html>

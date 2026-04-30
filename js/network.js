@@ -25,6 +25,11 @@
   var NS = 'http://www.w3.org/2000/svg';
   var touren = data.touren;
   var stationen = data.stationen;
+  var verlinkungen = data.verlinkungen || [];
+
+  /* Stations-Name → Index Lookup (fuer Verlinkungen) */
+  var sIdx = {};
+  stationen.forEach(function (s, i) { sIdx[s.name] = i; });
 
   /* Farben aus CSS-Variablen */
   var cs = getComputedStyle(document.documentElement);
@@ -75,11 +80,13 @@
       RX_STATIONS = 125; RY_STATIONS = 260;
       LABEL_OFFSET = 32;
     } else {
-      /* Landscape: Kreise (wie bisher) */
+      /* Landscape: Kreise. Stations-Punkte clustern enger ums Zentrum,
+         dafuer ihre Labels weit nach aussen versetzt — gibt jedem Label
+         mehr Bogenlaenge im aeusseren Ring und damit Lese-Raum. */
       W = 1100; H = 780;
       CX = W / 2; CY = H / 2;
-      RX_ROUTES   = 290; RY_ROUTES   = 290;
-      RX_STATIONS = 165; RY_STATIONS = 165;
+      RX_ROUTES   = 310; RY_ROUTES   = 310;
+      RX_STATIONS = 130; RY_STATIONS = 130;
       LABEL_OFFSET = 48;
     }
   }
@@ -213,6 +220,70 @@
     defs.appendChild(filter);
     svg.appendChild(defs);
 
+    /* --- 0) Verlinkungen (gestrichelt, dezent) --------------------------
+       Textuelle Verweise im Stationstext: "siehe Rundgang X" oder
+       "siehe Station Y". Werden als gestrichelte Linien gerendert,
+       hinter den durchgezogenen Tour-Stations-Linien. */
+    var linksG = document.createElementNS(NS, 'g');
+    linksG.setAttribute('class', 'nw-verlinkungen');
+    verlinkungen.forEach(function (link, idx) {
+      /* Quelle bestimmen: vonStation ODER vonTour */
+      var fromX, fromY, fromKategorie = null;
+      if (link.vonStation) {
+        var fromIdx = sIdx[link.vonStation];
+        if (fromIdx === undefined) return;
+        var fp = stationPos[fromIdx];
+        if (!fp) return;
+        fromX = fp.x; fromY = fp.y;
+      } else if (link.vonTour) {
+        var fromTi = tIdx[link.vonTour];
+        if (fromTi === undefined) return;
+        var fromTp = tourPos[fromTi];
+        if (!fromTp) return;
+        fromX = fromTp.dotX; fromY = fromTp.dotY;
+        fromKategorie = touren[fromTi].kategorie;
+      } else {
+        return;
+      }
+
+      /* Ziel bestimmen: nachStation ODER nachTour */
+      var toX, toY, toKategorie = null;
+      if (link.nachStation) {
+        var toSi = sIdx[link.nachStation];
+        if (toSi === undefined) return;
+        var tp_s = stationPos[toSi];
+        if (!tp_s) return;
+        toX = tp_s.x; toY = tp_s.y;
+      } else if (link.nachTour) {
+        var tt = tIdx[link.nachTour];
+        if (tt === undefined) return;
+        var tp_t = tourPos[tt];
+        if (!tp_t) return;
+        toX = tp_t.dotX; toY = tp_t.dotY;
+        toKategorie = touren[tt].kategorie;
+      } else {
+        return;
+      }
+
+      /* Farbe: Tour-Farbe wenn eine Seite eine Tour ist, sonst neutral weiss */
+      var kategorie = toKategorie || fromKategorie;
+
+      var path = document.createElementNS(NS, 'line');
+      path.setAttribute('x1', fromX);
+      path.setAttribute('y1', fromY);
+      path.setAttribute('x2', toX);
+      path.setAttribute('y2', toY);
+      path.setAttribute('class', 'nw-verlinkung' + (kategorie ? ' is-tour-link' : ' is-station-link'));
+      if (link.vonStation)  path.dataset.vonStation = link.vonStation;
+      if (link.vonTour)     path.dataset.vonTour = link.vonTour;
+      if (link.nachStation) path.dataset.nachStation = link.nachStation;
+      if (link.nachTour)    path.dataset.nachTour = link.nachTour;
+      if (kategorie) path.style.stroke = FARBEN[kategorie];
+      path.style.animationDelay = (idx * 0.08) + 's';
+      linksG.appendChild(path);
+    });
+    svg.appendChild(linksG);
+
     /* --- 1) Verbindungslinien --- */
     var linesG = document.createElementNS(NS, 'g');
     linesG.setAttribute('class', 'nw-lines');
@@ -303,13 +374,17 @@
       circle.setAttribute('class', 'nw-dot');
       g.appendChild(circle);
 
-      /* Stations-Name — radial nach innen versetzt (Richtung Zentrum) */
-      var dxL = CX - sp.x, dyL = CY - sp.y;
+      /* Stations-Name — radial nach AUSSEN versetzt. Optional kann
+         pro Station ein `labelOffsetExtra` (in der Daten-Datei) gesetzt
+         werden, um einzelne Labels weiter vom Punkt wegzurücken,
+         falls sie sonst mit Nachbarn kollidieren. */
+      var dxL = sp.x - CX, dyL = sp.y - CY;
       var dL = Math.sqrt(dxL * dxL + dyL * dyL) || 1;
-      var labelOffset = r + 14;
+      var extra = (station.labelOffsetExtra | 0);
+      var labelOffset = r + 30 + extra;
       var labelX = sp.x + (dxL / dL) * labelOffset;
       var labelY = sp.y + (dyL / dL) * labelOffset;
-      /* Text-Anker je nach Innenseiten-Richtung */
+      /* Text-Anker je nach Aussenseiten-Richtung (Label "haengt" am Anker) */
       var labelAnchor;
       if ((dxL / dL) > 0.25)       labelAnchor = 'start';
       else if ((dxL / dL) < -0.25) labelAnchor = 'end';
@@ -323,18 +398,6 @@
       text.style.dominantBaseline = 'middle';
       applyWrappedLabel(text, station.name, labelX);
       g.appendChild(text);
-
-      /* Anzahl Rundgaenge (sichtbar nur bei Hover) — weiter innen */
-      if (shared) {
-        var countLabel = document.createElementNS(NS, 'text');
-        countLabel.setAttribute('x', sp.x + (dxL / dL) * (labelOffset + 14));
-        countLabel.setAttribute('y', sp.y + (dyL / dL) * (labelOffset + 14));
-        countLabel.setAttribute('class', 'nw-station-count');
-        countLabel.style.textAnchor = labelAnchor;
-        countLabel.style.dominantBaseline = 'middle';
-        countLabel.textContent = count + ' Rundgänge';
-        g.appendChild(countLabel);
-      }
 
       stationsG.appendChild(g);
     });
@@ -449,9 +512,11 @@
         l.classList.add('is-active');
       });
 
-      /* Zugehoerige Stationen finden und hervorheben */
+      /* Stationen dieser Tour sammeln */
+      var stationsInTour = {};
       stationen.forEach(function (s) {
         if (s.touren.indexOf(name) < 0) return;
+        stationsInTour[s.name] = true;
         var el = svg.querySelector('.nw-station[data-station="' + CSS.escape(s.name) + '"]');
         if (el) el.classList.add('is-active');
 
@@ -461,13 +526,24 @@
             if (related !== name) {
               var rel = svg.querySelector('.nw-tour[data-tour="' + CSS.escape(related) + '"]');
               if (rel) rel.classList.add('is-related');
-              /* Deren Linien zu dieser Station auch zeigen */
               svg.querySelectorAll('.nw-line[data-tour="' + CSS.escape(related) + '"][data-station="' + CSS.escape(s.name) + '"]').forEach(function (l) {
                 l.classList.add('is-related');
               });
             }
           });
         }
+      });
+
+      /* Gestrichelte Verlinkungen aktivieren wenn:
+         - die Tour Quelle (vonTour) oder Ziel (nachTour) ist
+         - die Quell- oder Ziel-Station zu dieser Tour gehoert */
+      svg.querySelectorAll('.nw-verlinkung').forEach(function (l) {
+        var rel = false;
+        if (l.dataset.vonTour === name)  rel = true;
+        if (l.dataset.nachTour === name) rel = true;
+        if (l.dataset.vonStation && stationsInTour[l.dataset.vonStation])   rel = true;
+        if (l.dataset.nachStation && stationsInTour[l.dataset.nachStation]) rel = true;
+        if (rel) l.classList.add('is-active');
       });
     }
 
@@ -479,9 +555,24 @@
       /* Alle Linien zu dieser Station hervorheben */
       svg.querySelectorAll('.nw-line[data-station="' + CSS.escape(name) + '"]').forEach(function (l) {
         l.classList.add('is-active');
-        /* Zugehoerige Tour auch hervorheben */
         var tourEl = svg.querySelector('.nw-tour[data-tour="' + CSS.escape(l.dataset.tour) + '"]');
         if (tourEl) tourEl.classList.add('is-active');
+      });
+
+      /* Gestrichelte Verlinkungen aktivieren wenn diese Station Quelle oder Ziel ist */
+      svg.querySelectorAll('.nw-verlinkung').forEach(function (l) {
+        if (l.dataset.vonStation === name || l.dataset.nachStation === name) {
+          l.classList.add('is-active');
+          /* Verbundene Tour ggf. mit-aktivieren */
+          if (l.dataset.vonTour) {
+            var fEl = svg.querySelector('.nw-tour[data-tour="' + CSS.escape(l.dataset.vonTour) + '"]');
+            if (fEl) fEl.classList.add('is-related');
+          }
+          if (l.dataset.nachTour) {
+            var tEl = svg.querySelector('.nw-tour[data-tour="' + CSS.escape(l.dataset.nachTour) + '"]');
+            if (tEl) tEl.classList.add('is-related');
+          }
+        }
       });
     }
 

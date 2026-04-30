@@ -403,6 +403,40 @@
 .ph--square { aspect-ratio: 1/1; }
 .ph--wide   { aspect-ratio: 16/9; }
 .ph--tall   { aspect-ratio: 3/4; }
+/* "Coming soon" Variante: schwarz statt Streifen, dezenter Hinweistext */
+.ph--soon {
+  background: #0a0a0a;
+  border: 1px solid rgba(255,255,255,.08);
+  color: rgba(255,255,255,.45);
+  font-family: var(--ff-serif, serif);
+  font-style: italic;
+  font-size: 1rem;
+  letter-spacing: .02em;
+}
+
+/* --- Mini-Rundgang-Karten (Leaflet) -------------------------------------- */
+/* Werden auf den Kategorie-Seiten (i-history/i-dentity/i-grow) via
+   js/rundgang-map.js gerendert. Markup:
+   <div class="rundgang-map" data-rundgang="..." data-kategorie="..."></div> */
+.rundgang-map {
+  aspect-ratio: 16/9;
+  background: rgba(0,0,0,.4);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+}
+.rundgang-map__leaflet { width: 100%; height: 100%; }
+.rundgang-map__leaflet .leaflet-container { background: #1a1a1a; }
+.rundgang-map__marker {
+  filter: drop-shadow(0 0 3px rgba(0,0,0,.7)) drop-shadow(0 0 4px rgba(255,255,255,.18));
+}
+/* Tile-Naht-Fix: Tiles minimal vergroessern damit keine Hairlines
+   zwischen den Kacheln sichtbar werden (subpixel-rounding-Bug). */
+.rundgang-map .leaflet-tile {
+  width: 257px !important;
+  height: 257px !important;
+}
 
 /* --- Feature-Liste -------------------------------------------------------- */
 .feature-list li {
@@ -586,9 +620,20 @@ span.feature-list__icon {
 
 .hero__claim {
   font-family: var(--f-serif);
-  font-size: 1rem;
-  line-height: 1.4;
-  opacity: .9;
+  font-style: italic;
+  font-size: clamp(1rem, 1.4vw, 1.2rem);
+  line-height: 1.3;
+  letter-spacing: -.005em;
+  opacity: .92;
+  text-transform: none;
+  /* Gleiche Breite wie .hero__stage, mittig in der Grid-Cell —
+     so steht der Claim direkt ueber dem Kranz, links/rechts buendig. */
+  width: 100%;
+  max-width: 220px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  justify-self: center;
   /* Drift-Animation aus Readymag rekonstruiert (header-anim-container):
      Jede Zeile ist ein eigener Block, beim Hover driften sie leicht
      unterschiedlich weit auseinander. */
@@ -600,10 +645,8 @@ span.feature-list__icon {
   transition: transform .25s ease-out, opacity .25s ease-out;
   will-change: transform, opacity;
 }
-.hero__claim:hover .line-1 { transform: translate(5px, -1px); opacity: .8; }
-.hero__claim:hover .line-2 { transform: translate(-3px, 0); }
-.hero__claim:hover .line-3 { transform: translate(7px, 2px); opacity: .85; }
-.hero__claim:hover .line-4 { transform: translate(-4px, 4px); }
+.hero__claim:hover .line-1 { transform: translate(4px, -1px); opacity: .85; }
+.hero__claim:hover .line-2 { transform: translate(-2px, 2px); }
 .hero__brand {
   display: flex; flex-direction: column; align-items: center;
   gap: .2em;
@@ -655,8 +698,10 @@ span.feature-list__icon {
    Claim "Die Plattform fuer digitale Erlebnisse" auf Mobile ausgeblendet,
    damit Hero oben kompakter wird. Cat-Links zentriert, Social rechts. */
 @media (max-width: 719px) {
-  .hero__laurel-svg { max-width: 160px; margin: 0 auto; }
-  .hero__stage     { margin-top: var(--sp-1); }
+  /* Mobile: Lorbeerkranz + Awards-Rotator komplett ausblenden — die Awards-Labels
+     uebereinander mit dem kleineren Kranz wirkten gestaucht, Hero ist
+     ohne Stage kompakter und fokussierter auf Phones + CTA. */
+  .hero__stage     { display: none; }
   .eyebrow.hero__claim { display: none; }
 
   /* Kategorie-Links: zentriert, eng gestapelt, mit Luft zum CTA */
@@ -763,6 +808,29 @@ span.feature-list__icon {
   animation: nw-draw 1.8s ease-out forwards;
 }
 
+/* --- Verlinkungen (textuelle Verweise, gestrichelt) -----------------------
+   Bewusst gestrichelt + dezent, klar unterscheidbar von durchgezogenen
+   Tour-Stations-Linien. is-tour-link nutzt Tour-Farbe, is-station-link
+   eine neutrale weisse Linie. */
+.nw-verlinkung {
+  fill: none;
+  stroke-width: 1;
+  stroke-dasharray: 4 4;
+  stroke-linecap: round;
+  opacity: 0;
+  transition: opacity .4s ease-out;
+  pointer-events: none;
+}
+.nw-verlinkung.is-station-link { stroke: rgba(255,255,255,.45); }
+.network-viz.is-animating .nw-verlinkung {
+  opacity: .55;
+  transition-delay: 1.4s;
+}
+.nw-verlinkung.is-tour-link { opacity: 0; }
+.network-viz.is-animating .nw-verlinkung.is-tour-link { opacity: .45; }
+.network-viz.has-hover .nw-verlinkung { opacity: .12; }
+.network-viz.has-hover .nw-verlinkung.is-active { opacity: .9; stroke-width: 1.5; }
+
 /* --- Stationen (Kreise + Labels) ----------------------------------------- */
 .nw-station {
   opacity: 0;
@@ -788,14 +856,14 @@ span.feature-list__icon {
   animation: nw-pulse 3.5s ease-in-out infinite;
 }
 .nw-station-name {
-  fill: rgba(255,255,255,.35);
-  font-size: 13px;
+  fill: rgba(255,255,255,.55);
+  font-size: 14px;
   font-family: var(--f-sans, 'Roboto', sans-serif);
   text-anchor: middle;
   transition: fill .3s;
 }
 .nw-station-name.is-shared {
-  fill: rgba(255,255,255,.55);
+  fill: rgba(255,255,255,.8);
 }
 .nw-station-count {
   fill: rgba(255,255,255,0);
@@ -837,7 +905,7 @@ span.feature-list__icon {
    nur auf ~420px breite skaliert — sonst sind Labels zu klein. */
 @media (max-width: 719px) {
   .nw-tour-name    { font-size: 28px; }
-  .nw-station-name { font-size: 17px; }
+  .nw-station-name { font-size: 22px; }
   .nw-station-count{ font-size: 14px; }
   .nw-tour-tag     { font-size: 13px; }
 }
@@ -1570,6 +1638,14 @@ details.info-card[open] > *:not(summary) {
 .hub-jumpnav__chip--history { color: var(--c-history); }
 .hub-jumpnav__chip--dentity { color: var(--c-dentity); }
 .hub-jumpnav__chip--grow    { color: var(--c-grow); }
+
+/* CTA-Chip am Ende des Page-Header Story-Blocks — rechts ausgerichtet,
+   mit Abstand nach oben zum Body-Text. */
+.page-header__story-cta {
+  margin-top: var(--sp-3);
+  display: flex;
+  justify-content: flex-end;
+}
 .hub-jumpnav__chip--neutral { color: rgba(255,255,255,.75); }
 .hub-jumpnav__chip--soon    { color: rgba(255,255,255,.45); font-style: italic; }
 .hub-jumpnav__count {
