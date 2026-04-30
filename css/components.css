@@ -979,6 +979,51 @@ span.feature-list__icon {
 }
 .team-member p { font-size: .9rem; line-height: 1.55; }
 
+/* Kompakter Team-Teaser fuer die Landingpage:
+   Zwei Personen nebeneinander mit Foto + Name. Kein Bio-Text — der Klick
+   auf "Ueber uns" liefert Details. Auf Mobile bleiben die zwei Personen
+   nebeneinander (kleinere Bilder), nur sehr schmale Viewports stapeln. */
+.team-teaser {
+  display: flex;
+  justify-content: center;
+  gap: var(--sp-4);
+  margin-top: var(--sp-3);
+  flex-wrap: wrap;
+}
+.team-teaser__person {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-1);
+  text-decoration: none;
+  color: inherit;
+  transition: transform .25s cubic-bezier(.4, 0, .2, 1);
+}
+.team-teaser__person:hover { transform: translateY(-3px); }
+.team-teaser__photo {
+  width: clamp(96px, 14vw, 130px);
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border-radius: var(--radius-card);
+  border: 1px solid rgba(255, 255, 255, .12);
+  transition: border-color .25s ease, box-shadow .25s ease;
+}
+.team-teaser__person:hover .team-teaser__photo {
+  border-color: rgba(255, 255, 255, .28);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, .35);
+}
+.team-teaser__name {
+  font-family: var(--f-serif);
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0;
+  color: var(--c-text);
+}
+@media (prefers-reduced-motion: reduce) {
+  .team-teaser__person, .team-teaser__photo { transition: none; }
+  .team-teaser__person:hover { transform: none; }
+}
+
 .ueber__kontakt { display: flex; flex-direction: column; gap: var(--sp-2); }
 .kontakt-mail { font-size: 1rem; }
 .kontakt-mail a { text-decoration: underline; }
