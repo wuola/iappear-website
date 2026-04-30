@@ -72,13 +72,16 @@
   function applyGeometry() {
     if (MQ_PORTRAIT.matches) {
       /* Portrait: schmale, hohe Ellipse — fuellt Mobile-Screen vertikal.
-         viewBox 900x1300 gibt links/rechts ~200 Einheiten Rand-Padding,
-         damit lange Labels ("Sprechender Baum" etc.) sauber reinpassen. */
+         viewBox 900x1300 gibt links/rechts ~155 Einheiten Rand-Padding,
+         damit lange Labels ("Sprechender Baum" etc.) sauber reinpassen.
+         Tour-Ring (RX/RY_ROUTES) bewusst weit nach aussen gesetzt damit
+         die Tour-Labels sich klar vom Stations-Cluster in der Mitte
+         abheben — Maggy-Wunsch nach mehr Luft (2026-04-30). */
       W = 900; H = 1300;
       CX = W / 2; CY = H / 2;
-      RX_ROUTES   = 225; RY_ROUTES   = 480;
+      RX_ROUTES   = 270; RY_ROUTES   = 510;
       RX_STATIONS = 125; RY_STATIONS = 260;
-      LABEL_OFFSET = 32;
+      LABEL_OFFSET = 38;
     } else {
       /* Landscape: Kreise. Stations-Punkte clustern enger ums Zentrum,
          dafuer ihre Labels weit nach aussen versetzt — gibt jedem Label
