@@ -356,7 +356,12 @@
     0 20px 40px -15px rgba(0, 0, 0, .9),           /* Drop-Shadow */
     0 4px 12px -2px rgba(0, 0, 0, .6);
 }
-/* Dynamic-Island-Notch: schwebende dunkle Pille oben zentriert */
+/* Dynamic-Island-Notch entfernt (Session 16, 30.04.2026) — sie sass mittig
+   ueber dem Screen und hat Video-Inhalt verdeckt (z.B. Titel im hist.appear-
+   Video). Der notch-lose Look ist Standard in modernen App-Marketing-Mockups
+   und wirkt cleaner. Falls die Notch zurueck soll: alten Block aus der Git-
+   History (Commit vor f341558) wieder einfuegen. */
+/*
 .phone::before {
   content: "";
   position: absolute;
@@ -371,6 +376,7 @@
   z-index: 3;
   box-shadow: 0 0 0 1px rgba(255, 255, 255, .05);
 }
+*/
 .phone__screen {
   width: 100%; height: 100%;
   border-radius: 30px;
@@ -512,11 +518,14 @@ span.feature-list__icon {
     0 12px 24px -10px rgba(0, 0, 0, .85),
     0 2px 6px -1px rgba(0, 0, 0, .5);
 }
+/* Mini-Notch ebenfalls deaktiviert (siehe oben) */
+/*
 .phone--mini::before {
   top: 7px;
   height: 8px;
   max-width: 38px;
 }
+*/
 .phone--mini .phone__screen {
   border-radius: 22px;
 }
