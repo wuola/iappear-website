@@ -156,17 +156,31 @@ p  { margin: 0 0 var(--sp-2); color: var(--c-text); }
 .c-dentity { color: var(--c-dentity); }
 .c-grow    { color: var(--c-grow); }
 
-/* Subtiler farbiger Glow auf den 3 CI-Farben — NUR auf der Landing-Page
+/* Farbiger Glow auf den 3 CI-Farben — NUR auf der Landing-Page
    (body.page-landing). Hilft die gedaempften CI-Farben bei Sonnenlicht
    draussen am Handy lesbarer zu machen, ohne die Farbe selbst zu aendern.
-   Wir nutzen text-shadow (kein box-shadow), damit der Effekt auch dann
-   greift wenn die Farbe nur als Text gesetzt ist (z.B. in Cat-Links). */
+
+   3-Layer-Glow fuer ein echtes "Leuchten" (wie Neon, aber elegant):
+   - Innerer Kern: nah (8px), satt (75%) — gibt Definition zum Buchstaben
+   - Mittlere Aura: weiter (18px), mittel (50%) — Hauptleuchten
+   - Aeussere Aura: weit (32px), schwach (25%) — Halo-Effekt
+   Stack baut sich additiv auf, daher wirkt der Effekt deutlich praesenter
+   als ein einzelner Shadow. */
 body.page-landing .c-history {
-  text-shadow: 0 0 14px color-mix(in srgb, var(--c-history) 40%, transparent);
+  text-shadow:
+    0 0 8px  color-mix(in srgb, var(--c-history) 75%, transparent),
+    0 0 18px color-mix(in srgb, var(--c-history) 50%, transparent),
+    0 0 32px color-mix(in srgb, var(--c-history) 25%, transparent);
 }
 body.page-landing .c-dentity {
-  text-shadow: 0 0 14px color-mix(in srgb, var(--c-dentity) 40%, transparent);
+  text-shadow:
+    0 0 8px  color-mix(in srgb, var(--c-dentity) 75%, transparent),
+    0 0 18px color-mix(in srgb, var(--c-dentity) 50%, transparent),
+    0 0 32px color-mix(in srgb, var(--c-dentity) 25%, transparent);
 }
 body.page-landing .c-grow {
-  text-shadow: 0 0 14px color-mix(in srgb, var(--c-grow) 40%, transparent);
+  text-shadow:
+    0 0 8px  color-mix(in srgb, var(--c-grow) 75%, transparent),
+    0 0 18px color-mix(in srgb, var(--c-grow) 50%, transparent),
+    0 0 32px color-mix(in srgb, var(--c-grow) 25%, transparent);
 }
