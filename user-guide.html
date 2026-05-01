@@ -109,14 +109,19 @@
       .short-guide__grid {
         display: grid;
         grid-template-columns: 1fr;
-        gap: var(--sp-5) var(--sp-4);
+        /* Mobile (1 Spalte): kleiner row-gap damit die 4 Schritte ohne
+           riesige Luecken untereinander stehen. Ab 720px wieder mehr Luft. */
+        gap: var(--sp-2) var(--sp-4);
         max-width: 1100px;
         margin: 0 auto;
         list-style: none;
         padding: 0;
       }
       @media (min-width: 720px) {
-        .short-guide__grid { grid-template-columns: repeat(2, 1fr); }
+        .short-guide__grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: var(--sp-5) var(--sp-4);
+        }
       }
       @media (min-width: 1000px) {
         .short-guide__grid { grid-template-columns: repeat(4, 1fr); }
