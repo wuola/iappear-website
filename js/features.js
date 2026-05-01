@@ -34,6 +34,12 @@
        Repo Datum hochzaehlen, damit Browser nicht alte Versionen cached. */
     const videoUrl = `assets/videos/features/${key}.mp4?v=20260430`;
     screen.innerHTML = `<video src="${videoUrl}" autoplay muted loop playsinline preload="metadata"></video>`;
+    /* Phone in Landscape-Modus drehen wenn das Video Querformat ist
+       (aktuell nur 'map' = Interaktive Karten). */
+    const phone = screen.closest('.phone');
+    if (phone) {
+      phone.classList.toggle('phone--landscape', key === 'map');
+    }
     list.querySelectorAll('li').forEach(li => {
       li.classList.toggle('is-active', li.dataset.feature === key);
     });
