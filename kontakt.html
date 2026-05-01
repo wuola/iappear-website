@@ -24,7 +24,7 @@
 
   <link rel="stylesheet" href="css/global.css?v=20260427a" />
   <link rel="stylesheet" href="css/layout.css?v=20260430a" />
-  <link rel="stylesheet" href="css/components.css?v=20260430k" />
+  <link rel="stylesheet" href="css/components.css?v=20260430l" />
   <link rel="stylesheet" href="css/animations.css?v=20260428a" />
   <!-- Breadcrumb strukturierte Daten -->
   <script type="application/ld+json">
@@ -96,31 +96,40 @@
     </header>
 
     <section class="section container">
-      <div class="grid grid-2">
+      <div class="contact-layout">
 
-        <div class="prose">
-          <p><strong>&gt; Du möchtest einen Rundgang für eine Region, eine Schule, ein Museum oder ein Unternehmen?</strong></p>
-          <p><a href="mailto:info@iappear.app">info@iappear.app</a></p>
-          <p>Schreib uns gerne für ein erstes Gespräch oder ein unverbindliches Angebot. Wir sind unkompliziert und meistens gut gelaunt!</p>
+        <div class="contact-info">
+          <ul class="contact-anliegen">
+            <li class="anliegen-card">
+              <h3>Rundgang anfragen</h3>
+              <p>Für eine Region, Schule, ein Museum oder Unternehmen &ndash; schreib uns gerne für ein erstes Gespräch oder ein unverbindliches Angebot.</p>
+            </li>
+            <li class="anliegen-card">
+              <h3>Workshop &amp; Unterricht</h3>
+              <p>Medienbildung, Medienethik oder ein Thema über i.appear in deiner Klasse? Auch wenn du noch keine Idee hast, aber interessiert bist &ndash; melde dich.</p>
+            </li>
+            <li class="anliegen-card">
+              <h3>Frage zur App</h3>
+              <p>Schau zuerst in den <a href="user-guide.html">User Guide</a> oder die <a href="faqs.html">FAQs</a>. Wird deine Frage dort nicht beantwortet, schreib uns kurz.</p>
+            </li>
+          </ul>
 
-          <p style="margin-top:var(--sp-3)"><strong>&gt; Du möchtest i.appear in deinen Unterricht integrieren?</strong></p>
-          <p>Du möchtest ein Thema über i.appear bearbeiten oder einen Workshop im Bereich Medienbildung und Medienethik in deiner Klasse anbieten? Du benötigst spezielle Lehrmaterialien? Oder du hast keine Ahnung, bist aber interessiert? Melde dich gerne bei uns!</p>
-
-          <p style="margin-top:var(--sp-3)"><strong>&gt; Du hast Fragen zur Benutzung der App?</strong></p>
-          <p>Wir haben hier einen <a href="user-guide.html">User Guide</a> und die <a href="faqs.html">FAQs</a>. Wird deine Frage dennoch nicht beantwortet, schicke uns bitte eine Nachricht.</p>
-
-          <div class="info-card" style="margin-top:var(--sp-3)">
+          <div class="info-card">
             <h3>i.appear &ndash; Digital City Tours</h3>
             <p>Marilena Tumler e.U.<br/>
             Mozartstrasse 5 | 16<br/>
             6850 Dornbirn</p>
-            <p>+43 676 82554212<br/>
+            <p><a href="tel:+4367682554212">+43 676 82554212</a><br/>
             <a href="mailto:info@iappear.app">info@iappear.app</a><br/>
             <a href="https://iappear.at">iappear.at</a></p>
           </div>
         </div>
 
-        <form class="form" method="post" action="#">
+        <form class="form contact-form" method="post" action="#">
+          <h3 class="contact-form__title">Schreib uns</h3>
+          <p class="contact-form__direct">
+            Lieber direkt? <a href="mailto:info@iappear.app">info@iappear.app</a>
+          </p>
           <label for="cf-name">Name</label>
           <input id="cf-name" name="name" type="text" required />
           <label for="cf-mail">E-Mail</label>
