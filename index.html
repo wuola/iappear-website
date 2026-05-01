@@ -506,5 +506,35 @@
   <script src="js/data/vitrine.js?v=7"></script>
   <script src="js/network.js?v=19"></script>
   <script src="js/vitrine-teaser.js?v=4"></script>
+
+  <script>
+    /* Hero-Videos: erzwinge Autoplay auf Mobile-Browsern, die es trotz autoplay+muted blockieren.
+       Versucht play() beim Laden; wenn der Browser es ablehnt, holen wir es bei der ersten
+       User-Geste (touch/click) nach. */
+    (function () {
+      var videos = document.querySelectorAll('.hero__phones video');
+      if (!videos.length) return;
+
+      function nudgeAll() {
+        videos.forEach(function (v) { v.play().catch(function () {}); });
+      }
+
+      function attemptPlay(video) {
+        var p = video.play();
+        if (p && typeof p.catch === 'function') {
+          p.catch(function () {
+            document.addEventListener('touchstart', nudgeAll, { once: true, passive: true });
+            document.addEventListener('click', nudgeAll, { once: true });
+          });
+        }
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function () { videos.forEach(attemptPlay); });
+      } else {
+        videos.forEach(attemptPlay);
+      }
+    })();
+  </script>
 </body>
 </html>
