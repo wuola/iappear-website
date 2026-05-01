@@ -217,6 +217,9 @@
    auto-height (z.B. workflow.html wo Cards in einer DIV-Spalte gestapelt sind). */
 .grid > .card { height: 100%; }
 .card > .btn { margin-top: auto; }
+/* Wenn statt einem reinen Button eine Action-Row (Button + Doclinks) am
+   Card-Ende sitzt, gilt margin-top: auto fuer den Wrapper. */
+.card > .card__actions { margin-top: auto; }
 .card__title { font-family: var(--f-serif); }
 
 .vitrine-card {
@@ -1412,6 +1415,39 @@ span.feature-list__icon {
 .contact-form .btn {
   margin-top: var(--sp-2);
   justify-self: start;
+}
+
+/* Card-Actions: Primary-Button + dezente Begleitmaterial-Doclinks in einer
+   Reihe (z.B. i.grow Cards mit PDF-Downloads). Wrapt auf Mobile unter den
+   Button. */
+.card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sp-1) var(--sp-3);
+  margin-top: var(--sp-2);
+}
+.card-doclink {
+  display: inline-flex;
+  align-items: center;
+  gap: .4em;
+  font-size: .85rem;
+  color: var(--c-text-muted);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 1px;
+  transition: color .2s var(--ease), border-color .2s var(--ease);
+}
+.card-doclink:hover,
+.card-doclink:focus-visible {
+  color: var(--c-text);
+  border-bottom-color: rgba(255,255,255,.45);
+}
+.card-doclink__icon {
+  flex: none;
+  width: 14px;
+  height: 14px;
+  opacity: .85;
 }
 
 /* Mobile: 2-Spalter zu Stapel */
