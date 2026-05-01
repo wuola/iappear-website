@@ -1634,6 +1634,18 @@ details.info-card[open] > *:not(summary) {
   font-size: clamp(1rem, 1.8vw, 1.2rem);
   opacity: .85;
 }
+/* Subtitle + Sprungmarke in einer Zeile (z.B. Vitrine: Subtitle links,
+   "Zum Blog" Chip rechts). Bricht auf schmalen Schirmen sauber um. */
+.page-header--hub .page-header__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  flex-wrap: wrap;
+}
+.page-header--hub .page-header__row .hub-jumpnav {
+  margin: 0;
+}
 .page-header--hub .page-header__intro {
   margin: var(--sp-2) 0 0;
   display: flex;

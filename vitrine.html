@@ -24,7 +24,7 @@
 
   <link rel="stylesheet" href="css/global.css?v=20260427a" />
   <link rel="stylesheet" href="css/layout.css?v=20260428a" />
-  <link rel="stylesheet" href="css/components.css?v=20260430j" />
+  <link rel="stylesheet" href="css/components.css?v=20260430k" />
   <link rel="stylesheet" href="css/animations.css?v=20260428a" />
 
   <script type="application/ld+json">
@@ -93,7 +93,12 @@
     <header class="page-header page-header--hub container">
       <p class="eyebrow">Projekte die uns stolz machen</p>
       <h1>Vitrine</h1>
-      <p class="page-header__subtitle">Auszeichnungen, Presse, Artikel und Referenzen</p>
+      <div class="page-header__row">
+        <p class="page-header__subtitle">Auszeichnungen, Presse, Artikel und Referenzen</p>
+        <nav class="hub-jumpnav" aria-label="Sprungmarken">
+          <a class="hub-jumpnav__chip hub-jumpnav__chip--neutral" href="#blog">Zum Blog &darr;</a>
+        </nav>
+      </div>
     </header>
 
     <!-- Vitrine-Grid: 22 Kacheln statisch im HTML (damit Google/LLMs sie ohne JS lesen).
@@ -240,9 +245,9 @@
       <!-- VITRINE-GRID-END -->
     </section>
 
-    <!-- Artikel -->
-    <section class="section container">
-      <h2>Artikel &amp; Einblicke</h2>
+    <!-- Blog -->
+    <section id="blog" class="section container">
+      <h2>Blog</h2>
       <p class="muted" style="margin-bottom:var(--sp-3)">Hintergrundwissen, Projektupdates und Geschichten aus unserer Arbeit.</p>
       <div class="blog-grid">
 
