@@ -189,12 +189,12 @@
         <div class="phones hero__phones">
           <div class="phone">
             <div class="phone__screen">
-              <video src="assets/videos/hero/navigation.mp4" autoplay muted loop playsinline preload="auto"></video>
+              <video src="assets/videos/hero/navigation.mp4" autoplay muted loop playsinline></video>
             </div>
           </div>
           <div class="phone">
             <div class="phone__screen">
-              <video src="assets/videos/hero/histappear.mp4" autoplay muted loop playsinline preload="auto"></video>
+              <video src="assets/videos/hero/histappear.mp4" autoplay muted loop playsinline></video>
             </div>
           </div>
         </div>
@@ -507,64 +507,5 @@
   <script src="js/network.js?v=19"></script>
   <script src="js/vitrine-teaser.js?v=4"></script>
 
-  <script>
-    /* Hero-Videos: aggressiver Autoplay-Fallback fuer alle Browser-Policies.
-       Wir versuchen play() bei JEDEM denkbaren Event - wenn auch nur EINER vom Browser
-       als User-Geste anerkannt wird, starten die Videos. Bis dahin zeigt das poster=
-       Attribut ein sauberes Standbild statt schwarzer Screen. */
-    (function () {
-      var videos = document.querySelectorAll('.hero__phones video');
-      if (!videos.length) return;
-
-      function nudgeAll() {
-        videos.forEach(function (v) {
-          if (v.paused) v.play().catch(function () {});
-        });
-      }
-
-      function setupTriggers() {
-        nudgeAll();
-
-        /* User-Input - egal was, einmal triggert immer */
-        var inputs = ['touchstart', 'click', 'pointerdown', 'keydown', 'scroll', 'wheel'];
-        inputs.forEach(function (evt) {
-          document.addEventListener(evt, nudgeAll, { once: true, passive: true, capture: true });
-        });
-
-        /* Visibility-Change (Tab-Wechsel zurueck) */
-        document.addEventListener('visibilitychange', function () {
-          if (document.visibilityState === 'visible') nudgeAll();
-        });
-
-        /* pageshow - feuert auch beim bfcache-Restore (Browser-zurueck-Knopf) */
-        window.addEventListener('pageshow', nudgeAll);
-
-        /* Intersection - wenn Video ins Viewport scrollt */
-        if ('IntersectionObserver' in window) {
-          var io = new IntersectionObserver(function (entries) {
-            entries.forEach(function (e) {
-              if (e.isIntersecting && e.target.paused) {
-                e.target.play().catch(function () {});
-              }
-            });
-          }, { threshold: 0.1 });
-          videos.forEach(function (v) { io.observe(v); });
-        }
-
-        /* Auch bei loadeddata nochmal versuchen (Race-Condition-Schutz) */
-        videos.forEach(function (v) {
-          v.addEventListener('loadeddata', function () {
-            if (v.paused) v.play().catch(function () {});
-          });
-        });
-      }
-
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', setupTriggers);
-      } else {
-        setupTriggers();
-      }
-    })();
-  </script>
 </body>
 </html>
