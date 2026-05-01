@@ -138,3 +138,4 @@ dist
 # Lokale Editor-/Tool-Configs (gehoeren nicht ins Repo)
 .obsidian/
 .claude/worktrees/
+originals/
