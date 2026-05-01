@@ -1306,18 +1306,18 @@ span.feature-list__icon {
 }
 
 /* --- Kontakt-Seite: 2-Spalter mit Anliegen-Cards links und Glassy-Form rechts.
-   Layout entstanden in Session 17 (2026-05-01) aus dem Feedback "viel zu gross
-   und haesslich" zur ersten Version. */
+   Drunter zentriert die Info-Card als "Visitenkarten"-Anker. Form-Spalte
+   schmaler als Anliegen-Spalte, damit die Form nicht uebermaechtig wirkt.
+   Layout entstanden in Session 17 (2026-05-01). */
 .contact-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr);
-  gap: var(--sp-4);
-  align-items: start;
-}
-.contact-info {
-  display: flex;
-  flex-direction: column;
+  grid-template-columns: minmax(0, 408px) minmax(0, 408px);
+  justify-content: space-between;
   gap: var(--sp-3);
+  align-items: stretch;
+  max-width: 1080px;
+  margin-left: auto;
+  margin-right: auto;
 }
 .contact-anliegen {
   list-style: none;
@@ -1412,34 +1412,6 @@ span.feature-list__icon {
 .contact-form .btn {
   margin-top: var(--sp-2);
   justify-self: start;
-}
-
-/* Info-Card unter den Anliegen-Cards: gleicher Glassy-Look wie die Form,
-   schmaler + zentriert + Text mittig (laut Maggys Wunsch). Scope auf
-   .contact-info, damit andere .info-card-Verwendungen unberuehrt bleiben. */
-.contact-info .info-card {
-  background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
-  box-shadow:
-    inset 0 1px 0 var(--glass-highlight),
-    inset 0 -1px 0 var(--glass-shadow-bottom),
-    0 8px 28px var(--glass-glow);
-  max-width: 340px;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-}
-.contact-info .info-card h3 {
-  font-family: var(--f-serif, Georgia, serif);
-  font-size: 1.1rem;
-  font-weight: 600;
-  margin: 0 0 var(--sp-1);
-}
-.contact-info .info-card p {
-  font-size: .9rem;
-  line-height: 1.6;
 }
 
 /* Mobile: 2-Spalter zu Stapel */
