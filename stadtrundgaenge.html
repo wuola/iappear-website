@@ -95,9 +95,14 @@
     }
     .iappear-map-target:hover { transform: scale(1.15); }
 
-    /* Coming-soon Karte */
-    .ort-card--soon { opacity: .85; }
+    /* Coming-soon Karte: Headline klar lesbar, Inhalt darunter
+       als Teaser geblurrt (Text ist Platzhalter, soll noch nicht
+       lesbar sein). */
     .ort-card--soon h3::after { content: " (bald)"; font-size: .75em; color: var(--c-text-muted); font-weight: 400; }
+    .ort-card--soon > *:not(h3) {
+      filter: blur(5px);
+      user-select: none;
+    }
   </style>
 </head>
 <body>
