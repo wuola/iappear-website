@@ -128,12 +128,12 @@ Bei Asset-Tausch (mp4/jpg-Bytes ändern, Dateiname bleibt): Cache-Bust auch im J
 
 ## Aktueller Stand (Mai 2026)
 
-Site ist live auf https://wuola.github.io/iappear-website/. Alle 11 Hauptseiten + 4 Stadtseiten + 22 Vitrine-Artikel + Blog stehen. Designsystem (glassy/strokeless) konsistent. SEO durchgezogen. Verbleibend: Polish, einzelne Mobile-Bugs, Marilena-Abstimmungen, dann Domain-Umleitung.
+Site ist live auf https://wuola.github.io/iappear-website/. Alle 11 Hauptseiten + 4 Stadtseiten + 22 Vitrine-Artikel stehen. Blog ist mit Vitrine verschmolzen (2 Bestandsartikel unter `/blog/`, Index leitet auf Vitrine weiter). Designsystem (glassy/strokeless) konsistent. SEO durchgezogen. Verbleibend: Polish, einzelne Mobile-Bugs, Marilena-Abstimmungen, dann Domain-Umleitung.
 
 ## Was noch offen ist
 
 - **Hero-Videos starten erst beim 2. Page-Load (Mobile)** — auf Maggys Standard-Mobile-Browser. Auf Chrome Mobile spielt es. Akzeptiert-offen, Bisect bisher nur bis 27.04. zurück. Code-Stand: `poster` + `preload="metadata"` sind drin, gibt im Bug-Fall wenigstens das Standbild.
-- **Cache-Bust Burger-Menü auf alle 44 HTMLs ausrollen** — Polish ist nur in `index.html` (`?v=20260502f`). Per Python regex-replace auf alle HTMLs hochziehen.
+- **Cache-Bust Burger-Menü auf alle 44 HTMLs ausrollen** — Polish ist nur in `index.html` (`?v=20260502m`), andere HTMLs haben noch alte Werte. Per Python regex-replace auf alle hochziehen.
 - **Phone-Mockup-Notch (Dynamic Island)** verdeckt Content im Video-Bereich. Marilena-Entscheidung: Notch weg / kleiner / Content beschneiden.
 - **Typografie-Konzept mit Marilena** — Mix-Konzept (Serif Subtitle, Sans Brand) vs. einheitlich? Auf 3 Kategorie-Seiten provisorisch Roboto Black 900 für h1.
 - **User Guide Detail-Anpassungen** — Logik + Bilder stimmen, Detail-Pass laut Maggy noch offen.
