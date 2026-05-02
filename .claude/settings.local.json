@@ -1,7 +1,4 @@
 {
   "_comment": "Alle Regeln leben jetzt in settings.json. Diese Datei ist leer, damit lokale Overrides bei Bedarf hier rein koennen. Siehe CLAUDE.md Abschnitt 'Berechtigungen'.",
-  "permissions": {
-    "allow": [],
-    "deny": []
-  }
+  "permissions": { "allow": [], "deny": [] }
 }
