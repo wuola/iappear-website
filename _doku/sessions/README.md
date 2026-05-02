@@ -6,6 +6,7 @@ Naming: `YYYY-MM-DD-session-NN-thema.md`
 
 ## Sessions
 
+- 2026-05-02 - [Session 19 - Cache-Bust-Rollout + Social Pills im Footer + Footer-Polish + Uni-Logo Centering-Fix](2026-05-02-session-19-cache-bust-rollout-social-pills-footer-polish.md)
 - 2026-05-02 - [Session 18 - Hero-Posters zurueck + Feature-Videos Komprimierung + Feature-Posters + features.js Refactor + Landing-Polish + Burger-Menue-Refactor + Top-Nav/Footer/Hero-Cat-Links Vereinheitlichung](2026-05-02-session-18-hero-posters-zurueck-feature-videos-komprimierung.md)
 - 2026-05-01 - [Session 17 - Map-Feature + Vitrine "Blog" + Kontakt-Refactor + i.grow Begleitmaterial + Hero-Video-Optimierungs-Versuche](2026-05-01-session-17-map-feature-vitrine-blog-kontakt-refactor-i-grow-b.md)
 - 2026-04-30 - [Session 16 - Polish-Tag: Vitrine final + Team-Teaser + Header + Mobile-Footer + Netzwerk-Viz](2026-04-30-session-16-polish-tag-vitrine-final-team-teaser-header-mobile.md)

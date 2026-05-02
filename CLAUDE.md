@@ -92,7 +92,7 @@ Einheitlich auf allen Seiten:
 
 ## Cache-Bust-Workflow
 
-Bei JEDER CSS- oder JS-Änderung **nur die Versionsnummer der geänderten Datei** im `?v=...`-Query an allen `<link>`/`<script>`-Stellen hochzählen (Beispiel: `components.css?v=20260502m` → `components.css?v=20260502n`). **Andere CSS-/JS-Dateien unangetastet lassen — sie haben unabhängige Versions-Nummern.** Sonst hält der Browser-Disk-Cache das alte Stylesheet/Script.
+Bei JEDER CSS- oder JS-Änderung **nur die Versionsnummer der geänderten Datei** im `?v=...`-Query an allen `<link>`/`<script>`-Stellen hochzählen (Beispiel: `components.css?v=20260502p` → `components.css?v=20260502q`). **Andere CSS-/JS-Dateien unangetastet lassen — sie haben unabhängige Versions-Nummern.** Sonst hält der Browser-Disk-Cache das alte Stylesheet/Script.
 
 GitHub Pages serviert HTML mit `Cache-Control: max-age=600` — neuer Stand ist im normalen Tab erst nach 10 Min sichtbar, im privaten Tab sofort. **Maggy testet IMMER in privaten Tabs.**
 
@@ -133,7 +133,6 @@ Site ist live auf https://wuola.github.io/iappear-website/. Alle 11 Hauptseiten 
 ## Was noch offen ist
 
 - **Hero-Videos starten erst beim 2. Page-Load (Mobile)** — auf Maggys Standard-Mobile-Browser. Auf Chrome Mobile spielt es. Akzeptiert-offen, Bisect bisher nur bis 27.04. zurück. Code-Stand: `poster` + `preload="metadata"` sind drin, gibt im Bug-Fall wenigstens das Standbild.
-- **Cache-Bust Burger-Menü auf alle 44 HTMLs ausrollen** — Polish ist nur in `index.html` (`?v=20260502m`), andere HTMLs haben noch alte Werte. Per Python regex-replace auf alle hochziehen.
 - **Phone-Mockup-Notch (Dynamic Island)** verdeckt Content im Video-Bereich. Marilena-Entscheidung: Notch weg / kleiner / Content beschneiden.
 - **Typografie-Konzept mit Marilena** — Mix-Konzept (Serif Subtitle, Sans Brand) vs. einheitlich? Auf 3 Kategorie-Seiten provisorisch Roboto Black 900 für h1.
 - **User Guide Detail-Anpassungen** — Logik + Bilder stimmen, Detail-Pass laut Maggy noch offen.
