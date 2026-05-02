@@ -1225,6 +1225,12 @@ a.card--teaser:hover h3 {
 .partner-uniwien .partner-logo img {
   max-height: 90px;
   opacity: 1;
+  /* Optischer Zentrierungs-Fix: das uni-wien-weiss.svg hat eine viewBox
+     mit ~16px Whitespace links und ~105px rechts, der Logo-Inhalt sitzt
+     also weit links in der Bounding-Box. Wir lassen das Original-SVG
+     (CD-konform) unangetastet und schieben das Bild visuell ~15% nach
+     rechts, damit Siegel + Schriftzug mittig im Container sitzen. */
+  transform: translateX(15%);
 }
 .partner-uniwien p {
   margin: 0;
