@@ -1123,63 +1123,38 @@ a.card--teaser:hover h3 {
    rechts enthaelt alle Links, der Footer-Block war reine Dopplung.
    Stattdessen gibt's eine schlanke .footer__legal Leiste am Ende. */
 
-/* --- Einheitlicher Basis-Footer (alle Seiten seit Session 8.5) -----------
-   Aufbau in 3 Ebenen, alle zentriert, schlank:
-   1. .footer__brand      – Brand + Tagline ("i.appear — Digital City Tours")
-   2. .footer__contact    – Adresse · Telefon · E-Mail als eine Zeile
-   3. .footer__bottom     – Copyright · Legal-Nav · nach oben
+/* --- Einheitlicher Basis-Footer (alle Seiten) ----------------------------
+   Aufbau schlank: Social Pills (.social-pills) -> Bottom-Zeile
+   (.footer__bottom mit Copyright + Legal-Nav + nach oben).
+   Adresse, Telefon, Mail stehen im Impressum + auf der Kontakt-Seite, der
+   Brand-Name steckt schon im Logo oben + Copyright unten — frueherer
+   .footer__brand- und .footer__contact-Block wurde deshalb entfernt.
    Auf index.html sitzt zusaetzlich der Partner-Block (.footer__partner)
-   VOR diesen drei Ebenen. */
+   VOR diesen Ebenen, mit Lichtstreifen-Trenner danach. */
 
-/* Brand-Zeile steht nur noch auf der Landingpage (unter Partner-Block).
-   Wenig vertikaler Luftraum, damit der Block nicht dominiert. */
-.footer__brand {
-  text-align: center;
-  margin-top: var(--sp-2);
-  margin-bottom: var(--sp-1);
+.footer__partner {
+  margin-bottom: var(--sp-3);
+  padding-bottom: var(--sp-3);
+  position: relative;
 }
-.footer__brand h4 {
-  font-family: var(--f-serif, Georgia, serif);
-  font-size: 1.05rem;
-  font-weight: 400;
-  letter-spacing: .02em;
-  margin: 0;
-  opacity: .85;
+/* Lichtstreifen-Trenner unter dem Partner-Grid (gleiches Rezept wie
+   .footer::before und .partner-uniwien::after). */
+.footer__partner::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: min(720px, 85%);
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(255,255,255,.18) 50%,
+    transparent 100%
+  );
+  pointer-events: none;
 }
-
-.footer__contact {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: .4rem var(--sp-3);
-  margin: 0 0 var(--sp-2);
-  font-size: .82rem;
-  color: var(--c-text-muted);
-  list-style: none;
-  padding: 0;
-}
-.footer__contact li {
-  display: inline-flex;
-  align-items: center;
-  gap: .4em;
-}
-.footer__contact a {
-  color: inherit;
-  text-decoration: none;
-  border-bottom: 1px solid transparent;
-  transition: border-color .15s, opacity .15s;
-}
-.footer__contact a:hover {
-  border-bottom-color: currentColor;
-  opacity: 1;
-}
-
-/* Alter Kontakt-Block, nur noch als Kompatibilitaet falls irgendwo
-   noch .footer__kontakt verwendet wird — sollte eigentlich leer sein. */
-.footer__kontakt { display: none; }
-
-.footer__partner { margin-bottom: var(--sp-3); }
 .partner-grid {
   display: grid; gap: var(--sp-2);
   grid-template-columns: repeat(2, 1fr);
@@ -1257,14 +1232,9 @@ a.card--teaser:hover h3 {
   letter-spacing: .02em;
   max-width: 360px;
 }
+/* Auf Desktop bleibt der Uni-Block zentriert (einspaltig) — Logo oben,
+   Text drunter. Logo darf etwas groesser werden als auf Mobile. */
 @media (min-width: 720px) {
-  .partner-uniwien {
-    grid-template-columns: 320px 1fr;
-    gap: var(--sp-4);
-    justify-items: start;
-    text-align: left;
-    padding: var(--sp-3) var(--sp-2) var(--sp-4);
-  }
   .partner-uniwien .partner-logo {
     max-width: 320px;
     min-height: 110px;
