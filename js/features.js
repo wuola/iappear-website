@@ -24,18 +24,42 @@
     'vn':    { title: 'Vorher-Nachher-Ansichten', sub: 'Aendere deine Perspektive', text: 'Aendere deine Perspektive ueber einen Schieberegler. Wie sah es hier frueher aus? Was war denn dort einmal? Wie hat sich die Umgebung veraendert?' }
   };
 
-  // Screen tauscht beim Wechsel das Video aus. autoplay/loop/muted/playsinline
-  // ist Pflicht damit mobile Browser das Video ohne Klick abspielen.
+  /* Setup: img + video als persistente Layer im phone__screen.
+     img liegt drunter und zeigt sofort das Standbild beim Wechsel.
+     video legt sich oben drauf wenn es bereit ist.
+     Vorher wurde mit innerHTML = '<video>' bei jedem Klick ein neues
+     Element gebaut — Browser zeigte zwischen den DOM-Mutations einen
+     leeren Phone-Screen. */
+  screen.innerHTML = '';
+  const imgEl = document.createElement('img');
+  imgEl.alt = '';
+  imgEl.setAttribute('aria-hidden', 'true');
+  screen.appendChild(imgEl);
+
+  const videoEl = document.createElement('video');
+  videoEl.muted = true;
+  videoEl.loop = true;
+  videoEl.autoplay = true;
+  videoEl.playsInline = true;
+  videoEl.preload = 'metadata';
+  screen.appendChild(videoEl);
+
+  /* Cache-Bust per Query-String: bei jedem Video-Tausch im Repo
+     Datum hochzaehlen, damit Browser nicht alte Versionen cached. */
+  const VBUST = '20260502c';
+
   const setActive = (key) => {
     const f = features[key];
     if (!f) return;
     desc.innerHTML = `<h3>${f.title}</h3><p class="eyebrow">${f.sub}</p><p>${f.text}</p>`;
-    /* Cache-Bust per Query-String: ?v=20260502a — bei jedem Video-Tausch im
-       Repo Datum hochzaehlen, damit Browser nicht alte Versionen cached.
-       poster zeigt Standbild waehrend das Video laedt (gleiches ?v wie mp4). */
-    const videoUrl = `assets/videos/features/${key}.mp4?v=20260502a`;
-    const posterUrl = `assets/videos/features/${key}.jpg?v=20260502a`;
-    screen.innerHTML = `<video src="${videoUrl}" poster="${posterUrl}" autoplay muted loop playsinline preload="metadata"></video>`;
+    const videoUrl = `assets/videos/features/${key}.mp4?v=${VBUST}`;
+    const posterUrl = `assets/videos/features/${key}.jpg?v=${VBUST}`;
+    /* img sofort updaten — bleibt sichtbar bis das neue Video laedt. */
+    imgEl.src = posterUrl;
+    videoEl.poster = posterUrl;
+    videoEl.src = videoUrl;
+    videoEl.load();
+    videoEl.play().catch(() => {});
     /* Phone in Landscape-Modus drehen wenn das Video Querformat ist
        (aktuell nur 'map' = Interaktive Karten). */
     const phone = screen.closest('.phone');
