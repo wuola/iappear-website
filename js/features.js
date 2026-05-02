@@ -30,10 +30,12 @@
     const f = features[key];
     if (!f) return;
     desc.innerHTML = `<h3>${f.title}</h3><p class="eyebrow">${f.sub}</p><p>${f.text}</p>`;
-    /* Cache-Bust per Query-String: ?v=20260430 — bei jedem Video-Tausch im
-       Repo Datum hochzaehlen, damit Browser nicht alte Versionen cached. */
+    /* Cache-Bust per Query-String: ?v=20260502a — bei jedem Video-Tausch im
+       Repo Datum hochzaehlen, damit Browser nicht alte Versionen cached.
+       poster zeigt Standbild waehrend das Video laedt (gleiches ?v wie mp4). */
     const videoUrl = `assets/videos/features/${key}.mp4?v=20260502a`;
-    screen.innerHTML = `<video src="${videoUrl}" autoplay muted loop playsinline preload="metadata"></video>`;
+    const posterUrl = `assets/videos/features/${key}.jpg?v=20260502a`;
+    screen.innerHTML = `<video src="${videoUrl}" poster="${posterUrl}" autoplay muted loop playsinline preload="metadata"></video>`;
     /* Phone in Landscape-Modus drehen wenn das Video Querformat ist
        (aktuell nur 'map' = Interaktive Karten). */
     const phone = screen.closest('.phone');
