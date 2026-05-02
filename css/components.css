@@ -492,6 +492,11 @@ span.feature-list__icon {
   flex-direction: column;
   align-items: center;
   text-align: center;
+  text-decoration: none;
+  color: inherit;
+}
+a.card--teaser:hover h3 {
+  text-decoration: underline;
 }
 .card--teaser h3 {
   margin-top: var(--sp-2);
