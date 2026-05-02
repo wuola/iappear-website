@@ -17,8 +17,9 @@
 .nav__brand { display: inline-flex; align-items: center; line-height: 0; }
 .nav__brand img { height: 32px; width: auto; display: block; }
 .nav__links {
-  display: none; gap: var(--sp-3); font-size: .9rem;
+  display: none; gap: var(--sp-3); font-size: .75rem;
   letter-spacing: .01em;
+  font-weight: 300;
 }
 .nav__links a { opacity: .85; }
 .nav__links a:hover { opacity: 1; border-bottom: 1px solid var(--c-text); }
@@ -188,6 +189,7 @@
   font-family: var(--f-serif); font-size: 1.2rem;
 }
 .cat-link__arrow { font-size: 1.4rem; }
+.cat-link__target { width: 1.4rem; height: auto; flex-shrink: 0; align-self: flex-start; margin-top: .15em; }
 
 /* Im Hero (nur Landingpage) kompakter: kleinere Schrift, kein Padding,
    ohne Trennlinien. Fixe Breite damit alle 3 Pfeile auf einer Linie
@@ -197,9 +199,10 @@
   padding: 0;
   font-size: 1rem;
   border-bottom: 0;
-  justify-content: space-between;  /* Titel links, Pfeil rechts */
+  justify-content: flex-start;     /* Target links, Text direkt daneben */
+  gap: .6rem;
   align-items: center;
-  width: 210px;                    /* alle gleich breit -> Pfeile alignen */
+  width: 210px;                    /* alle gleich breit -> Texte alignen */
   align-self: flex-start;
   line-height: 1.15;
 }
@@ -1270,18 +1273,21 @@ a.card--teaser:hover h3 {
   flex: 1 1 auto;
 }
 .footer__legal a {
-  font-size: .78rem;
-  letter-spacing: .06em;
-  text-transform: uppercase;
+  font-size: .75rem;
+  font-weight: 300;
+  letter-spacing: .01em;
   opacity: .75;
   white-space: nowrap;
 }
 .footer__legal a:hover { opacity: 1; text-decoration: underline; }
 .back-up-inline {
-  text-transform: uppercase; letter-spacing: .12em;
-  font-size: .8rem; opacity: .8;
+  font-size: .75rem;
+  font-weight: 300;
+  letter-spacing: .01em;
+  opacity: .75;
+  white-space: nowrap;
 }
-.back-up-inline:hover { opacity: 1; }
+.back-up-inline:hover { opacity: 1; text-decoration: underline; }
 
 /* Mobile-Footer: Quicklinks oben, Copyright drunter, "nach oben"-Inline-Link
    weg (der floating Pfeil rechts unten reicht). Plus enger row-gap zwischen
