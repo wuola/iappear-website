@@ -751,13 +751,6 @@ a.card--teaser:hover h3 {
   /* Kategorie-Links: zentriert, eng gestapelt, mit Luft zum CTA */
   .hero .cat-link { align-self: center; }
   .hero .hero__right { gap: .4rem; margin-top: var(--sp-2); }
-
-  /* Social-Icons rechts im Container, Icons enger aneinander */
-  .hero .hero__social {
-    justify-content: flex-end;
-    gap: .5rem;
-    margin-top: var(--sp-2);
-  }
 }
 /* Awards-Rotator: absolut positioniert, mittig im Kranz */
 .hero__awards-rotator {
@@ -784,32 +777,57 @@ a.card--teaser:hover h3 {
   border-radius: 999px;
   padding: .85em 2.4em;
 }
-/* Social Icons im Hero (rechte Spalte, unten) */
-.hero__social {
+/* === Social Pills im Footer (Glassy + Brand-Color Hover) =================
+   3 Pills (Instagram, LinkedIn, Facebook) sitzen im Footer direkt VOR der
+   .footer__bottom Zeile. Glasrezept uebernommen vom .nav__burger fuer
+   Konsistenz mit dem restlichen Designsystem (alle glassy Komponenten
+   nutzen die selben --glass-* Variablen aus global.css).
+   Hover: BG wechselt auf die jeweilige Marken-Farbe + Glow drumherum.
+   Insta = Original-Verlauf, LinkedIn + Facebook = Brand-Blau.
+   Groesse: 36px (kompakt). Aenderungen am Look hier zentral. */
+.social-pills {
   display: flex;
-  gap: var(--sp-2);
-  margin-top: auto;
-  padding-top: var(--sp-2);
+  justify-content: center;
+  gap: .6rem;
+  margin: var(--sp-2) 0;
 }
-.hero__social a {
-  color: rgba(255,255,255,.6);
-  transition: color .2s;
+.social-pill {
+  width: 36px; height: 36px;
+  display: inline-flex; align-items: center; justify-content: center;
+  border: 0; border-radius: 50%;
+  background: var(--glass-bg);
+  box-shadow:
+    inset 0 2px 6px var(--glass-shadow-top),
+    inset 0 -2px 4px var(--glass-shadow-bottom),
+    inset 0 1px 0 var(--glass-highlight),
+    0 0 20px var(--glass-glow);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  color: rgba(255,255,255,.7);
+  cursor: pointer;
+  transition: all .3s var(--ease);
+  text-decoration: none;
 }
-.hero__social a:hover {
-  color: #fff;
+.social-pill svg {
+  width: 17px; height: 17px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
-@media (min-width: 960px) {
-  /* Social-Icons in die rechte untere Ecke vom Hero.
-     Rausgenommen aus dem flex-Flow von hero__right damit
-     cat-links unabhaengig zentriert werden koennen. */
-  .hero__social {
-    position: absolute;
-    bottom: var(--sp-3);
-    right: var(--sp-3);
-    margin: 0;
-    padding: 0;
-    justify-content: flex-end;
-  }
+.social-pill:hover { color: #fff; }
+.social-pill[data-net="ig"]:hover {
+  background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  box-shadow: 0 0 22px rgba(228,64,95,.55);
+}
+.social-pill[data-net="li"]:hover {
+  background: #0A66C2;
+  box-shadow: 0 0 22px rgba(10,102,194,.55);
+}
+.social-pill[data-net="fb"]:hover {
+  background: #1877F2;
+  box-shadow: 0 0 22px rgba(24,119,242,.55);
 }
 
 /* --- Netzwerk-Visualisierung (v2) ----------------------------------------
