@@ -32,7 +32,7 @@
     desc.innerHTML = `<h3>${f.title}</h3><p class="eyebrow">${f.sub}</p><p>${f.text}</p>`;
     /* Cache-Bust per Query-String: ?v=20260430 — bei jedem Video-Tausch im
        Repo Datum hochzaehlen, damit Browser nicht alte Versionen cached. */
-    const videoUrl = `assets/videos/features/${key}.mp4?v=20260430`;
+    const videoUrl = `assets/videos/features/${key}.mp4?v=20260502a`;
     screen.innerHTML = `<video src="${videoUrl}" autoplay muted loop playsinline preload="metadata"></video>`;
     /* Phone in Landscape-Modus drehen wenn das Video Querformat ist
        (aktuell nur 'map' = Interaktive Karten). */
