@@ -60,11 +60,15 @@
   position: fixed; inset: 0; z-index: 60;
   background: rgba(0,0,0,.97);
   display: none;
-  /* Inhalt am rechten Rand statt zentriert: viel padding-left, wenig rechts */
-  padding: calc(var(--sp-3) + 60px) var(--sp-3) var(--sp-4);
+  /* padding oben und unten gleich, damit justify-content: center wirklich mittig zentriert.
+     Top-padding behaelt 60px Schutzraum fuer den absolute-X-Button. */
+  padding: calc(var(--sp-3) + 60px) var(--sp-3);
+  flex-direction: column;
+  justify-content: center;  /* Menu-Inhalt vertikal mittig */
+  align-items: flex-end;  /* Groups rechts ausgerichtet (cross-axis) */
   overflow-y: auto;
 }
-.menu.is-open { display: block; }
+.menu.is-open { display: flex; }
 .menu__close {
   position: absolute; top: var(--sp-2); right: var(--sp-3);
   border: 0; border-radius: var(--radius);
@@ -92,21 +96,29 @@
 }
 /* Gruppen rechtsbuendig + schmaler */
 .menu__group {
+  width: 100%;
   max-width: 320px;
-  margin: var(--sp-2) 0 0 auto;  /* margin-left:auto -> rechts gedrueckt */
+  margin: var(--sp-1) 0 0;
 }
 .menu__heading {
   font-family: var(--f-serif); font-size: .95rem;
   letter-spacing: .15em; text-transform: uppercase;
   color: rgba(255,255,255,.75);
-  margin: 0 0 var(--sp-1);
+  margin: 0 0 .25rem;
 }
 /* Liste eingerueckt damit die Ueberschrift visuell "drueber" sitzt */
-.menu__list { display: grid; gap: .15rem; list-style: none; padding: 0 0 0 1.2rem; margin: 0 0 var(--sp-2); }
+.menu__list { display: grid; gap: 0; list-style: none; padding: 0 0 0 1.2rem; margin: 0; }
 .menu__list a {
-  font-family: var(--f-serif); font-size: 1rem;
-  padding: .35rem 0; border-bottom: 1px solid rgba(255,255,255,.12);
-  display: block; line-height: 1.3;
+  font-family: var(--f-serif); font-size: .85rem;
+  padding: .2rem 0;
+  background-image: linear-gradient(to right,
+    rgba(255,255,255,.25) 0%,
+    rgba(255,255,255,.05) 60%,
+    transparent 100%);
+  background-size: 100% 1px;
+  background-repeat: no-repeat;
+  background-position: bottom left;
+  display: block; line-height: 1.2;
 }
 @media (min-width: 720px) {
   .menu { padding-right: var(--sp-4); }
