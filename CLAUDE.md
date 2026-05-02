@@ -92,7 +92,7 @@ Einheitlich auf allen Seiten:
 
 ## Cache-Bust-Workflow
 
-Bei JEDER CSS- oder JS-Änderung Versionsnummer im `?v=...`-Query an allen `<link>`/`<script>`-Stellen hochzählen (Beispiel: `?v=20260502m` → `?v=20260502n`). Sonst hält der Browser-Disk-Cache das alte Stylesheet/Script.
+Bei JEDER CSS- oder JS-Änderung **nur die Versionsnummer der geänderten Datei** im `?v=...`-Query an allen `<link>`/`<script>`-Stellen hochzählen (Beispiel: `components.css?v=20260502m` → `components.css?v=20260502n`). **Andere CSS-/JS-Dateien unangetastet lassen — sie haben unabhängige Versions-Nummern.** Sonst hält der Browser-Disk-Cache das alte Stylesheet/Script.
 
 GitHub Pages serviert HTML mit `Cache-Control: max-age=600` — neuer Stand ist im normalen Tab erst nach 10 Min sichtbar, im privaten Tab sofort. **Maggy testet IMMER in privaten Tabs.**
 
