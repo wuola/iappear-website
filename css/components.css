@@ -58,7 +58,10 @@
 
 /* Overlay Menu — kompakt, rechtsbuendig */
 .menu {
-  position: fixed; inset: 0; z-index: 60;
+  /* z-index: 9999 (statt 60) damit das Menue ueber Leaflet-Karten liegt
+     — Leaflet-tile-panes haben default z-index 200, Controls bis 1000+,
+     Popups 700. Ohne diesen Wert lag die Karte ueber dem Menue-Overlay. */
+  position: fixed; inset: 0; z-index: 9999;
   background: rgba(0,0,0,.97);
   display: none;
   /* padding oben und unten gleich, damit justify-content: center wirklich mittig zentriert.
