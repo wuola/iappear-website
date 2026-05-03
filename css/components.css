@@ -219,8 +219,11 @@
   line-height: 1;
   flex-shrink: 0;
 }
-/* Eyebrow-Label "Kategorien" wird nur auf Mobile gezeigt (siehe Mobile-Media-Query). */
-.hero__cats-label { display: none; }
+/* Eyebrow-Labels nur auf Mobile gezeigt (siehe Mobile-Media-Query unten).
+   Pattern: kleine, gespreizte Uppercase-Headline, linksbuendig zur Page-
+   Container-Kante, mit Lichtstreifen drueber als Sektions-Trenner. */
+.hero__cats-label,
+.network-viz-label { display: none; }
 
 /* --- Cards ---------------------------------------------------------------- */
 .card {
@@ -772,24 +775,27 @@ a.card--teaser:hover h3 {
     width: max-content;
     max-width: 100%;
   }
-  /* Eyebrow-Label "KATEGORIEN": linksbuendig zur Page-Container-Kante.
-     Sitzt im HTML als Geschwister VOR .hero__right (eigene Grid-Row in
-     der 1-Spalten-Mobile-Hero), nimmt also die volle Container-Breite und
-     ist text-align: left automatisch an der linken Page-Container-Kante. */
-  .hero__cats-label {
+  /* Eyebrow-Labels: linksbuendig zur Page-Container-Kante. Sitzen im HTML
+     als Geschwister VOR ihrem Inhalt (eigene Grid-Row), nehmen die volle
+     Container-Breite, text-align: left → linke Page-Container-Kante. */
+  .hero__cats-label,
+  .network-viz-label {
     display: block;
     position: relative;
     padding-top: var(--sp-3);
-    margin-top: var(--sp-3);
     text-align: left;
     font-size: .68rem;
     letter-spacing: .15em;
     text-transform: uppercase;
     color: rgba(255,255,255,.55);
   }
-  /* Lichtstreifen oberhalb des Labels — gleiches Rezept wie .footer::before,
+  /* Margin-top nur auf hero (Luft zum CTA drueber). Network-Viz hat schon
+     .network { gap: var(--sp-4) } durch das Grid drueber. */
+  .hero__cats-label { margin-top: var(--sp-3); }
+  /* Lichtstreifen oberhalb der Labels — gleiches Rezept wie .footer::before,
      mit eigener fester Breite, mittig zur Page (translateX -50%). */
-  .hero__cats-label::before {
+  .hero__cats-label::before,
+  .network-viz-label::before {
     content: "";
     position: absolute;
     top: 0;
