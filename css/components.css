@@ -102,7 +102,9 @@
 .menu__group {
   width: 100%;
   max-width: 320px;
-  margin: var(--sp-1) 0 0;
+  /* Subtiler Gap zwischen den 3 Bloecken (Plattform / Stadtrundgaenge /
+     Backstage) — atmet ohne dass das Menue scrollen muss. */
+  margin: var(--sp-2) 0 0;
 }
 .menu__heading {
   font-family: var(--f-serif); font-size: .95rem;
