@@ -830,10 +830,14 @@ a.card--teaser:hover h3 {
   flex-wrap: nowrap;
   gap: var(--sp-1);
 }
-/* CTA-Button im Hero — erbt Glassy-Look von .btn, nur Form-Overrides */
+/* CTA-Button im Hero — erbt Glassy-Look von .btn, nur Form-Overrides.
+   Ueberschreibt uppercase + weites letter-spacing aus .btn, damit der
+   Mixed-Case-Text "Rundgang starten" natuerlich wirkt. */
 .hero__cta {
   margin-top: var(--sp-1);
-  letter-spacing: .15em;
+  text-transform: none;
+  letter-spacing: .02em;
+  font-size: 1rem;
   border-radius: 999px;
   padding: .85em 2.4em;
 }
