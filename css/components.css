@@ -748,9 +748,24 @@ a.card--teaser:hover h3 {
   .hero__stage     { display: none; }
   .eyebrow.hero__claim { display: none; }
 
-  /* Kategorie-Links: zentriert, eng gestapelt, mit Luft zum CTA */
-  .hero .cat-link { align-self: center; }
-  .hero .hero__right { gap: .4rem; margin-top: var(--sp-2); }
+  /* Kategorie-Links: optisch mittig unter dem CTA. Trick:
+     - hero__right per width: max-content auf das groesste Item schrumpfen
+     - Items per width: auto + align-self: stretch auf Container-Breite ziehen
+     Dadurch sind alle Items gleich breit (= laengstes Item), Targets in
+     einer Spalte aligned, und der ganze Block sitzt per margin: 0 auto
+     mittig in der Page. Die Desktop-fixe 210 px-Item-Breite waere hier
+     zu breit (rechts viel Whitespace) und der Inhalt wirkte nach links
+     versetzt. */
+  .hero .cat-link {
+    width: auto;
+    align-self: stretch;
+  }
+  .hero .hero__right {
+    gap: .4rem;
+    margin-top: var(--sp-2);
+    width: max-content;
+    max-width: 100%;
+  }
 }
 /* Awards-Rotator: absolut positioniert, mittig im Kranz */
 .hero__awards-rotator {
