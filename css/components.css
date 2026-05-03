@@ -219,6 +219,8 @@
   line-height: 1;
   flex-shrink: 0;
 }
+/* Eyebrow-Label "Kategorien" wird nur auf Mobile gezeigt (siehe Mobile-Media-Query). */
+.hero__cats-label { display: none; }
 
 /* --- Cards ---------------------------------------------------------------- */
 .card {
@@ -762,9 +764,46 @@ a.card--teaser:hover h3 {
   }
   .hero .hero__right {
     gap: .4rem;
-    margin-top: var(--sp-2);
+    margin-top: .4rem;
+    /* Plus hero padding-bottom (var(--sp-1) = 8 px) ergibt 24 px zwischen
+       letztem Cat-Link und dem Sektions-Trenner der naechsten Section,
+       gleich gross wie der Abstand vom oberen Lichtstreifen zu KATEGORIEN. */
+    margin-bottom: var(--sp-2);
     width: max-content;
     max-width: 100%;
+  }
+  /* Eyebrow-Label "KATEGORIEN": linksbuendig zur Page-Container-Kante.
+     Sitzt im HTML als Geschwister VOR .hero__right (eigene Grid-Row in
+     der 1-Spalten-Mobile-Hero), nimmt also die volle Container-Breite und
+     ist text-align: left automatisch an der linken Page-Container-Kante. */
+  .hero__cats-label {
+    display: block;
+    position: relative;
+    padding-top: var(--sp-3);
+    margin-top: var(--sp-3);
+    text-align: left;
+    font-size: .68rem;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.55);
+  }
+  /* Lichtstreifen oberhalb des Labels — gleiches Rezept wie .footer::before,
+     mit eigener fester Breite, mittig zur Page (translateX -50%). */
+  .hero__cats-label::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(280px, 90vw);
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      transparent 0%,
+      rgba(255,255,255,.18) 50%,
+      transparent 100%
+    );
+    pointer-events: none;
   }
 }
 /* Awards-Rotator: absolut positioniert, mittig im Kranz */
