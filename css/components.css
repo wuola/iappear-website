@@ -104,13 +104,14 @@
 .menu__heading {
   font-family: var(--f-serif); font-size: .95rem;
   letter-spacing: .15em; text-transform: uppercase;
-  color: rgba(255,255,255,.75);
+  color: var(--c-text);
   margin: 0 0 .25rem;
 }
 /* Liste eingerueckt damit die Ueberschrift visuell "drueber" sitzt */
 .menu__list { display: grid; gap: 0; list-style: none; padding: 0 0 0 1.2rem; margin: 0; }
 .menu__list a {
   font-family: var(--f-serif); font-size: .85rem;
+  color: rgba(255,255,255,.75);
   padding: .2rem 0;
   background-image: linear-gradient(to right,
     rgba(255,255,255,.25) 0%,
@@ -121,6 +122,11 @@
   background-position: bottom left;
   display: block; line-height: 1.2;
 }
+/* Akzent-Farben fuer die 3 Kategorie-Links bleiben erhalten — die hier
+   noetige hoehere Specificity ueberschreibt die generische Link-Farbe. */
+.menu__list a.c-history { color: var(--c-history); }
+.menu__list a.c-dentity { color: var(--c-dentity); }
+.menu__list a.c-grow    { color: var(--c-grow); }
 @media (min-width: 720px) {
   .menu { padding-right: var(--sp-4); }
   .menu__close { right: var(--sp-4); }
