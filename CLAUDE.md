@@ -128,20 +128,19 @@ Bei Asset-Tausch (mp4/jpg-Bytes ändern, Dateiname bleibt): Cache-Bust auch im J
 
 ## Aktueller Stand (Mai 2026)
 
-Site ist live auf https://wuola.github.io/iappear-website/. Alle 11 Hauptseiten + 4 Stadtseiten + 22 Vitrine-Artikel stehen. Blog ist mit Vitrine verschmolzen (2 Bestandsartikel unter `/blog/`, Index leitet auf Vitrine weiter). Designsystem (glassy/strokeless) konsistent. SEO durchgezogen. Verbleibend: Polish, einzelne Mobile-Bugs, Marilena-Abstimmungen, dann Domain-Umleitung.
+Site ist live auf https://wuola.github.io/iappear-website/. Alle 11 Hauptseiten + 4 Stadtseiten + 22 Vitrine-Artikel stehen. Blog ist mit Vitrine verschmolzen (2 Bestandsartikel unter `/blog/`, Index leitet auf Vitrine weiter). Designsystem (glassy/strokeless) konsistent. SEO durchgezogen. **Launch-Ziel: Dienstag 2026-05-05 mit Domain-Umleitung iappear.at.** SEO-Sichtbarkeit > Perfektion — Marilena-Punkte unten werden NICHT als Launch-Blocker behandelt, Justierung kann nach Launch.
 
 ## Was noch offen ist
 
 - **Hero-Videos starten erst beim 2. Page-Load (Mobile)** — auf Maggys Standard-Mobile-Browser. Auf Chrome Mobile spielt es. Akzeptiert-offen, Bisect bisher nur bis 27.04. zurück. Code-Stand: `poster` + `preload="metadata"` sind drin, gibt im Bug-Fall wenigstens das Standbild.
-- **Phone-Mockup-Notch (Dynamic Island)** verdeckt Content im Video-Bereich. Marilena-Entscheidung: Notch weg / kleiner / Content beschneiden.
-- **Typografie-Konzept mit Marilena** — Mix-Konzept (Serif Subtitle, Sans Brand) vs. einheitlich? Auf 3 Kategorie-Seiten provisorisch Roboto Black 900 für h1.
+- **Phone-Mockup-Notch (Dynamic Island)** verdeckt Content im Video-Bereich. Marilena-Entscheidung: Notch weg / kleiner / Content beschneiden. **Nicht Launch-Blocker.**
+- **Typografie-Konzept mit Marilena** — Mix-Konzept (Serif Subtitle, Sans Brand) vs. einheitlich? Auf 3 Kategorie-Seiten provisorisch Roboto Black 900 für h1. **Nicht Launch-Blocker.**
 - **User Guide Detail-Anpassungen** — Logik + Bilder stimmen, Detail-Pass laut Maggy noch offen.
-- **Netzwerk-Visualisierung Layout** — Marilena-Abstimmung ob 18 Stations + 19 Verlinkungen so passen oder einzelne raus / Labels via `labelOffsetExtra` größer. Mobile-Geometrie (RX/RY_STATIONS = 125/260) ggf. nachziehen.
-- **Hero-Layout Feinschliff** — Maggy: „da passt sowieso was mit dem Layout nicht".
+- **Netzwerk-Visualisierung Layout** — Marilena-Abstimmung ob 18 Stations + 19 Verlinkungen so passen oder einzelne raus / Labels via `labelOffsetExtra` größer. Mobile-Geometrie (RX/RY_STATIONS = 125/260) ggf. nachziehen. **Nicht Launch-Blocker.**
 - **Color-Contrast-Review** — Maggy schickt Screenshots (aus reinem HTML kein Kontrast bewertbar).
 - **Mini-Karten Daten-Auffälligkeiten** — siehe `_doku/karten-todos.md` (3 Default-Koordinaten in hist.appear, Doppelpunkte in See Runde, Barockbaumeister-Bounds, Mapping-Annahmen i.grow). Stations-Master-Daten liegen im Obsidian-Vault unter `Koordinaten_alle_Stationen.md`.
 - **Englische Version** — eigene spätere Phase.
-- **Domain-Umleitung iappear.at → GitHub Pages** — ganz am Schluss.
+- **Domain-Umleitung iappear.at → GitHub Pages** — typischerweise Montag früh starten (DNS-Propagation 1-24h, GitHub HTTPS-Cert 5-30 min nach DNS-Switch). CNAME-File ins Repo, DNS-Eintrag bei united-domains.de auf GitHub Pages IPs.
 
 ## Versionen & Rollback
 
