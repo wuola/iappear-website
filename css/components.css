@@ -219,11 +219,31 @@
   line-height: 1;
   flex-shrink: 0;
 }
-/* Eyebrow-Labels nur auf Mobile gezeigt (siehe Mobile-Media-Query unten).
-   Pattern: kleine, gespreizte Uppercase-Headline, linksbuendig zur Page-
-   Container-Kante, mit Lichtstreifen drueber als Sektions-Trenner. */
+/* Eyebrow-Labels: kleine, gespreizte Uppercase-Headline.
+   Mobile (siehe Mobile-Media-Query unten): linksbuendig zur Page-Container-
+   Kante, mit Lichtstreifen drueber als Sektions-Trenner.
+   Desktop: nur .network-viz-label sichtbar als Caption UNTER der Viz. */
 .hero__cats-label,
 .network-viz-label { display: none; }
+
+/* Desktop: Network-Viz-Label als zentrierte Caption unter der Visualisierung.
+   Wrapper ist Flex-Column-Reverse, sodass Label im HTML vor der Viz steht
+   (fuer Mobile-Reihenfolge), aber visuell unter ihr landet. */
+@media (min-width: 720px) {
+  .network-viz-wrap {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  .network-viz-label {
+    display: block;
+    text-align: center;
+    margin-top: var(--sp-3);
+    font-size: .72rem;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.55);
+  }
+}
 
 /* --- Cards ---------------------------------------------------------------- */
 .card {

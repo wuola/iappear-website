@@ -24,7 +24,7 @@
 
   <link rel="stylesheet" href="css/global.css?v=20260430c" />
   <link rel="stylesheet" href="css/layout.css?v=20260430a" />
-  <link rel="stylesheet" href="css/components.css?v=20260503d" />
+  <link rel="stylesheet" href="css/components.css?v=20260503e" />
   <link rel="stylesheet" href="css/animations.css?v=20260428a" />
 
   <!-- Schema.org strukturierte Daten: Organization + WebSite + LocalBusiness.
@@ -251,10 +251,9 @@
           </p>
         </div>
 
-        <div>
-          <!-- Label nur auf Mobile sichtbar (CSS): trennt mit Lichtstreifen die
-               Netzwerk-Viz vom Prose-Text drueber, gleiches Pattern wie
-               .hero__cats-label. -->
+        <div class="network-viz-wrap">
+          <!-- Label sichtbar auf Mobile (oben, mit Lichtstreifen als Trenner)
+               UND auf Desktop (unten, zentriert, ohne Streifen — als Caption). -->
           <small class="network-viz-label">Netzwerk Dornbirn</small>
           <div class="network-viz" data-network aria-label="Netzwerk der Rundgänge"></div>
         </div>
