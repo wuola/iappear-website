@@ -566,12 +566,12 @@
       .options-diagram__box--right  { grid-column: 3; grid-row: 2; }
       .options-diagram__box--bottom { grid-column: 2; grid-row: 3; }
 
-      /* Center: leere gestrichelte Box als Anker fuer die Linien */
+      /* Center: leere Cell als Anker fuer Crosshair-Linien + animierte Punkte.
+         Kein Border mehr — die gepunkteten Crosshair-Linien (::before/::after)
+         und die animierten Dots sind selbst der "Hub". */
       .options-diagram__center {
         grid-column: 2; grid-row: 2;
         position: relative;
-        border: 1px dashed rgba(255,255,255,.18);
-        border-radius: var(--radius-card);
         min-height: 80px;
       }
       /* Vertikale gepunktete Linie durch Center (Top↔Bottom) */
@@ -593,6 +593,50 @@
         border-top: 2px dotted rgba(255,255,255,.28);
         transform: translateY(-50%);
         z-index: 1;
+      }
+
+      /* Animierte leuchtende Punkte: starten aussen an den Card-Edges, treffen
+         sich gleichzeitig in der Mitte des Crosshair-Schnittpunkts, wandern
+         wieder zurueck nach aussen. Alle 4 synchron — wenn sie sich in der
+         Mitte ueberlagern, ergibt der Glow-Stack einen helleren Pulse. */
+      .options-diagram__dot {
+        position: absolute;
+        width: 8px; height: 8px;
+        margin-left: -4px;  /* halbe Width: zentriert sich selbst auf left:50% */
+        margin-top: -4px;   /* halbe Height: zentriert sich selbst auf top:50% */
+        border-radius: 50%;
+        background: #fff;
+        box-shadow:
+          0 0 8px rgba(255,255,255,.85),
+          0 0 16px rgba(255,255,255,.4);
+        z-index: 2;
+        pointer-events: none;
+      }
+      .options-diagram__dot--top,
+      .options-diagram__dot--bottom { left: 50%; }
+      .options-diagram__dot--left,
+      .options-diagram__dot--right  { top: 50%; }
+
+      .options-diagram__dot--top    { animation: optDotTop    3s ease-in-out infinite; }
+      .options-diagram__dot--bottom { animation: optDotBottom 3s ease-in-out infinite; }
+      .options-diagram__dot--right  { animation: optDotRight  3s ease-in-out infinite; }
+      .options-diagram__dot--left   { animation: optDotLeft   3s ease-in-out infinite; }
+
+      @keyframes optDotTop {
+        0%, 100% { top: calc(-1 * var(--sp-3)); }
+        50%      { top: 50%; }
+      }
+      @keyframes optDotBottom {
+        0%, 100% { top: calc(100% + var(--sp-3)); }
+        50%      { top: 50%; }
+      }
+      @keyframes optDotLeft {
+        0%, 100% { left: calc(-1 * var(--sp-3)); }
+        50%      { left: 50%; }
+      }
+      @keyframes optDotRight {
+        0%, 100% { left: calc(100% + var(--sp-3)); }
+        50%      { left: 50%; }
       }
 
       @media (max-width: 860px) {
@@ -621,7 +665,12 @@
         <article class="options-diagram__box options-diagram__box--left">
           <p>Zudem lassen sich Informationsstationen für relevante Orientierungspunkte einpflegen, die auf Rundgänge oder zusammenhängende Stationen verweisen. So werden alle Elemente innerhalb der App zu einem flächendeckenden digitalen Netzwerk verknüpft, das auf der interaktiven Karte für die Nutzer:innen sichtbar wird.</p>
         </article>
-        <div class="options-diagram__center" aria-hidden="true"></div>
+        <div class="options-diagram__center" aria-hidden="true">
+          <span class="options-diagram__dot options-diagram__dot--top"></span>
+          <span class="options-diagram__dot options-diagram__dot--right"></span>
+          <span class="options-diagram__dot options-diagram__dot--bottom"></span>
+          <span class="options-diagram__dot options-diagram__dot--left"></span>
+        </div>
         <article class="options-diagram__box options-diagram__box--right">
           <p>Zusammen mit unserem interdisziplinären Team können neue Rundgänge erarbeitet oder bestehende Konzepte neu gedacht werden. Durch das Teilen von Stationen lassen sich neue und vorhandene Rundgänge flexibel miteinander verbinden.</p>
         </article>
@@ -631,35 +680,18 @@
       </div>
     </section>
 
-    <!-- ========== FUER DETAILS — Erklaertext links + Mini-Kontaktformular rechts =========
-         Mobile <720px: stapelt untereinander. -->
+    <!-- ========== FUER DETAILS — Erklaertext links + Schreib-uns-Box rechts =========
+         Schreib-uns-Box nutzt das gleiche Pattern wie kontakt.html (.contact-form,
+         glassy, kompakt). Mobile <720px: stapelt untereinander. -->
     <style>
       .for-details {
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr minmax(0, 408px);
         gap: var(--sp-4);
         align-items: start;
       }
       .for-details__text p { margin: 0 0 var(--sp-2); line-height: 1.65; }
       .for-details__text p:last-child { margin-bottom: 0; }
-      .for-details__form-wrap {
-        background: rgba(255,255,255,.03);
-        border: 1px solid rgba(255,255,255,.12);
-        border-radius: var(--radius-card);
-        padding: var(--sp-3);
-      }
-      .for-details__mail {
-        display: flex; align-items: center; justify-content: center;
-        flex-direction: column; gap: 6px;
-        margin: 0 0 var(--sp-3);
-        text-align: center;
-      }
-      .for-details__mail svg { width: 32px; height: 32px; opacity: .85; }
-      .for-details__mail a {
-        color: var(--c-text); opacity: .85;
-        text-decoration: none; font-size: .95rem;
-      }
-      .for-details__mail a:hover { opacity: 1; text-decoration: underline; }
       @media (max-width: 720px) {
         .for-details { grid-template-columns: 1fr; gap: var(--sp-3); }
       }
@@ -673,21 +705,19 @@
           <p>Du darfst dir das gerne alles durchlesen, du kannst uns aber auch einfach deine Fragen gleich schicken.</p>
           <p>Oder für erste Hilfe kommst du hier zu den <a href="faqs.html">FAQs</a>.</p>
         </div>
-        <div class="for-details__form-wrap">
-          <p class="for-details__mail">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6l-10 7L2 6"/></svg>
-            <a href="mailto:info@iappear.app">info@iappear.app</a>
+        <form class="form contact-form" method="post" action="#" aria-label="Schnellanfrage">
+          <h3 class="contact-form__title">Schreib uns</h3>
+          <p class="contact-form__direct">
+            Lieber direkt? <a href="mailto:info@iappear.app">info@iappear.app</a>
           </p>
-          <form class="form" method="post" action="#" aria-label="Schnellanfrage">
-            <label for="wf-name">Name</label>
-            <input id="wf-name" name="name" type="text" required />
-            <label for="wf-mail">E-Mail</label>
-            <input id="wf-mail" name="email" type="email" required />
-            <label for="wf-text">Nachricht</label>
-            <textarea id="wf-text" name="text" rows="4" required></textarea>
-            <button type="submit" class="btn">Absenden</button>
-          </form>
-        </div>
+          <label for="wf-name">Name</label>
+          <input id="wf-name" name="name" type="text" required />
+          <label for="wf-mail">E-Mail</label>
+          <input id="wf-mail" name="email" type="email" required />
+          <label for="wf-text">Nachricht</label>
+          <textarea id="wf-text" name="text" required></textarea>
+          <button type="submit" class="btn">Absenden</button>
+        </form>
       </div>
     </section>
   </main>
