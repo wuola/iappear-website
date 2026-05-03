@@ -132,8 +132,20 @@ Site ist live auf https://wuola.github.io/iappear-website/. Alle 11 Hauptseiten 
 
 ## Was noch offen ist
 
-- **Domain-Umleitung iappear.at → GitHub Pages** — typischerweise Montag früh starten (DNS-Propagation 1-24h, GitHub HTTPS-Cert 5-30 min nach DNS-Switch). CNAME-File ins Repo, DNS-Eintrag bei united-domains.de auf GitHub Pages IPs.
+### Vor Live-Stellung (Montag 2026-05-04 früh angehen)
+
+1. **Kontaktformulare tot** — `workflow.html` + `kontakt.html` haben `<form action="#">`, Absenden tut nichts. Optionen: Form raus + nur Mail-Link `info@iappear.app`, oder Formspree/Web3Forms anbinden. Maggy entscheidet.
+2. **`stadtrundgang-bregenz.html` existiert nicht**, aber in `sitemap.xml` + `llms.txt` verlinkt → 404. Beide Stellen auskommentieren bis die Page existiert (analog zum Blog-Verstecken-Pattern).
+3. **CNAME-File anlegen** mit Inhalt `iappear.at` im Repo-Root. Dann GitHub Pages Settings → Custom Domain `iappear.at` + HTTPS erzwingen.
+4. **Domain-Umleitung iappear.at → GitHub Pages**:
+   - Maggy bei united-domains.de: A-Records für Apex `iappear.at`: `185.199.108.153`, `.109.153`, `.110.153`, `.111.153`. CNAME für `www`: `wuola.github.io`
+   - Maggy bei Readymag: Domain freigeben (sonst Konflikt)
+   - DNS-Propagation 1-6h typisch (Worst Case 24h), GitHub HTTPS-Cert 5-30 min nach DNS-Switch
+
+### Nach Launch
+
 - **Englische Version** — eigene spätere Phase.
+- **Blog reaktivieren** wenn ClaudeCowork-Drafts überarbeitet sind (siehe Session 21 Doku — Reaktivierung = HTML-Comments raus auf vitrine.html + noindex-Tags raus aus 3 blog/*.html + sitemap/llms-Einträge zurück).
 
 ## Akzeptiert-offen (kein Launch-Blocker)
 

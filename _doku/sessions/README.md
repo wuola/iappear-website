@@ -6,6 +6,7 @@ Naming: `YYYY-MM-DD-session-NN-thema.md`
 
 ## Sessions
 
+- 2026-05-03 - [Session 21 - Pre-Launch-Cleanup: Mini-Karten-Dedup, Glassy-Modifier, i-dentity-Inhalt, Blog-Verstecken, LinkedIn-Fix, Pre-Launch-Audit](2026-05-03-session-21-pre-launch-cleanup-glassy-blog-domain-vorbereitung.md)
 - 2026-05-03 - [Session 20 - Launch-Vorbereitung: Mobile-Polish + Burger-Farben + Workflow-Animation](2026-05-03-session-20-launch-vorbereitung-mobile-polish-workflow-anim.md)
 - 2026-05-02 - [Session 19 - Cache-Bust-Rollout + Social Pills im Footer + Footer-Polish + Uni-Logo Centering-Fix](2026-05-02-session-19-cache-bust-rollout-social-pills-footer-polish.md)
 - 2026-05-02 - [Session 18 - Hero-Posters zurueck + Feature-Videos Komprimierung + Feature-Posters + features.js Refactor + Landing-Polish + Burger-Menue-Refactor + Top-Nav/Footer/Hero-Cat-Links Vereinheitlichung](2026-05-02-session-18-hero-posters-zurueck-feature-videos-komprimierung.md)
