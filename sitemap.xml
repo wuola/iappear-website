@@ -87,7 +87,7 @@
     <priority>0.8</priority>
   </url>
   <!-- STADTRUNDGANG-URLS:END -->
-  <!-- blog/index.html leitet auf vitrine.html weiter -->
+  <!-- Blog-URLs fuer Launch ausgeblendet — Artikel werden ueberarbeitet, Indexierung pausiert.
   <url>
     <loc>https://iappear.at/blog/was-ist-ein-digitaler-stadtrundgang/</loc>
     <changefreq>yearly</changefreq>
@@ -98,6 +98,7 @@
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
+  -->
   <url>
     <loc>https://iappear.at/impressum/</loc>
     <changefreq>yearly</changefreq>

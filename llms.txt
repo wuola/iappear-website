@@ -37,8 +37,6 @@ Die drei inhaltlichen Kategorien heissen i.history (historische Stadtrundgaenge,
 ## Vitrine (Artikel & Einblicke)
 
 - [Vitrine](https://iappear.at/vitrine/): Auszeichnungen, Presse, Hintergrund-Artikel und Referenzen - alles an einem Ort.
-- [Was ist ein digitaler Stadtrundgang?](https://iappear.at/blog/was-ist-ein-digitaler-stadtrundgang/): Wie ein Audioguide ohne App funktioniert - mit Audio, Video, AR und Quiz direkt im Browser.
-- [Medienbildung in Vorarlberg](https://iappear.at/blog/medienbildung-vorarlberg-schueler-gestalten-stadtrundgaenge/): Wenn Schueler ihre eigenen Stadtrundgaenge gestalten - Demokratiebildung, Medienkompetenz und KI-Bildung mit i.grow.
 
 ## Features
 
