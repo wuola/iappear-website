@@ -132,15 +132,14 @@ Site ist live auf https://wuola.github.io/iappear-website/. Alle 11 Hauptseiten 
 
 ## Was noch offen ist
 
-- **Hero-Videos starten erst beim 2. Page-Load (Mobile)** — auf Maggys Standard-Mobile-Browser. Auf Chrome Mobile spielt es. Akzeptiert-offen, Bisect bisher nur bis 27.04. zurück. Code-Stand: `poster` + `preload="metadata"` sind drin, gibt im Bug-Fall wenigstens das Standbild.
-- **Phone-Mockup-Notch (Dynamic Island)** verdeckt Content im Video-Bereich. Marilena-Entscheidung: Notch weg / kleiner / Content beschneiden. **Nicht Launch-Blocker.**
-- **Typografie-Konzept mit Marilena** — Mix-Konzept (Serif Subtitle, Sans Brand) vs. einheitlich? Auf 3 Kategorie-Seiten provisorisch Roboto Black 900 für h1. **Nicht Launch-Blocker.**
-- **User Guide Detail-Anpassungen** — Logik + Bilder stimmen, Detail-Pass laut Maggy noch offen.
-- **Netzwerk-Visualisierung Layout** — Marilena-Abstimmung ob 18 Stations + 19 Verlinkungen so passen oder einzelne raus / Labels via `labelOffsetExtra` größer. Mobile-Geometrie (RX/RY_STATIONS = 125/260) ggf. nachziehen. **Nicht Launch-Blocker.**
-- **Color-Contrast-Review** — Maggy schickt Screenshots (aus reinem HTML kein Kontrast bewertbar).
-- **Mini-Karten Daten-Auffälligkeiten** — siehe `_doku/karten-todos.md` (3 Default-Koordinaten in hist.appear, Doppelpunkte in See Runde, Barockbaumeister-Bounds, Mapping-Annahmen i.grow). Stations-Master-Daten liegen im Obsidian-Vault unter `Koordinaten_alle_Stationen.md`.
-- **Englische Version** — eigene spätere Phase.
 - **Domain-Umleitung iappear.at → GitHub Pages** — typischerweise Montag früh starten (DNS-Propagation 1-24h, GitHub HTTPS-Cert 5-30 min nach DNS-Switch). CNAME-File ins Repo, DNS-Eintrag bei united-domains.de auf GitHub Pages IPs.
+- **Englische Version** — eigene spätere Phase.
+
+## Akzeptiert-offen (kein Launch-Blocker)
+
+- **Hero-Videos starten erst beim 2. Page-Load (Mobile)** — nur auf Opera Mobile, andere Browser ok. Poster-Bild ist Fallback.
+- **Color-Contrast-Review** — Status quo ist OK (Maggy 2026-05-03: keine Lösung griffbereit, akzeptiert).
+- **Typografie-Konzept** — provisorisches Mix-Konzept passt fürs erste, ggf. später.
 
 ## Versionen & Rollback
 

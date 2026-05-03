@@ -75,8 +75,15 @@
       map.fitBounds(bounds, { padding: [24, 24] });
     }
 
+    // Stationen mit identischen Koordinaten dedupen — Mini-Karte ist nur
+     // symbolisch, mehrere Marker exakt uebereinander wirken wie ein einziger
+     // (z.B. hist.appear Vertiefungs-Stations, See-Runde Gedenkstein+Wuerfelturm).
     const icon = buildIcon(color);
+    const seen = {};
     stations.forEach(function(s){
+      const key = s.lat + ',' + s.lng;
+      if (seen[key]) return;
+      seen[key] = true;
       window.L.marker([s.lat, s.lng], { icon: icon, interactive: false, keyboard: false }).addTo(map);
     });
 

@@ -1,78 +1,63 @@
 # Mini-Karten-TODOs
 
-Gesammelte Auffälligkeiten beim Ausrollen der Mini-Karten auf alle Rundgänge.
-Diese Punkte werden NICHT automatisch gefixt — Maggy entscheidet später was sinnvoll ist.
-
-Stand: 2026-04-29 (Session 14, beim Ausrollen der Mini-Karten)
+Stand: **2026-05-03 — abgearbeitet (Session 21).** Maggy hat alle offenen Punkte
+geklaert. Datei bleibt als Audit-Trail liegen.
 
 ---
 
-## Stationen mit Default-Koordinaten (übereinander auf der Karte)
+## ~~Stationen mit Default-Koordinaten~~ ✓ Maggy-OK
 
 Drei Stationen in **hist.appear** liegen alle auf 47.414141 / 9.740922:
 - "Die Wurzeln Dornbirns"
 - "Vertiefung Turteltaub"
 - "Vertiefung Zeitzeugen"
 
-Folge: auf der Mini-Karte sieht man dort nur EINEN Marker statt drei (drei perfekt aufeinander).
-In der Storyblok-Koordinaten-MD bereits mit ⚠ markiert.
-
-**Was tun?** Echte Koordinaten in Storyblok eintragen, dann Daten neu ziehen.
+→ **Maggy 2026-05-03**: Koordinaten passen, ist Spezialfall. Mini-Karte ist
+ohnehin nur symbolisch (echte Karte ist in der App). Renderer dedupt jetzt
+identische Koordinaten — zeigt nur EIN Target statt drei perfekt
+uebereinander gestapelte (`js/rundgang-map.js`).
 
 ---
 
-## Doppelte Koordinaten innerhalb desselben Rundgangs
+## ~~Doppelte Koordinaten innerhalb desselben Rundgangs~~ ✓ Maggy-OK
 
 **See Runde (Hard):**
 - "Gedenkstein Sanierung" und "Würfelturm" — beide exakt auf 47.4943502 / 9.688513
-- "Gert Hoor" existiert zweimal (anderer Name? Datenfehler? Zwei verschiedene Stations mit identischem Stations-Namen)
+- "Gert Hoor" existiert zweimal
 
-**Was tun?** Im Storyblok prüfen ob das absichtlich ist (z.B. Vertiefungs-Station) oder ein Fehler.
-
----
-
-## Stationen weit ausserhalb des Hauptgebiets
-
-~~**Frauenspuren (Dornbirn):**~~ ✓ behoben 2026-04-29
-- Station 1 "Überblick" lag auf 47.389988 / 9.777290 (Gütle) — vermutlich Datenfehler (gleiche Koord wie Stadtspuren-Gütle)
-- In `js/data/rundgang-stationen.js` korrigiert auf 47.413833 / 9.742232 (Innenstadt)
-- TODO: Storyblok auch noch updaten, sonst weicht es bei nächster Daten-Re-Sync wieder ab
-
-**Barockbaumeister (Au):**
-Die 6 Stationen verteilen sich extrem weit:
-- 47.32 / 9.99 (Au)
-- 47.36 / 9.93
-- 47.50 / 9.74
-- 47.64 / 8.60 (Schweiz!)
-- 47.66 / 9.17
-- Folge: die Mini-Karte zeigt das halbe Vorarlberg + Teile der Schweiz, lokale Aussagekraft = null
-
-**Was tun?** Ist möglicherweise gewollt (Franz Beer hat ja in der ganzen Bodensee-Region und der Schweiz gebaut). Eventuell auf der Karte einen "Hauptort" Au stark betonen und die anderen als kleinere Punkte. Oder eigene Karten-Variante mit Mini-Pfeilen "weiter weg".
+→ **Maggy 2026-05-03**: Koordinaten stimmen so, ist Spezialfall.
+Renderer-Dedup zeigt jetzt EIN Target.
 
 ---
 
-## Mapping-Annahmen
+## ~~Stationen weit ausserhalb des Hauptgebiets~~ ✓ behoben + Maggy-OK
 
-Beim Mapping HTML-Card → Stationen-Daten gab es zwei nicht 100% sichere Zuordnungen:
+~~**Frauenspuren (Dornbirn):**~~ ✓ behoben 2026-04-29 (Innenstadt-Koords gesetzt).
+TODO: Storyblok auch noch updaten, sonst weicht es bei naechster Daten-Re-Sync wieder ab.
 
-1. **i-grow "Buntes Dornbirn"** wurde auf den Storyblok-Rundgang **"Immersive Ethik"** gemappt
-   (Begründung: Stat 1 in Immersive Ethik heisst "Buntes Dornbirn", die anderen Stations passen thematisch)
-   → Falls das ein eigener Rundgang ist, andere Daten verlinken.
-
-2. **i-grow "hist.appear (Schulversion)"** zeigt die gleichen Koordinaten wie **"Hist.appear"** auf i-history
-   → Falls die Schulversion eine eigene Station-Auswahl hat, eigenen Rundgang in der Daten-Datei anlegen.
+**Barockbaumeister (Au):** 6 Stationen verteilen sich extrem weit (Au, Vorarlberg, Schweiz).
+→ **Maggy 2026-05-03**: bewusst so lassen — Franz Beer hat tatsaechlich in
+der ganzen Bodensee-Region und Schweiz gebaut.
 
 ---
 
-## Karten ohne Stationen
+## ~~Mapping-Annahmen~~ ✓ Maggy-OK
+
+1. **i-grow "Buntes Dornbirn"** → Storyblok-Rundgang **"Immersive Ethik"** —
+   **Maggy 2026-05-03**: Mapping korrekt.
+2. **i-grow "hist.appear (Schulversion)"** zeigt gleiche Koordinaten wie i-history "Hist.appear" —
+   **Maggy 2026-05-03**: gewollt, wir zeigen nur die hist.appear-Stationen.
+
+---
+
+## Karten ohne Stationen ✓ Renderer-Sonderfall
 
 **125 Jahre — 125 Bilder** (i-history): kein Rundgang mit Stations, sondern eine Foto-Ausstellung
-→ Mini-Karte macht keinen Sinn, Platzhalter wurde belassen.
+→ Mini-Karte macht keinen Sinn, Platzhalter belassen.
 
 ---
 
-## Karten mit nur 1 Station
+## Karten mit nur 1 Station ✓ Renderer-Sonderfall
 
 **Messepark — Der sprechende Baum** (i-dentity): nur 1 Station
-→ Renderer setzt bei `stations.length === 1` einen festen Zoom (14, Stadtteil-Ebene), statt
-   `fitBounds` was auf maxZoom reinzoomen würde. Damit sieht man Strassen+Kontext.
+→ Renderer setzt bei `stations.length === 1` festen Zoom (14, Stadtteil-Ebene).
