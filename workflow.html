@@ -24,7 +24,7 @@
 
   <link rel="stylesheet" href="css/global.css?v=20260427a" />
   <link rel="stylesheet" href="css/layout.css?v=20260430a" />
-  <link rel="stylesheet" href="css/components.css?v=20260503f" />
+  <link rel="stylesheet" href="css/components.css?v=20260503g" />
   <link rel="stylesheet" href="css/animations.css?v=20260428a" />
   <!-- Breadcrumb strukturierte Daten -->
   <script type="application/ld+json">
@@ -112,8 +112,23 @@
         .workflow-grid { grid-template-columns: 1fr; }
       }
       /* .card hat global flex-direction: column — hier mit hoeherer
-         Specificity auf row umstellen, sonst stapelt das Icon ueber den Text. */
-      .card.workflow-step { flex-direction: row; align-items: flex-start; gap: var(--sp-2); }
+         Specificity auf row umstellen, sonst stapelt das Icon ueber den Text.
+         Plus glassy-Stil wie .contact-form: --glass-* Variablen, Backdrop-
+         Blur, Inset-Highlights + weicher Glow — konsistent zum gesamten
+         Designsystem. */
+      .card.workflow-step {
+        flex-direction: row;
+        align-items: flex-start;
+        gap: var(--sp-2);
+        background: var(--glass-bg);
+        border-color: var(--glass-border);
+        backdrop-filter: var(--glass-blur);
+        -webkit-backdrop-filter: var(--glass-blur);
+        box-shadow:
+          inset 0 1px 0 var(--glass-highlight),
+          inset 0 -1px 0 var(--glass-shadow-bottom),
+          0 8px 28px var(--glass-glow);
+      }
       .workflow-step__icon {
         flex: 0 0 40px; width: 40px; height: 40px;
         color: var(--c-text); opacity: .85;
@@ -550,8 +565,8 @@
         margin: var(--sp-4) auto 0;
       }
       .options-diagram__box {
-        background: rgba(255,255,255,.04);
-        border: 1px solid rgba(255,255,255,.18);
+        background: var(--glass-bg);
+        border: 1px solid var(--glass-border);
         border-radius: var(--radius-card);
         padding: var(--sp-3);
         margin: 0;
@@ -560,6 +575,12 @@
         color: var(--c-text-muted);
         position: relative;
         z-index: 2;
+        backdrop-filter: var(--glass-blur);
+        -webkit-backdrop-filter: var(--glass-blur);
+        box-shadow:
+          inset 0 1px 0 var(--glass-highlight),
+          inset 0 -1px 0 var(--glass-shadow-bottom),
+          0 8px 28px var(--glass-glow);
       }
       .options-diagram__box p { margin: 0; }
       .options-diagram__box--top    { grid-column: 2; grid-row: 1; }
@@ -661,7 +682,7 @@
       <h2>Vielfältige Möglichkeiten</h2>
       <div class="options-diagram">
         <article class="options-diagram__box options-diagram__box--top">
-          <p>In i.appear können bestehende Rundgänge digitalisiert und erweitert werden.</p>
+          <p>In i.appear können bestehende Rundgänge digitalisiert und erweitert werden. Egal ob analoge Touren, Audioguides oder Print-Materialien &ndash; wir bauen darauf auf und ergänzen mit Audio, Video, 3D-Modellen oder AR.</p>
         </article>
         <article class="options-diagram__box options-diagram__box--left">
           <p>Zudem lassen sich Informationsstationen für relevante Orientierungspunkte einpflegen, die auf Rundgänge oder zusammenhängende Stationen verweisen. So werden alle Elemente innerhalb der App zu einem flächendeckenden digitalen Netzwerk verknüpft, das auf der interaktiven Karte für die Nutzer:innen sichtbar wird.</p>
@@ -673,7 +694,7 @@
           <span class="options-diagram__dot options-diagram__dot--left"></span>
         </div>
         <article class="options-diagram__box options-diagram__box--right">
-          <p>Zusammen mit unserem interdisziplinären Team können neue Rundgänge erarbeitet oder bestehende Konzepte neu gedacht werden. Durch das Teilen von Stationen lassen sich neue und vorhandene Rundgänge flexibel miteinander verbinden.</p>
+          <p>Zusammen mit unserem interdisziplinären Team können neue Rundgänge erarbeitet oder bestehende Konzepte neu gedacht werden. Durch das Teilen von Stationen lassen sich neue und vorhandene Rundgänge flexibel miteinander verbinden. Recherche, Stories und Inhalte sind so mehrfach nutzbar &ndash; statt für jedes Projekt bei Null anzufangen.</p>
         </article>
         <article class="options-diagram__box options-diagram__box--bottom">
           <p>Stationen können auch kategorienübergreifend von verschiedenen Rundgängen geteilt werden.</p>

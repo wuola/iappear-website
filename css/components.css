@@ -268,6 +268,21 @@
 .card > .card__actions { margin-top: auto; }
 .card__title { font-family: var(--f-serif); }
 
+/* Glassy-Modifier — gleiche Optik wie .contact-form (--glass-* Vars,
+   Backdrop-Blur, Inset-Highlights + weicher Glow). Auf einzelne .card-
+   Items setzbar wo der ruhige glassy Look passt (workflow Steps,
+   options-diagram Boxes, So-funktioniert-Cards usw). */
+.card--glass {
+  background: var(--glass-bg);
+  border-color: var(--glass-border);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  box-shadow:
+    inset 0 1px 0 var(--glass-highlight),
+    inset 0 -1px 0 var(--glass-shadow-bottom),
+    0 8px 28px var(--glass-glow);
+}
+
 .vitrine-card {
   display: flex; flex-direction: column; gap: var(--sp-1);
   height: 100%;
