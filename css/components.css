@@ -273,6 +273,19 @@
 .card > .card__actions { margin-top: auto; }
 .card__title { font-family: var(--f-serif); }
 
+/* Komplett klickbare Cards: Card als <a> statt <article>. Reset
+   Anchor-Default, dezenter Lift + Heller-Border + Headline-Underline beim Hover. */
+a.card {
+  text-decoration: none;
+  color: inherit;
+  transition: transform .25s var(--ease), border-color .25s var(--ease);
+}
+a.card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(255,255,255,.35);
+}
+a.card:hover h3 { text-decoration: underline; }
+
 /* Glassy-Modifier — gleiche Optik wie .contact-form (--glass-* Vars,
    Backdrop-Blur, Inset-Highlights + weicher Glow). Auf einzelne .card-
    Items setzbar wo der ruhige glassy Look passt (workflow Steps,
