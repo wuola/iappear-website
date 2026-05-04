@@ -447,11 +447,11 @@ def generate_stadtseite(slug: str, info: dict, counts: dict, rundgaenge: dict):
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Digitaler Stadtrundgang {name} | i.appear</title>
   <meta name="description" content="Digitale Stadtrundg\u00e4nge und Audioguides in {name} von i.appear. {subtitle}. Multimedial, interaktiv, kostenlos \u2013 direkt im Browser." />
-  <link rel="canonical" href="https://iappear.at/stadtrundgang-{slug}/" />
+  <link rel="canonical" href="https://iappear.at/stadtrundgang-{slug}.html" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Digitaler Stadtrundgang {name} | i.appear" />
   <meta property="og:description" content="Digitale Stadtrundg\u00e4nge und Audioguides in {name}. {subtitle}." />
-  <meta property="og:url" content="https://iappear.at/stadtrundgang-{slug}/" />
+  <meta property="og:url" content="https://iappear.at/stadtrundgang-{slug}.html" />
   <meta property="og:image" content="https://iappear.at/assets/images/og-image.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/png" href="assets/favicon.png" />
@@ -468,7 +468,7 @@ def generate_stadtseite(slug: str, info: dict, counts: dict, rundgaenge: dict):
     "@type": "BreadcrumbList",
     "itemListElement": [
       {{ "@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://iappear.at/" }},
-      {{ "@type": "ListItem", "position": 2, "name": "Stadtrundg\\u00e4nge", "item": "https://iappear.at/stadtrundgaenge/" }},
+      {{ "@type": "ListItem", "position": 2, "name": "Stadtrundg\\u00e4nge", "item": "https://iappear.at/stadtrundgaenge.html" }},
       {{ "@type": "ListItem", "position": 3, "name": "{name}" }}
     ]
   }}
@@ -479,7 +479,7 @@ def generate_stadtseite(slug: str, info: dict, counts: dict, rundgaenge: dict):
     "@type": "TouristAttraction",
     "name": "Digitaler Stadtrundgang {name}",
     "description": "{subtitle}",
-    "url": "https://iappear.at/stadtrundgang-{slug}/",
+    "url": "https://iappear.at/stadtrundgang-{slug}.html",
     "isAccessibleForFree": true,
     "provider": {{
       "@type": "Organization",
@@ -662,7 +662,7 @@ def update_sitemap(staedte: dict, stadt_order: list):
         if staedte[slug].get("soon"):
             continue
         entries.append(f"""  <url>
-    <loc>https://iappear.at/stadtrundgang-{slug}/</loc>
+    <loc>https://iappear.at/stadtrundgang-{slug}.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>""")
@@ -698,7 +698,7 @@ def update_llms_txt(counts: dict, staedte: dict, stadt_order: list):
         total = sum(counts.get(slug, {}).values())
         sub = info.get("subtitle", "Digitale Stadtrundgaenge")
         lines.append(
-            f"- [Stadtrundgang {info['name']}](https://iappear.at/stadtrundgang-{slug}/): "
+            f"- [Stadtrundgang {info['name']}](https://iappear.at/stadtrundgang-{slug}.html): "
             f"{total} Rundgaenge. {sub}."
         )
 

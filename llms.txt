@@ -11,31 +11,31 @@ Die drei inhaltlichen Kategorien heissen i.history (historische Stadtrundgaenge,
 
 ## Kategorien
 
-- [i.history - Zeitreisen](https://iappear.at/i-history/): Historische digitale Stadtrundgaenge und Audioguides an Originalschauplaetzen, entwickelt mit Historiker:innen, Archiven und Zeitzeug:inneninterviews.
-- [i.dentity - Regionale Identitaet](https://iappear.at/i-dentity/): Digitale Stadtrundgaenge fuer Kultur, Tourismus und regionale Identitaet; auch fuer Unternehmen und Institutionen.
-- [i.grow - Medienbildung](https://iappear.at/i-grow/): Medienbildung, Demokratiebildung und KI-Bildung fuer Schulen. Workshops, in denen Schueler:innen eigene digitale Stadtrundgaenge gestalten und Medienkompetenz aufbauen. In Zusammenarbeit mit PH Vorarlberg, FH Vorarlberg und OeAD.
+- [i.history - Zeitreisen](https://iappear.at/i-history.html): Historische digitale Stadtrundgaenge und Audioguides an Originalschauplaetzen, entwickelt mit Historiker:innen, Archiven und Zeitzeug:inneninterviews.
+- [i.dentity - Regionale Identitaet](https://iappear.at/i-dentity.html): Digitale Stadtrundgaenge fuer Kultur, Tourismus und regionale Identitaet; auch fuer Unternehmen und Institutionen.
+- [i.grow - Medienbildung](https://iappear.at/i-grow.html): Medienbildung, Demokratiebildung und KI-Bildung fuer Schulen. Workshops, in denen Schueler:innen eigene digitale Stadtrundgaenge gestalten und Medienkompetenz aufbauen. In Zusammenarbeit mit PH Vorarlberg, FH Vorarlberg und OeAD.
 
 ## Hauptseiten
 
 - [Startseite](https://iappear.at/): Kompakter Ueberblick mit Teasern zu allen Bereichen.
-- [Features](https://iappear.at/features/): 14 multimediale Features fuer digitale Stadtrundgaenge - 3D, AR, Audio, Quiz und mehr.
-- [Vitrine](https://iappear.at/vitrine/): Auszeichnungen, Pressebeitraege und Referenzen - Smart City, Ars Electronica, Innovation Call.
-- [Ueber uns](https://iappear.at/ueber-uns/): Das Team (Marilena Tumler, Maggy Haidacher) und Partner/Foerdergeber.
-- [Alle Stadtrundgaenge](https://iappear.at/stadtrundgaenge/): Uebersicht aller Orte mit digitalen Stadtrundgaengen und Audioguides - mit interaktiver Karte.
+- [Features](https://iappear.at/features.html): 14 multimediale Features fuer digitale Stadtrundgaenge - 3D, AR, Audio, Quiz und mehr.
+- [Vitrine](https://iappear.at/vitrine.html): Auszeichnungen, Pressebeitraege und Referenzen - Smart City, Ars Electronica, Innovation Call.
+- [Ueber uns](https://iappear.at/ueber-uns.html): Das Team (Marilena Tumler, Maggy Haidacher) und Partner/Foerdergeber.
+- [Alle Stadtrundgaenge](https://iappear.at/stadtrundgaenge.html): Uebersicht aller Orte mit digitalen Stadtrundgaengen und Audioguides - mit interaktiver Karte.
 <!-- STADTRUNDGANG-LINKS:START -->
-- [Stadtrundgang Dornbirn](https://iappear.at/stadtrundgang-dornbirn/): 10 Rundgaenge. Alle Audioguides und multimedialen Touren auf einen Blick.
-- [Stadtrundgang Feldkirch](https://iappear.at/stadtrundgang-feldkirch/): 2 Rundgaenge. Audioguides und multimediale Touren in der mittelalterlichen Alpenstadt.
-- [Stadtrundgang Hard am Bodensee](https://iappear.at/stadtrundgang-hard/): 1 Rundgaenge. Audioguide und multimediale Tour entlang des Bodenseeufers.
-- [Stadtrundgang Au im Bregenzerwald](https://iappear.at/stadtrundgang-au/): 1 Rundgaenge. Audioguide auf den Spuren der Vorarlberger Barockbaumeister.
+- [Stadtrundgang Dornbirn](https://iappear.at/stadtrundgang-dornbirn.html): 10 Rundgaenge. Alle Audioguides und multimedialen Touren auf einen Blick.
+- [Stadtrundgang Feldkirch](https://iappear.at/stadtrundgang-feldkirch.html): 2 Rundgaenge. Audioguides und multimediale Touren in der mittelalterlichen Alpenstadt.
+- [Stadtrundgang Hard am Bodensee](https://iappear.at/stadtrundgang-hard.html): 1 Rundgaenge. Audioguide und multimediale Tour entlang des Bodenseeufers.
+- [Stadtrundgang Au im Bregenzerwald](https://iappear.at/stadtrundgang-au.html): 1 Rundgaenge. Audioguide auf den Spuren der Vorarlberger Barockbaumeister.
 <!-- STADTRUNDGANG-LINKS:END -->
-- [Workflow und Leistungen](https://iappear.at/workflow/): Wie Projekte mit i.appear ablaufen - eigenen digitalen Stadtrundgang oder Audioguide erstellen lassen.
-- [User Guide](https://iappear.at/user-guide/): Nutzung der Web-App Schritt fuer Schritt.
-- [Kontakt](https://iappear.at/kontakt/): Kontaktmoeglichkeiten fuer Anfragen, Workshops, Kooperationen.
-- [FAQs](https://iappear.at/faqs/): Haeufige Fragen zu Nutzung, Technik, Inhalten, Partnern.
+- [Workflow und Leistungen](https://iappear.at/workflow.html): Wie Projekte mit i.appear ablaufen - eigenen digitalen Stadtrundgang oder Audioguide erstellen lassen.
+- [User Guide](https://iappear.at/user-guide.html): Nutzung der Web-App Schritt fuer Schritt.
+- [Kontakt](https://iappear.at/kontakt.html): Kontaktmoeglichkeiten fuer Anfragen, Workshops, Kooperationen.
+- [FAQs](https://iappear.at/faqs.html): Haeufige Fragen zu Nutzung, Technik, Inhalten, Partnern.
 
 ## Vitrine (Artikel & Einblicke)
 
-- [Vitrine](https://iappear.at/vitrine/): Auszeichnungen, Presse, Hintergrund-Artikel und Referenzen - alles an einem Ort.
+- [Vitrine](https://iappear.at/vitrine.html): Auszeichnungen, Presse, Hintergrund-Artikel und Referenzen - alles an einem Ort.
 
 ## Features
 
@@ -43,6 +43,6 @@ Die drei inhaltlichen Kategorien heissen i.history (historische Stadtrundgaenge,
 
 ## Rechtliches
 
-- [Impressum](https://iappear.at/impressum/)
-- [AGB](https://iappear.at/agb/)
-- [Datenschutz](https://iappear.at/datenschutz/)
+- [Impressum](https://iappear.at/impressum.html)
+- [AGB](https://iappear.at/agb.html)
+- [Datenschutz](https://iappear.at/datenschutz.html)

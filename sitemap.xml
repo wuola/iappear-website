@@ -6,27 +6,27 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://iappear.at/i-history/</loc>
+    <loc>https://iappear.at/i-history.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://iappear.at/i-dentity/</loc>
+    <loc>https://iappear.at/i-dentity.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://iappear.at/i-grow/</loc>
+    <loc>https://iappear.at/i-grow.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://iappear.at/features/</loc>
+    <loc>https://iappear.at/features.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://iappear.at/vitrine/</loc>
+    <loc>https://iappear.at/vitrine.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -55,81 +55,81 @@
   <url><loc>https://iappear.at/vitrine/vortrag-bludenz-gen-z.html</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
   <!-- VITRINE-ARTIKEL:END -->
   <url>
-    <loc>https://iappear.at/ueber-uns/</loc>
+    <loc>https://iappear.at/ueber-uns.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://iappear.at/workflow/</loc>
+    <loc>https://iappear.at/workflow.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://iappear.at/user-guide/</loc>
+    <loc>https://iappear.at/user-guide.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://iappear.at/kontakt/</loc>
+    <loc>https://iappear.at/kontakt.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://iappear.at/faqs/</loc>
+    <loc>https://iappear.at/faqs.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://iappear.at/stadtrundgaenge/</loc>
+    <loc>https://iappear.at/stadtrundgaenge.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <!-- STADTRUNDGANG-URLS:START -->
   <url>
-    <loc>https://iappear.at/stadtrundgang-dornbirn/</loc>
+    <loc>https://iappear.at/stadtrundgang-dornbirn.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://iappear.at/stadtrundgang-feldkirch/</loc>
+    <loc>https://iappear.at/stadtrundgang-feldkirch.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://iappear.at/stadtrundgang-hard/</loc>
+    <loc>https://iappear.at/stadtrundgang-hard.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://iappear.at/stadtrundgang-au/</loc>
+    <loc>https://iappear.at/stadtrundgang-au.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <!-- STADTRUNDGANG-URLS:END -->
   <!-- Blog-URLs fuer Launch ausgeblendet — Artikel werden ueberarbeitet, Indexierung pausiert.
   <url>
-    <loc>https://iappear.at/blog/was-ist-ein-digitaler-stadtrundgang/</loc>
+    <loc>https://iappear.at/blog/was-ist-ein-digitaler-stadtrundgang.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://iappear.at/blog/medienbildung-vorarlberg-schueler-gestalten-stadtrundgaenge/</loc>
+    <loc>https://iappear.at/blog/medienbildung-vorarlberg-schueler-gestalten-stadtrundgaenge.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   -->
   <url>
-    <loc>https://iappear.at/impressum/</loc>
+    <loc>https://iappear.at/impressum.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://iappear.at/agb/</loc>
+    <loc>https://iappear.at/agb.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://iappear.at/datenschutz/</loc>
+    <loc>https://iappear.at/datenschutz.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
