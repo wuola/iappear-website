@@ -6,6 +6,7 @@ Naming: `YYYY-MM-DD-session-NN-thema.md`
 
 ## Sessions
 
+- 2026-05-04 - [Session 25 - Phase B: DNS-Switch + iappear.at LIVE 🚀](2026-05-04-session-25-phase-b-dns-switch-launch.md)
 - 2026-05-04 - [Session 24 - Rechtstexte v2 (Impressum/Datenschutz/AGB) + Namensform-Vereinheitlichung](2026-05-04-session-24-rechtstexte-v2-namensform.md)
 - 2026-05-04 - [Session 23 - Tally-Hoehe-Test + CNAME-Incident + Session-22-Hallu-Korrektur](2026-05-04-session-23-tally-hoehe-test-cname-incident.md)
 - 2026-05-04 - [Session 22 - Tally-Forms eingebaut + Pre-Launch-Cleanup (Phase A)](2026-05-04-session-22-tally-forms-pre-launch.md) _(enthaelt Hallus, korrigiert in Session 23)_

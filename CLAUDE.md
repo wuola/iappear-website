@@ -135,24 +135,9 @@ Bei Asset-Tausch (mp4/jpg-Bytes ändern, Dateiname bleibt): Cache-Bust auch im J
 
 ## Aktueller Stand (Mai 2026)
 
-Site ist live auf https://wuola.github.io/iappear-website/. Alle 11 Hauptseiten + 4 Stadtseiten + 22 Vitrine-Artikel stehen. Blog ist mit Vitrine verschmolzen (2 Bestandsartikel unter `/blog/`, Index leitet auf Vitrine weiter). Designsystem (glassy/strokeless) konsistent. SEO durchgezogen. **Phase A der Pre-Launch-Vorbereitung erledigt** (Sessions 22-24, 2026-05-04): Tally-Kontaktformulare eingebunden, Bregenz-404-Risiko via `build.py`-`soon`-Filter eliminiert, CNAME-Datei (vorzeitig angelegt) wieder entfernt (siehe Konventionen). **Rechtstexte komplett rechtskonform**: Impressum/Datenschutz/AGB mit Marilenas v2-Quelltexten ueberarbeitet (GLN, 3 GISA-Berechtigungen, Kleinunternehmerin §6 Abs.1 Z 27 UStG, Mediengesetz-Offenlegung, Tally + GitHub Pages + Leaflet/CARTO datenschutzrechtlich erfasst). Namensform site-weit auf "Marilena Tumler" vereinheitlicht (43 HTMLs Meta-Tags + JSON-LD + llms.txt — vorher "Marilena Tumler e.U."); rechtsverbindlich im Body von Impressum/Datenschutz/AGB steht "Marilena Gabriele Tumler". **Launch-Ziel: HEUTE Montag 2026-05-04 (Vormittag) mit Domain-Umleitung iappear.at** (Phase B, siehe unten). SEO-Sichtbarkeit > Perfektion.
+**🚀 LIVE auf https://iappear.at seit 2026-05-04 ~15:20 (Session 25).** Alle 11 Hauptseiten + 4 Stadtseiten + 22 Vitrine-Artikel stehen. Blog ist mit Vitrine verschmolzen (2 Bestandsartikel unter `/blog/`, Index leitet auf Vitrine weiter). Designsystem (glassy/strokeless) konsistent. SEO durchgezogen. Rechtstexte rechtskonform (Sessions 22-24). HTTPS gruen via Let's Encrypt (auto-renewed). www.iappear.at → 301 → iappear.at. GitHub Pages mit Custom Domain via `gh api repos/wuola/iappear-website/pages -X PUT` gesetzt — kein File-CNAME im Repo (GitHub legt es selbst auf source-branch an). Mail-MX bei `mx00.udag.de` / `mx01.udag.de` unveraendert geblieben. SEO-Sichtbarkeit > Perfektion.
 
 ## Was noch offen ist
-
-### Vor Live-Stellung — Phase B (DNS-Switch, fuer heute Montag 2026-05-04)
-
-**Reihenfolge ist bindend** — Schritt 4 (CNAME-Datei) erst NACH 1-3, sonst Live-Ausfall (siehe Konventionen "CNAME nicht vorab pushen", Session 23 Vorfall).
-
-1. **Bei Readymag**: Custom Domain `iappear.at` freigeben (sonst DNS-Konflikt mit GitHub Pages).
-2. **Bei united-domains.de** (DNS-Verwaltung):
-   - A-Records fuer Apex `iappear.at`: `185.199.108.153`, `.109.153`, `.110.153`, `.111.153`
-   - CNAME fuer `www`: `wuola.github.io`
-3. **DNS-Propagation abwarten** (1-6h typisch, Worst Case 24h). Verifikation z.B. mit `dig iappear.at +short` oder dnschecker.org.
-4. **Im Repo**: `/CNAME`-Datei mit Inhalt `iappear.at` anlegen + commit + push. Aequivalent: `gh api repos/wuola/iappear-website/pages -X PUT -f cname=iappear.at`. Das aktiviert die GitHub-Pages-Custom-Domain + Live-301-Redirects.
-5. **GitHub-Repo Settings → Pages**: "Enforce HTTPS" aktivieren (Haekchen kommt erst wenn SSL-Cert von GitHub fuer die Domain erstellt; typisch 5-30 Min nach Schritt 4, bis 24h moeglich).
-6. **Verifikation**: iappear.at laedt korrekt, HTTPS gruen, www redirected, Form-Submit echt testen (Mail muss bei `maggy@iappear.app` ankommen).
-
-### Nach Launch
 
 - **Englische Version** — eigene spätere Phase.
 - **Blog reaktivieren** wenn ClaudeCowork-Drafts überarbeitet sind (siehe Session 21 Doku — Reaktivierung = HTML-Comments raus auf vitrine.html + noindex-Tags raus aus 3 blog/*.html + sitemap/llms-Einträge zurück).
