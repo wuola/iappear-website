@@ -658,6 +658,9 @@ def update_sitemap(staedte: dict, stadt_order: list):
 
     entries = []
     for slug in stadt_order:
+        # "soon"-Staedte (z.B. Bregenz) haben noch keine Stadtseite -> nicht in sitemap.
+        if staedte[slug].get("soon"):
+            continue
         entries.append(f"""  <url>
     <loc>https://iappear.at/stadtrundgang-{slug}/</loc>
     <changefreq>monthly</changefreq>
@@ -689,6 +692,9 @@ def update_llms_txt(counts: dict, staedte: dict, stadt_order: list):
     lines = []
     for slug in stadt_order:
         info = staedte[slug]
+        # "soon"-Staedte haben noch keine Stadtseite -> nicht in llms.txt verlinken.
+        if info.get("soon"):
+            continue
         total = sum(counts.get(slug, {}).values())
         sub = info.get("subtitle", "Digitale Stadtrundgaenge")
         lines.append(

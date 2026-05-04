@@ -24,8 +24,10 @@
 
   <link rel="stylesheet" href="css/global.css?v=20260427a" />
   <link rel="stylesheet" href="css/layout.css?v=20260430a" />
-  <link rel="stylesheet" href="css/components.css?v=20260503k" />
+  <link rel="stylesheet" href="css/components.css?v=20260504a" />
   <link rel="stylesheet" href="css/animations.css?v=20260428a" />
+  <!-- Tally Embed Script (fuer Dynamic Height der Kontaktformulare) -->
+  <script async src="https://tally.so/widgets/embed.js"></script>
   <!-- Breadcrumb strukturierte Daten -->
   <script type="application/ld+json">
   {
@@ -732,19 +734,13 @@
           <h3>Du bist noch unsicher?</h3>
           <p>Schau dir unsere bestehenden <a href="stadtrundgaenge.html">Stadtrundgänge</a> oder Projekte in der <a href="vitrine.html">Vitrine</a> an. Manchmal ist ein konkretes Beispiel der beste Türöffner.</p>
         </div>
-        <form class="form contact-form" method="post" action="#" aria-label="Schnellanfrage">
+        <div class="form contact-form" aria-label="Schnellanfrage">
           <h3 class="contact-form__title">Schreib uns</h3>
           <p class="contact-form__direct">
             Lieber direkt? <a href="mailto:info@iappear.app">info@iappear.app</a>
           </p>
-          <label for="wf-name">Name</label>
-          <input id="wf-name" name="name" type="text" required />
-          <label for="wf-mail">E-Mail</label>
-          <input id="wf-mail" name="email" type="email" required />
-          <label for="wf-text">Nachricht</label>
-          <textarea id="wf-text" name="text" required></textarea>
-          <button type="submit" class="btn">Absenden</button>
-        </form>
+          <iframe data-tally-src="https://tally.so/embed/J98VrY?alignLeft=1&amp;hideTitle=1&amp;transparentBackground=1&amp;dynamicHeight=1" loading="lazy" width="100%" height="483" frameborder="0" marginheight="0" marginwidth="0" title="Schreib uns - i.appear Schnellanfrage"></iframe>
+        </div>
       </div>
     </section>
   </main>

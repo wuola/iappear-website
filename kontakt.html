@@ -24,8 +24,10 @@
 
   <link rel="stylesheet" href="css/global.css?v=20260427a" />
   <link rel="stylesheet" href="css/layout.css?v=20260430a" />
-  <link rel="stylesheet" href="css/components.css?v=20260503k" />
+  <link rel="stylesheet" href="css/components.css?v=20260504a" />
   <link rel="stylesheet" href="css/animations.css?v=20260428a" />
+  <!-- Tally Embed Script (fuer Dynamic Height der Kontaktformulare) -->
+  <script async src="https://tally.so/widgets/embed.js"></script>
   <!-- Breadcrumb strukturierte Daten -->
   <script type="application/ld+json">
   {
@@ -114,19 +116,13 @@
           </li>
         </ul>
 
-        <form class="form contact-form" method="post" action="#">
+        <div class="form contact-form">
           <h3 class="contact-form__title">Schreib uns</h3>
           <p class="contact-form__direct">
             Lieber direkt? <a href="mailto:info@iappear.app">info@iappear.app</a>
           </p>
-          <label for="cf-name">Name</label>
-          <input id="cf-name" name="name" type="text" required />
-          <label for="cf-mail">E-Mail</label>
-          <input id="cf-mail" name="email" type="email" required />
-          <label for="cf-text">Nachricht</label>
-          <textarea id="cf-text" name="text" required></textarea>
-          <button type="submit" class="btn">Absenden</button>
-        </form>
+          <iframe data-tally-src="https://tally.so/embed/J98VrY?alignLeft=1&amp;hideTitle=1&amp;transparentBackground=1&amp;dynamicHeight=1" loading="lazy" width="100%" height="483" frameborder="0" marginheight="0" marginwidth="0" title="Schreib uns - i.appear Kontaktformular"></iframe>
+        </div>
 
       </div>
     </section>

@@ -1507,7 +1507,7 @@ a.card--teaser:hover h3 {
   background: var(--glass-bg);
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-card);
-  padding: var(--sp-3);
+  padding: var(--sp-2);
   backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
   box-shadow:
@@ -1524,7 +1524,7 @@ a.card--teaser:hover h3 {
   font-weight: 600;
 }
 .contact-form__direct {
-  margin: 0 0 var(--sp-2);
+  margin: 0 0 var(--sp-1);
   font-size: .85rem;
   color: var(--c-text-muted);
 }

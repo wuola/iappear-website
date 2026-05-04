@@ -27,7 +27,6 @@ Die drei inhaltlichen Kategorien heissen i.history (historische Stadtrundgaenge,
 - [Stadtrundgang Feldkirch](https://iappear.at/stadtrundgang-feldkirch/): 2 Rundgaenge. Audioguides und multimediale Touren in der mittelalterlichen Alpenstadt.
 - [Stadtrundgang Hard am Bodensee](https://iappear.at/stadtrundgang-hard/): 1 Rundgaenge. Audioguide und multimediale Tour entlang des Bodenseeufers.
 - [Stadtrundgang Au im Bregenzerwald](https://iappear.at/stadtrundgang-au/): 1 Rundgaenge. Audioguide auf den Spuren der Vorarlberger Barockbaumeister.
-- [Stadtrundgang Bregenz](https://iappear.at/stadtrundgang-bregenz/): 1 Rundgaenge. Römisches Bregenz und mehr.
 <!-- STADTRUNDGANG-LINKS:END -->
 - [Workflow und Leistungen](https://iappear.at/workflow/): Wie Projekte mit i.appear ablaufen - eigenen digitalen Stadtrundgang oder Audioguide erstellen lassen.
 - [User Guide](https://iappear.at/user-guide/): Nutzung der Web-App Schritt fuer Schritt.
