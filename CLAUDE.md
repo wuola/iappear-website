@@ -14,11 +14,16 @@ Rebuild der Website iappear.at als statisches HTML/CSS/JS-Projekt. Hauptmotivati
 
 ## Firmeninfo (für Edits an kontakt.html / impressum.html)
 
-- Firma: **Marilena Tumler e.U.**
-- Adresse: **Mozartstrasse 5 | 16, 6850 Dornbirn**
+- Firma (Marketing/Meta-Tags): **Marilena Tumler**
+- Vollstaendiger Name (rechtsverbindlich, nur fuer Impressum/Datenschutz/AGB-Body): **Marilena Gabriele Tumler**
+- Adresse: **Mozartstrasse 5/16, 6850 Dornbirn**
 - Telefon: **+43 676 82554212**
-- E-Mail: **info@iappear.app**
+- E-Mail (Marketing/Kontakt): **info@iappear.app**
+- E-Mail (Impressum/Datenschutz-Verantwortliche): **marilena@iappear.app**
 - Website: iappear.at
+- Kleinunternehmerin nach § 6 Abs. 1 Z 27 UStG (keine UID-Nummer)
+- GLN: 9110031812839
+- GISA-Zahlen: 34641255 (Werbeagentur), 34641262 (Multimedia-Agentur), 34641279 (IT-Dienstleistungen)
 
 ## Hard Constraints
 
@@ -30,6 +35,7 @@ Rebuild der Website iappear.at als statisches HTML/CSS/JS-Projekt. Hauptmotivati
 ## Stack
 
 - HTML5, CSS3, Vanilla JavaScript — **keine Frameworks** (kein React, kein Vue, kein Bootstrap).
+- **Kontaktformulare via Tally** (Form-ID `J98VrY`, Account `maggy@iappear.app`, Free-Plan). Belgischer Anbieter, EU-Server, DSGVO-konform. Eingebettet als iframe in workflow.html + kontakt.html, Embed-Script async im `<head>` fuer Dynamic-Height. Notifications gehen an `maggy@iappear.app`.
 - **Kein npm/webpack/vite** — einziges Build-Tool ist `build.py` (Vitrine-Statisierung + Rundgang-Counts).
 - **Leaflet** als JS-Bibliothek für Mini-Karten + Stadtrundgang-Hub-Karte. Tiles über Carto `dark_all` (kostenlos, kein API-Key).
 - **Schriften lokal selbst gehostet** unter `assets/fonts/`: Roboto Variable (Body), TheSerif (LucasFonts: HP5 Plain, HP5 PlainIT, HP6 SemiBold, HP9 Black) für Headlines. Komplette LucasFonts-Familie (HP2-HP9 + TheSans + TheSans Mono) liegt unter `C:\Users\maggy\OneDrive\Dokumente\Promo_Iappear\NEUE_FONTS_2025\Fonts i.appear\` — bei Bedarf nachladen.
@@ -125,22 +131,26 @@ Bei Asset-Tausch (mp4/jpg-Bytes ändern, Dateiname bleibt): Cache-Bust auch im J
 - **KEINE Cloudflared-Vorschläge.** Setup existiert falls je nötig, aber nicht aktiv anbieten.
 - **Bei „vor X Tagen ging's noch"-Bugs:** parallel eine alte Version live laufen lassen → trennt Code-Regression von Browser-Verhalten. Keine Hypothesen ohne Code-Beweis.
 - **`.card { height: 100% }` NUR als Direct-Child von `.grid`** (`.grid > .card { height: 100% }`). Globale Regel hat in der Vergangenheit Card-Stretch-Bugs in Spalten-Layouts ausgelöst.
+- **CNAME-Datei NIEMALS vor DNS-Switch ins Repo pushen** — auch nicht als "Vorbereitung". GitHub Pages erkennt die Datei sofort beim Build, aktiviert die Custom Domain im Repo-Setting (sichtbar via `gh api repos/.../pages` als `cname: "..."`), und schaltet Live-301-Redirects von `wuola.github.io/iappear-website/...` auf die Domain. Vor erfolgtem DNS-Switch landen User auf der alten Domain (z.B. Readymag) → faktischer Live-Ausfall der neuen Site (Session 23 Vorfall). CNAME nur in der korrekten Phase-B-Reihenfolge anlegen.
 
 ## Aktueller Stand (Mai 2026)
 
-Site ist live auf https://wuola.github.io/iappear-website/. Alle 11 Hauptseiten + 4 Stadtseiten + 22 Vitrine-Artikel stehen. Blog ist mit Vitrine verschmolzen (2 Bestandsartikel unter `/blog/`, Index leitet auf Vitrine weiter). Designsystem (glassy/strokeless) konsistent. SEO durchgezogen. **Launch-Ziel: Dienstag 2026-05-05 mit Domain-Umleitung iappear.at.** SEO-Sichtbarkeit > Perfektion — Marilena-Punkte unten werden NICHT als Launch-Blocker behandelt, Justierung kann nach Launch.
+Site ist live auf https://wuola.github.io/iappear-website/. Alle 11 Hauptseiten + 4 Stadtseiten + 22 Vitrine-Artikel stehen. Blog ist mit Vitrine verschmolzen (2 Bestandsartikel unter `/blog/`, Index leitet auf Vitrine weiter). Designsystem (glassy/strokeless) konsistent. SEO durchgezogen. **Phase A der Pre-Launch-Vorbereitung erledigt** (Sessions 22-24, 2026-05-04): Tally-Kontaktformulare eingebunden, Bregenz-404-Risiko via `build.py`-`soon`-Filter eliminiert, CNAME-Datei (vorzeitig angelegt) wieder entfernt (siehe Konventionen). **Rechtstexte komplett rechtskonform**: Impressum/Datenschutz/AGB mit Marilenas v2-Quelltexten ueberarbeitet (GLN, 3 GISA-Berechtigungen, Kleinunternehmerin §6 Abs.1 Z 27 UStG, Mediengesetz-Offenlegung, Tally + GitHub Pages + Leaflet/CARTO datenschutzrechtlich erfasst). Namensform site-weit auf "Marilena Tumler" vereinheitlicht (43 HTMLs Meta-Tags + JSON-LD + llms.txt — vorher "Marilena Tumler e.U."); rechtsverbindlich im Body von Impressum/Datenschutz/AGB steht "Marilena Gabriele Tumler". **Launch-Ziel: HEUTE Montag 2026-05-04 (Vormittag) mit Domain-Umleitung iappear.at** (Phase B, siehe unten). SEO-Sichtbarkeit > Perfektion.
 
 ## Was noch offen ist
 
-### Vor Live-Stellung (Montag 2026-05-04 früh angehen)
+### Vor Live-Stellung — Phase B (DNS-Switch, fuer heute Montag 2026-05-04)
 
-1. **Kontaktformulare tot** — `workflow.html` + `kontakt.html` haben `<form action="#">`, Absenden tut nichts. Optionen: Form raus + nur Mail-Link `info@iappear.app`, oder Formspree/Web3Forms anbinden. Maggy entscheidet.
-2. **`stadtrundgang-bregenz.html` existiert nicht**, aber in `sitemap.xml` + `llms.txt` verlinkt → 404. Beide Stellen auskommentieren bis die Page existiert (analog zum Blog-Verstecken-Pattern).
-3. **CNAME-File anlegen** mit Inhalt `iappear.at` im Repo-Root. Dann GitHub Pages Settings → Custom Domain `iappear.at` + HTTPS erzwingen.
-4. **Domain-Umleitung iappear.at → GitHub Pages**:
-   - Maggy bei united-domains.de: A-Records für Apex `iappear.at`: `185.199.108.153`, `.109.153`, `.110.153`, `.111.153`. CNAME für `www`: `wuola.github.io`
-   - Maggy bei Readymag: Domain freigeben (sonst Konflikt)
-   - DNS-Propagation 1-6h typisch (Worst Case 24h), GitHub HTTPS-Cert 5-30 min nach DNS-Switch
+**Reihenfolge ist bindend** — Schritt 4 (CNAME-Datei) erst NACH 1-3, sonst Live-Ausfall (siehe Konventionen "CNAME nicht vorab pushen", Session 23 Vorfall).
+
+1. **Bei Readymag**: Custom Domain `iappear.at` freigeben (sonst DNS-Konflikt mit GitHub Pages).
+2. **Bei united-domains.de** (DNS-Verwaltung):
+   - A-Records fuer Apex `iappear.at`: `185.199.108.153`, `.109.153`, `.110.153`, `.111.153`
+   - CNAME fuer `www`: `wuola.github.io`
+3. **DNS-Propagation abwarten** (1-6h typisch, Worst Case 24h). Verifikation z.B. mit `dig iappear.at +short` oder dnschecker.org.
+4. **Im Repo**: `/CNAME`-Datei mit Inhalt `iappear.at` anlegen + commit + push. Aequivalent: `gh api repos/wuola/iappear-website/pages -X PUT -f cname=iappear.at`. Das aktiviert die GitHub-Pages-Custom-Domain + Live-301-Redirects.
+5. **GitHub-Repo Settings → Pages**: "Enforce HTTPS" aktivieren (Haekchen kommt erst wenn SSL-Cert von GitHub fuer die Domain erstellt; typisch 5-30 Min nach Schritt 4, bis 24h moeglich).
+6. **Verifikation**: iappear.at laedt korrekt, HTTPS gruen, www redirected, Form-Submit echt testen (Mail muss bei `maggy@iappear.app` ankommen).
 
 ### Nach Launch
 
@@ -152,6 +162,7 @@ Site ist live auf https://wuola.github.io/iappear-website/. Alle 11 Hauptseiten 
 - **Hero-Videos starten erst beim 2. Page-Load (Mobile)** — nur auf Opera Mobile, andere Browser ok. Poster-Bild ist Fallback.
 - **Color-Contrast-Review** — Status quo ist OK (Maggy 2026-05-03: keine Lösung griffbereit, akzeptiert).
 - **Typografie-Konzept** — provisorisches Mix-Konzept passt fürs erste, ggf. später.
+- **Tally-Form-Hoehe auf workflow.html** — Form-Container ~190px laenger als Text-Block daneben. In Session 23 empirisch angetestet: feste `height` ohne `dynamicHeight` ergibt eine interne iframe-Scrollbar (Submit-Button geht unter die Falte, Tally-Branding wird aber auch versteckt — Trade-off, hat Maggy mobil verworfen). Column-Layout im Tally-Editor: Mechanik existiert (Drag-Handle `⋮⋮`, [tally.so/help/columns](https://tally.so/help/columns)) aber nicht verifiziert ob Short-Answer + Email-Felder spaltenfaehig sind, plus Mobile faellt eh auf einspaltig zurueck. Alternativen: Name-Feld weglassen (-80px) oder Long-Answer-Initial-Rows reduzieren (Pro-Feature). Kein Launch-Blocker, weiter offen nach Launch.
 
 ## Versionen & Rollback
 

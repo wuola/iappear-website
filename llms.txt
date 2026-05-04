@@ -2,7 +2,7 @@
 
 > i.appear ist eine Plattform fuer digitale Stadtrundgaenge und Audioguides in Oesterreich (Schwerpunkt Vorarlberg) und angrenzenden Regionen. Jeder Stadtrundgang laeuft direkt im Browser - ohne App-Download, ohne Registrierung, ohne Werbung, ohne Tracking.
 
-Betreiberin: Marilena Tumler e.U., Mozartstrasse 5 | 16, 6850 Dornbirn, Oesterreich.
+Betreiberin: Marilena Tumler, Mozartstrasse 5 | 16, 6850 Dornbirn, Oesterreich.
 Kontakt: info@iappear.app, +43 676 82554212
 
 i.appear kombiniert Text, Audio, Video, 3D-Modelle, Augmented Reality und Karten zu ortsbasierten Erlebnissen. Aktuell gibt es digitale Stadtrundgaenge in Dornbirn, Feldkirch, Hard, Au im Bregenzerwald und weiteren Standorten in Vorarlberg.
