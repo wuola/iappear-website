@@ -1397,17 +1397,8 @@ a.card--teaser:hover h3 {
   white-space: nowrap;
 }
 .footer__legal a:hover { opacity: 1; text-decoration: underline; }
-.back-up-inline {
-  font-size: .75rem;
-  font-weight: 300;
-  letter-spacing: .01em;
-  opacity: .75;
-  white-space: nowrap;
-}
-.back-up-inline:hover { opacity: 1; text-decoration: underline; }
 
-/* Mobile-Footer: Quicklinks oben, Copyright drunter, "nach oben"-Inline-Link
-   weg (der floating Pfeil rechts unten reicht). Plus enger row-gap zwischen
+/* Mobile-Footer: Quicklinks oben, Copyright drunter. Enger row-gap zwischen
    den Quicklink-Zeilen (waren default sp-2 = 16px, jetzt 5px). */
 @media (max-width: 720px) {
   .footer__bottom {
@@ -1418,7 +1409,6 @@ a.card--teaser:hover h3 {
   }
   .footer__bottom small { order: 2; }
   .footer__legal { order: 1; row-gap: .3rem; }
-  .back-up-inline { display: none; }
 }
 
 /* .back-up Definition steht unten bei den Breadcrumbs - hier nur Placeholder */
