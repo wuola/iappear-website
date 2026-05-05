@@ -669,14 +669,25 @@
         .ug-toggle:not(.is-koffer) .ug-toggle__slot--koffer svg,
         .ug-toggle.is-koffer .ug-toggle__slot--karte svg { color: #666; }
 
-        /* Mickey-Hand-Tipp (auf Toggle Pfad A Schritt 1) */
+        /* Mickey-Hand-Tipp (auf Toggle Pfad A Schritt 1)
+           iOS-Safari-Fixes: will-change + backface-visibility + translateZ(0) als
+           initial-Composing-Hint verhindern Flackern (Layer wechselt sonst dauernd
+           zwischen Software- und Hardware-Rendering, weil .ug-toggle__track daneben
+           backdrop-filter hat). */
         .ug-mickey {
           position: absolute; top: 32px; left: 8px;
           width: 24px; height: auto; pointer-events: none; z-index: 10;
           animation: ugMickeyGroove 2.8s ease-in-out infinite;
+          will-change: transform;
+          -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+          -webkit-transform: translateZ(0);
+          transform: translateZ(0);
         }
-        .ug-hand { width: 100%; height: auto; filter: drop-shadow(1px 3px 5px rgba(0,0,0,.4)); }
-        .ug-hand path { fill: #fff; }
+        /* SVG-internes drop-shadow statt CSS-filter — letzteres ist auf iOS Safari
+           in Kombination mit Parent-Animation eine Hauptursache fuer Flackern. */
+        .ug-hand { width: 100%; height: auto; }
+        .ug-hand path { fill: #fff; filter: drop-shadow(1px 3px 5px rgba(0,0,0,.4)); }
         .ug-ripple {
           position: absolute; top: 30%; left: 30%; width: 16px; height: 16px;
           background: rgba(255,255,255,.5); border-radius: 50%;
