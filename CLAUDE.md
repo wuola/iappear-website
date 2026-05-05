@@ -124,6 +124,7 @@ Bei Asset-Tausch (mp4/jpg-Bytes ändern, Dateiname bleibt): Cache-Bust auch im J
 
 - **Mobile responsive von Anfang an** — jede neue Seite/Komponente.
 - **SEO Meta-Tags auf jeder Seite**: `title`, `description`, `og:*`, JSON-LD Schema wenn passend.
+- **Meta-Description Länge: 70–160 Zeichen** (gemessen am gerenderten Text, also `&amp;`/`&quot;`/`&ndash;`/`&mdash;` zählen als 1 Zeichen). Längere meldet Bing als Error. Bei eingebetteten Anführungszeichen im Description-Wert **immer `&quot;`** verwenden, niemals `"` direkt — das bricht das HTML-Attribut und schneidet die Description ab. Gilt auch für zukünftige Blog/Vitrine-Artikel. (Lehre: 2026-05-05 Bing-Audit, 21 Descriptions waren zu lang, 3 wurden durch `"` zerschossen.)
 - **UTF-8 Umlaute (ä/ö/ü) in sichtbaren Texten.** Im Code (CSS-Kommentare, JS-Identifier, Dateipfade, Klassennamen) bleibt `ae/oe/ue`. `ß` immer als `ss` (User-Entscheidung).
 - **Eigenständig arbeiten, nicht bei jedem Schritt nachfragen.** Maggy will Workflow, nicht Mikro-Bestätigungen.
 - **Schritt-für-Schritt statt Batch.** Bei Asset-Optimierung: erst 1–2 Probe-Encodes pushen, Maggy auf Live verifizieren lassen, DANN Batch über alle Files. Preview ≠ Live (Headless-Chrome rendert auf 1× DPR mit Software-Decoder, echter Browser auf 2-3× DPR mit Hardware-Decoder — Komprimierungs-Artefakte sind im Preview unsichtbar, live sofort sichtbar).
@@ -142,7 +143,7 @@ Bei Asset-Tausch (mp4/jpg-Bytes ändern, Dateiname bleibt): Cache-Bust auch im J
 
 ## Was noch offen ist
 
-- **Englische Version** — eigene spätere Phase.
+- **Englische Version** — eigene spätere Phase. Plan + Workflow in `_doku/englische-version.md` (Verzeichnis-Modell `/en/`, manueller Toggle, hreflang, alle ~41 Seiten, Übersetzung in separater Claude-Session, seitenweise).
 - **Blog reaktivieren** wenn ClaudeCowork-Drafts überarbeitet sind (siehe Session 21 Doku — Reaktivierung = HTML-Comments raus auf vitrine.html + noindex-Tags raus aus 3 blog/*.html + sitemap/llms-Einträge zurück).
 
 ## Akzeptiert-offen (kein Launch-Blocker)
@@ -167,6 +168,7 @@ Rollback wäre `git reset --hard vor-experiment` + `--force` push — beides auf
 - `@_doku/fonts.md` — Schriften-Setup (LucasFonts-Familie, wie Marilena Schnitte ändert).
 - `@_doku/karten-todos.md` — Mini-Karten-Daten-Auffälligkeiten.
 - `@_doku/vitrine-bearbeiten.md` — Marilena-Anleitung für `vitrine.js`-Edits.
+- `@_doku/englische-version.md` — Plan + Workflow für die englische Site-Version (`/en/`-Verzeichnis-Modell, hreflang, seitenweise Übersetzung in separater Claude-Session).
 - `@_doku/_archiv/` — historische Dokus (alte CLAUDE.md, alte projektdoku.md), als Backup nicht aktiv.
 
 **Außerhalb des Repos** (im Obsidian-Vault `C:\Users\maggy\OneDrive\Dokumente\OBSIDIAN\---i.appear---\`):

@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Digitale Stadtrundgänge &amp; Audioguides in Vorarlberg | i.appear</title>
-  <meta name="description" content="Alle digitalen Stadtrundgänge und Audioguides von i.appear auf einen Blick: Dornbirn, Feldkirch, Bregenz, Hard, Au im Bregenzerwald und weitere Orte in Vorarlberg, Bodenseeregion und darüber hinaus." />
+  <meta name="description" content="Alle digitalen Stadtrundgänge und Audioguides von i.appear: Dornbirn, Feldkirch, Bregenz, Hard und Au im Bregenzerwald — Vorarlberg und Bodenseeregion." />
   <meta name="author" content="Marilena Tumler" />
   <link rel="canonical" href="https://iappear.at/stadtrundgaenge.html" />
   <meta property="og:site_name" content="i.appear" />
@@ -343,7 +343,8 @@
     });
 
     orte.forEach(function (o) {
-      L.marker([o.lat, o.lng], { icon: icon })
+      // alt-Attribut fuer SEO/Accessibility — Leaflet rendert Marker als <img>
+      L.marker([o.lat, o.lng], { icon: icon, alt: 'Stadtrundgang ' + o.name + ' auf der Karte' })
         .addTo(map)
         .bindPopup('<strong>' + o.name + '</strong><br>' + o.count + ' Rundgang' + (o.count !== '1' ? 'e' : '') + '<br><a href="' + o.url + '">Ansehen &rarr;</a>');
     });
