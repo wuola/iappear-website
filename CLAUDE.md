@@ -142,6 +142,8 @@ Bei Asset-Tausch (mp4/jpg-Bytes ändern, Dateiname bleibt): Cache-Bust auch im J
 
 **Google Search Console (Session 26, 2026-05-04 ~17:00):** Property `iappear.at` eingerichtet, `sitemap.xml` eingereicht (41 Seiten verarbeitet, ohne Fehler), 7 Top-URLs manuell zur Indexierung beantragt (Startseite + Stadtrundgaenge + 3 Kategorien + Features + Vitrine-Hub + Klassenraeumen-Artikel) — alle grün. Davor: Pretty-URL-Bug gefixt (Commit `5ebc850`, alle canonical/og:url/sitemap/llms.txt/build.py URLs auf `.html`).
 
+**Bing Webmaster (Session 27, 2026-05-05):** Property `iappear.at` eingerichtet, Audit von `stadtrundgaenge.html` zeigte 2 Issues — Meta-Description zu lang (198 Zeichen) + 6 Bilder ohne alt (Leaflet-Marker). Beide Probleme behoben + präventiv 21 weitere zu lange Descriptions auf 70-160 gekürzt (Commit `35029cf`). Footer-Cleanup: redundanter "nach oben"-Inline-Link entfernt, schwebender Pfeil-Button reicht (`824c853`). iOS-Animations-Bugs (Mickey-Hand + Workflow-Icons) waren am Ende **Marilenas iOS-Setting "Bewegung reduzieren"**, nicht Code — Mickey bekam vorab noch iOS-Resilience-Hacks (`8883b8a`). Englisch-Version geplant in `_doku/englische-version.md`.
+
 ## Was noch offen ist
 
 - **Englische Version** — eigene spätere Phase. Plan + Workflow in `_doku/englische-version.md` (Verzeichnis-Modell `/en/`, manueller Toggle, hreflang, alle ~41 Seiten, Übersetzung in separater Claude-Session, seitenweise).

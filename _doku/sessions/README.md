@@ -6,6 +6,7 @@ Naming: `YYYY-MM-DD-session-NN-thema.md`
 
 ## Sessions
 
+- 2026-05-05 - [Session 27 - Bing-Audit (Meta-Descriptions + Marker-alt) + iOS-Animations-Bugs (Reduce-Motion!) + Footer-Cleanup + Englisch-Version geplant](2026-05-05-session-27-bing-audit-ios-animations-footer-englisch.md)
 - 2026-05-04 - [Session 26 - SEO-Fix: Pretty-URLs auf .html umgestellt (Google indexierte nur die Startseite)](2026-05-04-session-26-seo-url-fix-html-suffix.md)
 - 2026-05-04 - [Session 25 - Phase B: DNS-Switch + iappear.at LIVE 🚀](2026-05-04-session-25-phase-b-dns-switch-launch.md)
 - 2026-05-04 - [Session 24 - Rechtstexte v2 (Impressum/Datenschutz/AGB) + Namensform-Vereinheitlichung](2026-05-04-session-24-rechtstexte-v2-namensform.md)
