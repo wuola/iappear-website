@@ -1,6 +1,7 @@
 # Englische Version – Plan & Workflow
 
-> Stand: 2026-05-05. Noch nicht umgesetzt — diese Datei ist die Konzept-Notiz für die spätere Implementierung.
+> Stand: 2026-05-06. **Phase 1 + Pilot-Seite `index.html` umgesetzt** (Session 28).
+> Diese Datei ist Konzept + lebender Status. Aktueller Stand am Ende der Datei.
 
 ## Was schon entschieden ist
 
@@ -100,3 +101,41 @@ GitHub-Pages-Build wird minimal länger (~2-3 Sek), egal in der Praxis.
 
 - [Google: Managing multi-regional and multilingual sites](https://developers.google.com/search/docs/specialty/international/managing-multi-regional-sites)
 - [Google: hreflang-Tags](https://developers.google.com/search/docs/specialty/international/localized-versions)
+
+---
+
+## Aktueller Stand (Stand 2026-05-06, Session 28)
+
+### Erledigt (Phase 1 + Pilot)
+
+- ✅ `/en/`-Verzeichnis angelegt
+- ✅ Sprachschalter `.nav__lang` (glassy Pill, DE | EN) in `css/components.css` definiert
+- ✅ Sprachschalter + hreflang-Tags in DE `index.html` eingebaut
+- ✅ `en/index.html` als Pilot-Rohgerüst erstellt (lang=en, og:locale=en_US, hreflang-Triple, JSON-LD inLanguage=en-US, alle Pfade angepasst)
+- ✅ Sitemap mit hreflang-xhtml-Annotationen für Startseite (DE + EN)
+- ✅ Cache-Bust components.css auf alle 45 HTML-Dateien synchron hochgezogen
+- ✅ Übersetzungs-Liste `_doku/uebersetzung-index.md` für alle Strings der Pilot-Seite
+- ✅ **Konvention festgelegt**: untranslated Strings im EN-File tragen Prefix `[EN] `
+- ✅ **Konvention festgelegt**: Top-Nav + Burger auf EN-Seiten zeigen auf DE-URLs, solange die EN-Version fehlt
+- ✅ **Konvention festgelegt**: Rechtstexte bleiben deutsch, Footer-Links labeln „(in German)" + `hreflang="de"`
+
+### Offen — direkt als Nächstes
+
+1. **Maggy nimmt `_doku/uebersetzung-index.md` in eine separate Übersetzungs-Claude-Session.** Brand-Vokabular dort einmal final festlegen, dann alle Strings übersetzen lassen, Tonfall prüfen.
+2. **Code-Session**: Maggy bringt ausgefüllte Liste zurück → `[EN] `-Marker per find-replace ersetzen → Layout visuell prüfen (englische Sätze sind oft länger).
+3. Erst dann an Seite 2 (`i-history.html`) starten.
+
+### Offene Items aus dem ursprünglichen Plan, die noch nicht durch sind
+
+- **Sitemap-Strategie für Vollausbau**: hreflang-Annotationen in einer XML (eingeschlagen — siehe oben) — wird pro neuer EN-Seite erweitert.
+- **Datenfiles** (`vitrine.js`, `rundgaenge.js`): noch keine `de:`/`en:`-Felder eingeführt. Wird relevant, sobald die Vitrine-Hub-Seite an der Reihe ist (Schritt 5).
+- **`build.py` bilingual-fähig**: noch nicht angefasst. Wird relevant, sobald `en/vitrine.html` oder englische Stadtseiten kommen.
+- **`llms.txt`**: noch keine englische Sektion. Anpassung nach Übersetzung der Startseite.
+- **Tally-Form auf Englisch**: Maggy muss eine zweite Form im Tally-Account anlegen, bevor `en/kontakt.html` und `en/workflow.html` live gehen können. Form-ID hier nachtragen: _____.
+- **Search Console / Bing**: nach Live-Gang englische Seiten in beiden Webmaster-Tools registrieren.
+
+### Konventionen für die Doppel-Pflege (nach Phase 1 etabliert)
+
+- Bei jeder DE-Text-Änderung muss die EN-Variante mitgepflegt werden (oder zurückgesetzt auf `[EN] <neuer DE-Text>`-Marker, falls neu zu übersetzen).
+- Bei CSS- oder JS-Änderungen: Cache-Bust auf **allen** HTML-Dateien hochziehen (DE + EN), Pattern wie bei normalen Cache-Busts.
+- Neue DE-Seite hat immer `<link rel="alternate" hreflang="..." />`-Triple und Sprachschalter-HTML.
