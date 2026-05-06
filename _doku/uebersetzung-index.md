@@ -1,10 +1,19 @@
-# Übersetzungs-Liste – `index.html` (Pilot-Seite)
+# Übersetzungs-Liste – `index.html` (Pilot-Seite) ✅ ERLEDIGT
 
-> Diese Liste ist für die **separate Übersetzungs-Claude-Session** gedacht.
-> Workflow: Maggy nimmt diese Datei in eine andere Claude-Session, lässt
-> alle Strings übersetzen, prüft den Tonfall, kommt mit ausgefüllter Liste
-> zurück. Code-Session (diese hier) setzt die Übersetzungen dann in
-> `en/index.html` ein und ersetzt alle `[EN] …`-Marker.
+> **Status (2026-05-06):** ✅ Übersetzung erledigt (Session 29). Alle Strings
+> sind in `en/index.html` eingesetzt, Datei läuft jetzt komplett englisch.
+> Diese Liste bleibt liegen als **Template/Referenz** für die nächsten Seiten.
+>
+> **Pattern für die nächsten Seiten:** pro Seite eine eigene Datei
+> `_doku/uebersetzung-<seitenname>.md` (z.B. `uebersetzung-i-history.md`).
+> Globale Konventionen (British English, Brand-Vokabular, etc.) stehen
+> einmalig in `_doku/englische-version.md` und müssen nicht jedes Mal
+> wiederholt werden.
+>
+> Workflow: Maggy nimmt die Datei in eine separate Übersetzungs-Claude-
+> Session, lässt alle Strings übersetzen, prüft den Tonfall, kommt mit
+> ausgefüllter Liste zurück. Code-Session setzt die Übersetzungen ein
+> und ersetzt alle `[EN] …`-Marker.
 
 ## Brand-Vokabular (vorläufig — bitte in Übersetzungs-Session präzisieren)
 

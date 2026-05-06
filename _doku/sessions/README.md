@@ -6,6 +6,7 @@ Naming: `YYYY-MM-DD-session-NN-thema.md`
 
 ## Sessions
 
+- 2026-05-06 - [Session 29 - Englisch-Pilot `en/index.html` übersetzt (en_GB, alle 115 [EN]-Marker raus, Brand-Vokabular final)](2026-05-06-session-29-englisch-pilot-uebersetzung.md)
 - 2026-05-06 - [Session 28 - Englisch-Version: Phase 1 + Pilot-Seite index.html (`/en/`-Verzeichnis, Sprachschalter, hreflang, Übersetzungs-Liste)](2026-05-06-session-28-englisch-pilot-index.md)
 - 2026-05-05 - [Session 27 - Bing-Audit (Meta-Descriptions + Marker-alt) + iOS-Animations-Bugs (Reduce-Motion!) + Footer-Cleanup + Englisch-Version geplant](2026-05-05-session-27-bing-audit-ios-animations-footer-englisch.md)
 - 2026-05-04 - [Session 26 - SEO-Fix: Pretty-URLs auf .html umgestellt (Google indexierte nur die Startseite)](2026-05-04-session-26-seo-url-fix-html-suffix.md)
