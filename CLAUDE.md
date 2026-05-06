@@ -146,7 +146,7 @@ Bei Asset-Tausch (mp4/jpg-Bytes ändern, Dateiname bleibt): Cache-Bust auch im J
 
 ## Was noch offen ist
 
-- **Englische Version** — **in Arbeit (Session 28).** Phase 1 + Pilot-Seite `en/index.html` durch (Sprachschalter `.nav__lang`, hreflang-Pattern, Sitemap-xhtml, `[EN]`-Marker-Konvention für untranslated Strings). Status + Workflow + offene Items in `_doku/englische-version.md`, aktuelle Übersetzungs-Liste fuer separate Claude-Session in `_doku/uebersetzung-index.md`.
+- **Englische Version** — **in Arbeit (Sessions 28 + 29).** Pilot-Seite `en/index.html` ist komplett übersetzt (British English, en_GB) und wartet auf visuellen Layout-Check (Privat-Tab Mobile + Desktop). Sprachschalter `.nav__lang`, hreflang-Pattern, Sitemap-xhtml + Brand-Vokabular sind etabliert. Nächste Pilot-Seiten laut Plan: 3 Kategorien (`i-history.html`, `i-dentity.html`, `i-grow.html`). Status + Workflow + offene Items in `_doku/englische-version.md`.
 - **Blog reaktivieren** wenn ClaudeCowork-Drafts überarbeitet sind (siehe Session 21 Doku — Reaktivierung = HTML-Comments raus auf vitrine.html + noindex-Tags raus aus 3 blog/*.html + sitemap/llms-Einträge zurück).
 
 ## Akzeptiert-offen (kein Launch-Blocker)

@@ -1,7 +1,15 @@
 # Englische Version – Plan & Workflow
 
-> Stand: 2026-05-06. **Phase 1 + Pilot-Seite `index.html` umgesetzt** (Session 28).
+> Stand: 2026-05-06. **Pilot-Seite `index.html` komplett übersetzt** (Sessions 28 + 29).
 > Diese Datei ist Konzept + lebender Status. Aktueller Stand am Ende der Datei.
+
+## Festgelegte Konventionen für die ganze EN-Site
+
+- **British English** (`en_GB`) ist die Sprachvariante. Schreibweisen: `Honour`, `colour`, `centre`, `recognise`, `realise`. Konsequent durchziehen — auch bei künftigen Übersetzungs-Sessions Marilena/Maggy.
+- **Stilkonvention**: Sub-Marken-Sublines (`Travel through time`, `Regional identity`, `Media literacy`) in **sentence case**. Top-Nav-Items und Section-Headlines (`Walking Tours`, `Showcase`, `Three categories, one goal`) in **Title Case**.
+- **Brand-Vokabular** (final, in `_doku/uebersetzung-index.md` voll dokumentiert): Stadtrundgang → walking tour, Audioguide → audio guide, Vitrine → Showcase, Bodensee → Lake Constance.
+- **Cache-Bust gilt nur für CSS/JS-Änderungen.** Reine HTML-Übersetzungs-Edits brauchen keinen Bust.
+- **Pro Seite eigene Übersetzungs-Liste** in `_doku/uebersetzung-<seitenname>.md` (Pattern siehe `_doku/uebersetzung-index.md` für `index.html`).
 
 ## Was schon entschieden ist
 
@@ -104,26 +112,31 @@ GitHub-Pages-Build wird minimal länger (~2-3 Sek), egal in der Praxis.
 
 ---
 
-## Aktueller Stand (Stand 2026-05-06, Session 28)
+## Aktueller Stand (Stand 2026-05-06, Sessions 28 + 29)
 
-### Erledigt (Phase 1 + Pilot)
+### Erledigt (Phase 1 + Pilot Startseite)
 
 - ✅ `/en/`-Verzeichnis angelegt
 - ✅ Sprachschalter `.nav__lang` (glassy Pill, DE | EN) in `css/components.css` definiert
 - ✅ Sprachschalter + hreflang-Tags in DE `index.html` eingebaut
-- ✅ `en/index.html` als Pilot-Rohgerüst erstellt (lang=en, og:locale=en_US, hreflang-Triple, JSON-LD inLanguage=en-US, alle Pfade angepasst)
+- ✅ `en/index.html` als Pilot-Rohgerüst erstellt (Session 28: lang=en, hreflang-Triple, alle Pfade angepasst, `[EN]`-Marker)
+- ✅ **`en/index.html` komplett übersetzt** (Session 29: alle 115 `[EN]`-Marker raus, British English, `og:locale=en_GB`, JSON-LD `inLanguage=en-GB`)
 - ✅ Sitemap mit hreflang-xhtml-Annotationen für Startseite (DE + EN)
 - ✅ Cache-Bust components.css auf alle 45 HTML-Dateien synchron hochgezogen
-- ✅ Übersetzungs-Liste `_doku/uebersetzung-index.md` für alle Strings der Pilot-Seite
-- ✅ **Konvention festgelegt**: untranslated Strings im EN-File tragen Prefix `[EN] `
-- ✅ **Konvention festgelegt**: Top-Nav + Burger auf EN-Seiten zeigen auf DE-URLs, solange die EN-Version fehlt
-- ✅ **Konvention festgelegt**: Rechtstexte bleiben deutsch, Footer-Links labeln „(in German)" + `hreflang="de"`
+- ✅ Übersetzungs-Liste `_doku/uebersetzung-index.md` (Template/Referenz für nächste Seiten)
+- ✅ Brand-Vokabular final festgelegt (siehe Konventionen-Block oben)
+- ✅ **Konvention**: untranslated Strings im EN-File tragen Prefix `[EN] `
+- ✅ **Konvention**: Top-Nav + Burger auf EN-Seiten zeigen auf DE-URLs, solange die EN-Version fehlt
+- ✅ **Konvention**: Rechtstexte bleiben deutsch, Footer-Links labeln „(in German)" + `hreflang="de"`
 
 ### Offen — direkt als Nächstes
 
-1. **Maggy nimmt `_doku/uebersetzung-index.md` in eine separate Übersetzungs-Claude-Session.** Brand-Vokabular dort einmal final festlegen, dann alle Strings übersetzen lassen, Tonfall prüfen.
-2. **Code-Session**: Maggy bringt ausgefüllte Liste zurück → `[EN] `-Marker per find-replace ersetzen → Layout visuell prüfen (englische Sätze sind oft länger).
-3. Erst dann an Seite 2 (`i-history.html`) starten.
+1. **Visueller Layout-Check** durch Maggy in Privat-Tab (Mobile + Desktop). Risiko-Stellen:
+   - Hero-Claim Z2 `for digital experiences` (länger als DE)
+   - i.dentity-Body (~10% länger als DE)
+   - Hard-Caption `Round the lake — Lake Constance`
+2. Falls Layout bricht: punktuell anpassen (Schriftgröße, Zeilenumbruch, Wortwahl).
+3. Dann **Seite 2-4** (`i-history.html`, `i-dentity.html`, `i-grow.html`): Rohgerüste anlegen + Übersetzungs-Listen pro Seite extrahieren.
 
 ### Offene Items aus dem ursprünglichen Plan, die noch nicht durch sind
 
