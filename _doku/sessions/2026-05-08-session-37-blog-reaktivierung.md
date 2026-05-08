@@ -129,17 +129,50 @@ Maggy wollte das Hero "um ein Drittel kleiner". Loesung war NICHT, das JPG noch 
 - **Alte Hero-Versuche** — `blog/images/01-stadtrundgang-hero.jpg` (1056×685, Test-Bild) und `01-stadtrundgang-hero-v2.jpg` (700×540, ohne Frames). Untracked, Maggy loescht haendisch.
 - **Push** — alles lokal. Erst nach Hero-Bild-Komplettierung pushen (Maggy: "erst pushen wenn alles sitzt").
 
-## 5. Quick-Stats Session 37
+## 5. Erweiterungen nach erstem Commit (a335762 + ea158b7)
 
-- 4 neue Artikel-HTMLs (insgesamt ~3500 Zeilen Inhalt)
+Nach dem ersten "Blog reaktiviert"-Commit hat Maggy zwei zusaetzliche Anliegen gehabt:
+
+### "Alle Artikel"-Link auch oben
+
+Die Article-Header in allen 4 Artikeln haben jetzt einen kleinen `&larr; Alle Artikel`-Link ueber dem Cat-Tag, dezent mit `font-size: .9rem` und `class="muted"`. Identisch zum bestehenden Link unten im Artikel.
+
+### Folge-Beitrag-System (kein JS, hardcoded)
+
+Maggy zeigte Screenshots von einem anderen Blog mit `<details>`-basierten Folge-Beitrags-Listen unter Hauptbeitraegen. Pattern uebernommen, hardcoded gepflegt (kein zentrales Datenfile).
+
+**Datenmodell:** Folge-Beitrage haben **eigene Slugs** (SEO-flexibel, NICHT `<haupt-slug>-update-N.html`). Im JSON-LD des Folge-Artikels: `"mentions": { "@id": "<haupt-url>" }`. Im Hauptartikel-Schema bleibt der Folge-Beitrag erstmal aussen vor (kein `hasPart`); das kann spaeter ergaenzt werden, wenn mehr Folgen kommen.
+
+**3 Stellen pro Folge-Beitrag pflegen** (manuell):
+1. **Hauptartikel-HTML** — `<section class="article__series">` mit `<ol>` der Folgen, vor der Tag-Wolke
+2. **Folge-Artikel-HTML** — eigenstaendige Seite mit `<p class="article__parent-link">&#x21A9; Folge-Beitrag zu: <a>...</a></p>` direkt im Body-Top, plus 4-stufige Breadcrumb (`Startseite / Vitrine / Hauptartikel / Folge-Titel`)
+3. **Uebersichten** — `<details class="blog-card-series">` mit `<summary>` und `<ol>` direkt nach der Hauptartikel-Card in `blog/index.html` UND `vitrine.html` (Spiegel-Pflege, weil zwei Uebersichten existieren)
+
+Plus: `sitemap.xml`-Eintrag (eigene URL, `priority: 0.6` einen Schritt unter dem Hauptartikel) und `llms.txt`-Eintrag (eingerueckt unter dem Hauptartikel).
+
+**CSS-Klassen** (in `components.css` ergaenzt):
+- `.article__series` — Block am Ende des Hauptartikels mit `<h3>` + `<ol>` + `<time>` + `<a>`. Border-Top, `<time>` als 110px breite Spalte links.
+- `.article__parent-link` — Hinweis-Block oben im Folge-Artikel. Linke Akzent-Border in muted, gelblicher Hintergrund (4% white).
+- `.blog-card-series` — `<details>` mit benutzerdefiniertem Marker (`::before` mit `\25B6`, rotiert beim Open-State). Eingerueckt mit `padding: 0 var(--sp-3)`. Negativer top-margin um naeher unter die Card zu rutschen.
+
+**Demo-Folge-Beitrag**: `blog/frauenspuren-launch-mai-2026.html` mit echtem Maggy-Text aus Eroeffnung am 5.5.2026 (Stadtarchiv Dornbirn), Hero-Foto vom Eroeffnungsabend (1400&times;949 JPG, optimiert mit Pillow von 5419&times;3673 PNG). 12 Tags, 4 H2-Sektionen, Datum 8.5.2026.
+
+**Cache-Bust components.css**: `?v=20260508a` → `?v=20260508b` in 55 Files (selber Pattern wie das erste Cache-Bust-Skript).
+
+## 6. Quick-Stats Session 37
+
+- 4 neue Artikel-HTMLs + 1 Folge-Beitrag = **5 neue Blog-Posts**
 - 4 Grafiken in `blog/figures/` kopiert
-- 1 Hero-Bild PIL-komponiert (700×550, 64 KB, 4 Versionen iteriert bis Maggy zufrieden war)
+- 2 Hero-Bilder (Artikel 01 PIL-komponiert 700&times;550 mit Site-Phone-Look, Folge-Beitrag 1400&times;949 Eroeffnungsfoto)
 - 1 Render-Vorlage `blog/_hero-render-01.html`
 - 1 grosser CSS-Refactor (cat-tag + article-tag-System)
-- Cache-Bust auf 56 Files
-- 5 HTMLs Autoren-Cleanup (sichtbar + Meta + JSON-LD → Organization)
-- vitrine.html Blog-Sektion reaktiviert
-- blog/index.html neu (war Redirect)
-- sitemap.xml + llms.txt erweitert
-- Verifikation Mobile + Desktop fuer alle Artikel
-- 0 Tools an Permission-Walls geknallt nach den ersten Versuchen (Powershell-Sperre umgangen via `Write` und Python-Bash)
+- 1 neues Folge-Beitrag-System (3 CSS-Klassen, hardcoded gepflegt)
+- 2 Cache-Busts hintereinander (56 Files je Lauf)
+- 5 HTMLs Autoren-Cleanup
+- vitrine.html Blog-Sektion reaktiviert + Folge-Beitrag-Disclosure
+- blog/index.html neu (war Redirect) + Folge-Beitrag-Disclosure
+- sitemap.xml + llms.txt zwei Mal erweitert (Hauptartikel + Folge)
+- "Alle Artikel"-Link oben in allen Artikeln + Folge-Beitrag
+- Verifikation Mobile + Desktop fuer alle Artikel via DOM-Eval
+- Cleanup-Commit fuer alten Blog-Slug + 2 Hero-Versuche (per Maggy via PowerShell ausgefuehrt)
+- 3 Commits insgesamt: a335762 (Reaktivierung) + ea158b7 (Cleanup) + N+1 (Folge-Beitrag-System)
