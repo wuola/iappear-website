@@ -6,6 +6,7 @@ Naming: `YYYY-MM-DD-session-NN-thema.md`
 
 ## Sessions
 
+- 2026-05-08 - [Session 30 - Englisch-Pilot `i-history.html` Roh-Gerüst + Cloud-Branch-Reparatur (PR #8 gemergt, Worktree-Hygiene)](2026-05-08-session-30-englisch-pilot-i-history-rohgeruest.md)
 - 2026-05-06 - [Session 29 - Englisch-Pilot `en/index.html` übersetzt (en_GB, alle 115 [EN]-Marker raus, Brand-Vokabular final)](2026-05-06-session-29-englisch-pilot-uebersetzung.md)
 - 2026-05-06 - [Session 28 - Englisch-Version: Phase 1 + Pilot-Seite index.html (`/en/`-Verzeichnis, Sprachschalter, hreflang, Übersetzungs-Liste)](2026-05-06-session-28-englisch-pilot-index.md)
 - 2026-05-05 - [Session 27 - Bing-Audit (Meta-Descriptions + Marker-alt) + iOS-Animations-Bugs (Reduce-Motion!) + Footer-Cleanup + Englisch-Version geplant](2026-05-05-session-27-bing-audit-ios-animations-footer-englisch.md)
