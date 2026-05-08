@@ -6,6 +6,7 @@ Naming: `YYYY-MM-DD-session-NN-thema.md`
 
 ## Sessions
 
+- 2026-05-08 - [Session 34 - Englisch: `ueber-uns.html` (Team-Bios) + drive-by Pretty-URL-Bug-Fix in DE](2026-05-08-session-34-englisch-ueber-uns.md)
 - 2026-05-08 - [Session 33 - Englisch: `features.html` + `js/features-en.js` (14 Feature-Beschreibungen englisch)](2026-05-08-session-33-englisch-features.md)
 - 2026-05-08 - [Session 32 - Englisch: `i-grow.html` direkt übersetzt (Sub-Marken-Trio i.history/i.dentity/i.grow komplett englisch)](2026-05-08-session-32-englisch-i-grow.md)
 - 2026-05-08 - [Session 31 - Englisch: `i-dentity.html` direkt übersetzt (neuer Workflow zum ersten Mal angewendet)](2026-05-08-session-31-englisch-i-dentity.md)
