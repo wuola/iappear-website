@@ -6,6 +6,7 @@ Naming: `YYYY-MM-DD-session-NN-thema.md`
 
 ## Sessions
 
+- 2026-05-08 - [Session 38 - Blog-Zwischenstand: Worktree-Recovery + Branch-Audit, kein Merge heute (wartet auf Hero 02+03)](2026-05-08-session-38-blog-zwischenstand-vor-merge.md)
 - 2026-05-08 - [Session 37 - Blog-Reaktivierung mit 4 neuen Artikeln + Tag-System + Hero-Mockup-Render](2026-05-08-session-37-blog-reaktivierung.md)
 - 2026-05-08 - [Session 36 - Englisch: `user-guide.html` (1015 Zeilen mit 2 Wizard-Widgets, Mickey-Hand, Inline-Scripts englisch)](2026-05-08-session-36-englisch-user-guide.md)
 - 2026-05-08 - [Session 35 - Englisch: `faqs.html` (FAQPage Schema mit 7 Q&A in en_GB für Google Rich Snippets)](2026-05-08-session-35-englisch-faqs.md)
