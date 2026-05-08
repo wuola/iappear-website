@@ -195,18 +195,31 @@
     <priority>0.8</priority>
   </url>
   <!-- STADTRUNDGANG-URLS:END -->
-  <!-- Blog-URLs fuer Launch ausgeblendet — Artikel werden ueberarbeitet, Indexierung pausiert.
+  <url>
+    <loc>https://iappear.at/blog/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://iappear.at/blog/frauenspuren-dornbirn.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://iappear.at/blog/wie-entsteht-ein-igrow-projekt.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://iappear.at/blog/medien-und-demokratie-pflichtfach.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
   <url>
     <loc>https://iappear.at/blog/was-ist-ein-digitaler-stadtrundgang.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
-    <loc>https://iappear.at/blog/medienbildung-vorarlberg-schueler-gestalten-stadtrundgaenge.html</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  -->
   <url>
     <loc>https://iappear.at/impressum.html</loc>
     <changefreq>yearly</changefreq>

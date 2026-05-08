@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>i.appear &ndash; Evolution digitaler Stadtrundg&#228;nge</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+
+  :root {
+    --c-bg: #000000;
+    --c-surface: #111111;
+    --c-border: #2a2a2a;
+    --c-text: #ffffff;
+    --c-muted: #a0a0a0;
+    --c-history: #D3A54A;
+    --f-sans: 'Roboto', system-ui, sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--c-bg);
+    color: var(--c-text);
+    font-family: var(--f-sans);
+    -webkit-font-smoothing: antialiased;
+    display: flex;
+    justify-content: center;
+    padding: 2rem 1rem;
+  }
+
+  .graphic {
+    width: 100%;
+    max-width: 720px;
+  }
+
+  .graphic-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+  }
+
+  .graphic-logo-mark {
+    width: 40px;
+    height: auto;
+    opacity: 0.85;
+    flex-shrink: 0;
+  }
+
+  .header-label {
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--c-muted);
+    margin-bottom: 0.3rem;
+  }
+
+  .header-title {
+    font-size: 1.1rem;
+    font-weight: 300;
+    line-height: 1.3;
+  }
+
+  .header-title em {
+    font-style: normal;
+    color: var(--c-history);
+  }
+
+  .divider {
+    height: 1px;
+    background: var(--c-border);
+    margin: 1.5rem 0;
+  }
+
+  /* Timeline */
+  .timeline {
+    position: relative;
+    padding: 1rem 0 0.5rem;
+  }
+
+  /* The horizontal line */
+  .timeline-line {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--c-border);
+    transform: translateY(-50%);
+  }
+
+  .timeline-progress {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--c-muted) 0%, var(--c-history) 100%);
+    transform: translateY(-50%);
+    width: 0%;
+    animation: progressGrow 1.5s cubic-bezier(.2,.7,.2,1) 0.3s forwards;
+  }
+
+  @keyframes progressGrow {
+    to { width: 100%; }
+  }
+
+  .timeline-nodes {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+  }
+
+  .timeline-node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 22%;
+    opacity: 0;
+    animation: nodeAppear 0.5s cubic-bezier(.2,.7,.2,1) forwards;
+  }
+
+  .timeline-node:nth-child(1) { animation-delay: 0.4s; }
+  .timeline-node:nth-child(2) { animation-delay: 0.7s; }
+  .timeline-node:nth-child(3) { animation-delay: 1.0s; }
+  .timeline-node:nth-child(4) { animation-delay: 1.3s; }
+
+  @keyframes nodeAppear {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  /* Upper content (above line) */
+  .node-upper {
+    text-align: center;
+    padding-bottom: 1.2rem;
+    min-height: 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  .node-year {
+    font-size: 1.6rem;
+    font-weight: 300;
+    color: var(--c-muted);
+    line-height: 1;
+    margin-bottom: 0.3rem;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .timeline-node:last-child .node-year {
+    color: var(--c-history);
+    font-size: 1.8rem;
+  }
+
+  .node-label {
+    font-size: 0.65rem;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--c-muted);
+    line-height: 1.4;
+  }
+
+  .timeline-node:last-child .node-label {
+    color: var(--c-text);
+  }
+
+  /* The dot on the line */
+  .node-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--c-border);
+    border: 2px solid var(--c-muted);
+    position: relative;
+    z-index: 2;
+    flex-shrink: 0;
+  }
+
+  .timeline-node:last-child .node-dot {
+    width: 14px;
+    height: 14px;
+    background: var(--c-history);
+    border-color: var(--c-history);
+    box-shadow: 0 0 12px rgba(211, 165, 74, 0.4);
+  }
+
+  /* Lower content (below line) */
+  .node-lower {
+    text-align: center;
+    padding-top: 1.2rem;
+    min-height: 4.5rem;
+  }
+
+  .node-traits {
+    list-style: none;
+    padding: 0;
+  }
+
+  .node-traits li {
+    font-size: 0.65rem;
+    font-weight: 300;
+    color: var(--c-muted);
+    line-height: 1.6;
+    letter-spacing: 0.02em;
+  }
+
+  .timeline-node:last-child .node-traits li {
+    color: var(--c-text);
+    font-weight: 400;
+  }
+
+  .trait-highlight {
+    color: var(--c-history);
+  }
+
+  /* Footer */
+  .graphic-footer {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--c-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .graphic-logo {
+    font-size: 0.85rem;
+    font-weight: 300;
+    letter-spacing: 0.04em;
+  }
+
+  .graphic-logo .i-dot { font-weight: 500; }
+
+  .graphic-date {
+    font-size: 0.7rem;
+    color: var(--c-muted);
+    letter-spacing: 0.04em;
+  }
+
+  /* Mobile */
+  @media (max-width: 480px) {
+    .node-year { font-size: 1.2rem; }
+    .timeline-node:last-child .node-year { font-size: 1.3rem; }
+    .node-label { font-size: 0.58rem; }
+    .node-traits li { font-size: 0.58rem; }
+    .node-upper { min-height: 4rem; }
+    .timeline-node { width: 24%; }
+  }
+</style>
+</head>
+<body>
+  <div class="graphic">
+    <div class="graphic-top">
+      <div>
+        <div class="header-label">Evolution</div>
+        <div class="header-title">Vom Papierflyer zur <em>WebApp</em></div>
+      </div>
+      <svg class="graphic-logo-mark" viewBox="0 0 123.56 233.11" xmlns="http://www.w3.org/2000/svg">
+        <path d="M37.54,233.11v-14.79c4.75-.91,10.4-1.83,15.88-2.19v-55.86c-4.38-.73-10.59-1.46-15.88-1.83v-14.6c11.5-1.46,25.56-2.01,39.06-1.64v73.93c5.11.36,10.4,1.28,14.79,2.19v14.79h-53.85Z" fill="#fff" stroke="#fff" stroke-miterlimit="10"/>
+        <path d="M61.69,75.15c-8,0-14.37-6.37-14.37-14.19s6.37-14.01,14.37-14.01,14.55,6.18,14.55,14.01-6.55,14.19-14.55,14.19Z" fill="#fff" stroke="#fff" stroke-miterlimit="10"/>
+        <circle cx="61.78" cy="61.78" r="50.28" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="23"/>
+      </svg>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="timeline">
+      <div class="timeline-line"></div>
+      <div class="timeline-progress"></div>
+
+      <div class="timeline-nodes">
+
+        <div class="timeline-node">
+          <div class="node-upper">
+            <div class="node-year">2005</div>
+            <div class="node-label">Papierflyer</div>
+          </div>
+          <div class="node-dot"></div>
+          <div class="node-lower">
+            <ul class="node-traits">
+              <li>Statisch</li>
+              <li>Keine Navigation</li>
+              <li>Schnell veraltet</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline-node">
+          <div class="node-upper">
+            <div class="node-year">2012</div>
+            <div class="node-label">Erste Apps</div>
+          </div>
+          <div class="node-dot"></div>
+          <div class="node-lower">
+            <ul class="node-traits">
+              <li>Download n&#246;tig</li>
+              <li>Tracking</li>
+              <li>Plattformabh&#228;ngig</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline-node">
+          <div class="node-upper">
+            <div class="node-year">2018</div>
+            <div class="node-label">Mobile Websites</div>
+          </div>
+          <div class="node-dot"></div>
+          <div class="node-lower">
+            <ul class="node-traits">
+              <li>Kein Download</li>
+              <li>Oft nur Text</li>
+              <li>Wenig Interaktion</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline-node">
+          <div class="node-upper">
+            <div class="node-year">Heute</div>
+            <div class="node-label">WebApp</div>
+          </div>
+          <div class="node-dot"></div>
+          <div class="node-lower">
+            <ul class="node-traits">
+              <li class="trait-highlight">Privacy by Design</li>
+              <li class="trait-highlight">AR, 3D, 360&#176;</li>
+              <li class="trait-highlight">Kein Download</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="graphic-footer">
+      <div class="graphic-logo"><span class="i-dot">i.</span>appear</div>
+      <div class="graphic-date">Stand April 2026</div>
+    </div>
+  </div>
+</body>
+</html>

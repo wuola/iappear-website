@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>i.appear &ndash; Drei Stufen der Implementierung</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+
+  :root {
+    --c-bg: #000000;
+    --c-surface: #111111;
+    --c-border: #2a2a2a;
+    --c-text: #ffffff;
+    --c-muted: #a0a0a0;
+    --c-grow: #8E9F6A;
+    --f-sans: 'Roboto', system-ui, sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--c-bg);
+    color: var(--c-text);
+    font-family: var(--f-sans);
+    -webkit-font-smoothing: antialiased;
+    display: flex;
+    justify-content: center;
+    padding: 2rem 1rem;
+  }
+
+  .graphic { width: 100%; max-width: 720px; }
+
+  .graphic-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+  }
+
+  .graphic-logo-mark { width: 40px; height: auto; opacity: 0.85; flex-shrink: 0; }
+
+  .header-label {
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--c-muted);
+    margin-bottom: 0.3rem;
+  }
+
+  .header-title { font-size: 1.1rem; font-weight: 300; line-height: 1.3; }
+  .header-title em { font-style: normal; color: var(--c-grow); }
+
+  .divider { height: 1px; background: var(--c-border); margin: 1.5rem 0; }
+
+  .steps { display: flex; gap: 1px; margin-top: 0.5rem; position: relative; }
+
+  .step {
+    flex: 1;
+    background: var(--c-surface);
+    padding: 1.8rem 1.2rem;
+    position: relative;
+    opacity: 0;
+    transform: translateY(16px);
+    animation: stepIn 0.6s cubic-bezier(.2,.7,.2,1) forwards;
+  }
+
+  .step:nth-child(1) { animation-delay: 0.2s; }
+  .step:nth-child(2) { animation-delay: 0.45s; }
+  .step:nth-child(3) { animation-delay: 0.7s; }
+
+  @keyframes stepIn { to { opacity: 1; transform: translateY(0); } }
+
+  .step-number {
+    font-size: 2.8rem;
+    font-weight: 300;
+    color: var(--c-grow);
+    line-height: 1;
+    margin-bottom: 0.8rem;
+    opacity: 0.3;
+  }
+
+  .step:nth-child(2) .step-number { opacity: 0.55; }
+  .step:nth-child(3) .step-number { opacity: 0.85; }
+
+  .step-name {
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    margin-bottom: 0.6rem;
+    color: var(--c-text);
+  }
+
+  .step-duration {
+    font-size: 0.65rem;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--c-grow);
+    margin-bottom: 1.2rem;
+  }
+
+  .step-traits { list-style: none; }
+
+  .step-traits li {
+    font-size: 0.72rem;
+    font-weight: 300;
+    color: var(--c-muted);
+    line-height: 1.5;
+    padding: 0.35rem 0;
+    border-top: 1px solid var(--c-border);
+  }
+
+  .step-traits li:last-child { padding-bottom: 0; }
+
+  .step-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--c-grow);
+    transform-origin: left;
+    transform: scaleX(0);
+    animation: barIn 0.8s cubic-bezier(.2,.7,.2,1) forwards;
+  }
+
+  .step:nth-child(1) .step-bar { animation-delay: 0.5s; opacity: 0.3; }
+  .step:nth-child(2) .step-bar { animation-delay: 0.75s; opacity: 0.55; }
+  .step:nth-child(3) .step-bar { animation-delay: 1.0s; opacity: 0.85; }
+
+  @keyframes barIn { to { transform: scaleX(1); } }
+
+  .step-arrow {
+    position: absolute;
+    top: 50%;
+    width: 20px;
+    height: 20px;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+  }
+
+  .step-arrow-1 { left: calc(33.33% + 0.5px); }
+  .step-arrow-2 { left: calc(66.66% + 0.5px); }
+
+  .step-arrow svg {
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    animation: arrowIn 0.4s cubic-bezier(.2,.7,.2,1) forwards;
+  }
+
+  .step-arrow-1 svg { animation-delay: 0.6s; }
+  .step-arrow-2 svg { animation-delay: 0.85s; }
+
+  @keyframes arrowIn {
+    from { opacity: 0; transform: translateX(-4px); }
+    to { opacity: 0.5; transform: translateX(0); }
+  }
+
+  .graphic-footer {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--c-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .graphic-logo { font-size: 0.85rem; font-weight: 300; letter-spacing: 0.04em; }
+  .graphic-logo .i-dot { font-weight: 500; }
+  .graphic-date { font-size: 0.7rem; color: var(--c-muted); letter-spacing: 0.04em; }
+
+  @media (max-width: 560px) {
+    .steps { flex-direction: column; gap: 1px; }
+    .step { padding: 1.4rem 1rem; }
+    .step-number { font-size: 2rem; }
+    .step-arrow { display: none; }
+  }
+</style>
+</head>
+<body>
+  <div class="graphic">
+    <div class="graphic-top">
+      <div>
+        <div class="header-label">Medien und Demokratie</div>
+        <div class="header-title">Drei Stufen zur <em>Implementierung</em></div>
+      </div>
+      <svg class="graphic-logo-mark" viewBox="0 0 123.56 233.11" xmlns="http://www.w3.org/2000/svg">
+        <path d="M37.54,233.11v-14.79c4.75-.91,10.4-1.83,15.88-2.19v-55.86c-4.38-.73-10.59-1.46-15.88-1.83v-14.6c11.5-1.46,25.56-2.01,39.06-1.64v73.93c5.11.36,10.4,1.28,14.79,2.19v14.79h-53.85Z" fill="#fff" stroke="#fff" stroke-miterlimit="10"/>
+        <path d="M61.69,75.15c-8,0-14.37-6.37-14.37-14.19s6.37-14.01,14.37-14.01,14.55,6.18,14.55,14.01-6.55,14.19-14.55,14.19Z" fill="#fff" stroke="#fff" stroke-miterlimit="10"/>
+        <circle cx="61.78" cy="61.78" r="50.28" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="23"/>
+      </svg>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-number">01</div>
+        <div class="step-name">Schnupperprojekt</div>
+        <div class="step-duration">1 &#8211; 2 Tage</div>
+        <ul class="step-traits">
+          <li>Erste Erfahrung sammeln</li>
+          <li>Potenziale erkunden</li>
+          <li>Kleine Medienartefakte</li>
+          <li>Budget: niedrig</li>
+        </ul>
+        <div class="step-bar"></div>
+      </div>
+
+      <div class="step-arrow step-arrow-1">
+        <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M6 4 L14 10 L6 16" stroke="#8E9F6A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+
+      <div class="step">
+        <div class="step-number">02</div>
+        <div class="step-name">Projektpaket</div>
+        <div class="step-duration">3 &#8211; 5 Tage</div>
+        <ul class="step-traits">
+          <li>Vollst&auml;ndiger Workshop-Zyklus</li>
+          <li>Externe Expertise</li>
+          <li>Lehrpersonen lernen mit</li>
+          <li>Budget: mittel</li>
+        </ul>
+        <div class="step-bar"></div>
+      </div>
+
+      <div class="step-arrow step-arrow-2">
+        <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M6 4 L14 10 L6 16" stroke="#8E9F6A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+
+      <div class="step">
+        <div class="step-number">03</div>
+        <div class="step-name">Jahresprogramm</div>
+        <div class="step-duration">&Uuml;ber ein Schuljahr</div>
+        <ul class="step-traits">
+          <li>Progressive Komplexit&auml;t</li>
+          <li>Nachhaltige Verankerung</li>
+          <li>Eigenst&auml;ndige Medienkultur</li>
+          <li>Budget: mittel&#8211;hoch</li>
+        </ul>
+        <div class="step-bar"></div>
+      </div>
+    </div>
+
+    <div class="graphic-footer">
+      <div class="graphic-logo"><span class="i-dot">i.</span>appear</div>
+      <div class="graphic-date">Stand April 2026</div>
+    </div>
+  </div>
+</body>
+</html>

@@ -37,6 +37,14 @@ Die drei inhaltlichen Kategorien heissen i.history (historische Stadtrundgaenge,
 
 - [Vitrine](https://iappear.at/vitrine.html): Auszeichnungen, Presse, Hintergrund-Artikel und Referenzen - alles an einem Ort.
 
+## Blog (Hintergrund & Geschichten)
+
+- [Blog-Uebersicht](https://iappear.at/blog/): Alle Blog-Beitraege auf einen Blick - Hintergrund zu digitalen Stadtrundgaengen, Schulprojekten und Medienbildung in Vorarlberg.
+- [Frauenspuren Dornbirn](https://iappear.at/blog/frauenspuren-dornbirn.html): Sichtbarkeit, Vielfalt und ein neuer Blick auf eine Stadt - digitaler Frauengeschichts-Rundgang ab Mai 2026 (Kategorie i.history).
+- [Wie ein i.grow-Projekt funktioniert](https://iappear.at/blog/wie-entsteht-ein-igrow-projekt.html): Vom ersten Gespraech zum veroeffentlichten Rundgang - 5 Phasen, 2 reale Schulbeispiele aus Vorarlberg (Kategorie i.grow).
+- [Pflichtfach Medien und Demokratie ab 2027/28](https://iappear.at/blog/medien-und-demokratie-pflichtfach.html): Was die AHS-Lehrplanreform bedeutet und welche Erfahrung Schulen jetzt schon nutzen koennen (Kategorie i.grow).
+- [Was ist ein digitaler Stadtrundgang?](https://iappear.at/blog/was-ist-ein-digitaler-stadtrundgang.html): Definition, Beispiele und Praxis aus Vorarlberg - was einen guten Rundgang ausmacht (Grundlagen).
+
 ## Features
 
 3D-Modelle, Augmented Reality, 360-Video in VR, Animationen, interaktive Karten, Audio-Guides, historische Bilder, Quiz-Funktion, Zeitzeugeninterviews, Videos, Secret Stations, emotionale Geschichten, bewegte Fotos, Vorher-Nachher-Ansichten.
