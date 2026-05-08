@@ -6,6 +6,7 @@ Naming: `YYYY-MM-DD-session-NN-thema.md`
 
 ## Sessions
 
+- 2026-05-08 - [Session 32 - Englisch: `i-grow.html` direkt übersetzt (Sub-Marken-Trio i.history/i.dentity/i.grow komplett englisch)](2026-05-08-session-32-englisch-i-grow.md)
 - 2026-05-08 - [Session 31 - Englisch: `i-dentity.html` direkt übersetzt (neuer Workflow zum ersten Mal angewendet)](2026-05-08-session-31-englisch-i-dentity.md)
 - 2026-05-08 - [Session 30 - Englisch-Pilot `i-history.html` Roh-Gerüst + Cloud-Branch-Reparatur (PR #8 gemergt, Worktree-Hygiene) + i-history übersetzt + Workflow-Wechsel](2026-05-08-session-30-englisch-pilot-i-history-rohgeruest.md)
 - 2026-05-06 - [Session 29 - Englisch-Pilot `en/index.html` übersetzt (en_GB, alle 115 [EN]-Marker raus, Brand-Vokabular final)](2026-05-06-session-29-englisch-pilot-uebersetzung.md)
