@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>i.grow &ndash; Media literacy, civic education &amp; AI literacy for schools | i.appear</title>
+  <meta name="description" content="i.grow &mdash; media literacy, civic education and AI literacy for schools across Vorarlberg. Students design their own digital walking tours." />
+  <meta name="author" content="Marilena Tumler" />
+  <link rel="canonical" href="https://iappear.at/en/i-grow.html" />
+  <link rel="alternate" hreflang="de" href="https://iappear.at/i-grow.html" />
+  <link rel="alternate" hreflang="en" href="https://iappear.at/en/i-grow.html" />
+  <link rel="alternate" hreflang="x-default" href="https://iappear.at/i-grow.html" />
+  <meta property="og:site_name" content="i.appear" />
+  <meta property="og:locale" content="en_GB" />
+  <meta property="og:locale:alternate" content="de_AT" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="i.grow &ndash; Media literacy, civic education and AI literacy for schools | i.appear" />
+  <meta property="og:description" content="Media literacy and civic education for schools across Vorarlberg: workshops on media skills, media ethics and AI literacy." />
+  <meta property="og:url" content="https://iappear.at/en/i-grow.html" />
+  <meta property="og:image" content="https://iappear.at/assets/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="i.grow &ndash; Media literacy, civic education and AI literacy for schools | i.appear" />
+  <meta name="twitter:description" content="Media literacy and civic education for schools across Vorarlberg: workshops on media skills, media ethics and AI literacy." />
+  <link rel="icon" type="image/png" href="../assets/favicon.png" />
+  <link rel="apple-touch-icon" href="../assets/favicon.png" />
+
+  <link rel="stylesheet" href="../css/global.css?v=20260427a" />
+  <link rel="stylesheet" href="../css/layout.css?v=20260430a" />
+  <link rel="stylesheet" href="../css/components.css?v=20260506a" />
+  <link rel="stylesheet" href="../css/animations.css?v=20260428a" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+  <!-- Breadcrumb strukturierte Daten: englische Sprachversion -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://iappear.at/en/index.html" },
+        { "@type": "ListItem", "position": 2, "name": "i.grow - Media literacy", "item": "https://iappear.at/en/i-grow.html" }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- ========== NAVIGATION ==========
+       Englische Version: Top-Nav-Links und Burger-Menue zeigen vorerst auf die
+       deutschen Seiten (../X.html) — sie werden umgestellt sobald die
+       jeweilige englische Seite existiert. -->
+  <header class="nav" role="banner"><div class="nav__inner">
+    <a class="nav__brand" href="index.html" aria-label="i.appear home"><img src="../assets/svg/logos/logo-mark-weiss.svg?v=20260414ae" alt="i.appear" /></a>
+    <nav class="nav__links" aria-label="Main navigation">
+      <a href="../stadtrundgaenge.html">Walking Tours</a>
+      <a href="../features.html">Features</a>
+      <a href="../workflow.html">Services</a>
+      <a href="../ueber-uns.html">About</a>
+      <a href="../vitrine.html">Showcase</a>
+    </nav>
+    <div class="nav__lang" role="group" aria-label="Language">
+      <a href="../i-grow.html" lang="de" hreflang="de">DE</a>
+      <span aria-hidden="true">|</span>
+      <a href="i-grow.html" lang="en" aria-current="page">EN</a>
+    </div>
+    <button class="nav__burger" data-menu-toggle aria-label="Open menu"><span></span></button>
+  </div></header>
+
+    <div id="menu" class="menu" role="dialog" aria-modal="true" aria-label="Menu">
+    <button class="menu__close" data-menu-close aria-label="Close menu">&times;</button>
+    <div class="menu__group">
+      <h4 class="menu__heading">The Platform</h4>
+      <ul class="menu__list">
+        <li><a href="../user-guide.html">i.appear User Guide</a></li>
+        <li><a href="i-history.html" class="c-history">i.history &ndash; Travel through time</a></li>
+        <li><a href="i-dentity.html" class="c-dentity">i.dentity &ndash; Regional identity</a></li>
+        <li><a href="i-grow.html" class="c-grow">i.grow &ndash; Media literacy</a></li>
+        <li><a href="../features.html">Features</a></li>
+      </ul>
+    </div>
+    <div class="menu__group">
+      <h4 class="menu__heading">Walking Tours</h4>
+      <ul class="menu__list">
+        <li><a href="../stadtrundgaenge.html">All Locations</a></li>
+        <li><a href="../stadtrundgang-dornbirn.html">Dornbirn</a></li>
+        <li><a href="../stadtrundgang-feldkirch.html">Feldkirch</a></li>
+        <li><a href="../stadtrundgang-hard.html">Hard on Lake Constance</a></li>
+        <li><a href="../stadtrundgang-au.html">Au in the Bregenzerwald</a></li>
+      </ul>
+    </div>
+    <div class="menu__group">
+      <h4 class="menu__heading">Backstage</h4>
+      <ul class="menu__list">
+        <li><a href="../workflow.html">Workflow and Services</a></li>
+        <li><a href="../vitrine.html">Showcase</a></li>
+        <li><a href="../ueber-uns.html">About</a></li>
+        <li><a href="../kontakt.html">Contact</a></li>
+        <li><a href="../faqs.html">FAQs</a></li>
+        <li><a href="../agb.html" hreflang="de">Terms (in German)</a></li>
+        <li><a href="../impressum.html" hreflang="de">Imprint (in German)</a></li>
+        <li><a href="../datenschutz.html" hreflang="de">Privacy (in German)</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <main>
+    <nav class="breadcrumb container" aria-label="Breadcrumb"><ol><li><a href="index.html">Home</a></li><li><span aria-current="page">i.grow &ndash; Media literacy</span></li></ol></nav>
+    <header class="page-header page-header--category container">
+      <div class="page-header__brand">
+        <img class="page-header__icon" src="../assets/svg/logos/logo-i-gruen.svg" alt="" aria-hidden="true" />
+        <h1 class="c-grow">i.grow</h1>
+        <p class="page-header__subtitle c-grow">Media literacy</p>
+        <p class="page-header__lead muted">Media literacy, civic education &amp; AI literacy &ndash; learning by making.</p>
+      </div>
+      <div class="page-header__story">
+        <h2 class="page-header__story-headline">From consuming to creating</h2>
+        <p class="page-header__story-body">With i.grow, students become creators of their own learning content. In our workshops they explore topics in their own everyday context and ask: &ldquo;What does this have to do with me?&rdquo; They bring their perspectives to the table and build tours that are genuinely engaging for them and their peers. Along the way, they don&rsquo;t just learn technical skills &mdash; they also engage critically with media ethics and digital storytelling.</p>
+        <div class="page-header__story-cta">
+          <a class="hub-jumpnav__chip hub-jumpnav__chip--grow" href="#rundgaenge-dornbirn">jump to the tours &darr;</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Zielgruppen und Formate (war frueher weiter unten, in Session 14c
+         direkt unter den Header gezogen damit Besucher sofort sehen
+         wer angesprochen ist). -->
+    <section class="section container">
+      <h2>Who is i.grow for?</h2>
+      <div class="grid grid-3" style="margin-top:var(--sp-3)">
+        <article class="card">
+          <h3 class="c-grow">Teachers</h3>
+          <p>Ready-made walking tours with audio guide and didactic supporting material for lessons in history, ethics, digital basics or the new compulsory subject &ldquo;Medien und Demokratie&rdquo; (Media and Democracy).</p>
+        </article>
+        <article class="card">
+          <h3 class="c-grow">Classes &amp; project weeks</h3>
+          <p>Workshops where students create their own digital walking tours &ndash; from research and media production through to publication. Perfect for project weeks or term-long projects.</p>
+        </article>
+        <article class="card">
+          <h3 class="c-grow">Educational institutions</h3>
+          <p>Partnerships with teacher training colleges, universities of applied sciences and education authorities, developing new formats for media literacy, civic education and AI literacy in the classroom.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section container">
+      <div class="prose">
+        <p>i.grow is the educational stream of i.appear and brings <strong>media literacy, civic education and digital skills</strong> within reach of schools. We offer two core approaches to integrate digital learning environments into the school day and to actively involve young people in the design process: <strong>curated walking tours with audio guide</strong> and <strong>participatory workshops</strong>.</p>
+        <p>On one side, i.grow includes professionally produced digital walking tours designed specifically for classroom use. Topics like history, ethics, plural society or urban development become multimedia experiences right on location. To support teachers in integrating these into the curriculum, the tours come with didactic material, lesson plans and worksheets. The smartphone becomes a mobile classroom.</p>
+        <p>On the other side, i.grow runs workshops where students themselves become creators. In a project-based process they develop their own digital walking tours and engage deeply with topics from their own world &ndash; from media ethics and critical thinking to democracy and community, to AI literacy and digital storytelling.</p>
+      </div>
+    </section>
+
+    <!-- Themenfelder: was i.grow abdeckt und wohin die Reise geht -->
+    <section class="section container">
+      <h2>Our focus areas</h2>
+      <p class="muted">What we already do &ndash; and what we&rsquo;re working on</p>
+      <div class="grid grid-3" style="margin-top:var(--sp-3)">
+        <article class="card">
+          <h3 class="c-grow">Media literacy &amp; media skills</h3>
+          <p>Students learn not just to consume media, but to create it. They produce audio, video, photography and interactive content &ndash; and reflect along the way on media ethics, source criticism and responsible media use. Two existing school projects already show how this works.</p>
+        </article>
+        <article class="card">
+          <h3 class="c-grow">Civic education &amp; community</h3>
+          <p>How do we live together? What holds a society together? In our projects, young people engage with values, diversity and democratic participation. The ethics tour &ldquo;Buntes Dornbirn&rdquo; (Colourful Dornbirn) and the &ldquo;Zusammenwachsen&rdquo; (Growing Together) project in Feldkirch show how civic education can come to life on location.</p>
+        </article>
+        <article class="card">
+          <h3 class="c-grow">AI literacy &amp; digital basics</h3>
+          <p>Artificial intelligence is changing how we learn, work and communicate. We develop formats where students try out AI tools critically and understand them: What can AI do? Where are its limits? What does this mean for media ethics and society? In collaboration with PH Vorarlberg and FH Vorarlberg.</p>
+          <p class="muted"><small>New formats in development for the 2026/27 school year</small></p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Hintergrund: neues Pflichtfach -->
+    <section class="section container">
+      <div class="prose">
+        <h2>Why now? The new compulsory subject &ldquo;Media and Democracy&rdquo;</h2>
+        <p>From the 2027/28 school year, <strong>&ldquo;Medien und Demokratie&rdquo; (Media and Democracy)</strong> becomes a compulsory subject in the upper secondary years (AHS-Oberstufe). Topics like fake news, disinformation, democratic participation and a critical approach to AI-generated content move to the centre of the classroom. At the same time, <strong>Digitale Grundbildung</strong> (Digital Basics) is being expanded further in lower secondary education.</p>
+        <p>i.grow sits exactly at this intersection: we connect <strong>media literacy</strong> with <strong>place-based learning</strong> and put tools in students&rsquo; hands so they can become creators &ndash; rather than staying passive consumers. The content is aligned with the Austrian curricula for Digital Basics, ethics, and the new compulsory subject.</p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         PARTNER & NETZWERK — TEMPORAER AUSGEBLENDET (Session 14c, 2026-04-29)
+         Maggy: "Den brauchen wir erst zu einem spaeteren Zeitpunkt".
+         Block bleibt im HTML als Kommentar — wenn die Sektion wieder rein
+         soll, einfach diesen Kommentar-Block entfernen (oeffnendes <!-- und
+         schliessendes Markup-Tag) und die Section steht wieder.
+         ============================================================ -->
+    <!--
+    <section class="section container">
+      <h2>Partners &amp; network</h2>
+      <p class="muted">Together with educational institutions and funders</p>
+      <div class="grid grid-3" style="margin-top:var(--sp-3)">
+        <article class="card center">
+          <p><strong>PH Vorarlberg</strong></p>
+          <p class="muted">Teaching on media ethics and media skills in teacher training</p>
+        </article>
+        <article class="card center">
+          <p><strong>FH Vorarlberg</strong></p>
+          <p class="muted">Research and teaching in design and InterMedia</p>
+        </article>
+        <article class="card center">
+          <p><strong>OeAD / Eduthek</strong></p>
+          <p class="muted">Austria&rsquo;s agency for education and internationalisation</p>
+        </article>
+        <article class="card center">
+          <p><strong>Bildungsdirektion Vorarlberg</strong></p>
+          <p class="muted">Cooperation with schools across the region</p>
+        </article>
+        <article class="card center">
+          <p><strong>BMKOES</strong></p>
+          <p class="muted">Funding via &ldquo;Kunst ist Klasse&rdquo;</p>
+        </article>
+        <article class="card center">
+          <p><strong>eEducation Austria</strong></p>
+          <p class="muted">Network of more than 4,000 schools</p>
+        </article>
+      </div>
+    </section>
+    -->
+    <!-- ============================================================
+         ENDE PARTNER & NETZWERK (ausgeblendet)
+         ============================================================ -->
+
+    <section class="section container">
+      <h2>Principles of our media literacy workshops</h2>
+      <div class="grid grid-2" style="margin-top:var(--sp-3)">
+        <article class="card"><h3 class="c-grow">Project-based workshops</h3><p>Students themselves become creators. In a guided process they build their own tours and engage intensely with topics from their immediate world.</p></article>
+        <article class="card"><h3 class="c-grow">Interdisciplinary support</h3><p>The i.appear team supports the process not just on the design side, but also with subject expertise. Disciplines: geography, history, ethics, philosophy, psychology.</p></article>
+        <article class="card"><h3 class="c-grow">Active content creation</h3><p>In teams, the participants produce their own content &ndash; audio pieces, videos, AR elements.</p></article>
+        <article class="card"><h3 class="c-grow">Lasting outcomes</h3><p>The result is a digital tour that stays accessible long-term for peers and the public.</p></article>
+      </div>
+    </section>
+
+    <section class="section container">
+      <h2>Principles of our curated walking tours</h2>
+      <div class="grid grid-2" style="margin-top:var(--sp-3)">
+        <article class="card"><h3 class="c-grow">Multimedia depth &amp; immersion</h3><p>3D models, AR elements and exclusive audio interviews create a layer of experience that classic excursions can&rsquo;t match.</p></article>
+        <article class="card"><h3 class="c-grow">Expert-curated knowledge</h3><p>All content is reviewed by subject experts.</p></article>
+        <article class="card"><h3 class="c-grow">Seamless fit into the school day</h3><p>Without much organisational lead time, the tours can be slotted directly into double lessons or project days.</p></article>
+        <article class="card"><h3 class="c-grow">Access to hidden places</h3><p>Digital production opens up places that are physically hard to reach.</p></article>
+      </div>
+    </section>
+
+    <section id="rundgaenge-dornbirn" class="section container">
+      <h2>Walking tours for schools &ndash; Dornbirn</h2>
+      <div class="grid grid-2" style="margin-top:var(--sp-3)">
+        <article class="card">
+          <div class="rundgang-map" data-rundgang="hist-appear" data-kategorie="grow" aria-hidden="true"></div>
+          <h3 class="c-grow">hist.appear (school edition)</h3>
+          <p>Send your students on a journey through time across historical Dornbirn. An interactive map and a colour-coded timeline let them dive into different eras. Across 11 interactive locations, the content becomes multimedia and immersive &ndash; right where history happened. Hist.appear spans witch trials, the bourgeoisie of the late modern era and industrial history through to migration in the 20th and 21st centuries. Supporting teaching material is provided.</p>
+          <div class="card__actions">
+            <a href="https://iappear.app/en/routes/dornbirn/hist-appear?view=list" class="btn btn--grow">Start the tour &rarr;</a>
+            <a class="card-doclink" href="https://a.storyblok.com/f/286923351828298/x/9987275064/begleitmaterial_hist_appear.pdf" target="_blank" rel="noopener">
+              <svg class="card-doclink__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              Teaching material (DE)
+            </a>
+          </div>
+        </article>
+        <article class="card">
+          <div class="rundgang-map" data-rundgang="immersive-ethik" data-kategorie="grow" aria-hidden="true"></div>
+          <h3 class="c-grow">Buntes Dornbirn</h3>
+          <p>The ethics tour &ldquo;Buntes Dornbirn&rdquo; (Colourful Dornbirn) offers a complete package on the topic of plural society. Students meet people from different generations and walks of life, hear voices from different bubbles and encounter their stories. The tour invites them to switch perspectives. It&rsquo;s curriculum-aligned and comes with detailed lesson plans and worksheets.</p>
+          <p><em>Important: get in touch with us so we can unlock the central locations for you and your students.</em></p>
+          <div class="card__actions">
+            <a href="https://iappear.app/en/routes/dornbirn/immersive-ethik?view=list" class="btn btn--grow">Start the tour &rarr;</a>
+            <a class="card-doclink" href="https://a.storyblok.com/f/286923351828298/x/570bd51f4a/arbeitsblatter-immesive-ethik.pdf" target="_blank" rel="noopener">
+              <svg class="card-doclink__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              Teaching material 01 (DE)
+            </a>
+            <a class="card-doclink" href="https://a.storyblok.com/f/286923351828298/x/5fc479c5da/begleitmaterial_padagogische_ethik.pdf" target="_blank" rel="noopener">
+              <svg class="card-doclink__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              Teaching material 02 (DE)
+            </a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="rundgaenge-feldkirch" class="section container">
+      <h2>School projects &ndash; Feldkirch</h2>
+      <div class="grid grid-2" style="margin-top:var(--sp-3)">
+        <article class="card">
+          <div class="rundgang-map" data-rundgang="zusammenwachsen" data-kategorie="grow" aria-hidden="true"></div>
+          <h3 class="c-grow">Zusammenwachsen</h3>
+          <p>In the &ldquo;Zusammenwachsen&rdquo; (Growing Together) project, students at MS Levis worked around the question: What holds us together? And which values do we share? The young people worked out their personal values, talked about them in interviews, wrote stories around them and translated those into images, animations, photos and short films. The result is a tour with many colourful facets, carried by the voices and experiences of the students. Made possible by &ldquo;Kunst ist Klasse&rdquo;, a programme of the Austrian Federal Ministry for Arts and Culture.</p>
+          <a href="https://iappear.app/en/routes/feldkirch/zusammen-wachsen-ms-levis-?view=list" class="btn btn--grow">Start the tour &rarr;</a>
+        </article>
+        <article class="card">
+          <div class="rundgang-map" data-rundgang="ein-oktobertag" data-kategorie="grow" aria-hidden="true"></div>
+          <h3 class="c-grow">Ein Oktobertag</h3>
+          <p>In the i.grow project &ldquo;Ein Oktobertag&rdquo; (One October Day), students at MS Oberau worked on the bombings over Feldkirch in 1943. Together we approached the topic of the Second World War through questions, conversations, research and creative methods. Five locations now lead young and old from Feldkirch&rsquo;s old town to the Antoniushaus. Made possible by &ldquo;Kunst ist Klasse&rdquo;, a programme of the Austrian Federal Ministry for Arts and Culture, in collaboration with Erika Kronabitter and a contribution from sound artist Arno Oeri.</p>
+          <a href="https://iappear.app/en/routes/feldkirch/ein-oktobertag?view=list" class="btn btn--grow">Start the tour &rarr;</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="section container center">
+      <p class="muted">Want a workshop or a digital walking tour for your school?</p>
+      <a href="../kontakt.html" class="btn btn--grow">Request a workshop or tour &rarr;</a>
+    </section>
+  </main>
+
+  <footer class="footer"><div class="container">
+      <!-- Social Pills -->
+      <div class="social-pills">
+        <a class="social-pill" data-net="ig" href="https://www.instagram.com/i.appear.app/" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+        <a class="social-pill" data-net="li" href="https://www.linkedin.com/company/i-appear/posts/?feedView=all" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+        <a class="social-pill" data-net="fb" href="https://www.facebook.com/i.appearapp/" target="_blank" rel="noopener" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+      </div>
+            <div class="footer__bottom">
+        <small>&copy; 2026 i.appear &ndash; Digital City Tours</small>
+        <nav class="footer__legal" aria-label="Legal">
+          <a href="../kontakt.html">Contact</a>
+          <a href="../faqs.html">FAQs</a>
+          <!-- Rechtstexte bleiben deutsch (rechtliche Bindung). Hinweis-Label folgt. -->
+          <a href="../impressum.html" hreflang="de">Imprint (in German)</a>
+          <a href="../datenschutz.html" hreflang="de">Privacy (in German)</a>
+          <a href="../agb.html" hreflang="de">Terms (in German)</a>
+        </nav>
+      </div>
+    </div></footer>
+
+  <a href="#" class="back-up" data-back-up aria-label="Back to top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" aria-hidden="true"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg></a>
+  <script src="../js/main.js"></script>
+
+  <!-- Mini-Rundgang-Karten (siehe css/components.css und js/rundgang-map.js) -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+  <script src="../js/data/rundgang-stationen.js?v=20260429b"></script>
+  <script src="../js/rundgang-map.js?v=20260503a"></script>
+</body>
+</html>
