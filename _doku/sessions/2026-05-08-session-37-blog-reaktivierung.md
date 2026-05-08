@@ -159,6 +159,12 @@ Plus: `sitemap.xml`-Eintrag (eigene URL, `priority: 0.6` einen Schritt unter dem
 
 **Cache-Bust components.css**: `?v=20260508a` → `?v=20260508b` in 55 Files (selber Pattern wie das erste Cache-Bust-Skript).
 
+### Frauenspuren-Hauptartikel-Hero v2 + figcaption-Pattern (nach Commit 910f342)
+
+**figcaption** im Folge-Artikel: Foto der Eroeffnung hat jetzt Bildunterschrift `Marilena Tumler, Roswitha Fessler, Lisa Althaus` als `<figcaption>` mit inline-Style (`text-align:center;color:var(--c-text-muted);font-size:.85rem;margin-top:var(--sp-2);font-style:italic`). Kein eigenes CSS noetig — inline reicht fuer einzelne Captions. Plus alt-Text auf die echten Namen aktualisiert.
+
+**Frauenspuren-Hauptartikel-Hero v2** (Iteration nach Maggy-Feedback): Erste Version war 1 Phone Hochformat-zentriert (550&times;700, Canvas 1100&times;1400) — Maggy fand das Bild "schaut komisch aus", weil deutlich anderes Bild-Format als Artikel 01. **Lehre**: Hero-Bilder im Blog brauchen **gleiches Output-Format** (700&times;550 JPG → 480&times;377 angezeigt) auch wenn Inhalt nur 1 Phone ist. Format-Konsistenz schlaegt Whitespace-Optimierung. Konsequenz: 1 Phone zentriert auf gleichem Canvas wie Artikel 01 (1400&times;1100), Phone-Maesse identisch zu Artikel 01 (Screen 466&times;783, Frame 21, Phone outer 508&times;825). Schwarzraum links/rechts vom einzelnen Phone ist OK. `04-frauenspuren-hero-v2.jpg` (700&times;550, 36 KB), `max-width:480` im img-Style. **Alte v1 (`04-frauenspuren-hero.jpg`) ist untracked**, Maggy loescht haendisch in naechster Session.
+
 ## 6. Quick-Stats Session 37
 
 - 4 neue Artikel-HTMLs + 1 Folge-Beitrag = **5 neue Blog-Posts**
