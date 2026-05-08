@@ -143,3 +143,36 @@ Pattern wie in `uebersetzung-index.md` (Pilot-Liste):
 - **Worktree-Hygiene**: bei jedem Sessionstart `git worktree list` + status für
   alle prüfen. Verlassene Worktrees mit uncommitted Changes sammeln Drift an,
   die selbst dann existiert wenn die zugehörigen Branches gemergt sind.
+
+---
+
+## Nachtrag — Workflow-Wechsel + i-history übersetzt (selber Tag)
+
+Maggy stellte nach dem ersten Block fest: zwei separate Claude-Sessions (Code +
+Übersetzung) sind unnötig zerstückelnd. Ab sofort übersetzt Claude direkt in
+derselben Session.
+
+### Doku-Updates für den neuen Workflow
+
+- **`_doku/englische-version.md`**:
+  - Phase-2-Loop neu beschrieben: Claude bauwt Roh-Gerüst + übersetzt direkt
+    + ergänzt DE-Schwester + Sitemap + committet — alles in einem Schwung.
+  - Brand-Vokabular als finale Tabelle (vorher: „vorläufig — in Übersetzungs-
+    Session präzisieren").
+  - Stilkonventionen ausformuliert (en_GB, sentence/title case, „you"-Anrede).
+  - Aktueller-Stand-Block mit Session 30 ergänzt.
+- **Memory** (`feedback_englisch_uebersetzung_direkt.md`): neuer Workflow als
+  Feedback-Memory hinterlegt + im Index eingetragen.
+
+### `en/i-history.html` komplett übersetzt
+
+Alle 26 `[EN]`-Marker durch British English ersetzt. Stilreferenz war
+`en/index.html`. Wichtige Übersetzungs-Entscheidungen sind in
+`_doku/uebersetzung-i-history.md` als Audit-Trail dokumentiert (vorher
+„Status: ausstehend", jetzt „✅ ERLEDIGT").
+
+Nicht übersetzt geblieben (Eigennamen): Rundgang-Namen (`hist.appear`,
+`Stadtspuren`, `Frauenspuren`, `125 Jahre – 125 Bilder`, `Barockbaumeister`,
+`See Runde`), Personen, Institutionen, Ortsnamen.
+
+Verifiziert: `grep -c '\[EN\]' en/i-history.html` → `0`.

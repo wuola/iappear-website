@@ -54,20 +54,16 @@
 
 ### Phase 2 — Pro Seite (Loop)
 
-1. Claude-Code (diese Session): kopiert DE-Seite ins `/en/`-Verzeichnis als Rohgerüst (HTML-Struktur, Klassen, Bilder/Videos = identisch).
-2. Claude-Code: extrahiert alle übersetzbaren Strings in eine simple Markdown-Liste, z.B.:
-   ```markdown
-   ## index.html – Übersetzungs-Liste
+**Workflow seit Session 30 (2026-05-08):** Claude erledigt Roh-Gerüst + Übersetzung **direkt in derselben Session**. Keine separate Übersetzungs-Claude-Session mehr — die hat sich als unnötig zerstückelnd erwiesen. Maggy gibt freie Entscheidung beim Tonfall, mit klaren Constraints (Eigennamen + Ortsnamen bleiben, Brand-Vokabular siehe unten, en_GB).
 
-   - [ ] **title**: i.appear – Digitale Stadtrundgänge & Audioguides in Vorarlberg
-   - [ ] **meta-description**: i.appear – digitale Stadtrundgänge ...
-   - [ ] **H1**: Die Plattform für digitale Erlebnisse
-   - [ ] **Hero-Subline**: ...
-   ```
-3. Maggy: nimmt diese Liste mit in die **Übersetzungs-Claude-Session**, lässt übersetzen, prüft den Tonfall.
-4. Maggy bringt fertige englische Texte zurück (Liste ausgefüllt).
-5. Claude-Code: setzt Texte in die englische Seite ein, prüft Layout (z.B. längere englische Sätze brechen nicht das Design), pusht.
-6. Sitemap + llms.txt + hreflang in DE-Version updaten.
+1. Claude kopiert DE-Seite ins `/en/`-Verzeichnis als Rohgerüst — HTML-Struktur, Klassen, Bilder/Videos identisch. Alle Asset-Pfade auf `../...`. Top-Nav-Items, Burger-Menü und Footer direkt englisch übernehmen (final aus Session 29). Seitenspezifische Strings (Hero-Story, Card-Bodies, Section-Headlines, CTA, Meta) bekommen `[EN] `-Prefix.
+2. Claude übersetzt **direkt** alle `[EN] `-Marker (en_GB, Brand-Vokabular siehe unten, Stilreferenz `en/index.html`).
+3. Claude ergänzt in der DE-Schwester-Seite die `hreflang`-Triples + `og:locale:alternate` + `.nav__lang`-Sprachschalter.
+4. Claude erweitert `sitemap.xml`: neuer EN-Eintrag mit hreflang-Annotationen, DE-Eintrag um hreflang-Triples ergänzt.
+5. Claude committet + pusht + macht PR + mergt — alles in einem Schwung.
+6. Maggy verifiziert im Privat-Tab.
+
+**Optional**: Übersetzungs-Liste `_doku/uebersetzung-<seite>.md` als Audit-Trail anlegen, falls die Seite besonders viele Strings hat oder Maggy nochmal nachprüfen will. Für die meisten Seiten reicht direkt im HTML übersetzen.
 
 ## Was nicht übersetzt wird
 
@@ -81,14 +77,30 @@ Marken- und Eigennamen bleiben unverändert:
 - E-Mails / Telefon
 - GISA-Zahlen, GLN
 
-Übersetzungs-Vokabular (vorläufig, in Übersetzungs-Session präzisieren):
+## Brand-Vokabular (final, aus Session 29)
 
-- „Stadtrundgang" → `city tour` (oder `walking tour`?)
-- „Audioguide" → `audio guide`
-- „Vitrine" → `showcase`
-- „Rundgang" → `tour`
-- „Station" → `stop` (oder `point of interest`)
-- „Erlebnis" / „Regionale Identität" → `experience` / `regional identity`
+| DE | EN (final) |
+|---|---|
+| Stadtrundgang | walking tour |
+| Audioguide | audio guide |
+| Rundgang | tour |
+| Station | location |
+| Vitrine | Showcase |
+| Erlebnis | experience |
+| Regionale Identität | regional identity |
+| Zeitreise | Travel through time |
+| Medienbildung | Media literacy |
+| Geschichten erzählen | storytelling |
+| Schüler:innen | students |
+| Bodensee | Lake Constance |
+
+**Stilkonventionen:**
+
+- **British English (en_GB)**: `colour`, `honour`, `recognise`, `theatre`, `centre`. `og:locale="en_GB"`, JSON-LD `inLanguage="en-GB"`.
+- **Sub-Marken-Sublines** (i.history etc.) sind **sentence case**: `Travel through time`, `Regional identity`, `Media literacy`.
+- **Top-Nav und Section-Headlines** sind **Title Case**: `Walking Tours`, `Showcase`, `About`, `A Network of Digital Walking Tours`.
+- **Tonfall**: locker, „you"-Anrede, konkret. Stilreferenz: `en/index.html`.
+- **Meta-Description**: 70–160 Zeichen. Bei eingebetteten Anführungszeichen **immer `&quot;`** verwenden, nie `"` direkt.
 
 ## Performance-Notiz
 
@@ -112,9 +124,11 @@ GitHub-Pages-Build wird minimal länger (~2-3 Sek), egal in der Praxis.
 
 ---
 
-## Aktueller Stand (Stand 2026-05-06, Sessions 28 + 29)
+## Aktueller Stand (Stand 2026-05-08, Sessions 28 + 29 + 30)
 
-### Erledigt (Phase 1 + Pilot Startseite)
+### Erledigt
+
+**Sessions 28+29 (2026-05-06): Phase 1 + Pilot Startseite**
 
 - ✅ `/en/`-Verzeichnis angelegt
 - ✅ Sprachschalter `.nav__lang` (glassy Pill, DE | EN) in `css/components.css` definiert
@@ -129,14 +143,19 @@ GitHub-Pages-Build wird minimal länger (~2-3 Sek), egal in der Praxis.
 - ✅ **Konvention**: Top-Nav + Burger auf EN-Seiten zeigen auf DE-URLs, solange die EN-Version fehlt
 - ✅ **Konvention**: Rechtstexte bleiben deutsch, Footer-Links labeln „(in German)" + `hreflang="de"`
 
+**Session 30 (2026-05-08): Workflow-Wechsel + i-history**
+
+- ✅ Cloud-Branch-Reparatur: Sessions 28+29 lagen 2 Tage isoliert auf `claude/continue-website-PUZIa` — via PR #8 in main gemergt
+- ✅ **Workflow-Wechsel**: Übersetzung macht Claude direkt in derselben Session (statt separater Übersetzungs-Claude-Session)
+- ✅ `en/i-history.html` Roh-Gerüst + komplett übersetzt
+- ✅ DE `i-history.html` mit hreflang + Sprachschalter
+- ✅ Sitemap erweitert um en/i-history
+
 ### Offen — direkt als Nächstes
 
-1. **Visueller Layout-Check** durch Maggy in Privat-Tab (Mobile + Desktop). Risiko-Stellen:
-   - Hero-Claim Z2 `for digital experiences` (länger als DE)
-   - i.dentity-Body (~10% länger als DE)
-   - Hard-Caption `Round the lake — Lake Constance`
-2. Falls Layout bricht: punktuell anpassen (Schriftgröße, Zeilenumbruch, Wortwahl).
-3. Dann **Seite 2-4** (`i-history.html`, `i-dentity.html`, `i-grow.html`): Rohgerüste anlegen + Übersetzungs-Listen pro Seite extrahieren.
+1. **Visueller Layout-Check** durch Maggy in Privat-Tab (Mobile + Desktop) für die zwei live englischen Seiten — `iappear.at/en/index.html` + `iappear.at/en/i-history.html`.
+2. Falls Layout bricht: punktuell anpassen.
+3. Nächste Pilot-Seiten: `i-dentity.html`, `i-grow.html` (gleiches Pattern wie i-history — Kategorie-Seite mit Cards).
 
 ### Offene Items aus dem ursprünglichen Plan, die noch nicht durch sind
 
