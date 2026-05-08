@@ -146,7 +146,7 @@ Bei Asset-Tausch (mp4/jpg-Bytes ändern, Dateiname bleibt): Cache-Bust auch im J
 
 ## Was noch offen ist
 
-- **Englische Version** — **in Arbeit (Sessions 28 + 29).** Pilot-Seite `en/index.html` ist komplett übersetzt (British English, en_GB) und wartet auf visuellen Layout-Check (Privat-Tab Mobile + Desktop). Sprachschalter `.nav__lang`, hreflang-Pattern, Sitemap-xhtml + Brand-Vokabular sind etabliert. Nächste Pilot-Seiten laut Plan: 3 Kategorien (`i-history.html`, `i-dentity.html`, `i-grow.html`). Status + Workflow + offene Items in `_doku/englische-version.md`.
+- **Englische Version** — **gut im Schwung (Sessions 28–36, 8 EN-Seiten live).** Komplett übersetzt: `en/index.html`, `en/i-history.html`, `en/i-dentity.html`, `en/i-grow.html`, `en/features.html` (+ `js/features-en.js`), `en/ueber-uns.html`, `en/faqs.html` (FAQPage Schema), `en/user-guide.html` (Wizards + Mickey-Hand). British English (en_GB), Brand-Vokabular final, Sprachschalter + hreflang in DE-Schwester-Seiten, sitemap mit hreflang-Annotationen pro URL. **Workflow seit Session 30**: Claude übersetzt direkt in derselben Session (statt separater Übersetzungs-Session). **Branch-Strategie seit Session 31**: pro EN-Seite ein frischer Branch von `origin/main`, Pattern `claude/en-<seite>` (vermeidet Hash-Konflikte durch rebase-merge). Noch offen: Stadtrundgaenge-Hub + 4 Stadtseiten, Vitrine + 22 Artikel, 2 Blog-Artikel, 404, sowie Tally-Form-Seiten (workflow + kontakt — Maggy muss englische Tally-Form anlegen). Auch offen: `build.py` bilingual-fähig, `vitrine.js`/`rundgaenge.js` mit `de:`/`en:`-Feldern, `llms.txt` englische Sektion. Status + Workflow + offene Items in `_doku/englische-version.md`.
 - **Blog reaktivieren** wenn ClaudeCowork-Drafts überarbeitet sind (siehe Session 21 Doku — Reaktivierung = HTML-Comments raus auf vitrine.html + noindex-Tags raus aus 3 blog/*.html + sitemap/llms-Einträge zurück).
 
 ## Akzeptiert-offen (kein Launch-Blocker)
@@ -171,7 +171,7 @@ Rollback wäre `git reset --hard vor-experiment` + `--force` push — beides auf
 - `@_doku/fonts.md` — Schriften-Setup (LucasFonts-Familie, wie Marilena Schnitte ändert).
 - `@_doku/karten-todos.md` — Mini-Karten-Daten-Auffälligkeiten.
 - `@_doku/vitrine-bearbeiten.md` — Marilena-Anleitung für `vitrine.js`-Edits.
-- `@_doku/englische-version.md` — Plan + Workflow für die englische Site-Version (`/en/`-Verzeichnis-Modell, hreflang, seitenweise Übersetzung in separater Claude-Session).
+- `@_doku/englische-version.md` — Plan + Workflow + Stand der englischen Site-Version (`/en/`-Verzeichnis-Modell, hreflang, Brand-Vokabular en_GB, Branch-Pattern `claude/en-<seite>`, Status-Tabelle aller EN-Seiten).
 - `@_doku/_archiv/` — historische Dokus (alte CLAUDE.md, alte projektdoku.md), als Backup nicht aktiv.
 
 **Außerhalb des Repos** (im Obsidian-Vault `C:\Users\maggy\OneDrive\Dokumente\OBSIDIAN\---i.appear---\`):
