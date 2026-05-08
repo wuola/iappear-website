@@ -1,0 +1,642 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>User Guide &ndash; How the digital walking tour works | i.appear</title>
+  <meta name="description" content="How to use i.appear: digital walking tours and audio guides directly in the browser, no download and no account &mdash; step by step." />
+  <meta name="author" content="Marilena Tumler" />
+  <link rel="canonical" href="https://iappear.at/en/user-guide.html" />
+  <link rel="alternate" hreflang="de" href="https://iappear.at/user-guide.html" />
+  <link rel="alternate" hreflang="en" href="https://iappear.at/en/user-guide.html" />
+  <link rel="alternate" hreflang="x-default" href="https://iappear.at/user-guide.html" />
+  <meta property="og:site_name" content="i.appear" />
+  <meta property="og:locale" content="en_GB" />
+  <meta property="og:locale:alternate" content="de_AT" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="User Guide | i.appear" />
+  <meta property="og:description" content="How to use i.appear: a web app with no download, no account &mdash; step by step on your own smartphone." />
+  <meta property="og:url" content="https://iappear.at/en/user-guide.html" />
+  <meta property="og:image" content="https://iappear.at/assets/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="User Guide | i.appear" />
+  <meta name="twitter:description" content="How to use i.appear: a web app with no download, no account &mdash; step by step on your own smartphone." />
+  <link rel="icon" type="image/png" href="../assets/favicon.png" />
+  <link rel="apple-touch-icon" href="../assets/favicon.png" />
+
+  <link rel="stylesheet" href="../css/global.css?v=20260427a" />
+  <link rel="stylesheet" href="../css/layout.css?v=20260430a" />
+  <link rel="stylesheet" href="../css/components.css?v=20260506a" />
+  <link rel="stylesheet" href="../css/animations.css?v=20260428a" />
+  <!-- Breadcrumb strukturierte Daten: englische Sprachversion -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://iappear.at/en/index.html" },
+        { "@type": "ListItem", "position": 2, "name": "User Guide", "item": "https://iappear.at/en/user-guide.html" }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- ========== NAVIGATION ==========
+       Englische Version: Top-Nav-Links und Burger-Menue zeigen vorerst auf die
+       deutschen Seiten (../X.html) — sie werden umgestellt sobald die
+       jeweilige englische Seite existiert. -->
+  <header class="nav" role="banner"><div class="nav__inner">
+    <a class="nav__brand" href="index.html" aria-label="i.appear home"><img src="../assets/svg/logos/logo-mark-weiss.svg?v=20260414ae" alt="i.appear" /></a>
+    <nav class="nav__links" aria-label="Main navigation">
+      <a href="../stadtrundgaenge.html">Walking Tours</a>
+      <a href="features.html">Features</a>
+      <a href="../workflow.html">Services</a>
+      <a href="ueber-uns.html">About</a>
+      <a href="../vitrine.html">Showcase</a>
+    </nav>
+    <div class="nav__lang" role="group" aria-label="Language">
+      <a href="../user-guide.html" lang="de" hreflang="de">DE</a>
+      <span aria-hidden="true">|</span>
+      <a href="user-guide.html" lang="en" aria-current="page">EN</a>
+    </div>
+    <button class="nav__burger" data-menu-toggle aria-label="Open menu"><span></span></button>
+  </div></header>
+
+    <div id="menu" class="menu" role="dialog" aria-modal="true" aria-label="Menu">
+    <button class="menu__close" data-menu-close aria-label="Close menu">&times;</button>
+    <div class="menu__group">
+      <h4 class="menu__heading">The Platform</h4>
+      <ul class="menu__list">
+        <li><a href="user-guide.html">i.appear User Guide</a></li>
+        <li><a href="i-history.html" class="c-history">i.history &ndash; Travel through time</a></li>
+        <li><a href="i-dentity.html" class="c-dentity">i.dentity &ndash; Regional identity</a></li>
+        <li><a href="i-grow.html" class="c-grow">i.grow &ndash; Media literacy</a></li>
+        <li><a href="features.html">Features</a></li>
+      </ul>
+    </div>
+    <div class="menu__group">
+      <h4 class="menu__heading">Walking Tours</h4>
+      <ul class="menu__list">
+        <li><a href="../stadtrundgaenge.html">All Locations</a></li>
+        <li><a href="../stadtrundgang-dornbirn.html">Dornbirn</a></li>
+        <li><a href="../stadtrundgang-feldkirch.html">Feldkirch</a></li>
+        <li><a href="../stadtrundgang-hard.html">Hard on Lake Constance</a></li>
+        <li><a href="../stadtrundgang-au.html">Au in the Bregenzerwald</a></li>
+      </ul>
+    </div>
+    <div class="menu__group">
+      <h4 class="menu__heading">Backstage</h4>
+      <ul class="menu__list">
+        <li><a href="../workflow.html">Workflow and Services</a></li>
+        <li><a href="../vitrine.html">Showcase</a></li>
+        <li><a href="ueber-uns.html">About</a></li>
+        <li><a href="../kontakt.html">Contact</a></li>
+        <li><a href="faqs.html">FAQs</a></li>
+        <li><a href="../agb.html" hreflang="de">Terms (in German)</a></li>
+        <li><a href="../impressum.html" hreflang="de">Imprint (in German)</a></li>
+        <li><a href="../datenschutz.html" hreflang="de">Privacy (in German)</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <main>
+    <nav class="breadcrumb container" aria-label="Breadcrumb"><ol><li><a href="index.html">Home</a></li><li><span aria-current="page">User Guide</span></li></ol></nav>
+    <header class="page-header page-header--hub container">
+      <p class="eyebrow">How does i.appear work?</p>
+      <h1>User Guide</h1>
+    </header>
+
+    <!-- ========== SHORT GUIDE: 4-Schritt-Reise durch die App ========== -->
+    <style>
+      .short-guide { padding-top: var(--sp-4); padding-bottom: var(--sp-5); }
+      .sg-lead { max-width: 600px; margin: var(--sp-1) auto var(--sp-5); }
+      .short-guide__grid {
+        display: grid; grid-template-columns: 1fr;
+        gap: var(--sp-2) var(--sp-4); max-width: 1100px; margin: 0 auto;
+        list-style: none; padding: 0;
+      }
+      @media (min-width: 720px) { .short-guide__grid { grid-template-columns: repeat(2, 1fr); gap: var(--sp-5) var(--sp-4); } }
+      @media (min-width: 1000px) { .short-guide__grid { grid-template-columns: repeat(4, 1fr); } }
+      .sg-step { display: flex; flex-direction: column; gap: .6rem; position: relative; }
+      .sg-step__num { display: inline-block; width: fit-content; font-family: var(--f-serif, serif); font-weight: 600; font-size: .8rem; letter-spacing: .12em; padding: .25rem .7rem; background: rgba(255,255,255,.08); border-radius: 999px; color: var(--c-text-muted); }
+      .sg-step__title { font-family: var(--f-serif, serif); font-weight: 600; font-size: 1.25rem; line-height: 1.25; color: #fff; margin: .1rem 0 0; }
+      .sg-step__desc { margin: 0; color: var(--c-text-muted); font-size: .9rem; line-height: 1.55; }
+      .sg-step__visual { margin-top: .8rem; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: .6rem; min-height: 92px; }
+      .sg-step:nth-child(1) .sg-step__visual, .sg-step:nth-child(2) .sg-step__visual { transform: translateY(-8px); }
+      .sg-step__visual img { display: block; height: auto; }
+      .sg-step__visual svg { display: block; }
+      .sg-target { width: 32px; height: 32px; animation: sg-target-pulse 2.6s ease-in-out infinite; transform-origin: center; }
+      @keyframes sg-target-pulse { 0%, 100% { transform: scale(.94); opacity: .85; } 50% { transform: scale(1.06); opacity: 1; } }
+      .sg-arrow-nav { width: 32px; height: 32px; animation: sg-arrow-wobble 4s ease-in-out infinite; transform-origin: center; transform-box: fill-box; }
+      @keyframes sg-arrow-wobble { 0%, 100% { transform: rotate(-10deg); } 50% { transform: rotate(10deg); } }
+      .sg-toggle-anim { animation: sg-toggle-shake 4s ease-in-out infinite; transform-origin: center; transform-box: fill-box; }
+      @keyframes sg-toggle-shake { 0%, 100% { transform: rotate(-1.5deg); } 50% { transform: rotate(1.5deg); } }
+      .sg-pill-col { display: flex; flex-direction: column; gap: .4rem; }
+      .sg-pill { display: inline-flex; align-items: center; justify-content: center; min-width: 110px; padding: .45rem 1.1rem; border-radius: 999px; background: rgba(255,255,255,.06); border: 1.5px solid rgba(255,255,255,.12); color: rgba(255,255,255,.85); font-size: .82rem; font-weight: 400; backdrop-filter: blur(6px); animation: sg-pill-glow 2.6s ease-in-out infinite; }
+      .sg-pill-col .sg-pill:nth-child(2) { animation-delay: -1.3s; }
+      @keyframes sg-pill-glow { 0%, 100% { background: rgba(255,255,255,.05); border-color: rgba(255,255,255,.12); } 50% { background: rgba(255,255,255,.13); border-color: rgba(255,255,255,.32); } }
+      .sg-icons-grid { display: grid; grid-template-columns: repeat(3, 40px); gap: .15rem; justify-content: center; align-items: center; }
+      .sg-icons-grid img { width: 40px; height: 40px; animation: sg-icon-glow 3s ease-in-out infinite; }
+      .sg-icons-grid img:nth-child(1) { animation-delay: 0s; }
+      .sg-icons-grid img:nth-child(2) { animation-delay: -.5s; }
+      .sg-icons-grid img:nth-child(3) { animation-delay: -1s; }
+      .sg-icons-grid img:nth-child(4) { animation-delay: -1.5s; }
+      .sg-icons-grid img:nth-child(5) { animation-delay: -2s; }
+      .sg-icons-grid img:nth-child(6) { animation-delay: -2.5s; }
+      @keyframes sg-icon-glow { 0%, 100% { opacity: .5; transform: scale(1); } 50% { opacity: 1; transform: scale(1.06); } }
+      @media (prefers-reduced-motion: reduce) {
+        .sg-step::after, .sg-target, .sg-arrow-nav, .sg-toggle-anim, .sg-pill, .sg-icons-grid img { animation: none; opacity: .9; }
+      }
+    </style>
+
+    <section class="section short-guide" aria-label="Short guide in 4 steps">
+      <div class="container">
+        <ol class="short-guide__grid">
+          <li class="sg-step">
+            <span class="sg-step__num">01</span>
+            <h3 class="sg-step__title">Choose your location</h3>
+            <p class="sg-step__desc">On the home page you see all regions. Pick your city or let the app locate you.</p>
+            <div class="sg-step__visual">
+              <img class="sg-target" src="../assets/svg/targets/target-weiss.svg" alt="" aria-hidden="true" />
+              <svg class="sg-arrow-nav" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M26 8 L38 40 L26 34 L14 40 Z" stroke="white" stroke-opacity=".85" stroke-width="2" stroke-linejoin="round" fill="none"/>
+              </svg>
+            </div>
+          </li>
+          <li class="sg-step">
+            <span class="sg-step__num">02</span>
+            <h3 class="sg-step__title">Map or suitcase</h3>
+            <p class="sg-step__desc">At the bottom of the app you can switch any time between the city map and the tour suitcase.</p>
+            <div class="sg-step__visual">
+              <img class="sg-toggle-anim" src="../assets/svg/buttons/karte.svg" alt="Toggle between map and tour suitcase" width="96" height="44" />
+            </div>
+          </li>
+          <li class="sg-step">
+            <span class="sg-step__num">03</span>
+            <h3 class="sg-step__title">Open a location</h3>
+            <p class="sg-step__desc">Tap on a location &ndash; whether on the map or in the list.</p>
+            <div class="sg-step__visual">
+              <div class="sg-pill-col">
+                <div class="sg-pill">Location 1</div>
+                <div class="sg-pill">Location 2</div>
+              </div>
+            </div>
+          </li>
+          <li class="sg-step">
+            <span class="sg-step__num">04</span>
+            <h3 class="sg-step__title">Experience content</h3>
+            <p class="sg-step__desc">3D, AR, audio, video, images, text or quiz &ndash; different at every location.</p>
+            <div class="sg-step__visual sg-icons-grid">
+              <img src="../assets/svg/icons/ar.svg" alt="AR" width="40" height="40" />
+              <img src="../assets/svg/icons/images.svg" alt="Images" width="40" height="40" />
+              <img src="../assets/svg/icons/text.svg" alt="Text" width="40" height="40" />
+              <img src="../assets/svg/icons/audio.svg" alt="Audio" width="40" height="40" />
+              <img src="../assets/svg/icons/video.svg" alt="Video" width="40" height="40" />
+              <img src="../assets/svg/icons/quiz.svg" alt="Quiz" width="40" height="40" />
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ========== INTERAKTIVE DEMO ========== -->
+    <section class="section">
+      <div class="container">
+        <p class="muted center" style="font-size:.95rem;font-style:italic;font-family:var(--f-serif,serif);max-width:680px;margin:0 auto var(--sp-3)">
+          Two ways through the app &ndash;<br>
+          experience a whole tour or find individual locations near you.
+        </p>
+        <div class="ug-stage">
+
+          <!-- ============ PFAD A: MIT RUNDGANG ============ -->
+          <article class="ug-widget" data-ug-a>
+            <header class="ug-widget__head">
+              <span class="ug-widget__icon" aria-hidden="true">
+                <img src="../assets/svg/targets/target-weiss.svg" alt="" width="22" height="22" />
+              </span>
+              <h3>Tours</h3>
+            </header>
+
+            <div class="ug-widget__nav">
+              <button type="button" class="ug-nav-btn" data-ug-prev aria-label="Previous step">&larr;</button>
+              <span class="ug-nav-label" data-ug-step>Step 1</span>
+              <button type="button" class="ug-nav-btn" data-ug-next aria-label="Next step">&rarr;</button>
+            </div>
+
+            <div class="ug-widget__body">
+              <div class="phone ug-phone">
+                <div class="phone__screen ug-screen" data-ug-screen></div>
+              </div>
+              <div class="ug-label" data-ug-label>
+                <span class="ug-label__num">1</span>
+                <span class="ug-label__text">Choose<br>region</span>
+              </div>
+            </div>
+
+            <!-- Toggle Karte/Koffer (nur Schritte 1-3) + Mickey-Hand-Tipp (nur S1) -->
+            <div class="ug-toggle-zone" data-ug-toggle-zone>
+              <div class="ug-toggle is-koffer" data-ug-toggle>
+                <div class="ug-toggle__track">
+                  <div class="ug-toggle__thumb"></div>
+                  <div class="ug-toggle__icons">
+                    <span class="ug-toggle__slot ug-toggle__slot--karte" aria-label="Map">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 8 2 15 6 22 2 22 18 15 22 8 18 1 22 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="15" y1="6" x2="15" y2="22"/></svg>
+                    </span>
+                    <span class="ug-toggle__slot ug-toggle__slot--koffer" aria-label="Suitcase">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="12" rx="2"/><path d="M8 8V6a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                    </span>
+                  </div>
+                </div>
+                <div class="ug-mickey" data-ug-mickey aria-hidden="true">
+                  <div class="ug-ripple"></div>
+                  <svg class="ug-hand" viewBox="0 0 584.32 649.73" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M72.07,142.16l78.01,214.29c.67,1.67.33,3.01-1.34,3.68-1.34.67-2.34,0-3.35-1l-39.51-42.86c-25.78-27.79-58.59-29.8-84.04-8.37-28.79,24.44-29.13,60.94-1,95.42l112.16,135.6c84.71,102.45,184.15,134.26,295.31,93.75,132.93-48.21,189.51-170.09,135.94-317.41l-25.11-68.64c-26.11-72.66-76-102.46-134.6-82.03-15.74-20.42-39.84-27.45-65.96-18.08-9.04,3.35-17.75,8.37-26.12,14.73-17.08-22.1-43.53-30.13-70.98-20.42-7.37,2.68-14.4,6.7-21.09,11.38l-38.17-104.46C167.83,7.89,131.67-8.85,94.51,4.54c-37.5,13.73-54.24,49.55-39.84,89.4l2.68,7.37M413.93,588.81c-87.72,32.14-170.09,15.74-247.43-77.68l-112.17-134.93c-12.05-14.06-12.05-27.79-1.34-37.16,10.04-9.04,23.77-6.03,34.82,5.36l77.34,80.02c13.06,13.39,24.44,14.73,35.49,10.71,13.06-4.69,18.75-18.75,13.39-33.15L95.51,75.86c-5.02-13.39,1.01-26.12,13.73-30.8,13.06-4.69,25.11,1.67,30.14,15.07l84.71,232.7c4.02,11.05,16.41,16.07,27.46,12.05,10.71-4.02,16.41-15.74,12.39-26.45l-30.47-84.04c4.69-4.35,11.05-8.71,17.41-11.05,15.74-5.69,28.8,1.34,34.82,17.75l26.79,73.33c4.02,11.38,16.41,15.74,27.12,11.72,10.38-3.68,17.08-14.73,12.72-26.45l-21.76-59.26c4.69-4.69,11.05-9.04,17.41-11.38,15.74-5.69,28.79,1.34,34.82,17.75l17.75,48.88c4.35,11.72,16.74,16.07,27.46,12.05,10.38-3.68,16.74-15.07,12.72-26.45l-13.39-36.16c28.12-10.05,54.58,12.72,72.65,62.95l21.09,57.25c45.87,126.56,4.02,222.99-107.14,263.5Z"/></svg>
+                </div>
+              </div>
+            </div>
+
+            <!-- 6er Feature-Icon-Grid (nur Schritt 4) -->
+            <div class="ug-features" data-ug-features aria-hidden="true">
+              <span class="ug-feature" title="3D / AR"><svg viewBox="0 0 68 67" fill="none"><path class="ug-feature__bg" d="M67 33C67 50.7 52.5 65.5 34 65C15.5 65.5 1 50.7 1 33C1 15.3 15.5 0.5 34 1C52.5 0.5 67 15.3 67 33Z"/><g class="ug-feature__sym"><path d="M47.15 38.34V26.71C47.15 26.20 47.01 25.70 46.76 25.26C46.50 24.82 46.14 24.45 45.70 24.20L35.53 18.39C35.09 18.13 34.58 18 34.07 18C33.56 18 33.06 18.13 32.62 18.39L22.45 24.20C22.01 24.45 21.65 24.82 21.39 25.26C21.14 25.70 21 26.20 21 26.71V38.34C21 38.84 21.14 39.35 21.39 39.79C21.65 40.23 22.01 40.59 22.45 40.85L32.62 46.66C33.06 46.91 33.56 47.05 34.07 47.05C34.58 47.05 35.09 46.91 35.53 46.66L45.70 40.85C46.14 40.59 46.50 40.23 46.76 39.79C47.01 39.35 47.15 38.84 47.15 38.34Z"/><path d="M21.39 25.20L34.07 32.54L46.76 25.20"/><path d="M34.07 47.17V32.52"/></g></svg></span>
+              <span class="ug-feature" title="Speech / Comic"><svg viewBox="0 0 68 67" fill="none"><path class="ug-feature__bg" d="M67 33C67 50.7 52.5 65.5 34 65C15.5 65.5 1 50.7 1 33C1 15.3 15.5 0.5 34 1C52.5 0.5 67 15.3 67 33Z"/><g class="ug-feature__sym"><path d="M17.7 40.68C17.87 41.39 18.24 42.05 18.75 42.58C19.27 43.11 19.91 43.49 20.62 43.70C23.22 44.33 33.60 44.33 33.60 44.33C33.60 44.33 43.99 44.33 46.58 43.64C47.29 43.43 47.94 43.05 48.45 42.52C48.97 41.99 49.33 41.33 49.51 40.62C49.99 37.98 50.22 35.31 50.21 32.63C50.22 29.94 49.99 27.24 49.51 24.59C49.31 23.89 48.94 23.26 48.43 22.76C47.91 22.25 47.28 21.88 46.58 21.69C43.99 21 33.60 21 33.60 21C33.60 21 23.22 21 20.62 21.69C19.91 21.89 19.27 22.28 18.75 22.81C18.24 23.34 17.87 23.99 17.70 24.71C17.22 27.32 16.99 29.98 17.00 32.63C16.98 35.33 17.22 38.02 17.70 40.68Z"/><path d="M43.05 39.85L38.49 32.03L34.05 39.92L43.05 39.92Z"/><path d="M34.09 39.92L29.50 28.17L25.09 39.99L34.09 39.92Z"/><circle cx="34.99" cy="27.99" r="2.25" class="ug-sun"/></g></svg></span>
+              <span class="ug-feature" title="Video"><svg viewBox="0 0 68 67" fill="none"><path class="ug-feature__bg" d="M67 33C67 50.7 52.5 65.5 34 65C15.5 65.5 1 50.7 1 33C1 15.3 15.5 0.5 34 1C52.5 0.5 67 15.3 67 33Z"/><g class="ug-feature__sym"><path d="M49.51 24.65C49.33 23.94 48.97 23.28 48.45 22.75C47.94 22.22 47.29 21.83 46.58 21.63C43.99 21 33.60 21 33.60 21C33.60 21 23.22 21 20.62 21.69C19.91 21.90 19.27 22.28 18.75 22.81C18.24 23.34 17.87 24 17.70 24.71C17.22 27.35 16.99 30.02 17.00 32.70C16.98 35.39 17.22 38.09 17.70 40.74C17.89 41.44 18.27 42.07 18.78 42.57C19.29 43.08 19.93 43.45 20.62 43.64C23.22 44.33 33.60 44.33 33.60 44.33C33.60 44.33 43.99 44.33 46.58 43.64C47.29 43.44 47.94 43.05 48.45 42.52C48.97 41.99 49.33 41.34 49.51 40.62C49.98 38.01 50.21 35.35 50.20 32.70C50.22 30 49.99 27.31 49.51 24.65Z"/><path d="M30.21 37.63L38.89 32.70L30.21 27.76V37.63Z"/></g></svg></span>
+              <span class="ug-feature" title="Text"><svg viewBox="0 0 68 67" fill="none"><path class="ug-feature__bg" d="M67 33C67 50.7 52.5 65.5 34 65C15.5 65.5 1 50.7 1 33C1 15.3 15.5 0.5 34 1C52.5 0.5 67 15.3 67 33Z"/><g class="ug-feature__sym"><path d="M45.22 28.78H18"/><path d="M53 21H18"/><path d="M53 36.55H18"/><path d="M45.22 44.33H18"/></g></svg></span>
+              <span class="ug-feature" title="Audio"><svg viewBox="0 0 68 67" fill="none"><path class="ug-feature__bg" d="M67 33C67 50.7 52.5 65.5 34 65C15.5 65.5 1 50.7 1 33C1 15.3 15.5 0.5 34 1C52.5 0.5 67 15.3 67 33Z"/><g class="ug-feature__sym"><path d="M31.85 22.12L23.60 28.72H17V38.62H23.60L31.85 45.22V22.12Z"/><path d="M45.17 22C48.26 25.09 50 29.29 50 33.67C50 38.04 48.26 42.24 45.17 45.33M39.34 27.83C40.89 29.37 41.76 31.47 41.76 33.66C41.76 35.85 40.89 37.94 39.34 39.49"/></g></svg></span>
+              <span class="ug-feature" title="Quiz"><svg viewBox="0 0 68 67" fill="none"><path class="ug-feature__bg" d="M67 33C67 50.7 52.5 65.5 34 65C15.5 65.5 1 50.7 1 33C1 15.3 15.5 0.5 34 1C52.5 0.5 67 15.3 67 33Z"/><g class="ug-feature__sym"><path stroke-width="2.4" d="M34.50 18.60C42.78 19.27 45.77 22.24 46.65 25.24C47.62 28.52 46.39 32.68 44.46 36.24L44.43 36.31L44.40 36.38C43.11 39.41 42.89 41.93 43.09 43.89C41.75 43.07 39.94 42.03 37.53 40.77L35.84 39.89L35.68 39.81C34.93 39.49 34.05 39.49 33.31 39.83L33.16 39.90C29.58 41.78 27.11 43.21 25.42 44.21C25.44 44.06 25.46 43.91 25.48 43.76C25.73 41.66 25.54 38.94 24.08 35.71C21.58 29.70 22.17 25.71 24.06 23.16C26.03 20.52 29.74 18.94 34.50 18.60Z"/><path class="ug-glyph" d="M34.59 27.38C34.59 30.49 30.85 30.46 31.80 33.69H29.88C28.69 30.06 32.41 29.67 32.41 27.60C32.41 26.42 31 25.58 28.71 25.49L28.97 23.68C32.68 23.79 34.59 25.51 34.59 27.38ZM32.11 35.93C32.11 36.63 31.58 37.18 30.85 37.18C30.15 37.18 29.60 36.63 29.60 35.93C29.60 35.23 30.15 34.69 30.85 34.69C31.58 34.69 32.11 35.23 32.11 35.93ZM40.06 23.83L39.75 33.69H38.07L37.73 23.83H40.06ZM40.15 35.93C40.15 36.63 39.60 37.18 38.90 37.18C38.18 37.18 37.62 36.63 37.62 35.93C37.62 35.23 38.18 34.69 38.90 34.69C39.60 34.69 40.15 35.23 40.15 35.93Z"/></g></svg></span>
+            </div>
+          </article>
+
+          <!-- ============ PFAD B: IN DER NÄHE ============ -->
+          <article class="ug-widget" data-ug-b>
+            <header class="ug-widget__head">
+              <span class="ug-widget__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+              </span>
+              <h3>Near me</h3>
+            </header>
+
+            <div class="ug-widget__nav">
+              <button type="button" class="ug-nav-btn" data-ug-prev aria-label="Previous step">&larr;</button>
+              <span class="ug-nav-label" data-ug-step>Step 1</span>
+              <button type="button" class="ug-nav-btn" data-ug-next aria-label="Next step">&rarr;</button>
+            </div>
+
+            <div class="ug-widget__body">
+              <div class="phone ug-phone">
+                <div class="phone__screen ug-screen" data-ug-screen>
+                  <!-- Schritt-1 Overlays: User-Pin (mittig) + GPS-Indikator (unten rechts, pulsiert) -->
+                  <div class="ug-b1-overlays" data-ug-b1-overlays hidden aria-hidden="true">
+                    <span class="ug-b1-user">
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <polygon points="12 3 19 21 12 17 5 21" fill="#fff" stroke="rgba(0,0,0,.7)" stroke-width="1.5" stroke-linejoin="round"/>
+                      </svg>
+                    </span>
+                    <span class="ug-b1-gps">
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <polygon points="12 4 19 20 12 16 5 20" fill="#fff" stroke-linejoin="round"/>
+                      </svg>
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="ug-label" data-ug-label>
+                <span class="ug-label__num">1</span>
+                <span class="ug-label__text">Discover locations<br>near you</span>
+              </div>
+            </div>
+
+            <!-- Decision-Buttons (nur Schritt 2) -->
+            <div class="ug-decision" data-ug-decision aria-hidden="true">
+              <button type="button" class="ug-decision-btn" data-ug-decision-station>View location</button>
+              <button type="button" class="ug-decision-btn" data-ug-decision-route>Whole tour</button>
+            </div>
+
+            <!-- 6er Feature-Icon-Grid (nur Schritt 3) -->
+            <div class="ug-features" data-ug-features aria-hidden="true">
+              <span class="ug-feature" title="3D / AR"><svg viewBox="0 0 68 67" fill="none"><path class="ug-feature__bg" d="M67 33C67 50.7 52.5 65.5 34 65C15.5 65.5 1 50.7 1 33C1 15.3 15.5 0.5 34 1C52.5 0.5 67 15.3 67 33Z"/><g class="ug-feature__sym"><path d="M47.15 38.34V26.71C47.15 26.20 47.01 25.70 46.76 25.26C46.50 24.82 46.14 24.45 45.70 24.20L35.53 18.39C35.09 18.13 34.58 18 34.07 18C33.56 18 33.06 18.13 32.62 18.39L22.45 24.20C22.01 24.45 21.65 24.82 21.39 25.26C21.14 25.70 21 26.20 21 26.71V38.34C21 38.84 21.14 39.35 21.39 39.79C21.65 40.23 22.01 40.59 22.45 40.85L32.62 46.66C33.06 46.91 33.56 47.05 34.07 47.05C34.58 47.05 35.09 46.91 35.53 46.66L45.70 40.85C46.14 40.59 46.50 40.23 46.76 39.79C47.01 39.35 47.15 38.84 47.15 38.34Z"/><path d="M21.39 25.20L34.07 32.54L46.76 25.20"/><path d="M34.07 47.17V32.52"/></g></svg></span>
+              <span class="ug-feature" title="Speech / Comic"><svg viewBox="0 0 68 67" fill="none"><path class="ug-feature__bg" d="M67 33C67 50.7 52.5 65.5 34 65C15.5 65.5 1 50.7 1 33C1 15.3 15.5 0.5 34 1C52.5 0.5 67 15.3 67 33Z"/><g class="ug-feature__sym"><path d="M17.7 40.68C17.87 41.39 18.24 42.05 18.75 42.58C19.27 43.11 19.91 43.49 20.62 43.70C23.22 44.33 33.60 44.33 33.60 44.33C33.60 44.33 43.99 44.33 46.58 43.64C47.29 43.43 47.94 43.05 48.45 42.52C48.97 41.99 49.33 41.33 49.51 40.62C49.99 37.98 50.22 35.31 50.21 32.63C50.22 29.94 49.99 27.24 49.51 24.59C49.31 23.89 48.94 23.26 48.43 22.76C47.91 22.25 47.28 21.88 46.58 21.69C43.99 21 33.60 21 33.60 21C33.60 21 23.22 21 20.62 21.69C19.91 21.89 19.27 22.28 18.75 22.81C18.24 23.34 17.87 23.99 17.70 24.71C17.22 27.32 16.99 29.98 17.00 32.63C16.98 35.33 17.22 38.02 17.70 40.68Z"/><path d="M43.05 39.85L38.49 32.03L34.05 39.92L43.05 39.92Z"/><path d="M34.09 39.92L29.50 28.17L25.09 39.99L34.09 39.92Z"/><circle cx="34.99" cy="27.99" r="2.25" class="ug-sun"/></g></svg></span>
+              <span class="ug-feature" title="Video"><svg viewBox="0 0 68 67" fill="none"><path class="ug-feature__bg" d="M67 33C67 50.7 52.5 65.5 34 65C15.5 65.5 1 50.7 1 33C1 15.3 15.5 0.5 34 1C52.5 0.5 67 15.3 67 33Z"/><g class="ug-feature__sym"><path d="M49.51 24.65C49.33 23.94 48.97 23.28 48.45 22.75C47.94 22.22 47.29 21.83 46.58 21.63C43.99 21 33.60 21 33.60 21C33.60 21 23.22 21 20.62 21.69C19.91 21.90 19.27 22.28 18.75 22.81C18.24 23.34 17.87 24 17.70 24.71C17.22 27.35 16.99 30.02 17.00 32.70C16.98 35.39 17.22 38.09 17.70 40.74C17.89 41.44 18.27 42.07 18.78 42.57C19.29 43.08 19.93 43.45 20.62 43.64C23.22 44.33 33.60 44.33 33.60 44.33C33.60 44.33 43.99 44.33 46.58 43.64C47.29 43.44 47.94 43.05 48.45 42.52C48.97 41.99 49.33 41.34 49.51 40.62C49.98 38.01 50.21 35.35 50.20 32.70C50.22 30 49.99 27.31 49.51 24.65Z"/><path d="M30.21 37.63L38.89 32.70L30.21 27.76V37.63Z"/></g></svg></span>
+              <span class="ug-feature" title="Text"><svg viewBox="0 0 68 67" fill="none"><path class="ug-feature__bg" d="M67 33C67 50.7 52.5 65.5 34 65C15.5 65.5 1 50.7 1 33C1 15.3 15.5 0.5 34 1C52.5 0.5 67 15.3 67 33Z"/><g class="ug-feature__sym"><path d="M45.22 28.78H18"/><path d="M53 21H18"/><path d="M53 36.55H18"/><path d="M45.22 44.33H18"/></g></svg></span>
+              <span class="ug-feature" title="Audio"><svg viewBox="0 0 68 67" fill="none"><path class="ug-feature__bg" d="M67 33C67 50.7 52.5 65.5 34 65C15.5 65.5 1 50.7 1 33C1 15.3 15.5 0.5 34 1C52.5 0.5 67 15.3 67 33Z"/><g class="ug-feature__sym"><path d="M31.85 22.12L23.60 28.72H17V38.62H23.60L31.85 45.22V22.12Z"/><path d="M45.17 22C48.26 25.09 50 29.29 50 33.67C50 38.04 48.26 42.24 45.17 45.33M39.34 27.83C40.89 29.37 41.76 31.47 41.76 33.66C41.76 35.85 40.89 37.94 39.34 39.49"/></g></svg></span>
+              <span class="ug-feature" title="Quiz"><svg viewBox="0 0 68 67" fill="none"><path class="ug-feature__bg" d="M67 33C67 50.7 52.5 65.5 34 65C15.5 65.5 1 50.7 1 33C1 15.3 15.5 0.5 34 1C52.5 0.5 67 15.3 67 33Z"/><g class="ug-feature__sym"><path stroke-width="2.4" d="M34.50 18.60C42.78 19.27 45.77 22.24 46.65 25.24C47.62 28.52 46.39 32.68 44.46 36.24L44.43 36.31L44.40 36.38C43.11 39.41 42.89 41.93 43.09 43.89C41.75 43.07 39.94 42.03 37.53 40.77L35.84 39.89L35.68 39.81C34.93 39.49 34.05 39.49 33.31 39.83L33.16 39.90C29.58 41.78 27.11 43.21 25.42 44.21C25.44 44.06 25.46 43.91 25.48 43.76C25.73 41.66 25.54 38.94 24.08 35.71C21.58 29.70 22.17 25.71 24.06 23.16C26.03 20.52 29.74 18.94 34.50 18.60Z"/><path class="ug-glyph" d="M34.59 27.38C34.59 30.49 30.85 30.46 31.80 33.69H29.88C28.69 30.06 32.41 29.67 32.41 27.60C32.41 26.42 31 25.58 28.71 25.49L28.97 23.68C32.68 23.79 34.59 25.51 34.59 27.38ZM32.11 35.93C32.11 36.63 31.58 37.18 30.85 37.18C30.15 37.18 29.60 36.63 29.60 35.93C29.60 35.23 30.15 34.69 30.85 34.69C31.58 34.69 32.11 35.23 32.11 35.93ZM40.06 23.83L39.75 33.69H38.07L37.73 23.83H40.06ZM40.15 35.93C40.15 36.63 39.60 37.18 38.90 37.18C38.18 37.18 37.62 36.63 37.62 35.93C37.62 35.23 38.18 34.69 38.90 34.69C39.60 34.69 40.15 35.23 40.15 35.93Z"/></g></svg></span>
+            </div>
+
+            <!-- Toggle Karte/Koffer (nur Schritt 4 — Route-Pfad) -->
+            <div class="ug-toggle-zone" data-ug-toggle-zone>
+              <div class="ug-toggle is-koffer" data-ug-toggle>
+                <div class="ug-toggle__track">
+                  <div class="ug-toggle__thumb"></div>
+                  <div class="ug-toggle__icons">
+                    <span class="ug-toggle__slot ug-toggle__slot--karte" aria-label="Map">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 8 2 15 6 22 2 22 18 15 22 8 18 1 22 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="15" y1="6" x2="15" y2="22"/></svg>
+                    </span>
+                    <span class="ug-toggle__slot ug-toggle__slot--koffer" aria-label="Suitcase">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="12" rx="2"/><path d="M8 8V6a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+
+      <style>
+        .ug-stage { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-4); margin-top: var(--sp-4); align-items: stretch; }
+        @media (max-width: 860px) { .ug-stage { grid-template-columns: 1fr; gap: var(--sp-5); } }
+        .ug-widget { background: rgba(255,255,255,.02); border: 1px solid rgba(255,255,255,.08); border-radius: 24px; padding: var(--sp-3) var(--sp-3) var(--sp-4); display: flex; flex-direction: column; gap: var(--sp-2); max-width: 420px; width: 100%; margin: 0 auto; }
+        .ug-widget__head { display: flex; align-items: center; justify-content: center; gap: 12px; color: #fff; }
+        .ug-widget__head h3 { margin: 0; font-size: 1.4rem; letter-spacing: .01em; }
+        .ug-widget__icon { display: inline-flex; color: #fff; }
+        .ug-widget__nav { display: flex; align-items: center; justify-content: center; gap: 14px; border: 0; border-radius: 999px; padding: 6px 10px; align-self: center; background: var(--glass-bg); box-shadow: inset 0 2px 6px var(--glass-shadow-top), inset 0 -2px 4px var(--glass-shadow-bottom), inset 0 1px 0 var(--glass-highlight); backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur)); }
+        .ug-nav-btn { background: var(--glass-bg); border: 0; color: #fff; width: 36px; height: 36px; border-radius: 50%; cursor: pointer; font-size: 16px; line-height: 1; display: inline-flex; align-items: center; justify-content: center; box-shadow: inset 0 2px 6px var(--glass-shadow-top), inset 0 -2px 4px var(--glass-shadow-bottom), inset 0 1px 0 var(--glass-highlight), 0 0 12px var(--glass-glow); backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur)); transition: all .3s var(--ease); }
+        .ug-nav-btn:hover { background: var(--glass-bg-hover); box-shadow: inset 0 2px 8px var(--glass-shadow-top-hover), inset 0 -2px 5px var(--glass-shadow-bottom-hover), inset 0 1px 0 var(--glass-highlight-hover), 0 0 20px var(--glass-glow-hover); transform: scale(1.05); }
+        .ug-nav-btn[hidden] { visibility: hidden; }
+        .ug-nav-label { color: #fff; font-size: .9rem; min-width: 70px; text-align: center; }
+        .ug-widget__body { display: flex; flex-direction: column; align-items: center; gap: var(--sp-2); margin-top: var(--sp-2); }
+        .ug-phone { max-width: 200px; margin: 0 auto; }
+        .ug-screen { position: relative; }
+        .ug-screen img:not(.ug-tip-overlay), .ug-screen video { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .ug-screen.is-empty { display: flex; align-items: center; justify-content: center; background: linear-gradient(180deg, #1a1a1a 0%, #0a0a0a 100%); color: rgba(255,255,255,.4); font-size: .75rem; text-align: center; padding: 12px; line-height: 1.4; }
+        .ug-screen .ug-tip-overlay { position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; width: 78% !important; height: auto !important; object-fit: contain !important; z-index: 3; pointer-events: none; filter: drop-shadow(0 8px 24px rgba(0,0,0,.6)); }
+        .ug-screen .ug-tip-overlay[hidden] { display: none !important; }
+        .ug-b1-overlays { position: absolute; inset: 0; pointer-events: none; z-index: 3; }
+        .ug-b1-overlays[hidden] { display: none; }
+        .ug-b1-user { position: absolute; top: 56%; left: 50%; transform: translate(-50%, -50%); display: inline-flex; filter: drop-shadow(0 1px 2px rgba(0,0,0,.5)); }
+        .ug-b1-user svg { width: 18px; height: 18px; display: block; }
+        .ug-b1-gps { position: absolute; bottom: 8%; right: 6%; width: 26px; height: 26px; border-radius: 50%; background: #3B9AFF; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 0 rgba(59,154,255,.6); animation: ug-b1-gps-pulse 2.2s ease-in-out infinite; }
+        .ug-b1-gps svg { width: 14px; height: 14px; }
+        @keyframes ug-b1-gps-pulse {
+          0%, 100% { box-shadow: 0 0 0 0 rgba(59,154,255,.55), 0 2px 6px rgba(0,0,0,.4); transform: scale(1); }
+          50% { box-shadow: 0 0 0 8px rgba(59,154,255,0), 0 2px 6px rgba(0,0,0,.4); transform: scale(1.06); }
+        }
+        @media (prefers-reduced-motion: reduce) { .ug-b1-gps { animation: none; } }
+        .ug-label { display: flex; flex-direction: column; align-items: center; gap: 4px; color: rgba(255,255,255,.55); font-family: 'Roboto', sans-serif; text-align: center; }
+        .ug-label__num { font-size: 1.4rem; font-weight: 300; line-height: 1; color: rgba(255,255,255,.7); }
+        .ug-label__text { font-size: 1.05rem; font-weight: 600; letter-spacing: .01em; line-height: 1.3; }
+        .ug-toggle-zone { display: none; justify-content: center; margin-top: var(--sp-3); position: relative; }
+        .ug-toggle-zone[data-active] { display: flex; }
+        .ug-toggle { position: relative; width: 78px; height: 34px; cursor: pointer; isolation: isolate; }
+        .ug-toggle__track { position: relative; width: 100%; height: 100%; background: var(--glass-bg); border: 0; border-radius: 999px; overflow: hidden; box-sizing: border-box; box-shadow: inset 0 2px 6px var(--glass-shadow-top), inset 0 -2px 4px var(--glass-shadow-bottom), inset 0 1px 0 var(--glass-highlight); backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur)); }
+        .ug-toggle__thumb { position: absolute; top: 0; left: 0; width: 34px; height: 34px; background: rgba(255,255,255,.18); border: 0; border-radius: 50%; box-sizing: border-box; z-index: 1; box-shadow: inset 0 2px 4px rgba(255,255,255,.18), inset 0 -2px 4px rgba(0,0,0,.25), 0 1px 4px rgba(0,0,0,.5); transition: transform .4s cubic-bezier(0.25, 1, 0.5, 1); }
+        .ug-toggle.is-koffer .ug-toggle__thumb { transform: translateX(44px); }
+        .ug-toggle__icons { position: absolute; inset: 0; display: flex; align-items: center; justify-content: space-between; padding: 0 9px; box-sizing: border-box; z-index: 2; pointer-events: none; }
+        .ug-toggle__slot { display: flex; align-items: center; justify-content: center; width: 16px; height: 16px; }
+        .ug-toggle__slot svg { width: 16px; height: 16px; transition: color .3s; }
+        .ug-toggle:not(.is-koffer) .ug-toggle__slot--karte svg { color: #fff; }
+        .ug-toggle.is-koffer .ug-toggle__slot--koffer svg { color: #fff; }
+        .ug-toggle:not(.is-koffer) .ug-toggle__slot--koffer svg, .ug-toggle.is-koffer .ug-toggle__slot--karte svg { color: #666; }
+        .ug-mickey { position: absolute; top: 32px; left: 8px; width: 24px; height: auto; pointer-events: none; z-index: 10; animation: ugMickeyGroove 2.8s ease-in-out infinite; will-change: transform; -webkit-backface-visibility: hidden; backface-visibility: hidden; -webkit-transform: translateZ(0); transform: translateZ(0); }
+        .ug-hand { width: 100%; height: auto; }
+        .ug-hand path { fill: #fff; filter: drop-shadow(1px 3px 5px rgba(0,0,0,.4)); }
+        .ug-ripple { position: absolute; top: 30%; left: 30%; width: 16px; height: 16px; background: rgba(255,255,255,.5); border-radius: 50%; transform: translate(-50%, -50%) scale(0); animation: ugRipple 2.8s ease-in-out infinite; }
+        .ug-mickey[hidden] { display: none; }
+        @keyframes ugMickeyGroove {
+          0%, 100% { transform: rotate(-12deg) translateX(0); }
+          15%, 85% { transform: rotate(-12deg) translateX(0); }
+          50%, 65% { transform: rotate(12deg) translateX(48px); }
+        }
+        @keyframes ugRipple {
+          0%, 100%, 15%, 50%, 85% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+          5%, 55% { transform: translate(-50%, -50%) scale(0); opacity: 1; }
+          12%, 62% { transform: translate(-50%, -50%) scale(2.5); opacity: 0; }
+        }
+        .ug-decision { display: none; justify-content: center; gap: 10px; margin-top: var(--sp-3); flex-wrap: wrap; }
+        .ug-decision[data-active] { display: flex; }
+        .ug-decision-btn { background: var(--glass-bg); border: 0; color: #fff; padding: 8px 16px; border-radius: 999px; font-size: .85rem; font-family: 'Roboto', sans-serif; cursor: pointer; box-shadow: inset 0 2px 6px var(--glass-shadow-top), inset 0 -2px 4px var(--glass-shadow-bottom), inset 0 1px 0 var(--glass-highlight), 0 0 12px var(--glass-glow); backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur)); transition: all .3s var(--ease); }
+        .ug-decision-btn:hover { background: var(--glass-bg-hover); box-shadow: inset 0 2px 8px var(--glass-shadow-top-hover), inset 0 -2px 5px var(--glass-shadow-bottom-hover), inset 0 1px 0 var(--glass-highlight-hover), 0 0 20px var(--glass-glow-hover); transform: translateY(-1px); }
+        .ug-features { display: none; grid-template-columns: repeat(6, auto); gap: 8px; justify-content: center; margin-top: var(--sp-3); }
+        .ug-features[data-active] { display: grid; }
+        @media (max-width: 540px) { .ug-features { grid-template-columns: repeat(3, auto); gap: 6px; } }
+        .ug-feature { display: inline-flex; width: 36px; height: 36px; border-radius: 50%; background: var(--glass-bg); box-shadow: inset 0 2px 6px var(--glass-shadow-top), inset 0 -2px 4px var(--glass-shadow-bottom), inset 0 1px 0 var(--glass-highlight), 0 0 8px var(--glass-glow); backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur)); }
+        .ug-feature svg { width: 100%; height: 100%; overflow: visible; }
+        .ug-feature__bg { fill: transparent; stroke: none; }
+        .ug-feature__sym path:not(.ug-glyph), .ug-feature__sym circle { stroke: #fff; stroke-width: 1.5px; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+        .ug-feature__sym .ug-glyph { fill: #fff; stroke: none; }
+        .ug-feature__sym .ug-sun { fill: #fff; stroke: none; }
+        @media (max-width: 540px) {
+          .ug-widget__body { grid-template-columns: 140px 1fr; gap: var(--sp-2); }
+          .ug-phone { max-width: 140px; }
+          .ug-label__num { font-size: 1.8rem; }
+          .ug-label__text { font-size: 1rem; }
+        }
+      </style>
+    </section>
+
+    <section class="section container prose">
+      <h2>Notes</h2>
+      <p>When you visit for the first time, locations need to be physically reached to unlock the content. Just go there &ndash; your position will automatically unlock the location on your smartphone.</p>
+      <p>Grant permission for your location and camera. Don&rsquo;t worry about your data: we don&rsquo;t store ANYTHING! Augmented reality only works if your mobile device has AR Core.</p>
+    </section>
+
+    <section class="section container prose">
+      <h2>Technical requirements</h2>
+      <ul>
+        <li><strong>Location:</strong> This application needs access to your location (GPS) to unlock location-based content and place you on the map.</li>
+        <li><strong>Camera:</strong> Camera access is required to display AR (augmented reality) content.</li>
+        <li><strong>General AR compatibility:</strong> To use the AR features you need a device that supports ARCore (Android) or ARKit (iOS).</li>
+        <li><strong>Browser:</strong> Make sure your mobile browser (Safari on iOS, Chrome on Android) is up to date and allows access to motion sensors.</li>
+        <li><strong>Data connection:</strong> An active internet connection is required for loading content and maps. Costs may apply according to your mobile data plan.</li>
+        <li><strong>GPS signal:</strong> The accuracy of location detection depends on your device and surroundings. The signal can be impaired indoors or in narrow streets between tall buildings.</li>
+        <li><strong>Power saver mode:</strong> If needed, disable your smartphone&rsquo;s power saver mode to ensure continuous GPS tracking in the background.</li>
+        <li><strong>Data usage:</strong> Your location data is only used locally for navigation and is not permanently stored on our servers.</li>
+      </ul>
+      <p class="muted" style="margin-top:var(--sp-3)">Learn more about the three categories <a href="i-history.html" class="c-history">i.history</a>, <a href="i-dentity.html" class="c-dentity">i.dentity</a> and <a href="i-grow.html" class="c-grow">i.grow</a>.</p>
+    </section>
+  </main>
+
+  <footer class="footer"><div class="container">
+      <!-- Social Pills -->
+      <div class="social-pills">
+        <a class="social-pill" data-net="ig" href="https://www.instagram.com/i.appear.app/" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+        <a class="social-pill" data-net="li" href="https://www.linkedin.com/company/i-appear/posts/?feedView=all" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+        <a class="social-pill" data-net="fb" href="https://www.facebook.com/i.appearapp/" target="_blank" rel="noopener" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+      </div>
+            <div class="footer__bottom">
+        <small>&copy; 2026 i.appear &ndash; Digital City Tours</small>
+        <nav class="footer__legal" aria-label="Legal">
+          <a href="../kontakt.html">Contact</a>
+          <a href="faqs.html">FAQs</a>
+          <!-- Rechtstexte bleiben deutsch (rechtliche Bindung). -->
+          <a href="../impressum.html" hreflang="de">Imprint (in German)</a>
+          <a href="../datenschutz.html" hreflang="de">Privacy (in German)</a>
+          <a href="../agb.html" hreflang="de">Terms (in German)</a>
+        </nav>
+      </div>
+    </div></footer>
+
+  <a href="#" class="back-up" data-back-up aria-label="Back to top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" aria-hidden="true"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg></a>
+  <script src="../js/main.js"></script>
+  <script>
+    // ========== USER GUIDE: Pfad A (Wizard mit Toggle) ==========
+    (function(){
+      const widget = document.querySelector('[data-ug-a]');
+      if (!widget) return;
+
+      const STEPS = [
+        { num: 1, label: ['Choose', 'region'],   karte: '../assets/images/user-guide/a1-karte.png',   koffer: '../assets/images/user-guide/a1-koffer.png',   alt: 'App screen: choose region' },
+        { num: 2, label: ['Choose', 'tour'],     karte: '../assets/images/user-guide/a2-karte.png',   koffer: '../assets/images/user-guide/a2-koffer.png',   alt: 'App screen: choose tour' },
+        { num: 3, label: ['Choose', 'location'], karte: '../assets/images/user-guide/a3-karte.png',   koffer: '../assets/images/user-guide/a3-koffer.png',   alt: 'App screen: choose location' },
+        { num: 4, label: ['Choose', 'content'],  karte: '../assets/images/user-guide/a4.png',         koffer: '../assets/images/user-guide/a4.png',          alt: 'App screen: choose content' }
+      ];
+
+      let stepIdx = 0;
+      let isKoffer = true;
+      let mickeyClicked = false;
+
+      const screen   = widget.querySelector('[data-ug-screen]');
+      const labelBox = widget.querySelector('[data-ug-label]');
+      const stepLbl  = widget.querySelector('[data-ug-step]');
+      const prev     = widget.querySelector('[data-ug-prev]');
+      const next     = widget.querySelector('[data-ug-next]');
+      const toggleZone = widget.querySelector('[data-ug-toggle-zone]');
+      const toggle     = widget.querySelector('[data-ug-toggle]');
+      const mickey     = widget.querySelector('[data-ug-mickey]');
+      const features   = widget.querySelector('[data-ug-features]');
+
+      function render() {
+        const s = STEPS[stepIdx];
+        stepLbl.textContent = 'Step ' + s.num;
+        labelBox.innerHTML = '<span class="ug-label__num">' + s.num + '</span><span class="ug-label__text">' + s.label.join('<br>') + '</span>';
+        const src = isKoffer ? s.koffer : s.karte;
+        screen.innerHTML = '<img src="' + src + '" alt="' + s.alt + '">';
+
+        if (stepIdx === 3) {
+          toggleZone.removeAttribute('data-active');
+          features.setAttribute('data-active', '');
+        } else {
+          toggleZone.setAttribute('data-active', '');
+          features.removeAttribute('data-active');
+        }
+
+        if (mickey) {
+          if (stepIdx === 0 && !mickeyClicked) mickey.removeAttribute('hidden');
+          else mickey.setAttribute('hidden', '');
+        }
+
+        toggle.classList.toggle('is-koffer', isKoffer);
+      }
+
+      toggle.addEventListener('click', function(){
+        mickeyClicked = true;
+        isKoffer = !isKoffer;
+        render();
+      });
+      prev.addEventListener('click', function(){
+        stepIdx = (stepIdx - 1 + STEPS.length) % STEPS.length;
+        render();
+      });
+      next.addEventListener('click', function(){
+        stepIdx = (stepIdx + 1) % STEPS.length;
+        render();
+      });
+
+      render();
+    })();
+
+    // ========== USER GUIDE: Pfad B (Wizard mit Verzweigung) ==========
+    (function(){
+      const widget = document.querySelector('[data-ug-b]');
+      if (!widget) return;
+
+      const STEPS = {
+        1: { label: ['Discover locations', 'near you'], img: '../assets/images/user-guide/b1.png', alt: 'App screen: map with pins' },
+        2: { label: ['Decide'], img: '../assets/images/user-guide/b2.png',      alt: 'App screen: view a single location or the whole tour' },
+        3: { label: ['Content'], img: '../assets/images/user-guide/b3.png',     alt: 'App screen: content of a location' },
+        4: {
+          label: ['Tour'],
+          karte:  '../assets/images/user-guide/b4-karte.png',
+          koffer: '../assets/images/user-guide/b4-koffer.png',
+          alt: 'App screen: whole tour'
+        }
+      };
+
+      let step = 1;
+      let isKoffer = false;
+
+      const screen   = widget.querySelector('[data-ug-screen]');
+      const labelBox = widget.querySelector('[data-ug-label]');
+      const stepLbl  = widget.querySelector('[data-ug-step]');
+      const prev     = widget.querySelector('[data-ug-prev]');
+      const next     = widget.querySelector('[data-ug-next]');
+      const decision   = widget.querySelector('[data-ug-decision]');
+      const btnStation = widget.querySelector('[data-ug-decision-station]');
+      const btnRoute   = widget.querySelector('[data-ug-decision-route]');
+      const features    = widget.querySelector('[data-ug-features]');
+      const toggleZone  = widget.querySelector('[data-ug-toggle-zone]');
+      const toggle      = widget.querySelector('[data-ug-toggle]');
+      const b1Overlays  = widget.querySelector('[data-ug-b1-overlays]');
+
+      function render() {
+        const s = STEPS[step];
+        stepLbl.textContent = 'Step ' + step;
+        labelBox.innerHTML = '<span class="ug-label__num">' + step + '</span><span class="ug-label__text">' + s.label.join('<br>') + '</span>';
+
+        let src;
+        if (step === 4) {
+          src = isKoffer ? s.koffer : s.karte;
+          toggle.classList.toggle('is-koffer', isKoffer);
+        } else {
+          src = s.img;
+        }
+
+        const oldImg = screen.querySelector('img:not(.ug-tip-overlay)');
+        if (oldImg) oldImg.remove();
+        const newImg = document.createElement('img');
+        newImg.src = src; newImg.alt = s.alt;
+        screen.insertBefore(newImg, screen.firstChild);
+
+        if (step === 2) decision.setAttribute('data-active', '');
+        else decision.removeAttribute('data-active');
+
+        if (step === 3) features.setAttribute('data-active', '');
+        else features.removeAttribute('data-active');
+
+        if (step === 4) toggleZone.setAttribute('data-active', '');
+        else toggleZone.removeAttribute('data-active');
+
+        if (step === 2) next.setAttribute('hidden', '');
+        else next.removeAttribute('hidden');
+
+        if (b1Overlays) {
+          if (step === 1) b1Overlays.removeAttribute('hidden');
+          else b1Overlays.setAttribute('hidden', '');
+        }
+      }
+
+      btnStation.addEventListener('click', function(){ step = 3; render(); });
+      btnRoute.addEventListener('click',   function(){ step = 4; render(); });
+
+      toggle.addEventListener('click', function(){
+        isKoffer = !isKoffer;
+        render();
+      });
+
+      prev.addEventListener('click', function(){
+        if (step === 4) step = 2;
+        else if (step === 1) step = 4;
+        else step = step - 1;
+        render();
+      });
+      next.addEventListener('click', function(){
+        if (step === 2) return;
+        if (step === 3) step = 1;
+        else if (step === 4) step = 3;
+        else step = step + 1;
+        render();
+      });
+
+      render();
+    })();
+  </script>
+</body>
+</html>
