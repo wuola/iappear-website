@@ -34,9 +34,20 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://iappear.at/i-history.html" />
   </url>
   <url>
+    <loc>https://iappear.at/en/i-dentity.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="de" href="https://iappear.at/i-dentity.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://iappear.at/en/i-dentity.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://iappear.at/i-dentity.html" />
+  </url>
+  <url>
     <loc>https://iappear.at/i-dentity.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="de" href="https://iappear.at/i-dentity.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://iappear.at/en/i-dentity.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://iappear.at/i-dentity.html" />
   </url>
   <url>
     <loc>https://iappear.at/i-grow.html</loc>
