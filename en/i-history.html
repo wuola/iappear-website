@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>[EN] i.history - Digitale Stadtrundgänge durch die Geschichte | i.appear</title>
+  <meta name="description" content="[EN] Historische Stadtrundgänge und Audioguides in Dornbirn, Feldkirch, Au und Hard. Zeitreisen mit 3D, AR und Zeitzeugeninterviews — direkt am Ort." />
+  <meta name="author" content="Marilena Tumler" />
+  <link rel="canonical" href="https://iappear.at/en/i-history.html" />
+  <link rel="alternate" hreflang="de" href="https://iappear.at/i-history.html" />
+  <link rel="alternate" hreflang="en" href="https://iappear.at/en/i-history.html" />
+  <link rel="alternate" hreflang="x-default" href="https://iappear.at/i-history.html" />
+  <meta property="og:site_name" content="i.appear" />
+  <meta property="og:locale" content="en_GB" />
+  <meta property="og:locale:alternate" content="de_AT" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="[EN] i.history - Digitale Stadtrundgänge durch die Geschichte | i.appear" />
+  <meta property="og:description" content="[EN] Historische Stadtrundgänge und Audioguides in Dornbirn, Feldkirch, Au und Hard. Zeitreisen mit 3D, AR und Zeitzeugeninterviews." />
+  <meta property="og:url" content="https://iappear.at/en/i-history.html" />
+  <meta property="og:image" content="https://iappear.at/assets/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="[EN] i.history - Digitale Stadtrundgänge durch die Geschichte | i.appear" />
+  <meta name="twitter:description" content="[EN] Historische Stadtrundgänge und Audioguides in Dornbirn, Feldkirch, Au und Hard. Zeitreisen mit 3D, AR und Zeitzeugeninterviews." />
+  <link rel="icon" type="image/png" href="../assets/favicon.png" />
+  <link rel="apple-touch-icon" href="../assets/favicon.png" />
+
+  <link rel="stylesheet" href="../css/global.css?v=20260427a" />
+  <link rel="stylesheet" href="../css/layout.css?v=20260430a" />
+  <link rel="stylesheet" href="../css/components.css?v=20260506a" />
+  <link rel="stylesheet" href="../css/animations.css?v=20260428a" />
+  <!-- Leaflet CSS fuer Mini-Karten der Rundgaenge (lazy-loaded) -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+  <!-- Breadcrumb strukturierte Daten: englische Sprachversion -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://iappear.at/en/index.html" },
+        { "@type": "ListItem", "position": 2, "name": "i.history - Travel through time", "item": "https://iappear.at/en/i-history.html" }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- ========== NAVIGATION ==========
+       Englische Version: Top-Nav-Links und Burger-Menue zeigen vorerst auf die
+       deutschen Seiten (../X.html) — sie werden umgestellt sobald die
+       jeweilige englische Seite existiert. So vermeiden wir 404-Links waehrend
+       der Uebersetzungsphase. -->
+  <header class="nav" role="banner"><div class="nav__inner">
+    <a class="nav__brand" href="index.html" aria-label="i.appear home"><img src="../assets/svg/logos/logo-mark-weiss.svg?v=20260414ae" alt="i.appear" /></a>
+    <nav class="nav__links" aria-label="Main navigation">
+      <a href="../stadtrundgaenge.html">Walking Tours</a>
+      <a href="../features.html">Features</a>
+      <a href="../workflow.html">Services</a>
+      <a href="../ueber-uns.html">About</a>
+      <a href="../vitrine.html">Showcase</a>
+    </nav>
+    <div class="nav__lang" role="group" aria-label="Language">
+      <a href="../i-history.html" lang="de" hreflang="de">DE</a>
+      <span aria-hidden="true">|</span>
+      <a href="i-history.html" lang="en" aria-current="page">EN</a>
+    </div>
+    <button class="nav__burger" data-menu-toggle aria-label="Open menu"><span></span></button>
+  </div></header>
+
+    <div id="menu" class="menu" role="dialog" aria-modal="true" aria-label="Menu">
+    <button class="menu__close" data-menu-close aria-label="Close menu">&times;</button>
+    <div class="menu__group">
+      <h4 class="menu__heading">The Platform</h4>
+      <ul class="menu__list">
+        <li><a href="../user-guide.html">i.appear User Guide</a></li>
+        <li><a href="i-history.html" class="c-history">i.history &ndash; Travel through time</a></li>
+        <li><a href="../i-dentity.html" class="c-dentity">i.dentity &ndash; Regional identity</a></li>
+        <li><a href="../i-grow.html" class="c-grow">i.grow &ndash; Media literacy</a></li>
+        <li><a href="../features.html">Features</a></li>
+      </ul>
+    </div>
+    <div class="menu__group">
+      <h4 class="menu__heading">Walking Tours</h4>
+      <ul class="menu__list">
+        <li><a href="../stadtrundgaenge.html">All Locations</a></li>
+        <li><a href="../stadtrundgang-dornbirn.html">Dornbirn</a></li>
+        <li><a href="../stadtrundgang-feldkirch.html">Feldkirch</a></li>
+        <li><a href="../stadtrundgang-hard.html">Hard on Lake Constance</a></li>
+        <li><a href="../stadtrundgang-au.html">Au in the Bregenzerwald</a></li>
+      </ul>
+    </div>
+    <div class="menu__group">
+      <h4 class="menu__heading">Backstage</h4>
+      <ul class="menu__list">
+        <li><a href="../workflow.html">Workflow and Services</a></li>
+        <li><a href="../vitrine.html">Showcase</a></li>
+        <li><a href="../ueber-uns.html">About</a></li>
+        <li><a href="../kontakt.html">Contact</a></li>
+        <li><a href="../faqs.html">FAQs</a></li>
+        <li><a href="../agb.html" hreflang="de">Terms (in German)</a></li>
+        <li><a href="../impressum.html" hreflang="de">Imprint (in German)</a></li>
+        <li><a href="../datenschutz.html" hreflang="de">Privacy (in German)</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <main>
+    <nav class="breadcrumb container" aria-label="Breadcrumb"><ol><li><a href="index.html">[EN] Startseite</a></li><li><span aria-current="page">[EN] i.history - Zeitreisen</span></li></ol></nav>
+    <header class="page-header page-header--category container">
+      <div class="page-header__brand">
+        <img class="page-header__icon" src="../assets/svg/logos/logo-i-gelb.svg" alt="" aria-hidden="true" />
+        <h1 class="c-history">i.history</h1>
+        <p class="page-header__subtitle c-history">[EN] Zeitreisen</p>
+        <p class="page-header__lead muted">[EN] Digitale Stadtrundgänge mit AR, 3D und Audio in Vorarlberg.</p>
+      </div>
+      <div class="page-header__story">
+        <h2 class="page-header__story-headline">[EN] Historie wird zur Geschichte</h2>
+        <p class="page-header__story-body">[EN] In der Kategorie i.history machen wir Vergangenes an Orten sichtbar, an denen die Ereignisse vor Jahrzehnten oder Jahrhunderten wirklich stattfanden. Hier gibt es keinen Raum für Fiktion: Alle Inhalte basieren auf historischen Quellen, Archivmaterial, der Zusammenarbeit mit Historiker:innen und Zeitzeug:inneninterviews. Die Technologie wird dann zu einem Fenster in die Vergangenheit, um Aufzeichnungen, Akten und Artefakte verständlich und vor allem erlebbar zu machen.</p>
+      </div>
+    </header>
+
+    <section class="section container">
+      <h2>[EN] Region Dornbirn</h2>
+      <div class="grid grid-2" style="margin-top:var(--sp-3)">
+
+        <article class="card">
+          <div class="rundgang-map" data-rundgang="hist-appear" data-kategorie="history" aria-hidden="true"></div>
+          <h3 class="c-history">hist.appear</h3>
+          <p>[EN] Im Rundgang hist.appear begibst du dich auf eine Zeitreise durch das historische Dornbirn. Entlang einer interaktiven Karte und eines farblich codierten Zeitstrahls bewegst du dich durch unterschiedliche Epochen, vom Mittelalter bis in die Gegenwart. An den Stationen öffnen sich Inhalte auf deinem Smartphone oder Tablet und verbinden Augmented Reality, Bilder, Audio, Zeitzeug:innenberichte, historische Quellen und den realen Stadtraum zu einem immersiven Geschichtserlebnis.</p>
+          <p>[EN] hist.appear war der erste Rundgang von i.appear und die Initialzündung der Plattform. Das didaktische Konzept basiert auf den wissenschaftlichen Erkenntnissen einer Masterarbeit an der Universität Wien und verbindet aktuelle AR- und VR-Forschung mit Bildungsansätzen. Der Rundgang wurde vom Bundesministerium für Kunst, Kultur, öffentlichen Dienst und Sport gefördert und in Zusammenarbeit mit der Dornbirner Geschichtswerkstatt umgesetzt.</p>
+          <a href="https://iappear.app/en/routes/dornbirn/hist-appear?view=list" class="btn btn--history">[EN] Zum Rundgang &rarr;</a>
+        </article>
+
+        <article class="card">
+          <div class="rundgang-map" data-rundgang="stadtspuren" data-kategorie="history" aria-hidden="true"></div>
+          <h3 class="c-history">Stadtspuren</h3>
+          <p>[EN] Im Rundgang Stadtspuren entdeckst du entlang der Dornbirner Ach und des Müllerbachs die Industrie- und Stadtgeschichte Dornbirns. Als zweiter historischer Rundgang in i.appear ist Stadtspuren mit hist.appear vernetzt und teilt an manchen Orten Stationen, dort, wo sich Raum, Zeit und Themen überschneiden. Die Stationen sind digital und physisch im Stadtraum verankert, mit Tafeln, Sitzgelegenheiten und Fahrradabstellplätzen. Gestaltet von den Saegenvier.</p>
+          <p>[EN] Pro Station öffnen sich zwei Perspektiven: Industrie und Gesellschaft. Die Route führt meist dem Wasser entlang vom Gütle bis ins Forach, vorbei an historischen Bauwerken, restaurierten Maschinen und lebensgrossen Illustrationen von Nikolay Uzunov. Inhaltlich wurde der Rundgang vom Dornbirner Stadtarchiv ausgearbeitet, insbesondere von Werner Matt und Klaus Fessler. Zum Rundgang ist auch ein gleichnamiges Buch erschienen, das es im Stadtarchiv Dornbirn zu erwerben gibt.</p>
+          <a href="https://iappear.app/en/routes/dornbirn/stadtspuren?view=list" class="btn btn--history">[EN] Zum Rundgang &rarr;</a>
+        </article>
+
+        <article class="card">
+          <div class="rundgang-map" data-rundgang="frauenspuren" data-kategorie="history" aria-hidden="true"></div>
+          <h3 class="c-history">Frauenspuren</h3>
+          <p>[EN] Ab Mai 2026 erzählt der Rundgang Frauenspuren die Frauengeschichte der letzten 300 Jahre in Dornbirn. An jeder Station begegnest du einer Frau, die stellvertretend für viele andere steht &ndash; von der Widerstandskämpferin über die erste Aerztin Vorarlbergs bis hin zur Sozialdemokratin und zur NS-Täterin. So werden sehr unterschiedliche Lebensrealitäten sichtbar.</p>
+          <p>[EN] Die Inhalte basieren auf dem Buch Frauenspuren von Roswitha Fessler aus der Reihe &bdquo;Dornbirner Schriften&ldquo;. Die porträtierten Frauen sind jeweils mit den Häusern verbunden, vor denen die Stationen platziert sind, und ihre Geschichten werden direkt im Stadtraum verankert. Die Illustrationen stammen von Lisa Althaus, der Audioguide ist auf Deutsch und Englisch verfügbar.</p>
+          <a href="https://iappear.app/en/routes/dornbirn/frauenspuren?view=list" class="btn btn--history">[EN] Zum Rundgang &rarr;</a>
+        </article>
+
+        <article class="card">
+          <div class="ph ph--wide ph--soon" aria-hidden="true">[EN] Coming soon</div>
+          <h3 class="c-history">125 Jahre &ndash; 125 Bilder</h3>
+          <p>[EN] 2026 feiert Dornbirn sein 125-jähriges Stadterhebungsjubiläum. Im Mai erscheint der Rundgang &bdquo;125 Jahre &ndash; 125 Bilder&ldquo;. Über das gesamte Stadtgebiet verteilt erzählen 125 Bilder Geschichten aus dem Alltag der Menschen und machen sichtbar, wie sich Dornbirn in den letzten 125 Jahren verändert hat.</p>
+          <p>[EN] Im Mittelpunkt stehen Nachbarschaften, Orte und persönliche Perspektiven jenseits der Innenstadt. Du begegnest Geschichten dort, wo du sie vielleicht nicht erwartet hättest, und erfährst, welche Menschen hier gelebt haben und leben und welche Ereignisse die Stadt geprägt haben. Der Rundgang ist mit den anderen i.appear-Rundgängen vernetzt und wird Teil eines wachsenden Netzwerks.</p>
+          <span class="btn">[EN] Coming soon</span>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="section container">
+      <h2>[EN] Au im Bregenzerwald</h2>
+      <div class="grid grid-2" style="margin-top:var(--sp-3)">
+        <article class="card">
+          <div class="rundgang-map" data-rundgang="barockbaumeister" data-kategorie="history" aria-hidden="true"></div>
+          <h3 class="c-history">Barockbaumeister</h3>
+          <p>[EN] Barockbaumeister Franz Beer führt dich auf einem Spaziergang von Au im Bregenzerwald über Bregenz, Konstanz und Rheinau bis zurück nach Bezau, wo sein Leben vor rund 300 Jahren endete. Als Erzähler begleitet er dich durch den Rundgang und erzählt von seiner Herkunft, seiner Lehrzeit, seinen Reisen und seinem Wirken im Bodenseeraum. So entsteht eine Reise durch Baukultur, Biografien und Orte, die Geschichte persönlich erfahrbar macht.</p>
+          <p>[EN] Der Rundgang entstand im Rahmen des Forschungsprojekts Digital In&amp;Out. In Zusammenarbeit mit dem vorarlberg museum, der Universität Konstanz, dem Barockbaumeister Museum in Au und dem Fachbereich Gestaltung der Fachhochschule Vorarlberg wurde er als Vermittlungskontext entwickelt.</p>
+          <a href="https://iappear.app/en/routes/bregenzerwald/barockbaumeister?view=list" class="btn btn--history">[EN] Zum Rundgang &rarr;</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="section container">
+      <h2>[EN] Hard am Bodensee</h2>
+      <div class="grid grid-2" style="margin-top:var(--sp-3)">
+        <article class="card">
+          <div class="rundgang-map" data-rundgang="see-runde" data-kategorie="history" aria-hidden="true"></div>
+          <h3 class="c-history">See Runde</h3>
+          <p>[EN] In der See Runde in Hard begibst du dich entlang des Bodenseeufers auf eine Reise durch die letzten zwei Jahrhunderte der Gemeinde. Acht Stationen führen durch den Ort, ergänzt durch unsichtbare Stationen, die erst in deiner Nähe sichtbar werden. Erzählt wird vom ehemaligen Armenhaus mit Gehöft, vom Alltag der Aermsten, von Geburtenstation und Sezierhaus &ndash; begleitet vom Strassenkehrer Fiffi, einem echten Harder Original.</p>
+          <p>[EN] Die See Runde verbindet reale Schauplätze mit digitalen Erzählungen und macht lokale Geschichte im Stadtraum erfahrbar. Entstanden ist ein Rundgang, der Vergangenheit und Gegenwart zusammenführt und zeigt, wie Erinnerung lebendig bleibt &ndash; generationenübergreifend und nah an den Menschen.</p>
+          <a href="https://iappear.app/en/routes/bregenz/see-runde?view=list" class="btn btn--history">[EN] Zum Rundgang &rarr;</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="section container center">
+      <a href="../kontakt.html" class="btn btn--history">[EN] Eigenen Rundgang anfragen &rarr;</a>
+    </section>
+  </main>
+
+  <footer class="footer"><div class="container">
+      <!-- Social Pills -->
+      <div class="social-pills">
+        <a class="social-pill" data-net="ig" href="https://www.instagram.com/i.appear.app/" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+        <a class="social-pill" data-net="li" href="https://www.linkedin.com/company/i-appear/posts/?feedView=all" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+        <a class="social-pill" data-net="fb" href="https://www.facebook.com/i.appearapp/" target="_blank" rel="noopener" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+      </div>
+            <div class="footer__bottom">
+        <small>&copy; 2026 i.appear &ndash; Digital City Tours</small>
+        <nav class="footer__legal" aria-label="Legal">
+          <a href="../kontakt.html">Contact</a>
+          <a href="../faqs.html">FAQs</a>
+          <!-- Rechtstexte bleiben deutsch (rechtliche Bindung). Hinweis-Label folgt. -->
+          <a href="../impressum.html" hreflang="de">Imprint (in German)</a>
+          <a href="../datenschutz.html" hreflang="de">Privacy (in German)</a>
+          <a href="../agb.html" hreflang="de">Terms (in German)</a>
+        </nav>
+      </div>
+    </div></footer>
+
+  <a href="#" class="back-up" data-back-up aria-label="Back to top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" aria-hidden="true"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg></a>
+  <script src="../js/main.js"></script>
+
+  <!-- Mini-Rundgang-Karten: zentral konfiguriert in css/components.css und
+       js/rundgang-map.js. Stations-Daten in js/data/rundgang-stationen.js. -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+  <script src="../js/data/rundgang-stationen.js?v=20260429b"></script>
+  <script src="../js/rundgang-map.js?v=20260503a"></script>
+</body>
+</html>
