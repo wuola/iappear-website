@@ -142,9 +142,20 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://iappear.at/en/faqs.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+    <xhtml:link rel="alternate" hreflang="de" href="https://iappear.at/faqs.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://iappear.at/en/faqs.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://iappear.at/faqs.html" />
+  </url>
+  <url>
     <loc>https://iappear.at/faqs.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="de" href="https://iappear.at/faqs.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://iappear.at/en/faqs.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://iappear.at/faqs.html" />
   </url>
   <url>
     <loc>https://iappear.at/stadtrundgaenge.html</loc>
