@@ -151,11 +151,48 @@ GitHub-Pages-Build wird minimal länger (~2-3 Sek), egal in der Praxis.
 - ✅ DE `i-history.html` mit hreflang + Sprachschalter
 - ✅ Sitemap erweitert um en/i-history
 
+**Sessions 31–36 (2026-05-08, Folgewelle gleichen Tag):**
+
+- ✅ **Session 31** [PR #12]: `en/i-dentity.html` (Kategorie-Seite Kultur/Tourismus)
+- ✅ **Session 32** [PR #13]: `en/i-grow.html` (Kategorie-Seite Bildung, größte mit 11 Sektionen) — Sub-Marken-Trio fertig
+- ✅ **Session 33** [PR #14]: `en/features.html` + neue `js/features-en.js` (14 Feature-Beschreibungen englisch, separate Datei statt bilingualer Lösung)
+- ✅ **Session 34** [PR #15]: `en/ueber-uns.html` (Team-Bios) + drive-by Pretty-URL-Bug-Fix in DE (`/über-uns/` → `/ueber-uns.html`)
+- ✅ **Session 35** [PR #16]: `en/faqs.html` (FAQPage Schema mit 7 Q&A in en_GB → Google Rich Snippets)
+- ✅ **Session 36** [PR #17]: `en/user-guide.html` (1015 Zeilen mit 2 Wizard-Widgets, Mickey-Hand-Animation, 2 Inline-IIFE-Scripts englisch)
+
+### Stand 2026-05-08 (Tag-Ende)
+
+**8 Seiten komplett englisch live:**
+
+| EN-Seite | Live | Notizen |
+|---|---|---|
+| `en/index.html` | ✅ | Sessions 28+29 (Pilot) |
+| `en/i-history.html` | ✅ | Session 30 |
+| `en/i-dentity.html` | ✅ | Session 31 |
+| `en/i-grow.html` | ✅ | Session 32 |
+| `en/features.html` | ✅ | Session 33 (+ `js/features-en.js`) |
+| `en/ueber-uns.html` | ✅ | Session 34 |
+| `en/faqs.html` | ✅ | Session 35 (FAQPage Schema) |
+| `en/user-guide.html` | ✅ | Session 36 (Wizards + Mickey) |
+
+### Branch-Strategie (eingeführt mit Session 31)
+
+**Pro EN-Seite ein frischer Branch von `origin/main`**, Pattern `claude/en-<seite>` (z.B. `claude/en-i-dentity`). Vermeidet Hash-Konflikte durch rebase-merge die Session 30 erlebt hat (Worktree-Branch divergiert vom main-Hash). Nach Merge ist der Branch obsolet — kann lokal stehen bleiben (wird ignoriert) oder von Maggy in GitHub Desktop weggeräumt.
+
 ### Offen — direkt als Nächstes
 
-1. **Visueller Layout-Check** durch Maggy in Privat-Tab (Mobile + Desktop) für die zwei live englischen Seiten — `iappear.at/en/index.html` + `iappear.at/en/i-history.html`.
-2. Falls Layout bricht: punktuell anpassen.
-3. Nächste Pilot-Seiten: `i-dentity.html`, `i-grow.html` (gleiches Pattern wie i-history — Kategorie-Seite mit Cards).
+1. **Visueller Layout-Check** durch Maggy in Privat-Tab für alle 8 live englischen Seiten.
+2. **Falls Layout bricht**: punktuell anpassen.
+3. **Nächste Pilot-Seiten** (Reihenfolge offen):
+   - `stadtrundgaenge.html` (Hub mit Leaflet-Karte) + 4 Stadtseiten
+   - `vitrine.html` Hub + 22 Vitrine-Artikel
+   - 2 Blog-Artikel (`/blog/...`)
+   - `404.html`
+   - `workflow.html` + `kontakt.html` — **erst wenn englische Tally-Form existiert** (Maggy muss anlegen)
+4. **Nicht angefasst, aber relevant** für die nächste Welle:
+   - `build.py` ist noch nicht bilingual-fähig — `en/`-Versionen von vitrine.html und Stadtseiten brauchen entweder build.py-Erweiterung oder manuell-pflegte EN-Versionen.
+   - `js/data/vitrine.js` und `rundgaenge.js` haben noch keine `de:`/`en:`-Felder.
+   - `llms.txt` noch keine englische Sektion.
 
 ### Offene Items aus dem ursprünglichen Plan, die noch nicht durch sind
 
