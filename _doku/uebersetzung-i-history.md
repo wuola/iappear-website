@@ -1,11 +1,28 @@
-# Übersetzungs-Liste – `i-history.html`
+# Übersetzungs-Liste – `i-history.html` ✅ ERLEDIGT
 
-> **Status:** Roh-Gerüst gebaut, Übersetzung steht aus.
+> **Status (2026-05-08):** ✅ Übersetzung erledigt. Alle 26 `[EN]`-Marker in
+> `en/i-history.html` ersetzt. Diese Liste bleibt liegen als Audit-Trail —
+> falls Maggy einzelne Strings nochmal nachprüfen will.
 >
-> **Workflow:** Maggy nimmt diese Liste in eine separate Übersetzungs-Claude-Session,
-> lässt alle Strings übersetzen, prüft den Tonfall, kommt mit ausgefüllter Liste
-> zurück. Code-Session ersetzt dann alle `[EN] <deutsch>`-Marker in
-> `en/i-history.html` durch die englischen Strings.
+> **Workflow ab Session 30:** Claude erledigt Roh-Gerüst + Übersetzung direkt
+> in derselben Session — keine separate Übersetzungs-Claude-Session mehr.
+> Diese Liste ist daher **optional** für die nächsten Seiten.
+>
+> **Wichtige Übersetzungs-Entscheidungen für i-history (für Konsistenz auf Folgeseiten):**
+>
+> - `Historie wird zur Geschichte` → `Where history becomes story` (Wortspiel
+>   beibehalten)
+> - `Region Dornbirn` → `Dornbirn region`
+> - `Zum Rundgang →` → `Start the tour →`
+> - `Eigenen Rundgang anfragen →` → `Request your own tour →`
+> - `Bundesministerium für Kunst, Kultur, öffentlichen Dienst und Sport` →
+>   `Austrian Federal Ministry of Arts, Culture, the Civil Service and Sport`
+> - `Dornbirner Geschichtswerkstatt` → behalten + Klammer-Erklärung
+>   `(Dornbirn History Workshop)` beim ersten Vorkommen
+> - `Stadtarchiv Dornbirn` → `Dornbirn city archive` (verständlich übersetzt,
+>   keine Klammer-Erklärung nötig)
+> - `Strassenkehrer Fiffi` → `Fiffi, the street sweeper`
+> - `Harder Original` → `a true Hard original` (Wortspiel mit Stadtname Hard)
 >
 > **Konventionen (siehe `_doku/englische-version.md`):**
 >
