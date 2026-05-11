@@ -8,6 +8,7 @@ Naming: `YYYY-MM-DD-session-NN-thema.md`
 
 - 2026-05-08 - [Session 38 - Blog-Zwischenstand: Worktree-Recovery + Branch-Audit, kein Merge heute (wartet auf Hero 02+03)](2026-05-08-session-38-blog-zwischenstand-vor-merge.md)
 - 2026-05-08 - [Session 37 - Blog-Reaktivierung mit 4 neuen Artikeln + Tag-System + Hero-Mockup-Render](2026-05-08-session-37-blog-reaktivierung.md)
+- 2026-05-08 - [Session 36.5 - GSC-Audit: Pretty-URL-Altlast verifiziert (kein Code-Bug, war urspruenglich parallel als "Session 37" angelegt, umnummeriert in Session 38)](2026-05-08-session-36.5-gsc-pretty-url-altlast-verifiziert.md)
 - 2026-05-08 - [Session 36 - Englisch: `user-guide.html` (1015 Zeilen mit 2 Wizard-Widgets, Mickey-Hand, Inline-Scripts englisch)](2026-05-08-session-36-englisch-user-guide.md)
 - 2026-05-08 - [Session 35 - Englisch: `faqs.html` (FAQPage Schema mit 7 Q&A in en_GB für Google Rich Snippets)](2026-05-08-session-35-englisch-faqs.md)
 - 2026-05-08 - [Session 34 - Englisch: `ueber-uns.html` (Team-Bios) + drive-by Pretty-URL-Bug-Fix in DE](2026-05-08-session-34-englisch-ueber-uns.md)
