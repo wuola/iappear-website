@@ -6,6 +6,7 @@ Naming: `YYYY-MM-DD-session-NN-thema.md`
 
 ## Sessions
 
+- 2026-05-11 - [Session 40 - Favicon-Renovierung: SVG + Apple-Touch-Icon + PNG-Fallback (Original-Logo-Approximations-Lehre)](2026-05-11-session-40-favicon-svg-png-fallback.md)
 - 2026-05-11 - [Session 39 - Blog geht live: Hero 02+03 nachgeholt, Frauenspuren-Hero-Aspect-Bug gefixt, grosser Repo-Cleanup](2026-05-11-session-39-blog-live-hero-fix-grosser-cleanup.md)
 - 2026-05-08 - [Session 38 - Blog-Zwischenstand: Worktree-Recovery + Branch-Audit, kein Merge heute (wartet auf Hero 02+03)](2026-05-08-session-38-blog-zwischenstand-vor-merge.md)
 - 2026-05-08 - [Session 37 - Blog-Reaktivierung mit 4 neuen Artikeln + Tag-System + Hero-Mockup-Render](2026-05-08-session-37-blog-reaktivierung.md)
