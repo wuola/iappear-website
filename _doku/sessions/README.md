@@ -6,6 +6,7 @@ Naming: `YYYY-MM-DD-session-NN-thema.md`
 
 ## Sessions
 
+- 2026-05-11 - [Session 42 - OG-Image-Cache-Bust: `og-image.png` → `og-image-v2.png` (Plattform-OG-Scraper-Lehre, SMS-Vorschau gefixt, Teams cached noch weiter)](2026-05-11-session-42-og-image-cache-bust-rename.md)
 - 2026-05-11 - [Session 41 - OG-Image-Renovierung + Blog/Vitrine eigene Sharing-Bilder (5 Blog + 22 Vitrine umgestellt, neues Generic-Bild)](2026-05-11-session-41-og-image-rewrite-blog-vitrine.md)
 - 2026-05-11 - [Session 40 - Favicon-Renovierung: SVG + Apple-Touch-Icon + PNG-Fallback (Original-Logo-Approximations-Lehre)](2026-05-11-session-40-favicon-svg-png-fallback.md)
 - 2026-05-11 - [Session 39 - Blog geht live: Hero 02+03 nachgeholt, Frauenspuren-Hero-Aspect-Bug gefixt, grosser Repo-Cleanup](2026-05-11-session-39-blog-live-hero-fix-grosser-cleanup.md)
