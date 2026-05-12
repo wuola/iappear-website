@@ -108,6 +108,15 @@
   user-select: none;
   font-weight: 300;
 }
+/* Mobile: Toggle absolut zentriert, weil nav__links da hidden ist */
+@media (max-width: 719px) {
+  .nav__lang {
+    position: absolute;
+    left: 50%; top: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+  }
+}
 
 /* Overlay Menu — kompakt, rechtsbuendig */
 .menu {
