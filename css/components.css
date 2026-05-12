@@ -269,18 +269,18 @@
    direkt unter dem Titel. */
 .hero .cat-link {
   padding: 0;
-  font-size: 1rem;
+  font-size: 1.15rem;
   border-bottom: 0;
   justify-content: flex-start;     /* Target links, Text direkt daneben */
   gap: .6rem;
   align-items: center;
-  width: 210px;                    /* alle gleich breit -> Texte alignen */
+  width: 230px;                    /* alle gleich breit -> Texte alignen */
   align-self: flex-start;
   line-height: 1.15;
 }
 .hero .cat-link small {
   display: inline-block;
-  font-size: .68rem;
+  font-size: .78rem;
   letter-spacing: .1em;
   margin-top: 2px;
   padding-left: .8em;              /* leicht versetzt zum Titel */
