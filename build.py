@@ -550,7 +550,6 @@ def generate_stadtseite(slug: str, info: dict, counts: dict, rundgaenge: dict):
     </nav>
 
     <header class="page-header page-header--hub container">
-      <p class="eyebrow">i.appear in {name}</p>
       <h1>Digitaler Stadtrundgang {name}</h1>
       <p class="page-header__subtitle">{subtitle}</p>
       <div class="page-header__intro">
