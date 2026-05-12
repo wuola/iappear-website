@@ -10,16 +10,20 @@
   backdrop-filter: blur(6px);
 }
 .nav__inner {
-  display: flex; align-items: center; justify-content: space-between;
+  display: flex; align-items: center; gap: var(--sp-2);
   padding: var(--sp-2) var(--sp-3);
   max-width: var(--maxw); margin: 0 auto;
+  position: relative;
 }
 .nav__brand { display: inline-flex; align-items: center; line-height: 0; }
 .nav__brand img { height: 32px; width: auto; display: block; }
 .nav__links {
-  display: none; gap: var(--sp-3); font-size: .75rem;
+  display: none; gap: var(--sp-3); font-size: .875rem;
   letter-spacing: .01em;
   font-weight: 300;
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
 }
 .nav__links a { opacity: .85; }
 .nav__links a:hover { opacity: 1; border-bottom: 1px solid var(--c-text); }
@@ -27,6 +31,7 @@
 @media (min-width: 720px) { .nav__links { display: flex; } }
 
 .nav__burger {
+  margin-left: auto;
   width: 42px; height: 42px;
   display: inline-flex; align-items: center; justify-content: center;
   border: 0; border-radius: var(--radius);
@@ -1422,23 +1427,24 @@ a.card--teaser:hover h3 {
 }
 
 .footer__bottom {
-  display: flex; align-items: center; justify-content: space-between;
+  display: flex; flex-direction: column; align-items: center;
+  text-align: center;
   margin-top: var(--sp-4); padding-top: var(--sp-3);
   border-top: 1px solid rgba(255,255,255,.1);
   color: var(--c-text-muted);
-  flex-wrap: wrap; gap: var(--sp-2) var(--sp-3);
+  gap: var(--sp-2);
 }
-/* Schlanke Legal-Leiste in der Mitte des Footer-Bottoms.
-   Ersetzt den frueheren breiten Quicklinks-Block. */
+.footer__bottom small { order: 2; }
+/* Quicklinks-Leiste direkt unter den Social-Pills, vor dem Copyright. */
 .footer__legal {
+  order: 1;
   display: flex;
   flex-wrap: wrap;
   gap: var(--sp-2) var(--sp-3);
   justify-content: center;
-  flex: 1 1 auto;
 }
 .footer__legal a {
-  font-size: .75rem;
+  font-size: .875rem;
   font-weight: 300;
   letter-spacing: .01em;
   opacity: .75;
@@ -1446,17 +1452,9 @@ a.card--teaser:hover h3 {
 }
 .footer__legal a:hover { opacity: 1; text-decoration: underline; }
 
-/* Mobile-Footer: Quicklinks oben, Copyright drunter. Enger row-gap zwischen
-   den Quicklink-Zeilen (waren default sp-2 = 16px, jetzt 5px). */
+/* Mobile-Footer: enger row-gap bei umwickelnden Quicklink-Zeilen. */
 @media (max-width: 720px) {
-  .footer__bottom {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: var(--sp-2);
-  }
-  .footer__bottom small { order: 2; }
-  .footer__legal { order: 1; row-gap: .3rem; }
+  .footer__legal { row-gap: .3rem; }
 }
 
 /* .back-up Definition steht unten bei den Breadcrumbs - hier nur Placeholder */
