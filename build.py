@@ -459,7 +459,7 @@ def generate_stadtseite(slug: str, info: dict, counts: dict, rundgaenge: dict):
 
   <link rel="stylesheet" href="css/global.css?v=20260416a" />
   <link rel="stylesheet" href="css/layout.css?v=20260416a" />
-  <link rel="stylesheet" href="css/components.css?v=20260512c" />
+  <link rel="stylesheet" href="css/components.css?v=20260512d" />
   <link rel="stylesheet" href="css/animations.css?v=20260416a" />
 
   <script type="application/ld+json">
