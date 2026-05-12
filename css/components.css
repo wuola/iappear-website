@@ -16,7 +16,7 @@
   position: relative;
 }
 .nav__brand { display: inline-flex; align-items: center; line-height: 0; }
-.nav__brand img { height: 32px; width: auto; display: block; }
+.nav__brand img { height: 38px; width: auto; display: block; }
 .nav__links {
   display: none; gap: var(--sp-3); font-size: .875rem;
   letter-spacing: .01em;
@@ -79,7 +79,6 @@
     0 0 20px var(--glass-glow);
   backdrop-filter: blur(var(--glass-blur));
   -webkit-backdrop-filter: blur(var(--glass-blur));
-  margin-right: var(--sp-2);
   font-size: .72rem;
   letter-spacing: .06em;
   font-weight: 500;
@@ -976,6 +975,10 @@ a.card--teaser:hover h3 {
   gap: .6rem;
   margin: var(--sp-2) 0;
 }
+/* Wenn Social-Pills nach dem Partner-Block stehen (nur index.html): mehr
+   Abstand nach oben, damit Icons mittig zwischen den beiden Lichtstreifen
+   sitzen (Streifen-1 unter Partner, Streifen-2 ueber Footer-Bottom). */
+.footer__partner + .social-pills { margin-top: var(--sp-4); }
 .social-pill {
   width: 36px; height: 36px;
   display: inline-flex; align-items: center; justify-content: center;
