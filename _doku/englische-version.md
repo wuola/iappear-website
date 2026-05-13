@@ -1,6 +1,6 @@
 # Englische Version – Plan & Workflow
 
-> Stand: 2026-05-13. **20 EN-Seiten live** (Sessions 28–36 + 44 + 45 + 46). Stadtrundgänge + Blog komplett, Vitrine-Hub live (22 Artikel-Seiten folgen in Teil 2).
+> Stand: 2026-05-13. **21 EN-Seiten live** (Sessions 28–36 + 44 + 45 + 46 + 47). Stadtrundgänge + Blog komplett, Vitrine-Hub live (22 Artikel-Seiten folgen in Teil 2), 404 + llms.txt bilingual.
 > Diese Datei ist Konzept + lebender Status. Aktueller Stand am Ende der Datei.
 
 ## Festgelegte Konventionen für die ganze EN-Site
@@ -160,6 +160,12 @@ GitHub-Pages-Build wird minimal länger (~2-3 Sek), egal in der Praxis.
 - ✅ **Session 35** [PR #16]: `en/faqs.html` (FAQPage Schema mit 7 Q&A in en_GB → Google Rich Snippets)
 - ✅ **Session 36** [PR #17]: `en/user-guide.html` (1015 Zeilen mit 2 Wizard-Widgets, Mickey-Hand-Animation, 2 Inline-IIFE-Scripts englisch)
 
+**Session 47 (2026-05-13): 404 + llms.txt bilingual**
+
+- ✅ **`en/404.html` neu**: englische Page-not-found mit Sprachschalter, 3 Card-Links (Home / Categories / Contact), EN-Top-Nav.
+- ✅ **DE `404.html` gepatcht**: hreflang-Triple, `nav__lang`-Sprachschalter (DE | EN), Inline-JS-Snippet im `<head>` der bei `/en/`-Pathname auf `en/404.html` umleitet (GitHub Pages serviert immer Root-404).
+- ✅ **`llms.txt` bilingual**: englische Spiegelsektion am Ende mit allen 20 EN-Hauptseiten + 5 Blog-Posts + Scope-Notes (Rechtstexte / Vitrine-Artikel / Tally-Form-Blocker erklaert). DE-Sektion unveraendert.
+
 **Session 46 (2026-05-13): Vitrine-Hub komplett (Teil 1)**
 
 - ✅ **`vitrine.js` bilingual umgebaut**: pro Eintrag jetzt `de: {titel, text}` + `en: {titel, text}` + gemeinsame `bild`/`link`. Fallback-Renderer in `vitrine.js` selbst liest `document.documentElement.lang` aus, um die richtige Sprache zu rendern (kein Browser-Tab-Sniffing).
@@ -221,6 +227,9 @@ GitHub-Pages-Build wird minimal länger (~2-3 Sek), egal in der Praxis.
 | `en/blog/frauenspuren-dornbirn.html` | ✅ | Session 45 (mit Series-Disclosure-Section zu Folge-Beitrag) |
 | `en/blog/frauenspuren-launch-mai-2026.html` | ✅ | Session 45 (Folge-Beitrag, parent-link zu Hauptartikel) |
 | `en/vitrine.html` | ✅ | Session 46 Teil 1 (Hub mit 22 Kacheln, `vitrine.js` bilingual, `build.py` rendert beide Grids). Artikel-Seiten verlinken nach `../vitrine/*.html` (DE, `hreflang="de"`) bis Teil 2. |
+| `en/404.html` | ✅ | Session 47 (englische 404). DE-`404.html` redirected per JS bei `/en/`-URL auf `en/404.html`. |
+
+**Zusatz Session 47**: `llms.txt` ist jetzt bilingual — englische Spiegelsektion am Ende mit allen 20 EN-Hauptseiten + Blog + Scope-Notes (Rechtstexte/Vitrine-Artikel/Tally-Form-Blocker erklaert).
 
 ### Branch-Strategie (eingeführt mit Session 31)
 
@@ -228,18 +237,17 @@ GitHub-Pages-Build wird minimal länger (~2-3 Sek), egal in der Praxis.
 
 ### Offen — direkt als Nächstes
 
-1. **Visueller Layout-Check** durch Maggy in Privat-Tab für die 20 live englischen Seiten.
+1. **Visueller Layout-Check** durch Maggy in Privat-Tab fuer die 21 live englischen Seiten.
 2. **Falls Layout bricht**: punktuell anpassen.
-3. **Nächste Bereiche** (Reihenfolge offen):
-   - **Vitrine Teil 2**: 22 Vitrine-Artikel-Seiten uebersetzen. Aktuell zeigen die EN-Kacheln auf DE-Artikel mit `hreflang="de"` + sichtbarem Hinweis &bdquo;(in German)&ldquo; im CTA. Sobald `en/vitrine/{slug}.html` existiert, kann `build.py render_grid` einen `lang`-Schalter im Link-Prefix bekommen.
-   - **404**: kleines Häppchen
-   - `workflow.html` + `kontakt.html` — **erst wenn englische Tally-Form existiert** (Maggy muss anlegen)
-4. **Pragmatische Entscheidungen Sessions 44 + 45 + 46**:
+3. **Letzte offene Baustellen**:
+   - **Vitrine Teil 2**: 22 Vitrine-Artikel-Seiten uebersetzen. Aktuell zeigen die EN-Kacheln auf DE-Artikel mit `hreflang="de"` + sichtbarem Hinweis &bdquo;(in German)&ldquo; im CTA. Sobald `en/vitrine/{slug}.html` existieren, kann `build.py render_grid` einen `lang`-Schalter im Link-Prefix bekommen und der Hinweis verschwindet automatisch.
+   - **workflow.html + kontakt.html** — **blockiert**: braucht englische Tally-Form (Maggy muss im Tally-Account `maggy@iappear.app` eine zweite Form anlegen, Form-ID dann hier nachtragen).
+4. **Pragmatische Entscheidungen Sessions 44 + 45 + 46 + 47**:
    - EN-Stadtseiten werden **manuell gepflegt**, `rundgaenge.js` bleibt einsprachig.
    - EN-Blog-Artikel **behalten die deutschen Slugs** (Konsistenz mit Stadt-Rundgang-Pattern). Hero-Bilder bleiben mit deutscher App-UI. Iframe-Grafiken bleiben DE.
-   - **Vitrine ist anders**: `vitrine.js` ist jetzt bilingual (`de: {titel, text}` + `en: {titel, text}`, geteiltes `bild` und `link`). `build.py` rendert pro Lauf beide Grids (DE im Root, EN unter `/en/vitrine.html`). Marilena editiert in der gleichen Datei beide Sprachen pro Eintrag.
-5. **Noch nicht angefasst**:
-   - `llms.txt` noch keine englische Sektion.
+   - **Vitrine ist anders**: `vitrine.js` ist jetzt bilingual (`de: {titel, text}` + `en: {titel, text}`, geteiltes `bild` und `link`). `build.py` rendert pro Lauf beide Grids (DE im Root, EN unter `/en/vitrine.html`).
+   - **404 hat einen JS-Redirect**: GitHub Pages serviert immer das Root-`404.html` bei einer Server-404 — der JS-Snippet im DE-`404.html` checkt `window.location.pathname` auf `/en/` und leitet ggf. auf `en/404.html` weiter.
+   - **llms.txt** ist eine einzige Datei mit beiden Sprachen (DE oben, EN unten), nicht zwei separate Files.
 
 ### Offene Items aus dem ursprünglichen Plan, die noch nicht durch sind
 

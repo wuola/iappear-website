@@ -55,3 +55,61 @@ Die drei inhaltlichen Kategorien heissen i.history (historische Stadtrundgaenge,
 - [Impressum](https://iappear.at/impressum.html)
 - [AGB](https://iappear.at/agb.html)
 - [Datenschutz](https://iappear.at/datenschutz.html)
+
+---
+
+# i.appear (English)
+
+> i.appear is a platform for digital walking tours and audio guides in Austria (focus: Vorarlberg) and neighbouring regions. Every walking tour runs directly in the browser - no app download, no registration, no advertising, no tracking.
+
+Operator: Marilena Tumler, Mozartstrasse 5 | 16, 6850 Dornbirn, Austria.
+Contact: info@iappear.app, +43 676 82554212
+
+i.appear combines text, audio, video, 3D models, augmented reality and maps into location-based experiences. Digital walking tours are currently available in Dornbirn, Feldkirch, Hard, Au in the Bregenzerwald and further locations across Vorarlberg.
+
+The three content categories are i.history (source-based historical walking tours), i.dentity (regional culture, tourism, business) and i.grow (media literacy, democracy education and media competence with school classes).
+
+## Categories (EN)
+
+- [i.history - Travel through time](https://iappear.at/en/i-history.html): historical digital walking tours and audio guides at original locations, developed with historians, archives and contemporary witness interviews.
+- [i.dentity - Regional identity](https://iappear.at/en/i-dentity.html): digital walking tours for culture, tourism and regional identity; also for businesses and institutions.
+- [i.grow - Media literacy](https://iappear.at/en/i-grow.html): media literacy, democracy education and AI education for schools. Workshops where students design their own digital walking tours and build media skills. In collaboration with PH Vorarlberg, FH Vorarlberg and OeAD.
+
+## Main pages (EN)
+
+- [Home](https://iappear.at/en/index.html): compact overview with teasers for every area.
+- [Features](https://iappear.at/en/features.html): 14 multimedia features for digital walking tours - 3D, AR, audio, quiz and more.
+- [Showcase](https://iappear.at/en/vitrine.html): awards, press features and references - Smart City, Ars Electronica, Innovation Call. Note: 22 article pages are still German-only; the showcase hub itself is English.
+- [About us](https://iappear.at/en/ueber-uns.html): the team (Marilena Tumler, Maggy Haidacher) and partners.
+- [All walking tours](https://iappear.at/en/stadtrundgaenge.html): overview of all locations with digital walking tours and audio guides - with interactive map.
+- [Walking tour Dornbirn](https://iappear.at/en/stadtrundgang-dornbirn.html): 10 walking tours and audio guides covering history, regional culture and education.
+- [Walking tour Feldkirch](https://iappear.at/en/stadtrundgang-feldkirch.html): 2 walking tours - school projects by MS Levis (Zusammenwachsen) and MS Oberau (Ein Oktobertag).
+- [Walking tour Hard on Lake Constance](https://iappear.at/en/stadtrundgang-hard.html): the See Runde along the lake shore - 200 years of local history.
+- [Walking tour Au in the Bregenzerwald](https://iappear.at/en/stadtrundgang-au.html): the Barockbaumeister tour with Franz Beer - from Au via Bregenz and Konstanz to Bezau.
+- [User Guide](https://iappear.at/en/user-guide.html): step-by-step usage of the web app.
+- [FAQs](https://iappear.at/en/faqs.html): frequently asked questions on usage, technology, content, partners.
+
+## Blog (EN)
+
+- [Blog overview](https://iappear.at/en/blog/): all blog posts at a glance - background on digital walking tours, school projects and media literacy in Vorarlberg.
+- [Frauenspuren Dornbirn](https://iappear.at/en/blog/frauenspuren-dornbirn.html): visibility, diversity and a new perspective on a city - digital women's history tour from May 2026 (category i.history).
+  - [Frauenspuren is live: nine Dornbirn women return to the city (8 May 2026)](https://iappear.at/en/blog/frauenspuren-launch-mai-2026.html): follow-up post - impressions from the launch evening at the city archive and three locations from the city centre.
+- [How an i.grow project works](https://iappear.at/en/blog/wie-entsteht-ein-igrow-projekt.html): from the first conversation to the published tour - 5 phases, 2 real school examples from Vorarlberg (category i.grow).
+- [Mandatory subject Media and Democracy from 2027/28](https://iappear.at/en/blog/medien-und-demokratie-pflichtfach.html): what the AHS curriculum reform means and which experience schools can already draw on today (category i.grow).
+- [What is a digital walking tour?](https://iappear.at/en/blog/was-ist-ein-digitaler-stadtrundgang.html): definition, examples and practice from Vorarlberg - what makes a good tour (basics).
+
+## Features (EN)
+
+3D models, augmented reality, 360 video in VR, animations, interactive maps, audio guides, historical photographs, quiz function, contemporary witness interviews, videos, secret stations, emotional stories, moving photographs, before/after views.
+
+## Scope notes (EN)
+
+- Legal pages (Imprint, Terms, Privacy) are available only in German for legal reasons. They are linked from the English pages with a "(in German)" label.
+- 22 Showcase article pages have not yet been translated and remain available in German only; the English Showcase hub links to them with a "hreflang=de" indicator.
+- The Workflow and Contact pages are pending translation because an English version of the contact form needs to be set up first.
+
+## Legal (EN)
+
+- [Imprint (in German)](https://iappear.at/impressum.html)
+- [Terms (in German)](https://iappear.at/agb.html)
+- [Privacy (in German)](https://iappear.at/datenschutz.html)
