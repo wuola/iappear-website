@@ -258,9 +258,15 @@
     <section id="blog" class="section container">
       <h2>Blog</h2>
       <p class="muted" style="margin-bottom:var(--sp-3)">Background, project updates and stories from our work.</p>
+
+      <!-- BLOG TEASER (max 4 cards): pinned articles first, then most recent.
+           Full blog hub with all articles + follow-up posts under /en/blog/.
+           Editing on new article: insert one card at the top, drop the oldest at the bottom.
+           Keep pin in sync with /en/blog/index.html: same card with class="blog-card blog-card--pinned" + data-pin-label="Featured". -->
+
       <div class="blog-grid">
 
-        <a href="blog/frauenspuren-dornbirn.html" class="blog-card">
+        <a href="blog/frauenspuren-dornbirn.html" class="blog-card blog-card--pinned" data-pin-label="Featured">
           <div class="blog-card__meta">
             <span class="cat-tag cat-tag--history">i.history</span>
             <span class="blog-card__date">3 May 2026</span>
@@ -268,13 +274,6 @@
           <h3>Frauenspuren Dornbirn &ndash; Visibility, diversity and a new perspective on a city</h3>
           <p>A digital walking tour makes the invisible half of Dornbirn&rsquo;s city history visible &ndash; from May 2026.</p>
         </a>
-
-        <details class="blog-card-series">
-          <summary>1 follow-up post</summary>
-          <ol>
-            <li><time datetime="2026-05-08">8 May 2026</time> <a href="blog/frauenspuren-launch-mai-2026.html">Frauenspuren is live: nine Dornbirn women return to the city</a></li>
-          </ol>
-        </details>
 
         <a href="blog/wie-entsteht-ein-igrow-projekt.html" class="blog-card">
           <div class="blog-card__meta">
@@ -304,6 +303,8 @@
         </a>
 
       </div>
+
+      <p class="center" style="margin-top:var(--sp-4)"><a href="blog/" class="btn">Visit the blog &rarr;</a></p>
     </section>
 
   </main>
