@@ -643,7 +643,11 @@ def update_map_markers(counts: dict, staedte: dict, stadt_order: list):
 
 
 def update_sitemap(staedte: dict, stadt_order: list):
-    """Aktualisiert die Stadtrundgang-URLs in sitemap.xml."""
+    """Aktualisiert die Stadtrundgang-URLs in sitemap.xml.
+
+    Generiert pro Stadt sowohl DE-Eintrag als auch EN-Eintrag (falls die
+    en/stadtrundgang-{slug}.html existiert), jeweils mit hreflang-Triple.
+    """
     if not os.path.exists(SITEMAP_XML):
         return
 
@@ -660,10 +664,38 @@ def update_sitemap(staedte: dict, stadt_order: list):
         # "soon"-Staedte (z.B. Bregenz) haben noch keine Stadtseite -> nicht in sitemap.
         if staedte[slug].get("soon"):
             continue
-        entries.append(f"""  <url>
-    <loc>https://iappear.at/stadtrundgang-{slug}.html</loc>
+
+        de_url = f"https://iappear.at/stadtrundgang-{slug}.html"
+        en_url = f"https://iappear.at/en/stadtrundgang-{slug}.html"
+        en_file = os.path.join(ROOT, "en", f"stadtrundgang-{slug}.html")
+        has_en = os.path.exists(en_file)
+
+        # DE-Eintrag — mit hreflang nur wenn EN-Variante existiert.
+        if has_en:
+            entries.append(f"""  <url>
+    <loc>{de_url}</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="de" href="{de_url}" />
+    <xhtml:link rel="alternate" hreflang="en" href="{en_url}" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="{de_url}" />
+  </url>""")
+        else:
+            entries.append(f"""  <url>
+    <loc>{de_url}</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>""")
+
+        # EN-Eintrag — nur wenn die englische Stadtseite existiert.
+        if has_en:
+            entries.append(f"""  <url>
+    <loc>{en_url}</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+    <xhtml:link rel="alternate" hreflang="de" href="{de_url}" />
+    <xhtml:link rel="alternate" hreflang="en" href="{en_url}" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="{de_url}" />
   </url>""")
 
     pattern = re.compile(re.escape(start) + r".*?" + re.escape(end), re.DOTALL)

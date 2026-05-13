@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Digital Walking Tours &amp; Audio Guides in Vorarlberg | i.appear</title>
+  <meta name="description" content="All digital walking tours and audio guides by i.appear: Dornbirn, Feldkirch, Bregenz, Hard and Au in the Bregenzerwald &mdash; Vorarlberg and the Lake Constance region." />
+  <meta name="author" content="Marilena Tumler" />
+  <link rel="canonical" href="https://iappear.at/en/stadtrundgaenge.html" />
+  <link rel="alternate" hreflang="de" href="https://iappear.at/stadtrundgaenge.html" />
+  <link rel="alternate" hreflang="en" href="https://iappear.at/en/stadtrundgaenge.html" />
+  <link rel="alternate" hreflang="x-default" href="https://iappear.at/stadtrundgaenge.html" />
+  <meta property="og:site_name" content="i.appear" />
+  <meta property="og:locale" content="en_GB" />
+  <meta property="og:locale:alternate" content="de_AT" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Digital Walking Tours and Audio Guides in Vorarlberg | i.appear" />
+  <meta property="og:description" content="All digital walking tours and audio guides by i.appear: Dornbirn, Feldkirch, Bregenz, Hard, Au and more locations." />
+  <meta property="og:url" content="https://iappear.at/en/stadtrundgaenge.html" />
+  <meta property="og:image" content="https://iappear.at/assets/og-image-v2.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Digital Walking Tours and Audio Guides in Vorarlberg | i.appear" />
+  <meta name="twitter:description" content="All digital walking tours and audio guides by i.appear: Dornbirn, Feldkirch, Bregenz, Hard, Au and more locations." />
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg?v=20260511a" />
+  <link rel="icon" type="image/png" sizes="192x192" href="../assets/favicon-192.png?v=20260511a" />
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png?v=20260511a" />
+
+  <link rel="stylesheet" href="../css/global.css?v=20260427a" />
+  <link rel="stylesheet" href="../css/layout.css?v=20260430a" />
+  <link rel="stylesheet" href="../css/components.css?v=20260512e" />
+  <link rel="stylesheet" href="../css/animations.css?v=20260428a" />
+
+  <!-- Leaflet CSS fuer die Karte (OpenStreetMap, DSGVO-konform) -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+
+  <!-- Schema: BreadcrumbList + ItemList -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://iappear.at/en/" },
+          { "@type": "ListItem", "position": 2, "name": "Walking Tours", "item": "https://iappear.at/en/stadtrundgaenge.html" }
+        ]
+      },
+      {
+        "@type": "ItemList",
+        "name": "Digital walking tours in Vorarlberg and the Lake Constance region",
+        "description": "All locations with digital walking tours and audio guides by i.appear",
+        "inLanguage": "en-GB",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Walking Tour Dornbirn", "url": "https://iappear.at/en/stadtrundgang-dornbirn.html" },
+          { "@type": "ListItem", "position": 2, "name": "Walking Tour Feldkirch", "url": "https://iappear.at/en/stadtrundgang-feldkirch.html" },
+          { "@type": "ListItem", "position": 3, "name": "Walking Tour Hard on Lake Constance", "url": "https://iappear.at/en/stadtrundgang-hard.html" },
+          { "@type": "ListItem", "position": 4, "name": "Walking Tour Au in the Bregenzerwald", "url": "https://iappear.at/en/stadtrundgang-au.html" }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    /* Karten-Container */
+    .map-wrap { position: relative; width: 100%; height: 420px; border-radius: var(--radius-card); overflow: hidden; margin-bottom: var(--sp-4); border: 1px solid rgba(255,255,255,.12); }
+    @media (max-width: 600px) { .map-wrap { height: 320px; } }
+
+    /* Ort-Karten */
+    .ort-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: var(--sp-3); margin-top: var(--sp-3); }
+    .ort-card { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: var(--radius-card); padding: var(--sp-4); transition: border-color .25s, background .25s; }
+    .ort-card:hover { border-color: rgba(255,255,255,.25); background: rgba(255,255,255,.07); }
+    .ort-card h3 { margin: 0 0 var(--sp-1); }
+    .ort-card .ort-count { font-size: .85rem; color: var(--c-text-muted); margin-bottom: var(--sp-2); }
+    /* min-height reserviert Platz fuer bis zu 3 Tag-Zeilen, damit alle Karten
+       den gleichen Tag-Bereich haben — auch wenn nur 1 Tag drin ist. Tags
+       stacken oben (align-content: flex-start), darunter bleibt Puffer. */
+    .ort-card .ort-tags { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: var(--sp-2); align-content: center; min-height: calc(3 * 1.6rem + 2 * .4rem); }
+    .ort-card .ort-tag {
+      font-size: .75rem; padding: .2rem .6rem; border-radius: 999px; border: 0;
+      background: color-mix(in srgb, currentColor 6%, transparent);
+      box-shadow: inset 0 2px 6px var(--glass-shadow-top), inset 0 -2px 4px var(--glass-shadow-bottom), inset 0 1px 0 var(--glass-highlight);
+      backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur));
+    }
+    .ort-tag--history { color: var(--c-history); }
+    .ort-tag--dentity { color: var(--c-dentity); }
+    .ort-tag--grow { color: var(--c-grow); }
+
+    /* Leaflet Popup */
+    .leaflet-popup-content-wrapper { background: #1a1a1a; color: #fff; border-radius: 10px; }
+    .leaflet-popup-tip { background: #1a1a1a; }
+    .leaflet-popup-content a { color: #fff; text-decoration: underline; }
+
+    /* Weisses i.appear-Target als Map-Marker */
+    .iappear-map-target {
+      filter: drop-shadow(0 0 4px rgba(0,0,0,.6)) drop-shadow(0 0 8px rgba(255,255,255,.25));
+      transition: transform .2s ease;
+    }
+    .iappear-map-target:hover { transform: scale(1.15); }
+
+    /* Coming-soon Karte: Headline klar lesbar, Inhalt darunter
+       als Teaser geblurrt (Text ist Platzhalter, soll noch nicht
+       lesbar sein). */
+    .ort-card--soon h3::after { content: " (soon)"; font-size: .75em; color: var(--c-text-muted); font-weight: 400; }
+    .ort-card--soon > *:not(h3) {
+      filter: blur(5px);
+      user-select: none;
+    }
+  </style>
+</head>
+<body>
+  <header class="nav"><div class="nav__inner">
+    <a class="nav__brand" href="index.html" aria-label="i.appear home"><img src="../assets/svg/logos/logo-mark-weiss.svg?v=20260414ae" alt="i.appear" /></a>
+    <div class="nav__lang" role="group" aria-label="Language">
+      <a href="../stadtrundgaenge.html" lang="de" hreflang="de">DE</a>
+      <span aria-hidden="true">|</span>
+      <a href="stadtrundgaenge.html" lang="en" aria-current="page">EN</a>
+    </div>
+    <nav class="nav__links" aria-label="Main navigation">
+      <a href="stadtrundgaenge.html">Walking Tours</a>
+      <a href="features.html">Features</a>
+      <a href="../workflow.html">Services</a>
+      <a href="ueber-uns.html">About</a>
+      <a href="../vitrine.html">Showcase</a>
+    </nav>
+    <button class="nav__burger" data-menu-toggle aria-label="Open menu"><span></span></button>
+  </div></header>
+
+    <div id="menu" class="menu" role="dialog" aria-modal="true" aria-label="Menu">
+    <button class="menu__close" data-menu-close aria-label="Close menu">&times;</button>
+    <div class="menu__group">
+      <h4 class="menu__heading">The Platform</h4>
+      <ul class="menu__list">
+        <li><a href="user-guide.html">i.appear User Guide</a></li>
+        <li><a href="i-history.html" class="c-history">i.history &ndash; Travel through time</a></li>
+        <li><a href="i-dentity.html" class="c-dentity">i.dentity &ndash; Regional identity</a></li>
+        <li><a href="i-grow.html" class="c-grow">i.grow &ndash; Media literacy</a></li>
+        <li><a href="features.html">Features</a></li>
+      </ul>
+    </div>
+    <div class="menu__group">
+      <h4 class="menu__heading">Walking Tours</h4>
+      <ul class="menu__list">
+        <li><a href="stadtrundgaenge.html">All Locations</a></li>
+        <li><a href="stadtrundgang-dornbirn.html">Dornbirn</a></li>
+        <li><a href="stadtrundgang-feldkirch.html">Feldkirch</a></li>
+        <li><a href="stadtrundgang-hard.html">Hard on Lake Constance</a></li>
+        <li><a href="stadtrundgang-au.html">Au in the Bregenzerwald</a></li>
+      </ul>
+    </div>
+    <div class="menu__group">
+      <h4 class="menu__heading">Backstage</h4>
+      <ul class="menu__list">
+        <li><a href="../workflow.html">Workflow and Services</a></li>
+        <li><a href="../vitrine.html">Showcase</a></li>
+        <li><a href="ueber-uns.html">About</a></li>
+        <li><a href="../kontakt.html">Contact</a></li>
+        <li><a href="faqs.html">FAQs</a></li>
+        <li><a href="../agb.html" hreflang="de">Terms (in German)</a></li>
+        <li><a href="../impressum.html" hreflang="de">Imprint (in German)</a></li>
+        <li><a href="../datenschutz.html" hreflang="de">Privacy (in German)</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <main>
+    <nav class="breadcrumb container" aria-label="Breadcrumb"><ol><li><a href="index.html">Home</a></li><li><span aria-current="page">Walking Tours</span></li></ol></nav>
+
+    <header class="page-header page-header--hub container">
+      <h1>Digital Walking Tours &amp; Audio Guides</h1>
+      <p class="page-header__subtitle">All locations at a glance &ndash; in Vorarlberg, the Lake Constance region and beyond</p>
+      <div class="page-header__intro">
+        <p>With the digital walking tours and audio guides by i.appear, you discover places in Vorarlberg and the Lake Constance region in a whole new way: multimedia, interactive and free of charge &ndash; right in your smartphone browser. At every location, 3D models, augmented reality, audio guide segments, historical photographs and videos are waiting for you.</p>
+        <p>Our walking tours connect <strong>history, culture, tourism and media literacy</strong>. Whether a historical journey through time, a regional audio guide experience or an educational project with schools &ndash; choose your location and start your tour. <strong>No app download, no registration, no advertising.</strong></p>
+      </div>
+      <ul class="hub-jumpnav" aria-label="Locations on this page">
+        <li><a href="#ort-dornbirn" class="hub-jumpnav__chip hub-jumpnav__chip--neutral">Dornbirn <span class="hub-jumpnav__count">&middot; 10</span></a></li>
+        <li><a href="#ort-feldkirch" class="hub-jumpnav__chip hub-jumpnav__chip--neutral">Feldkirch <span class="hub-jumpnav__count">&middot; 2</span></a></li>
+        <li><a href="#ort-hard" class="hub-jumpnav__chip hub-jumpnav__chip--neutral">Hard on Lake Constance <span class="hub-jumpnav__count">&middot; 1</span></a></li>
+        <li><a href="#ort-au" class="hub-jumpnav__chip hub-jumpnav__chip--neutral">Au in the Bregenzerwald <span class="hub-jumpnav__count">&middot; 1</span></a></li>
+        <li><a href="#ort-bregenz" class="hub-jumpnav__chip hub-jumpnav__chip--soon">Bregenz <span class="hub-jumpnav__count">&middot; soon</span></a></li>
+      </ul>
+    </header>
+
+    <!-- Karte -->
+    <section class="section container">
+      <div class="map-wrap" id="karte"></div>
+    </section>
+
+    <!-- Ort-Karten -->
+    <section class="section container">
+      <h2>Choose your location</h2>
+
+      <div class="ort-grid">
+
+        <!-- Dornbirn -->
+        <a href="stadtrundgang-dornbirn.html" id="ort-dornbirn" class="ort-card" style="text-decoration:none;color:inherit">
+          <h3>Dornbirn</h3>
+          <p class="ort-count">10 walking tours &amp; audio guides</p>
+          <div class="ort-tags">
+            <span class="ort-tag ort-tag--history">Travel through time</span>
+            <span class="ort-tag ort-tag--dentity">Regional identity</span>
+            <span class="ort-tag ort-tag--grow">Media literacy</span>
+          </div>
+          <p class="muted">From the great journey through 600 years of city history to the talking tree in the Messepark &ndash; Dornbirn is the heart of i.appear with the most tours.</p>
+        </a>
+
+        <!-- Feldkirch -->
+        <a href="stadtrundgang-feldkirch.html" id="ort-feldkirch" class="ort-card" style="text-decoration:none;color:inherit">
+          <h3>Feldkirch</h3>
+          <p class="ort-count">2 walking tours &amp; audio guides</p>
+          <div class="ort-tags">
+            <span class="ort-tag ort-tag--grow">Media literacy</span>
+          </div>
+          <p class="muted">Two school projects: &ldquo;Zusammenwachsen&rdquo; by MS Levis on values and coexistence in Feldkirch, and &ldquo;Ein Oktobertag&rdquo; by MS Oberau on the bombings of 1943 &ndash; told by young people.</p>
+        </a>
+
+        <!-- Hard -->
+        <a href="stadtrundgang-hard.html" id="ort-hard" class="ort-card" style="text-decoration:none;color:inherit">
+          <h3>Hard on Lake Constance</h3>
+          <p class="ort-count">1 walking tour</p>
+          <div class="ort-tags">
+            <span class="ort-tag ort-tag--history">Travel through time</span>
+          </div>
+          <p class="muted">The See Runde leads along the shore of Lake Constance through 200 years of local history &ndash; accompanied by Fiffi, a true Harder original.</p>
+        </a>
+
+        <!-- Au -->
+        <a href="stadtrundgang-au.html" id="ort-au" class="ort-card" style="text-decoration:none;color:inherit">
+          <h3>Au in the Bregenzerwald</h3>
+          <p class="ort-count">1 walking tour</p>
+          <div class="ort-tags">
+            <span class="ort-tag ort-tag--history">Travel through time</span>
+          </div>
+          <p class="muted">On the trail of the Vorarlberg baroque master builders: a journey from Au via Bregenz and Konstanz to Bezau &ndash; architectural heritage meets biography.</p>
+        </a>
+
+        <!-- Bregenz -->
+        <a href="stadtrundgang-bregenz.html" id="ort-bregenz" class="ort-card ort-card--soon" style="text-decoration:none;color:inherit">
+          <h3>Bregenz</h3>
+          <p class="ort-count">1 walking tour</p>
+          <div class="ort-tags">
+            <span class="ort-tag ort-tag--history">Travel through time</span>
+          </div>
+          <p class="muted">Roman Bregenz: a journey back to Brigantium with 3D reconstructions and archaeological finds on site.</p>
+        </a>
+
+        <!-- More -->
+        <div class="ort-card ort-card--soon" style="border-style:dashed">
+          <h3 style="color:var(--c-text-muted)">More locations</h3>
+          <p class="ort-count">Liechtenstein, southern Germany, Switzerland &hellip;</p>
+          <p class="muted">New locations are in the pipeline. Would you like a digital walking tour for your place? <a href="../kontakt.html">Get in touch &rarr;</a></p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Wie funktioniert es -->
+    <section class="section container">
+      <h2>How a digital walking tour works</h2>
+      <div class="grid grid-3" style="margin-top:var(--sp-3)">
+        <article class="card card--glass center">
+          <p><strong>1. Scan the QR code</strong></p>
+          <p class="muted">On site at the starting point or in advance via the link &ndash; the walking tour opens directly in your browser.</p>
+        </article>
+        <article class="card card--glass center">
+          <p><strong>2. Discover the locations</strong></p>
+          <p class="muted">Follow the map to the locations. GPS unlocks the content &ndash; audio guide, 3D models, AR and videos.</p>
+        </article>
+        <article class="card card--glass center">
+          <p><strong>3. Experience and marvel</strong></p>
+          <p class="muted">Immerse yourself in history and culture. No download, no account, no advertising &ndash; just set off.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section container center">
+      <h2>Want your own walking tour?</h2>
+      <p>We develop digital walking tours and audio guides for cities, municipalities, museums and schools &ndash; bespoke and multimedia.</p>
+      <a href="../kontakt.html" class="btn">Get in touch &rarr;</a>
+    </section>
+
+  </main>
+
+  <footer class="footer"><div class="container">
+      <!-- Social Pills -->
+      <div class="social-pills">
+        <a class="social-pill" data-net="ig" href="https://www.instagram.com/i.appear.app/" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+        <a class="social-pill" data-net="li" href="https://www.linkedin.com/company/i-appear/posts/?feedView=all" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+        <a class="social-pill" data-net="fb" href="https://www.facebook.com/i.appearapp/" target="_blank" rel="noopener" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+      </div>
+            <div class="footer__bottom">
+        <small>&copy; 2026 i.appear &ndash; Digital City Tours</small>
+        <nav class="footer__legal" aria-label="Legal">
+          <a href="../kontakt.html">Contact</a>
+          <a href="faqs.html">FAQs</a>
+          <a href="../impressum.html" hreflang="de">Imprint (in German)</a>
+          <a href="../datenschutz.html" hreflang="de">Privacy (in German)</a>
+          <a href="../agb.html" hreflang="de">Terms (in German)</a>
+        </nav>
+      </div>
+    </div></footer>
+
+  <a href="#" class="back-up" data-back-up aria-label="Back to top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" aria-hidden="true"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg></a>
+
+  <script src="../js/main.js"></script>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+  <script>
+  (function () {
+    var map = L.map('karte', {
+      scrollWheelZoom: false,
+      attributionControl: true
+    }).setView([47.38, 9.75], 10);
+
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/">CARTO</a>',
+      subdomains: 'abcd',
+      maxZoom: 17
+    }).addTo(map);
+
+    var orte = [
+      { name: 'Dornbirn', lat: 47.4125, lng: 9.7417, count: '10', url: 'stadtrundgang-dornbirn.html' },
+      { name: 'Feldkirch', lat: 47.2387, lng: 9.5983, count: '2', url: 'stadtrundgang-feldkirch.html' },
+      { name: 'Hard on Lake Constance', lat: 47.4856, lng: 9.6928, count: '1', url: 'stadtrundgang-hard.html' },
+      { name: 'Au in the Bregenzerwald', lat: 47.3167, lng: 9.9833, count: '1', url: 'stadtrundgang-au.html' },
+      { name: 'Bregenz', lat: 47.5033, lng: 9.7472, count: '1', url: 'stadtrundgang-bregenz.html' }
+    ];
+
+    // Weisses i.appear-Target als Marker, mit leichtem Drop-Shadow damit es
+    // auf der dunklen Karte gut lesbar ist.
+    var icon = L.icon({
+      iconUrl: '../assets/svg/targets/target-weiss.svg',
+      iconSize: [30, 30],
+      iconAnchor: [15, 15],
+      popupAnchor: [0, -16],
+      className: 'iappear-map-target'
+    });
+
+    orte.forEach(function (o) {
+      // alt-Attribut fuer SEO/Accessibility — Leaflet rendert Marker als <img>
+      L.marker([o.lat, o.lng], { icon: icon, alt: 'Walking tour ' + o.name + ' on the map' })
+        .addTo(map)
+        .bindPopup('<strong>' + o.name + '</strong><br>' + o.count + ' walking tour' + (o.count !== '1' ? 's' : '') + '<br><a href="' + o.url + '">View &rarr;</a>');
+    });
+  })();
+  </script>
+</body>
+</html>

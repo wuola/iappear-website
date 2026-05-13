@@ -1,6 +1,6 @@
 # Englische Version – Plan & Workflow
 
-> Stand: 2026-05-06. **Pilot-Seite `index.html` komplett übersetzt** (Sessions 28 + 29).
+> Stand: 2026-05-13. **13 EN-Seiten live** (Sessions 28–36 + 44). Stadtrundgänge-Bereich komplett.
 > Diese Datei ist Konzept + lebender Status. Aktueller Stand am Ende der Datei.
 
 ## Festgelegte Konventionen für die ganze EN-Site
@@ -160,9 +160,19 @@ GitHub-Pages-Build wird minimal länger (~2-3 Sek), egal in der Praxis.
 - ✅ **Session 35** [PR #16]: `en/faqs.html` (FAQPage Schema mit 7 Q&A in en_GB → Google Rich Snippets)
 - ✅ **Session 36** [PR #17]: `en/user-guide.html` (1015 Zeilen mit 2 Wizard-Widgets, Mickey-Hand-Animation, 2 Inline-IIFE-Scripts englisch)
 
-### Stand 2026-05-08 (Tag-Ende)
+**Session 44 (2026-05-13): Stadtrundgänge-Bereich komplett**
 
-**8 Seiten komplett englisch live:**
+- ✅ **Hub** `en/stadtrundgaenge.html` (Leaflet-Karte, 5 Ort-Karten inkl. Bregenz-soon, EN-Marker-Popups, Counts statisch im HTML).
+- ✅ **4 Stadtseiten**: `en/stadtrundgang-{dornbirn,feldkirch,hard,au}.html` mit BreadcrumbList + TouristAttraction Schema (`availableLanguage: ["en","de"]`, `inLanguage: "en-GB"`), Tour-Links auf `iappear.app/en/routes/...` (App hat bestätigt EN-Routes).
+- ✅ **5 DE-Schwester-Seiten** bekommen hreflang-Triple + `og:locale:alternate=en_GB` + `nav__lang`-Sprachschalter.
+- ✅ **8 bestehende EN-Seiten** (index, i-history, i-dentity, i-grow, features, ueber-uns, faqs, user-guide): alle Burger-/Top-Nav-/Teaser-Links von `../stadtrundgang*.html` (DE) auf `stadtrundgang*.html` (EN, gleiche `/en/`-Ebene) umgestellt — 54 Links insgesamt per Python-Inline-Script. Sprachschalter ist jetzt nicht mehr brüchig (User klickt nicht aus EN raus über die Tour-Links).
+- ✅ **Sitemap** manuell um 10 Einträge erweitert (5 DE-Stadt + 5 EN-Stadt, alle mit hreflang-Triple). DE-Hub bekommt hreflang-Triple, EN-Hub neu.
+- ✅ **build.py `update_sitemap`** angepasst: prüft jetzt pro Stadt-Slug ob `en/stadtrundgang-{slug}.html` existiert und rendert dann DE+EN-Eintrag mit hreflang (sonst nur DE wie zuvor) — bei zukünftigen `python build.py`-Läufen bleibt der EN-Block in der Sitemap stabil.
+- ✅ **Konvention**: EN-Stadtseiten werden manuell gepflegt — `rundgaenge.js` bleibt einsprachig. Wenn Marilena einen neuen Rundgang in einer Stadt einträgt: DE-Stadtseite manuell ergänzen (oder build.py-Generate triggert eine neue Stadtseite wenn die Stadt neu ist) UND die `en/stadtrundgang-*.html` manuell mit-pflegen.
+
+### Stand 2026-05-13 (Session 44)
+
+**13 Seiten komplett englisch live:**
 
 | EN-Seite | Live | Notizen |
 |---|---|---|
@@ -174,6 +184,11 @@ GitHub-Pages-Build wird minimal länger (~2-3 Sek), egal in der Praxis.
 | `en/ueber-uns.html` | ✅ | Session 34 |
 | `en/faqs.html` | ✅ | Session 35 (FAQPage Schema) |
 | `en/user-guide.html` | ✅ | Session 36 (Wizards + Mickey) |
+| `en/stadtrundgaenge.html` | ✅ | Session 44 (Hub mit Leaflet-Karte, EN-Marker-Popups) |
+| `en/stadtrundgang-dornbirn.html` | ✅ | Session 44 (3 + 4 + 3 = 10 Rundgänge) |
+| `en/stadtrundgang-feldkirch.html` | ✅ | Session 44 (2 i.grow Schulprojekte) |
+| `en/stadtrundgang-hard.html` | ✅ | Session 44 (See Runde) |
+| `en/stadtrundgang-au.html` | ✅ | Session 44 (Barockbaumeister, +Route-Liste) |
 
 ### Branch-Strategie (eingeführt mit Session 31)
 
@@ -181,17 +196,16 @@ GitHub-Pages-Build wird minimal länger (~2-3 Sek), egal in der Praxis.
 
 ### Offen — direkt als Nächstes
 
-1. **Visueller Layout-Check** durch Maggy in Privat-Tab für alle 8 live englischen Seiten.
+1. **Visueller Layout-Check** durch Maggy in Privat-Tab für die 13 live englischen Seiten.
 2. **Falls Layout bricht**: punktuell anpassen.
-3. **Nächste Pilot-Seiten** (Reihenfolge offen):
-   - `stadtrundgaenge.html` (Hub mit Leaflet-Karte) + 4 Stadtseiten
-   - `vitrine.html` Hub + 22 Vitrine-Artikel
-   - 2 Blog-Artikel (`/blog/...`)
-   - `404.html`
+3. **Nächste Bereiche** (Reihenfolge offen):
+   - **Blog**: Index + 4 Hauptartikel + 1 Folge = 6 Seiten (`/blog/...`)
+   - **Vitrine**: Hub + 22 Vitrine-Artikel — braucht `vitrine.js` bilingual + `build.py`-Erweiterung (Vitrine-Grid-Render)
+   - **404**: kleines Häppchen
    - `workflow.html` + `kontakt.html` — **erst wenn englische Tally-Form existiert** (Maggy muss anlegen)
-4. **Nicht angefasst, aber relevant** für die nächste Welle:
-   - `build.py` ist noch nicht bilingual-fähig — `en/`-Versionen von vitrine.html und Stadtseiten brauchen entweder build.py-Erweiterung oder manuell-pflegte EN-Versionen.
-   - `js/data/vitrine.js` und `rundgaenge.js` haben noch keine `de:`/`en:`-Felder.
+4. **Pragmatische Entscheidung Session 44**: EN-Stadtseiten werden **manuell gepflegt** statt build.py bilingual zu machen. `build.py update_sitemap` ist erweitert worden so dass es bei vorhandener `en/stadtrundgang-{slug}.html` automatisch DE+EN-URLs mit hreflang-Triple in die Sitemap rendert (keine Side-Effects auf Counts/Chips/Marker). Inhaltliche Änderungen an den Stadtseiten müssen also nach wie vor manuell in DE+EN doppelt gepflegt werden — `rundgaenge.js` bleibt einsprachig.
+5. **Noch nicht angefasst** für die nächste Welle:
+   - `js/data/vitrine.js` hat noch keine `de:`/`en:`-Felder.
    - `llms.txt` noch keine englische Sektion.
 
 ### Offene Items aus dem ursprünglichen Plan, die noch nicht durch sind
