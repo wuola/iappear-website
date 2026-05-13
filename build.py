@@ -29,35 +29,111 @@ import sys
 ROOT = os.path.dirname(os.path.abspath(__file__))
 VITRINE_JS = os.path.join(ROOT, "js", "data", "vitrine.js")
 VITRINE_HTML = os.path.join(ROOT, "vitrine.html")
+VITRINE_HTML_EN = os.path.join(ROOT, "en", "vitrine.html")
 
 START_MARK = "<!-- VITRINE-GRID-START -->"
 END_MARK = "<!-- VITRINE-GRID-END -->"
 
+# Sprachspezifische Beschriftung in den Kacheln + Pfad-Prefix:
+# DE-Hub liegt im Root (link = "vitrine/X.html"); EN-Hub liegt in /en/
+# (link muss "../vitrine/X.html" werden). Solange die Artikel-Seiten
+# selbst noch keine EN-Variante haben (Teil 1), verlinken die EN-Cards
+# auf die DE-Artikel mit hreflang="de" — siehe render_grid().
+LANG_CFG = {
+    "de": {
+        "cta": "&ndash; zum Artikel &ndash;",
+        "prefix": "",        # Root-relativer Link
+        "hreflang_attr": "", # kein hreflang noetig, gleiche Sprache wie Hub
+    },
+    "en": {
+        "cta": "&ndash; read article (in German) &ndash;",
+        "prefix": "../",
+        "hreflang_attr": ' hreflang="de"',
+    },
+}
+
 
 def parse_vitrine_js(src: str):
-    """Ein ganz kleiner Parser fuer die window.IAPPEAR_VITRINE-Liste.
+    """Parser fuer das bilinguale window.IAPPEAR_VITRINE-Array.
 
-    Wir suchen blockweise { ... } zwischen den eckigen Klammern und ziehen
-    pro Block die 4 Felder (titel, text, bild, link) mit einfachen Regexes
-    raus. Das reicht fuer unsere Daten (keine verschachtelten Objekte).
+    Erwartetes Schema pro Eintrag (vereinfacht; tatsaechlich nested):
+      { bild, link, de: { titel, text }, en: { titel, text } }
+
+    Wir parsen das ueber Top-Level-Blockgrenzen, weil die nested
+    de/en-Objekte zusaetzliche Klammern einfuehren. Stack-Counter
+    statt naivem Regex-Match.
     """
     m = re.search(r"window\.IAPPEAR_VITRINE\s*=\s*\[(.*?)\];", src, re.DOTALL)
     if not m:
         raise RuntimeError("IAPPEAR_VITRINE Array nicht gefunden in vitrine.js")
     arr = m.group(1)
-    # Alle Block-Objekte extrahieren — simpel, weil keine Verschachtelung
-    blocks = re.findall(r"\{([^{}]*?)\}", arr, re.DOTALL)
+
+    # Top-Level-Bloecke per Stack-Tiefe extrahieren (depth==0 -> '{' eines neuen Items).
+    blocks = []
+    depth = 0
+    start = None
+    for i, ch in enumerate(arr):
+        if ch == "{":
+            if depth == 0:
+                start = i + 1
+            depth += 1
+        elif ch == "}":
+            depth -= 1
+            if depth == 0 and start is not None:
+                blocks.append(arr[start:i])
+                start = None
+
+    string_re = re.compile(r'"((?:[^"\\]|\\.)*)"')
+
+    def parse_lang_block(text: str):
+        """Liest titel + text aus einem de:{...}/en:{...} Sub-Block."""
+        out = {"titel": "", "text": ""}
+        for key in ("titel", "text"):
+            mm = re.search(r'\b' + key + r'\s*:\s*"((?:[^"\\]|\\.)*)"', text)
+            if mm:
+                out[key] = mm.group(1)
+        return out
+
     items = []
-    field_re = re.compile(r'(\w+)\s*:\s*"((?:[^"\\]|\\.)*)"')
     for b in blocks:
-        fields = dict(field_re.findall(b))
-        if "titel" in fields:
-            items.append({
-                "titel": fields.get("titel", ""),
-                "text": fields.get("text", ""),
-                "bild": fields.get("bild", ""),
-                "link": fields.get("link", ""),
-            })
+        # bild + link sind flach in jedem Eintrag
+        bild_m = re.search(r'\bbild\s*:\s*"((?:[^"\\]|\\.)*)"', b)
+        link_m = re.search(r'\blink\s*:\s*"((?:[^"\\]|\\.)*)"', b)
+
+        # de + en sind Sub-Objekte: matche die Klammern manuell
+        de_block = ""
+        en_block = ""
+        for lang in ("de", "en"):
+            idx = b.find(lang + ":")
+            if idx == -1:
+                continue
+            # finde oeffnende '{' nach dem Doppelpunkt
+            open_idx = b.find("{", idx)
+            if open_idx == -1:
+                continue
+            # zaehle bis zur passenden schliessenden '}'
+            d = 0
+            for j in range(open_idx, len(b)):
+                if b[j] == "{":
+                    d += 1
+                elif b[j] == "}":
+                    d -= 1
+                    if d == 0:
+                        sub = b[open_idx + 1:j]
+                        if lang == "de":
+                            de_block = sub
+                        else:
+                            en_block = sub
+                        break
+
+        item = {
+            "bild": bild_m.group(1) if bild_m else "",
+            "link": link_m.group(1) if link_m else "",
+            "de": parse_lang_block(de_block),
+            "en": parse_lang_block(en_block),
+        }
+        if item["de"]["titel"] or item["en"]["titel"]:
+            items.append(item)
     return items
 
 
@@ -65,19 +141,24 @@ def esc_attr(s: str) -> str:
     return s.replace("&", "&amp;").replace('"', "&quot;")
 
 
-def render_grid(items) -> str:
+def render_grid(items, lang: str = "de") -> str:
+    """Generiert den Vitrine-Grid-HTML-Block fuer die jeweilige Sprache."""
+    cfg = LANG_CFG[lang]
     lines = [
         '      <div class="vitrine-grid" data-vitrine-grid style="margin-top:var(--sp-3)">',
     ]
     for it in items:
-        titel = it["titel"]
-        text = it["text"]
-        bild = it["bild"]
-        link = it["link"]
+        loc = it.get(lang) or {}
+        titel = loc.get("titel", "") or it.get("de", {}).get("titel", "")
+        text = loc.get("text", "") or it.get("de", {}).get("text", "")
+        bild = it.get("bild", "")
+        link = it.get("link", "")
+        bild_full = (cfg["prefix"] + bild) if bild else ""
+        link_full = cfg["prefix"] + link
         if bild:
             thumb = (
                 '          <div class="vitrine-card__thumb">'
-                f'<img src="{esc_attr(bild)}" alt="{esc_attr(titel)}" loading="lazy" decoding="async" />'
+                f'<img src="{esc_attr(bild_full)}" alt="{esc_attr(titel)}" loading="lazy" decoding="async" />'
                 '</div>'
             )
         else:
@@ -86,22 +167,24 @@ def render_grid(items) -> str:
                 f'<small>{titel}</small>'
                 '</div>'
             )
-        lines.append(f'        <a class="vitrine-card" href="{esc_attr(link)}">')
+        lines.append(
+            f'        <a class="vitrine-card" href="{esc_attr(link_full)}"{cfg["hreflang_attr"]}>'
+        )
         lines.append(thumb)
         lines.append(f'          <h3 class="vitrine-card__title">{titel}</h3>')
         lines.append(f'          <p class="vitrine-card__text">{text}</p>')
         lines.append(
-            '          <span class="vitrine-card__link">&ndash; zum Artikel &ndash;</span>'
+            f'          <span class="vitrine-card__link">{cfg["cta"]}</span>'
         )
         lines.append('        </a>')
     lines.append('      </div>')
     return "\n".join(lines)
 
 
-def update_html(html: str, new_block: str) -> str:
+def update_html(html: str, new_block: str, label: str = "vitrine.html") -> str:
     if START_MARK not in html or END_MARK not in html:
         raise RuntimeError(
-            f"Marker {START_MARK} / {END_MARK} fehlen in vitrine.html — "
+            f"Marker {START_MARK} / {END_MARK} fehlen in {label} — "
             "Script bricht ab, um nichts kaputt zu machen."
         )
     pattern = re.compile(
@@ -112,25 +195,32 @@ def update_html(html: str, new_block: str) -> str:
     return pattern.sub(replacement, html)
 
 
+def render_for(items, html_path: str, lang: str):
+    """Rendert das Grid in einer Sprache in die jeweilige HTML-Datei.
+    Ueberspringt sauber, wenn die Datei (noch) nicht existiert.
+    """
+    if not os.path.exists(html_path):
+        return
+    with open(html_path, encoding="utf-8") as fh:
+        html = fh.read()
+    new_block = render_grid(items, lang=lang)
+    new_html = update_html(html, new_block, label=os.path.relpath(html_path, ROOT))
+    if new_html == html:
+        print(f"  {os.path.relpath(html_path, ROOT)} ist bereits aktuell.")
+        return
+    with open(html_path, "w", encoding="utf-8", newline="") as fh:
+        fh.write(new_html)
+    print(f"  {os.path.relpath(html_path, ROOT)} aktualisiert ({len(items)} Kacheln, {lang.upper()})")
+
+
 def main():
     with open(VITRINE_JS, encoding="utf-8") as fh:
         js_src = fh.read()
     items = parse_vitrine_js(js_src)
     print(f"Gefunden: {len(items)} Vitrine-Eintraege in vitrine.js")
 
-    with open(VITRINE_HTML, encoding="utf-8") as fh:
-        html = fh.read()
-
-    new_block = render_grid(items)
-    new_html = update_html(html, new_block)
-
-    if new_html == html:
-        print("vitrine.html ist bereits aktuell — nichts zu tun.")
-        return
-
-    with open(VITRINE_HTML, "w", encoding="utf-8", newline="") as fh:
-        fh.write(new_html)
-    print(f"vitrine.html aktualisiert ({len(items)} Kacheln statisch eingebaut)")
+    render_for(items, VITRINE_HTML, lang="de")
+    render_for(items, VITRINE_HTML_EN, lang="en")
 
 
 ## ===================================================================

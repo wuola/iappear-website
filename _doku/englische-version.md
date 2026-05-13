@@ -1,6 +1,6 @@
 # Englische Version – Plan & Workflow
 
-> Stand: 2026-05-13. **19 EN-Seiten live** (Sessions 28–36 + 44 + 45). Stadtrundgänge + Blog komplett.
+> Stand: 2026-05-13. **20 EN-Seiten live** (Sessions 28–36 + 44 + 45 + 46). Stadtrundgänge + Blog komplett, Vitrine-Hub live (22 Artikel-Seiten folgen in Teil 2).
 > Diese Datei ist Konzept + lebender Status. Aktueller Stand am Ende der Datei.
 
 ## Festgelegte Konventionen für die ganze EN-Site
@@ -160,6 +160,20 @@ GitHub-Pages-Build wird minimal länger (~2-3 Sek), egal in der Praxis.
 - ✅ **Session 35** [PR #16]: `en/faqs.html` (FAQPage Schema mit 7 Q&A in en_GB → Google Rich Snippets)
 - ✅ **Session 36** [PR #17]: `en/user-guide.html` (1015 Zeilen mit 2 Wizard-Widgets, Mickey-Hand-Animation, 2 Inline-IIFE-Scripts englisch)
 
+**Session 46 (2026-05-13): Vitrine-Hub komplett (Teil 1)**
+
+- ✅ **`vitrine.js` bilingual umgebaut**: pro Eintrag jetzt `de: {titel, text}` + `en: {titel, text}` + gemeinsame `bild`/`link`. Fallback-Renderer in `vitrine.js` selbst liest `document.documentElement.lang` aus, um die richtige Sprache zu rendern (kein Browser-Tab-Sniffing).
+- ✅ **`build.py` erweitert**: `parse_vitrine_js` versteht das nested-Schema via Stack-Counter (verschachtelte Klammern). `render_grid(items, lang)` rendert mit Sprach-CFG (CTA-Label, Pfad-Prefix `../` fuer EN, `hreflang="de"`-Attr fuer EN-Cards). `main()` rendert in vitrine.html (DE) und en/vitrine.html (EN). DE-Output blieb 1:1 identisch (keine Drift im Root).
+- ✅ **`en/vitrine.html` erstellt**: kompletter EN-Hub mit Breadcrumb, Hub-Header, Showcase-Section mit Marker (von build.py befuellt), Blog-Section (4 EN-Cards + Series-Disclosure hardcoded), Footer. **Zum-Blog-CTA** als &bdquo;To the blog &darr;&ldquo;.
+- ✅ **DE `vitrine.html`** bekommt hreflang-Triple + `og:locale:alternate=en_GB` + `nav__lang`-Sprachschalter.
+- ✅ **46 Showcase-Links** in 19 bestehenden EN-Seiten umgestellt: `../vitrine.html` -> `vitrine.html` (Top-Nav/Burger/Footer) bzw. `../../vitrine.html` -> `../vitrine.html` in den 6 EN-Blog-Files.
+- ✅ **6 EN-Blog Schema-Breadcrumbs**: Showcase-URL von `iappear.at/vitrine.html` auf `iappear.at/en/vitrine.html` umgestellt.
+- ✅ **Sitemap**: DE-Vitrine bekommt hreflang-Triple, EN-Vitrine neu hinzu.
+
+### Was bewusst NICHT in Teil 1
+
+- **Die 22 Vitrine-Artikel-Seiten** sind noch alle DE. Die EN-Cards verlinken auf die DE-Artikel mit `hreflang="de"` + sichtbarem &bdquo;(in German)&ldquo; im CTA-Text. Damit ist die UX nicht gebrochen (User sieht klar: das ist DE-Content) und der Hub bringt schon SEO-Mehrwert (englischer Hub mit englischen Card-Texten ist crawlbar).
+
 **Session 45 (2026-05-13): Blog-Bereich komplett**
 
 - ✅ **6 EN-Files** unter `en/blog/`: `index.html`, `was-ist-ein-digitaler-stadtrundgang.html` (FAQPage Schema), `medien-und-demokratie-pflichtfach.html` (FAQPage Schema), `wie-entsteht-ein-igrow-projekt.html`, `frauenspuren-dornbirn.html` (Series-Disclosure), `frauenspuren-launch-mai-2026.html` (Folge-Beitrag mit parent-link).
@@ -206,6 +220,7 @@ GitHub-Pages-Build wird minimal länger (~2-3 Sek), egal in der Praxis.
 | `en/blog/wie-entsteht-ein-igrow-projekt.html` | ✅ | Session 45 (5-Phasen-Workflow + 2 Schulbeispiele) |
 | `en/blog/frauenspuren-dornbirn.html` | ✅ | Session 45 (mit Series-Disclosure-Section zu Folge-Beitrag) |
 | `en/blog/frauenspuren-launch-mai-2026.html` | ✅ | Session 45 (Folge-Beitrag, parent-link zu Hauptartikel) |
+| `en/vitrine.html` | ✅ | Session 46 Teil 1 (Hub mit 22 Kacheln, `vitrine.js` bilingual, `build.py` rendert beide Grids). Artikel-Seiten verlinken nach `../vitrine/*.html` (DE, `hreflang="de"`) bis Teil 2. |
 
 ### Branch-Strategie (eingeführt mit Session 31)
 
@@ -213,17 +228,17 @@ GitHub-Pages-Build wird minimal länger (~2-3 Sek), egal in der Praxis.
 
 ### Offen — direkt als Nächstes
 
-1. **Visueller Layout-Check** durch Maggy in Privat-Tab für die 19 live englischen Seiten.
+1. **Visueller Layout-Check** durch Maggy in Privat-Tab für die 20 live englischen Seiten.
 2. **Falls Layout bricht**: punktuell anpassen.
 3. **Nächste Bereiche** (Reihenfolge offen):
-   - **Vitrine**: Hub + 22 Vitrine-Artikel — braucht `vitrine.js` bilingual + `build.py`-Erweiterung (Vitrine-Grid-Render)
+   - **Vitrine Teil 2**: 22 Vitrine-Artikel-Seiten uebersetzen. Aktuell zeigen die EN-Kacheln auf DE-Artikel mit `hreflang="de"` + sichtbarem Hinweis &bdquo;(in German)&ldquo; im CTA. Sobald `en/vitrine/{slug}.html` existiert, kann `build.py render_grid` einen `lang`-Schalter im Link-Prefix bekommen.
    - **404**: kleines Häppchen
    - `workflow.html` + `kontakt.html` — **erst wenn englische Tally-Form existiert** (Maggy muss anlegen)
-4. **Pragmatische Entscheidungen Sessions 44 + 45**:
-   - EN-Stadtseiten werden **manuell gepflegt**, `rundgaenge.js` bleibt einsprachig. `build.py update_sitemap` rendert automatisch DE+EN-URLs wenn `en/stadtrundgang-{slug}.html` existiert.
-   - EN-Blog-Artikel **behalten die deutschen Slugs** (Konsistenz mit Stadt-Rundgang-Pattern, einfacheres hreflang-Mapping). Hero-Bilder bleiben mit deutscher App-UI im Phone-Mockup. Iframe-Grafiken (`blog/figures/grafik_*.html`) bleiben DE — EN-Artikel referenzieren `../../blog/figures/...`.
-5. **Noch nicht angefasst** für die nächste Welle:
-   - `js/data/vitrine.js` hat noch keine `de:`/`en:`-Felder.
+4. **Pragmatische Entscheidungen Sessions 44 + 45 + 46**:
+   - EN-Stadtseiten werden **manuell gepflegt**, `rundgaenge.js` bleibt einsprachig.
+   - EN-Blog-Artikel **behalten die deutschen Slugs** (Konsistenz mit Stadt-Rundgang-Pattern). Hero-Bilder bleiben mit deutscher App-UI. Iframe-Grafiken bleiben DE.
+   - **Vitrine ist anders**: `vitrine.js` ist jetzt bilingual (`de: {titel, text}` + `en: {titel, text}`, geteiltes `bild` und `link`). `build.py` rendert pro Lauf beide Grids (DE im Root, EN unter `/en/vitrine.html`). Marilena editiert in der gleichen Datei beide Sprachen pro Eintrag.
+5. **Noch nicht angefasst**:
    - `llms.txt` noch keine englische Sektion.
 
 ### Offene Items aus dem ursprünglichen Plan, die noch nicht durch sind
