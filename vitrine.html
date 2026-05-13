@@ -256,8 +256,13 @@
     </section>
 
     <section id="blog" class="section container">
-      <h2>Blog</h2>
-      <p class="muted" style="margin-bottom:var(--sp-3)">Hintergrundwissen, Projektupdates und Geschichten aus unserer Arbeit.</p>
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:var(--sp-3);flex-wrap:wrap;margin-bottom:var(--sp-3)">
+        <div style="flex:1 1 auto;min-width:0">
+          <h2 style="margin-bottom:var(--sp-1)">Blog</h2>
+          <p class="muted" style="margin:0">Hintergrundwissen, Projektupdates und Geschichten aus unserer Arbeit.</p>
+        </div>
+        <a href="blog/" class="btn" style="flex-shrink:0">Zum Blog &rarr;</a>
+      </div>
 
       <!-- BLOG-TEASER (max 4 Cards): zuerst gepinnte Artikel, dann die neuesten.
            Vollstaendiger Blog-Hub mit allen Artikeln + Folge-Beitraegen unter /blog/.
@@ -303,8 +308,6 @@
         </a>
 
       </div>
-
-      <p class="center" style="margin-top:var(--sp-4)"><a href="blog/" class="btn">Zum Blog &rarr;</a></p>
     </section>
 
   </main>
