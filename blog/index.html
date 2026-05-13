@@ -25,7 +25,7 @@
 
   <link rel="stylesheet" href="../css/global.css?v=20260427a" />
   <link rel="stylesheet" href="../css/layout.css?v=20260430a" />
-  <link rel="stylesheet" href="../css/components.css?v=20260512e" />
+  <link rel="stylesheet" href="../css/components.css?v=20260513a" />
   <link rel="stylesheet" href="../css/animations.css?v=20260428a" />
 
   <script type="application/ld+json">
@@ -125,7 +125,12 @@
     <section class="section container">
       <div class="blog-grid">
 
-        <a href="frauenspuren-dornbirn.html" class="blog-card">
+        <!-- ARTIKEL ANPINNEN:
+             Klasse "blog-card" zu "blog-card blog-card--pinned" + Attribut data-pin-label="Aktuell" ergaenzen.
+             Reihenfolge im Grid = HTML-Reihenfolge → gepinnte Cards einfach nach oben verschieben.
+             Max 2-3 Pins gleichzeitig, sonst verliert der Pin seine Wirkung. -->
+
+        <a href="frauenspuren-dornbirn.html" class="blog-card blog-card--pinned" data-pin-label="Aktuell">
           <div class="blog-card__meta">
             <span class="cat-tag cat-tag--history">i.history</span>
             <span class="blog-card__date">3. Mai 2026</span>
