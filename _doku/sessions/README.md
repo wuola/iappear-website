@@ -6,6 +6,7 @@ Naming: `YYYY-MM-DD-session-NN-thema.md`
 
 ## Sessions
 
+- 2026-05-13 - [Session 45 - Englisch: Blog-Bereich komplett (Index + 4 Hauptartikel + 1 Folge-Beitrag, hreflang, DE-Blog kriegt erstmals Sprachschalter, slugs bleiben deutsch)](2026-05-13-session-45-englisch-blog.md)
 - 2026-05-13 - [Session 44 - Englisch: Stadtrundgaenge-Bereich komplett (Hub + 4 Stadtseiten, hreflang, bestehende EN-Seiten Stadt-Links umgestellt, build.py update_sitemap bilingual)](2026-05-13-session-44-englisch-stadtrundgaenge.md)
 - 2026-05-12 - [Session 43 - Layout-Polish-Pass: Top-Nav-Umbau (DE/EN neben Logo, Links zentriert) + Footer-Symmetrie + glassy Zum-Blog + Hero-Schrift +15% + Page-Header-Eyebrow weg](2026-05-12-session-43-layout-polish-pass.md)
 - 2026-05-11 - [Session 42 - OG-Image-Cache-Bust: `og-image.png` → `og-image-v2.png` (Plattform-OG-Scraper-Lehre, SMS-Vorschau gefixt, Teams cached noch weiter)](2026-05-11-session-42-og-image-cache-bust-rename.md)

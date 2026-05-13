@@ -1,6 +1,6 @@
 # Englische Version – Plan & Workflow
 
-> Stand: 2026-05-13. **13 EN-Seiten live** (Sessions 28–36 + 44). Stadtrundgänge-Bereich komplett.
+> Stand: 2026-05-13. **19 EN-Seiten live** (Sessions 28–36 + 44 + 45). Stadtrundgänge + Blog komplett.
 > Diese Datei ist Konzept + lebender Status. Aktueller Stand am Ende der Datei.
 
 ## Festgelegte Konventionen für die ganze EN-Site
@@ -160,6 +160,17 @@ GitHub-Pages-Build wird minimal länger (~2-3 Sek), egal in der Praxis.
 - ✅ **Session 35** [PR #16]: `en/faqs.html` (FAQPage Schema mit 7 Q&A in en_GB → Google Rich Snippets)
 - ✅ **Session 36** [PR #17]: `en/user-guide.html` (1015 Zeilen mit 2 Wizard-Widgets, Mickey-Hand-Animation, 2 Inline-IIFE-Scripts englisch)
 
+**Session 45 (2026-05-13): Blog-Bereich komplett**
+
+- ✅ **6 EN-Files** unter `en/blog/`: `index.html`, `was-ist-ein-digitaler-stadtrundgang.html` (FAQPage Schema), `medien-und-demokratie-pflichtfach.html` (FAQPage Schema), `wie-entsteht-ein-igrow-projekt.html`, `frauenspuren-dornbirn.html` (Series-Disclosure), `frauenspuren-launch-mai-2026.html` (Folge-Beitrag mit parent-link).
+- ✅ **Slug-Konvention**: Englische Blog-Artikel behalten die deutschen Slugs (z.B. `wie-entsteht-ein-igrow-projekt.html`), wie auch die Stadtseiten. Vermeidet komplexes hreflang-Mapping und ist konsistent mit der Vitrine-Konvention (die kommt später).
+- ✅ **Iframe-Grafiken bleiben DE**: `../../blog/figures/grafik_*.html` werden referenziert. Akzeptierter Trade-off — deutsche Beschriftungen in englischen Artikeln.
+- ✅ **Hero-Bilder unverändert**: zeigen App-UI auf Deutsch. Akzeptiert, weil die App selbst zweisprachig ist.
+- ✅ **6 DE-Blog-Files gepatcht** per Python-Inline-Script: hreflang-Triple + `og:locale:alternate=en_GB` + `nav__lang`-Sprachschalter eingebaut (vorher hatte keine DE-Blog-Datei einen Sprachschalter).
+- ✅ **sitemap.xml**: 6 EN-Blog-URLs ergänzt, alle 6 DE-Blog-URLs um hreflang-Triple erweitert. Keine build.py-Anpassung nötig (Blog ist statisch, kein Marker-Block).
+- ✅ **Bestehende EN-Seiten**: kein Patch nötig — keine Blog-Verweise vorhanden (Grep verifiziert).
+- ✅ **App-Links in EN-Blog-Artikeln**: auf `iappear.app/en/routes/...` umgestellt wo eine App-Route verlinkt war.
+
 **Session 44 (2026-05-13): Stadtrundgänge-Bereich komplett**
 
 - ✅ **Hub** `en/stadtrundgaenge.html` (Leaflet-Karte, 5 Ort-Karten inkl. Bregenz-soon, EN-Marker-Popups, Counts statisch im HTML).
@@ -170,9 +181,9 @@ GitHub-Pages-Build wird minimal länger (~2-3 Sek), egal in der Praxis.
 - ✅ **build.py `update_sitemap`** angepasst: prüft jetzt pro Stadt-Slug ob `en/stadtrundgang-{slug}.html` existiert und rendert dann DE+EN-Eintrag mit hreflang (sonst nur DE wie zuvor) — bei zukünftigen `python build.py`-Läufen bleibt der EN-Block in der Sitemap stabil.
 - ✅ **Konvention**: EN-Stadtseiten werden manuell gepflegt — `rundgaenge.js` bleibt einsprachig. Wenn Marilena einen neuen Rundgang in einer Stadt einträgt: DE-Stadtseite manuell ergänzen (oder build.py-Generate triggert eine neue Stadtseite wenn die Stadt neu ist) UND die `en/stadtrundgang-*.html` manuell mit-pflegen.
 
-### Stand 2026-05-13 (Session 44)
+### Stand 2026-05-13 (Sessions 44 + 45)
 
-**13 Seiten komplett englisch live:**
+**19 Seiten komplett englisch live:**
 
 | EN-Seite | Live | Notizen |
 |---|---|---|
@@ -189,6 +200,12 @@ GitHub-Pages-Build wird minimal länger (~2-3 Sek), egal in der Praxis.
 | `en/stadtrundgang-feldkirch.html` | ✅ | Session 44 (2 i.grow Schulprojekte) |
 | `en/stadtrundgang-hard.html` | ✅ | Session 44 (See Runde) |
 | `en/stadtrundgang-au.html` | ✅ | Session 44 (Barockbaumeister, +Route-Liste) |
+| `en/blog/index.html` | ✅ | Session 45 (Blog-Hub, 4 Hauptartikel + Folge in Series-Disclosure) |
+| `en/blog/was-ist-ein-digitaler-stadtrundgang.html` | ✅ | Session 45 (FAQPage Schema, Definition + Praxisbeispiele) |
+| `en/blog/medien-und-demokratie-pflichtfach.html` | ✅ | Session 45 (FAQPage Schema, AHS-Reform + i.grow-Mapping-Tabelle) |
+| `en/blog/wie-entsteht-ein-igrow-projekt.html` | ✅ | Session 45 (5-Phasen-Workflow + 2 Schulbeispiele) |
+| `en/blog/frauenspuren-dornbirn.html` | ✅ | Session 45 (mit Series-Disclosure-Section zu Folge-Beitrag) |
+| `en/blog/frauenspuren-launch-mai-2026.html` | ✅ | Session 45 (Folge-Beitrag, parent-link zu Hauptartikel) |
 
 ### Branch-Strategie (eingeführt mit Session 31)
 
@@ -196,14 +213,15 @@ GitHub-Pages-Build wird minimal länger (~2-3 Sek), egal in der Praxis.
 
 ### Offen — direkt als Nächstes
 
-1. **Visueller Layout-Check** durch Maggy in Privat-Tab für die 13 live englischen Seiten.
+1. **Visueller Layout-Check** durch Maggy in Privat-Tab für die 19 live englischen Seiten.
 2. **Falls Layout bricht**: punktuell anpassen.
 3. **Nächste Bereiche** (Reihenfolge offen):
-   - **Blog**: Index + 4 Hauptartikel + 1 Folge = 6 Seiten (`/blog/...`)
    - **Vitrine**: Hub + 22 Vitrine-Artikel — braucht `vitrine.js` bilingual + `build.py`-Erweiterung (Vitrine-Grid-Render)
    - **404**: kleines Häppchen
    - `workflow.html` + `kontakt.html` — **erst wenn englische Tally-Form existiert** (Maggy muss anlegen)
-4. **Pragmatische Entscheidung Session 44**: EN-Stadtseiten werden **manuell gepflegt** statt build.py bilingual zu machen. `build.py update_sitemap` ist erweitert worden so dass es bei vorhandener `en/stadtrundgang-{slug}.html` automatisch DE+EN-URLs mit hreflang-Triple in die Sitemap rendert (keine Side-Effects auf Counts/Chips/Marker). Inhaltliche Änderungen an den Stadtseiten müssen also nach wie vor manuell in DE+EN doppelt gepflegt werden — `rundgaenge.js` bleibt einsprachig.
+4. **Pragmatische Entscheidungen Sessions 44 + 45**:
+   - EN-Stadtseiten werden **manuell gepflegt**, `rundgaenge.js` bleibt einsprachig. `build.py update_sitemap` rendert automatisch DE+EN-URLs wenn `en/stadtrundgang-{slug}.html` existiert.
+   - EN-Blog-Artikel **behalten die deutschen Slugs** (Konsistenz mit Stadt-Rundgang-Pattern, einfacheres hreflang-Mapping). Hero-Bilder bleiben mit deutscher App-UI im Phone-Mockup. Iframe-Grafiken (`blog/figures/grafik_*.html`) bleiben DE — EN-Artikel referenzieren `../../blog/figures/...`.
 5. **Noch nicht angefasst** für die nächste Welle:
    - `js/data/vitrine.js` hat noch keine `de:`/`en:`-Felder.
    - `llms.txt` noch keine englische Sektion.
