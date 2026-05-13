@@ -6,6 +6,20 @@
   <title>Seite nicht gefunden | i.appear</title>
   <meta name="description" content="Diese Seite gibt es nicht (mehr). Hier sind die Wege zurück zu i.appear." />
   <meta name="robots" content="noindex" />
+  <link rel="alternate" hreflang="de" href="https://iappear.at/404.html" />
+  <link rel="alternate" hreflang="en" href="https://iappear.at/en/404.html" />
+  <link rel="alternate" hreflang="x-default" href="https://iappear.at/404.html" />
+  <!-- 404 ist die Standard-Seite, die GitHub Pages bei jeder unbekannten URL
+       ausliefert - auch bei /en/blubb. Wenn die getroffene URL im /en/-Tree
+       liegt, leiten wir noch vor dem Render auf die englische 404 um. -->
+  <script>
+    (function () {
+      var p = window.location.pathname || '';
+      if (p.indexOf('/en/') !== -1 && p.indexOf('/en/404.html') === -1) {
+        window.location.replace('/en/404.html');
+      }
+    })();
+  </script>
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=20260511a" />
   <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192.png?v=20260511a" />
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png?v=20260511a" />
@@ -19,6 +33,11 @@
   <header class="nav" role="banner">
     <div class="nav__inner">
       <a class="nav__brand" href="index.html" aria-label="i.appear Startseite"><img src="assets/svg/logos/logo-mark-weiss.svg?v=20260414ae" alt="i.appear" /></a>
+      <div class="nav__lang" role="group" aria-label="Sprache">
+        <a href="404.html" lang="de" aria-current="page">DE</a>
+        <span aria-hidden="true">|</span>
+        <a href="en/404.html" lang="en" hreflang="en">EN</a>
+      </div>
       <nav class="nav__links" aria-label="Hauptnavigation">
         <a href="stadtrundgaenge.html">Stadtrundgänge</a>
         <a href="features.html">Features</a>
