@@ -6,6 +6,7 @@ Naming: `YYYY-MM-DD-session-NN-thema.md`
 
 ## Sessions
 
+- 2026-06-03 - [Session 48 - Blog: Technik-Artikel "Augmented Reality ohne App" (erster Video-Hero + erste echte Code-Bloecke der Seite, interne Infra-Details generalisiert)](2026-06-03-session-48-blog-ar-technik-artikel.md)
 - 2026-05-13 - [Session 47 - Englisch: 404 + llms.txt bilingual (en/404.html neu, DE-404 mit JS-Redirect bei /en/-URL, llms.txt mit englischer Spiegelsektion + Scope-Notes)](2026-05-13-session-47-englisch-404-llms.md)
 - 2026-05-13 - [Session 46 - Englisch: Vitrine-Hub komplett Teil 1 (en/vitrine.html mit 22 EN-Kacheln, vitrine.js bilingual, build.py rendert beide Grids; 22 Artikel-Seiten folgen in Teil 2)](2026-05-13-session-46-englisch-vitrine-hub.md)
 - 2026-05-13 - [Session 45 - Englisch: Blog-Bereich komplett (Index + 4 Hauptartikel + 1 Folge-Beitrag, hreflang, DE-Blog kriegt erstmals Sprachschalter, slugs bleiben deutsch)](2026-05-13-session-45-englisch-blog.md)

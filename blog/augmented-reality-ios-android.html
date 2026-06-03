@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Augmented Reality ohne App: 3D &amp; AR auf iOS und Android | i.appear</title>
+  <meta name="description" content="Wie i.appear ein 3D-Modell mit Audio und Animation als Web-AR auf iPhone und Android zum Laufen bringt &ndash; ein technischer Blick hinter die Kulissen." />
+  <link rel="canonical" href="https://iappear.at/blog/augmented-reality-ios-android.html" />
+  <link rel="alternate" hreflang="de" href="https://iappear.at/blog/augmented-reality-ios-android.html" />
+  <link rel="alternate" hreflang="x-default" href="https://iappear.at/blog/augmented-reality-ios-android.html" />
+  <meta property="og:site_name" content="i.appear" />
+  <meta property="og:locale" content="de_AT" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Augmented Reality ohne App: Wie wir 3D-Modelle auf iOS und Android zum Sprechen bringen" />
+  <meta property="og:description" content="Ein 3D-Modell mit Audio und Animation als Web-AR &ndash; auf iPhone (Quick Look) und Android (WebXR) aus einer einzigen Datei. Ein Blick hinter die Kulissen." />
+  <meta property="og:url" content="https://iappear.at/blog/augmented-reality-ios-android.html" />
+  <meta property="og:image" content="https://iappear.at/blog/images/05-ar-hero-poster.jpg" />
+  <meta property="og:image:width" content="1280" />
+  <meta property="og:image:height" content="720" />
+  <meta property="article:published_time" content="2026-06-03" />
+  <meta property="article:tag" content="Augmented Reality" />
+  <meta property="article:tag" content="WebXR" />
+  <meta property="article:tag" content="iOS Quick Look" />
+  <meta property="article:tag" content="Needle Engine" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Augmented Reality ohne App: iOS vs. Android | i.appear" />
+  <meta name="twitter:description" content="Wie i.appear ein 3D-Modell mit Audio und Animation als Web-AR auf iPhone und Android zum Laufen bringt." />
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg?v=20260511a" />
+  <link rel="icon" type="image/png" sizes="192x192" href="../assets/favicon-192.png?v=20260511a" />
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png?v=20260511a" />
+
+  <link rel="stylesheet" href="../css/global.css?v=20260427a" />
+  <link rel="stylesheet" href="../css/layout.css?v=20260430a" />
+  <link rel="stylesheet" href="../css/components.css?v=20260513a" />
+  <link rel="stylesheet" href="../css/animations.css?v=20260428a" />
+
+  <!-- Seiten-eigene Styles: Video-Hero + echte Code-Bloecke.
+       Bewusst inline statt in components.css, damit kein Cache-Bust ueber alle Seiten noetig ist
+       (diese Klassen nutzt aktuell nur dieser Artikel). -->
+  <style>
+    /* Video-Hero (Querformat 16:9, autoplay/muted/loop) */
+    .article__hero-video {
+      width: 100%;
+      max-width: 760px;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      border-radius: var(--radius-card);
+      background: #000;
+    }
+    /* Code-Figuren */
+    .code-figure { margin: var(--sp-4) 0; }
+    .code-figure__title { font-weight: 600; font-size: 1.05rem; margin: 0 0 var(--sp-1); }
+    .code-figure__sub { color: var(--c-text-muted); font-size: .95rem; margin: 0 0 var(--sp-2); }
+    .code-figure__label { color: var(--c-text-muted); font-size: .92rem; margin: var(--sp-2) 0 var(--sp-1); }
+    .code-figure__caption { color: var(--c-text-muted); font-size: .9rem; margin: var(--sp-1) 0 0; }
+    .code-figure pre {
+      background: #16181d;
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: var(--radius-card);
+      padding: var(--sp-2) var(--sp-3);
+      overflow-x: auto;
+      margin: 0;
+      -webkit-overflow-scrolling: touch;
+    }
+    /* Monospace-Stack ueber System-Fonts (TheSans Mono ist nicht als @font-face geladen) */
+    .article__body code {
+      font-family: ui-monospace, "SF Mono", "Cascadia Code", Menlo, Consolas, "Roboto Mono", monospace;
+    }
+    /* Inline-Code in Fliesstext: dezente Pille */
+    .article__body p code,
+    .code-figure__sub code,
+    .code-figure__label code,
+    .code-figure__caption code {
+      background: rgba(255,255,255,.08);
+      padding: .12em .4em;
+      border-radius: 4px;
+      font-size: .85em;
+      color: #e8c08a;
+    }
+    /* Code-Bloecke selbst: kein Pillen-Hintergrund, ruhige Farbe */
+    .code-figure pre code {
+      display: block;
+      white-space: pre;
+      background: none;
+      padding: 0;
+      border-radius: 0;
+      font-size: .82rem;
+      line-height: 1.6;
+      color: #d6dae3;
+    }
+    /* Dezente Syntax-Toene */
+    .code-figure .c  { color: #7a828e; font-style: italic; }  /* Kommentar */
+    .code-figure .s  { color: #9ece6a; }                       /* String */
+    .code-figure .k  { color: #e0af68; }                       /* Keyword / Bool / None */
+    .code-figure .fn { color: #7aa2f7; }                       /* Property / Bezeichner */
+    @media (max-width: 560px) {
+      .code-figure pre code { font-size: .74rem; }
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://iappear.at/" },
+          { "@type": "ListItem", "position": 2, "name": "Vitrine", "item": "https://iappear.at/vitrine.html" },
+          { "@type": "ListItem", "position": 3, "name": "Augmented Reality ohne App: iOS und Android", "item": "https://iappear.at/blog/augmented-reality-ios-android.html" }
+        ]
+      },
+      {
+        "@type": "BlogPosting",
+        "headline": "Augmented Reality ohne App: Wie wir 3D-Modelle auf iOS und Android zum Sprechen bringen",
+        "description": "Wie i.appear ein 3D-Modell mit Audio und Animation als Web-AR auf iPhone (Quick Look) und Android (WebXR) aus einer einzigen GLB-Datei zum Laufen bringt.",
+        "datePublished": "2026-06-03",
+        "author": { "@id": "https://iappear.at/#organization" },
+        "publisher": { "@id": "https://iappear.at/#organization" },
+        "url": "https://iappear.at/blog/augmented-reality-ios-android.html",
+        "image": "https://iappear.at/blog/images/05-ar-hero-poster.jpg",
+        "inLanguage": "de-AT",
+        "keywords": ["Augmented Reality", "Web-AR", "WebXR", "iOS Quick Look", "USDZ", "GLB", "Needle Engine", "Blender", "Progressive Web App", "3D-Modell"]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header class="nav"><div class="nav__inner">
+    <a class="nav__brand" href="../index.html" aria-label="i.appear Startseite"><img src="../assets/svg/logos/logo-mark-weiss.svg?v=20260414ae" alt="i.appear" /></a>
+    <div class="nav__lang" role="group" aria-label="Sprache">
+      <a href="augmented-reality-ios-android.html" lang="de" aria-current="page">DE</a>
+      <span aria-hidden="true">|</span>
+      <a href="../en/blog/" lang="en" hreflang="en">EN</a>
+    </div>
+    <nav class="nav__links">
+      <a href="../stadtrundgaenge.html">Stadtrundgänge</a>
+      <a href="../features.html">Features</a>
+      <a href="../workflow.html">Leistungen</a>
+      <a href="../ueber-uns.html">Über uns</a>
+      <a href="../vitrine.html">Vitrine</a>
+      <a href="../kontakt.html">Kontakt</a>
+    </nav>
+    <button class="nav__burger" data-menu-toggle aria-label="Menü öffnen"><span></span></button>
+  </div></header>
+
+  <div id="menu" class="menu" role="dialog" aria-modal="true" aria-label="Menü">
+    <button class="menu__close" data-menu-close aria-label="Menü schliessen">&times;</button>
+    <div class="menu__group">
+      <h4 class="menu__heading">Die Plattform</h4>
+      <ul class="menu__list">
+        <li><a href="../user-guide.html">i.appear User Guide</a></li>
+        <li><a href="../i-history.html" class="c-history">i.history &ndash; Zeitreisen</a></li>
+        <li><a href="../i-dentity.html" class="c-dentity">i.dentity &ndash; Regionale Identität</a></li>
+        <li><a href="../i-grow.html" class="c-grow">i.grow &ndash; Medienbildung</a></li>
+        <li><a href="../features.html">Features</a></li>
+      </ul>
+    </div>
+    <div class="menu__group">
+      <h4 class="menu__heading">Stadtrundgänge</h4>
+      <ul class="menu__list">
+        <li><a href="../stadtrundgaenge.html">Alle Orte</a></li>
+        <li><a href="../stadtrundgang-dornbirn.html">Dornbirn</a></li>
+        <li><a href="../stadtrundgang-feldkirch.html">Feldkirch</a></li>
+        <li><a href="../stadtrundgang-hard.html">Hard am Bodensee</a></li>
+        <li><a href="../stadtrundgang-au.html">Au im Bregenzerwald</a></li>
+      </ul>
+    </div>
+    <div class="menu__group">
+      <h4 class="menu__heading">Backstage</h4>
+      <ul class="menu__list">
+        <li><a href="../workflow.html">Workflow und Leistungen</a></li>
+        <li><a href="../vitrine.html">Vitrine</a></li>
+        <li><a href="../ueber-uns.html">Über uns</a></li>
+        <li><a href="../kontakt.html">Kontakt</a></li>
+        <li><a href="../faqs.html">FAQs</a></li>
+        <li><a href="../agb.html">AGB</a></li>
+        <li><a href="../impressum.html">Impressum</a></li>
+        <li><a href="../datenschutz.html">Datenschutz</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <main>
+    <nav class="breadcrumb container" aria-label="Breadcrumb"><ol><li><a href="../index.html">Startseite</a></li><li><a href="../vitrine.html">Vitrine</a></li><li><span aria-current="page">Augmented Reality auf iOS und Android</span></li></ol></nav>
+
+    <article class="section container article">
+      <header>
+        <p style="margin-bottom:var(--sp-3);font-size:.9rem"><a href="index.html" class="muted">&larr; Alle Artikel</a></p>
+        <div class="cat-tag-row" style="margin-bottom:var(--sp-2)">
+          <span class="cat-tag cat-tag--allgemein">Technik</span>
+          <a class="cat-tag cat-tag--dentity" href="../i-dentity.html">i.dentity</a>
+        </div>
+        <h1>Augmented Reality ohne App: Wie wir 3D-Modelle auf iOS und Android zum Sprechen bringen</h1>
+        <p class="muted" style="font-size:1.1rem;margin-top:var(--sp-2)">Ein sprechender Baum, der im Wald auftaucht &ndash; auf iPhone und Android, ohne App, aus einer einzigen Datei. Ein technischer Blick hinter die Kulissen unserer Web-AR.</p>
+        <div class="article__meta">
+          <time datetime="2026-06-03">3. Juni 2026</time>
+          <span>10 Min. Lesezeit</span>
+        </div>
+      </header>
+
+      <div class="article__body">
+        <figure class="article__hero" style="margin:var(--sp-4) 0">
+          <video class="article__hero-video" poster="images/05-ar-hero-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Vom Blender-Drahtgittermodell zum fertigen Augmented-Reality-Erlebnis: Ein sprechender Baum erscheint per Smartphone-Kamera mitten im Wald.">
+            <source src="images/05-ar-hero.mp4" type="video/mp4" />
+          </video>
+          <figcaption class="muted" style="font-size:.9rem;text-align:left;line-height:1.3;margin-top:var(--sp-2)">Vom Drahtgittermodell in Blender bis zum sprechenden Baum, der per Kamera im Wald auftaucht &ndash; dasselbe 3D-Modell auf iOS und Android.</figcaption>
+        </figure>
+
+        <p>Bei i.appear wird im Hintergrund ständig an unserem technischen Erlebnis gefeilt. Wir bauen unsere Anwendungen oft auf unkonventionelle Weise &ndash; denn wie das bei Technik so ist: Theoretisch ist fast alles möglich, finanziell aber nicht.</p>
+
+        <p>Als kleines Unternehmen ist es deshalb essenziell, Device-Pipelines zu bauen, die kostengünstig und effizient sind, aber trotzdem ohne künstliche Limits für beliebige Endgeräte funktionieren. Um die Einstiegshürde so niedrig wie möglich zu halten, haben wir i.appear vor einem halben Jahr von einer App aus dem App Store zu einer <strong>Progressive Web App (PWA)</strong> umgebaut.</p>
+
+        <p>Die vorherige Anwendung war in <strong>Unity</strong> umgesetzt, was eine nahtlose Implementierung AR-spezifischer Inhalte direkt in der App erlaubte. Die neue Web-App war anfänglich mit dem <strong>Google Model-Viewer</strong> für 3D-Modelle und AR geplant und getestet. Allerdings stießen wir relativ schnell an die Grenzen des Viewers: Er erlaubt in AR nur einfache Animationen. Für komplexe AR-Anwendungen mit Audio oder Interaktion ist er nicht ausgelegt. Und da AR den Kern unserer App ausmacht, mussten wir eine neue Lösung erarbeiten.</p>
+
+        <p>Konkret ging es bei der ersten Kundenanfrage um die Visualisierung eines 3D-Modells mit audio-synchronisierter Animation. Über den Google-Viewer funktionierte das nur auf Android &ndash; mit Animation, aber ohne Audio. Auf iOS wurde nicht einmal die Animation abgespielt. Um zu verstehen, warum, mussten wir zuerst erkennen, dass die Animations-Technik selbst eine Rolle für Apples <strong>Quick-Look-Player</strong> spielt: Das Modell war ursprünglich in <strong>Blender</strong> mit Shape Keys animiert &ndash; und genau das blockiert Apple. Also wurde das Modell neu geriggt und mit einer Bones-Animation versehen, die der Quick-Look-Player akzeptiert.</p>
+
+        <p>Da unsere AR-Projekte aber deutlich tiefer und komplexer gehen, brauchte es ohnehin eine Alternative als neuen AR-Player. Nach umfassender Recherche kam <strong>Needle Engine</strong> ins Spiel. Needle veröffentlichte 2025 eine Beta seines Blender-Plugins, das 2026 in der stabilen Version 1.2.0 erschien. Das Plugin bringt eine mächtige Ausstattung an Komponenten mit, die es über sogenannte &bdquo;Everywhere Actions&ldquo; und den USDZ-Exporter ermöglichen, ein fixes GLB-Paket zu exportieren. So weit die Theorie! Aber wie das oft so ist, wenn man einen theoretischen Plan hat, kommt einem schnell die Plattform-Realität in die Quere.</p>
+
+        <h2>Hat Apple etwas gegen AR?</h2>
+
+        <p>Die Ausgangslage war von einer Plattform-Asymmetrie geprägt: Ein einziges glTF-Binärmodell (GLB) sollte auf zwei technisch verschiedenen Wegen ausgespielt werden &ndash; unter iOS über Apples Quick Look, das ein USDZ-Derivat rendert, und unter Android über WebXR, das die Needle Engine direkt im Browser ausführt. Beide Wege mussten Geometrie, Skelett-Animation, Tonspur und die Interaktivität &ndash; Starten, Stoppen und erneutes Auslösen von Stimme und Bewegung per Tap &ndash; aus derselben Quelldatei beziehen. Während sich Animations- und Audiowiedergabe früh beherrschen ließen, erwies sich die Interaktionssteuerung unter Quick Look als Engpass, da Apples Laufzeit gegenüber WebXR einen stark eingeschränkten und nur teilweise dokumentierten Funktionsumfang besitzt. Das Verhalten zerfiel in zwei unabhängige Teilprobleme. Das erste betraf die Audiowiedergabe: Bei mehrfachem Antippen überlagerten sich auf dem iPhone mehrere Instanzen derselben Tonspur mit zeitlichem Versatz &ndash; ein Verhalten, das ausschließlich unter Quick Look auftrat, nicht unter WebXR. Das zweite betraf die Animation: Es war offen, ob sich eine laufende Bewegung per Interaktion aktiv anhalten lässt oder ob Quick Look nur das passive Auslaufenlassen zulässt. Beide wurden getrennt behandelt, da sie unterschiedliche Komponenten ansprechen &ndash; Audioquelle und Auslöser einerseits, den Animator mit seinem Zustandsautomaten andererseits.</p>
+
+        <p>Zur Eingrenzung der Audio-Überlagerung wurde das eigene Setup einem offiziellen Needle-Referenzbeispiel gegenübergestellt, das den Fehler nicht zeigte. Daraus ergaben sich drei Ursachenfelder: die Herkunft der GLB-Datei (offizielle Needle-Build-Pipeline gegenüber einem Export aus Blender 4.2.3 LTS mit dem Needle-Exporter-Plugin v1.2.0 nebst nachgelagertem Patch-Skript), die Bezugsquelle der Engine sowie die Art der Einbindung. Das zweite Feld stand lange als plausible Erklärung im Raum: Die Engine lässt sich entweder als gebündelte Abhängigkeit in den Build der Web-Anwendung einbinden oder als zur Laufzeit über ein CDN nachgeladenes Skript. In einem früheren Zustand unterschieden sich Referenz und Eigenimplementierung in genau diesem Bezugsweg und potenziell in der Version. Nachdem jedoch beide auf denselben Stand vereinheitlicht worden waren &ndash; dieselbe Needle-Engine-Version, fest über ein CDN verankert &ndash;, blieb die Überlagerung unverändert. Der Bezugsweg schied damit als Ursache aus; er war nicht die Lösung, sondern lediglich die Beseitigung einer Störvariablen. Übrig blieben als wirksame Unterschiede die Herkunft der Modelldatei und die Form der Einbindung.</p>
+
+        <p>Damit war klar, wo die Lösung liegen musste: in der Struktur des Modells selbst und in der Art, wie die Interaktions-Komponenten darin verankert sind. Die folgenden drei Ausschnitte zeigen die entscheidenden Stellen &ndash; wie eine Interaktion im GLB aussieht, wie ein Patch-Skript sie reparierte und wie das Frontend das Ganze schließlich ausspielt.</p>
+
+        <!-- ================= CODE-FIGUR 1 ================= -->
+        <div class="code-figure">
+          <p class="code-figure__title">1. Wie eine Everywhere Action im GLB aussieht</p>
+          <p class="code-figure__sub">So trägt z.&nbsp;B. der rote Start-Knopf (<code>AudioButton</code>) seine Actions &ndash; als <code>builtin_components</code> am Node (gekürztes, repräsentatives Beispiel aus dem verifizierten <code>_patched.glb</code> der Iteration&nbsp;W):</p>
+          <pre><code><span class="c">// Node "AudioButton" (roter Würfel) &rarr; Start / Neustart</span>
+<span class="fn">"NEEDLE_components"</span>: {
+  <span class="fn">"builtin_components"</span>: [
+    { <span class="fn">"name"</span>: <span class="s">"ObjectRaycaster"</span> },                <span class="c">// Pflicht, damit der Tap überhaupt ankommt</span>
+    { <span class="fn">"name"</span>: <span class="s">"PlayAnimationOnClick"</span>,
+      <span class="fn">"animator"</span>: { <span class="fn">"guid"</span>: <span class="s">"&lt;Animator-der-Figur&gt;"</span> },
+      <span class="fn">"stateName"</span>: <span class="s">"FigurArmatureAction"</span> },        <span class="c">// wechselt in den Lauf-State</span>
+    { <span class="fn">"name"</span>: <span class="s">"SetActiveOnClick"</span>,
+      <span class="fn">"target"</span>: <span class="s">"/nodes/&lt;AudioAnchor&gt;"</span>,
+      <span class="fn">"targetState"</span>: <span class="k">true</span>,                          <span class="c">// aktiviert den Audio-Träger &rarr; playOnAwake feuert</span>
+      <span class="fn">"hideSelf"</span>: <span class="k">false</span>,
+      <span class="fn">"toggleOnClick"</span>: <span class="k">false</span> }
+    <span class="c">// KEIN PlayAudioOnClick &ndash; Audio läuft bewusst über playOnAwake (Iteration W)</span>
+  ]
+}</code></pre>
+          <p class="code-figure__caption">Der grüne Stopp-Knopf ist das Gegenstück: <code>PlayAnimationOnClick</code> &rarr; <code>stateName: "Idle"</code> und <code>SetActiveOnClick</code> &rarr; <code>targetState: false</code>.</p>
+        </div>
+
+        <!-- ================= CODE-FIGUR 2 ================= -->
+        <div class="code-figure">
+          <p class="code-figure__title">2. Wie das Patch-Skript die Actions <em>funktionsfähig</em> macht</p>
+          <p class="code-figure__sub">Das ist das eigentlich Spannende: Der Blender-Exporter schreibt die Actions zwar raus, aber mit kaputten oder fehlenden Referenzen. Unser Skript zieht das nach. Zwei Kernstellen aus <code>scripts/patch_needle_glb.py</code>:</p>
+
+          <p class="code-figure__label"><strong>a)</strong> <code>PlayAnimationOnClick</code> mit dem richtigen Animator verbinden &ndash; auch über Objektgrenzen hinweg (Knopf triggert Animation auf der Figur):</p>
+          <pre><code><span class="c"># Fix 1, Fall B: Node hat PlayAnimationOnClick, aber keinen eigenen Animator</span>
+<span class="c"># &rarr; Cross-Object-Referenz auf den animator-haltigen Node der Szene setzen.</span>
+<span class="c">#   (Der Blender-Exporter erzeugt sonst eine zufällige GUID, die ins Nichts zeigt.)</span>
+<span class="k">if</span> paoc_list <span class="k">and</span> scene_animator_guid:
+    <span class="k">for</span> paoc <span class="k">in</span> paoc_list:
+        old = paoc.get(<span class="s">"animator"</span>, {}).get(<span class="s">"guid"</span>)
+        <span class="k">if</span> old != scene_animator_guid:
+            paoc[<span class="s">"animator"</span>] = {<span class="s">"guid"</span>: scene_animator_guid}
+            fixes += <span class="k">1</span>
+            <span class="fn">print</span>(<span class="s">f"  [Node {node_index}] PAOC.animator.guid {old} &rarr; "</span>
+                  <span class="s">f"{scene_animator_guid} (cross-ref to Node {scene_animator_node})"</span>)</code></pre>
+
+          <p class="code-figure__label"><strong>b)</strong> <code>PlayAudioOnClick</code> den fehlenden Audio-Clip beibringen (Plugin v1.2 schreibt ihn nicht mehr):</p>
+          <pre><code><span class="c"># Plugin v1.2 exportiert PlayAudioOnClick OHNE audio-clip-String.</span>
+<span class="c"># Steht auf demselben Node eine AudioSource mit clip, übernehmen wir den Wert.</span>
+<span class="k">for</span> c <span class="k">in</span> comps:
+    <span class="k">if</span> c.get(<span class="s">"name"</span>) != <span class="s">"PlayAudioOnClick"</span>:
+        <span class="k">continue</span>
+    <span class="k">if</span> <span class="k">not</span> c.get(<span class="s">"clip"</span>) <span class="k">and</span> audio_clip:
+        c[<span class="s">"clip"</span>] = audio_clip
+        <span class="fn">print</span>(<span class="s">f"  [PAUOC] clip &larr; '{audio_clip}' (from AudioSource)"</span>)
+    <span class="k">if</span> <span class="s">"target"</span> <span class="k">not in</span> c:
+        c[<span class="s">"target"</span>] = <span class="k">None</span></code></pre>
+        </div>
+
+        <!-- ================= CODE-FIGUR 3 ================= -->
+        <div class="code-figure">
+          <p class="code-figure__title">3. Wie das GLB im Frontend eingebunden wird</p>
+          <p class="code-figure__sub">Im Frontend wird das <code>&lt;needle-engine&gt;</code>-Element zur Laufzeit erzeugt, und WebXR (für Android-AR) wird nur <em>außerhalb</em> von iOS hinzugefügt (vereinfacht):</p>
+          <pre><code><span class="fn">onStart</span>(context =&gt; {
+  <span class="k">const</span> isIOS = /iPad|iPhone|iPod/.<span class="fn">test</span>(navigator.userAgent);
+
+  <span class="k">if</span> (!isIOS) {
+    <span class="c">// Android: AR-Button über WebXR. Auf iOS NICHT &ndash; dort übernimmt Quick Look (USDZ).</span>
+    context.scene.<span class="fn">addComponent</span>(WebXR, {
+      createVRButton: <span class="k">false</span>,
+      createARButton: <span class="k">true</span>,
+      createQRCode: <span class="k">false</span>,
+      createSendToQuestButton: <span class="k">false</span>,
+    });
+  }
+  <span class="c">// USDZExporter kommt aus dem GLB (nicht programmatisch) &rarr; keine Doppelung.</span>
+});</code></pre>
+          <pre style="margin-top:var(--sp-2)"><code><span class="k">const</span> el = document.<span class="fn">createElement</span>(<span class="s">"needle-engine"</span>);
+el.<span class="fn">setAttribute</span>(<span class="s">"src"</span>, src!);              <span class="c">// GLB-URL aus dem CMS</span>
+el.<span class="fn">setAttribute</span>(<span class="s">"camera-controls"</span>, <span class="s">""</span>);
+<span class="k">if</span> (autoplay) el.<span class="fn">setAttribute</span>(<span class="s">"autoplay"</span>, <span class="s">""</span>);
+el.<span class="fn">setAttribute</span>(<span class="s">"background-color"</span>, <span class="s">"transparent"</span>);
+container.<span class="fn">appendChild</span>(el);</code></pre>
+        </div>
+
+        <p>Parallel wurde eine Reihe naheliegender Ansätze erprobt, von denen sich mehrere als Sackgassen erwiesen. Eine einzelne Schaltfläche als Umschalter (<code>toggleOnClick</code>) scheiterte reproduzierbar an einer Grenze der Quick-Look-Laufzeit. Der alleinige Verzicht auf die Audio-Endlosschleife blieb ohne Wirkung. Das Deaktivieren oder Ausblenden des tönenden Objekts beim Stopp führte nicht zum Ziel, da die Animation hinter dem ausgeblendeten Objekt weiterlief. Und der Versuch, eine laufende Animation durch Wechsel in einen Ruhezustand anzuhalten, blieb wirkungslos, solange dieser Zustand selbst keine eigene Bewegungsinformation trug.</p>
+
+        <p>Dieser letzte Befund erwies sich als entscheidend. Der Zustandswechsel über den Animator scheiterte nicht grundsätzlich, sondern daran, dass der Zielzustand leer war und somit nichts abzuspielen hatte. Sobald dem Ruhezustand eine reale, wenn auch statische Ruhepose als eigene Bewegung zugewiesen wurde, ließ sich eine laufende Animation per Tap aktiv anhalten &ndash; das zweite Teilproblem war damit gelöst. Für die Audiowiedergabe wurde ein analog struktureller Weg gewählt: Statt die Tonspur über eine klick-gebundene Wiedergabe-Aktion (<code>PlayAudioOnClick</code>) zu starten, die bei jedem Auslösen eine zusätzliche Instanz erzeugen konnte, wurde sie über <code>playOnAwake</code> an die Aktivierung ihres Trägerobjekts gekoppelt. Da dessen Aktivierung pro Auslösung genau einmal erfolgt, ergibt sich genau ein Audiostart, während die Deaktivierung die Wiedergabe beendet. So ließen sich beide Teilprobleme in einem einzigen Mechanismus vereinen, der wiederholtes, sauberes Starten, Stoppen und Neustarten von Stimme und Bewegung erlaubt, ohne dass sich mehrere Tonspuren überlagern.</p>
+
+        <h2>Der verifizierte Workflow: vom 3D-Modell zum AR-Erlebnis</h2>
+
+        <p>Den Ausgangspunkt der Pipeline bildet <strong>Blender 4.2.3 LTS</strong>, das über eine Model-Context-Protocol-Schnittstelle (MCP) ferngesteuert werden kann. Dabei läuft im Blender-Prozess ein MCP-Add-on als Socket-Server, an den sich der externe Client verbindet; über diese Verbindung lassen sich Szeneninformationen auslesen und Python-Befehle direkt in den Blender-Interpreter einspeisen, ohne dass die grafische Oberfläche manuell bedient werden muss. Auf diese Weise werden Mesh und Armature aufgebaut, wobei die Verformung ausschließlich über Bones und Vertex-Gruppen erfolgt &ndash; Shape Keys bzw. Morph Targets scheiden aus, da Apples Quick Look sie ignoriert. Das Mesh wird als Kind der Armature geführt, die Bewegung als Action am Armature-Objekt hinterlegt, und es wird mit einem einzigen Material gearbeitet, da Mehr-Material-Setups in dieser Pipeline ungeprüft sind.</p>
+
+        <p>Die Interaktionslogik wird anschließend bereits in Blender modelliert, nicht erst in der Web-Anwendung. Über das Needle-Engine-Exporter-Plugin (Version 1.2.0) wird ein <code>AnimatorController</code> als NodeTree angelegt, der je einen Zustand pro Animation sowie einen Ruhezustand enthält; der Ruhezustand wird als Default markiert, damit das Modell beim Laden nicht sofort losläuft, sondern auf eine Interaktion wartet. Auf das Mesh werden die Komponenten <code>Animator</code>, <code>ObjectRaycaster</code>, <code>PlayAnimationOnClick</code> und die audio-bezogenen Auslöser gelegt, auf die Armature-Wurzel der <code>USDZExporter</code>, der <code>WebARSessionRoot</code> sowie eine zunächst deaktivierte <code>WebXR</code>-Komponente. Entscheidend ist eine leicht zu übersehende Szenen-Einstellung: Nur wenn <code>NEEDLE_gltf_exporter_settings.useNeedleEngine</code> auf <code>True</code> steht, werden diese Komponenten überhaupt in die Exportdatei geschrieben &ndash; der Standardwert ist <code>False</code>.</p>
+
+        <p>Exportiert wird über den Standard-glTF-Exporter als GLB, mit aktivierter Animations- und Skin-Ausgabe und mitgeschriebenen Extras. Da der Exporter der Plugin-Version 1.2.0 mehrere für die Laufzeit nötige Strukturen unvollständig oder gar nicht ausgibt &ndash; insbesondere fehlt der <code>AnimatorController</code>, und Referenzen wie die Animator-GUID einer Klick-Aktion oder der Audio-Clip-Name werden nicht korrekt aufgelöst &ndash;, durchläuft das exportierte GLB anschließend ein eigens entwickeltes Patch-Skript. Dieses Skript liest den JSON-Teil des GLB, synthetisiert bei Bedarf einen vollständigen <code>AnimatorController</code>, verdrahtet die Klick-Aktionen mit dem korrekten Animator &ndash; auch über Objektgrenzen hinweg &ndash;, leitet fehlende Audio-Clip-Namen aus der zugehörigen Audioquelle ab und schreibt die Datei binär wieder zurück. Dieser Schritt ist für iOS Quick Look zwingend; der Roh-Export genügt allein unter Android über WebXR, womit der Patch-Lauf der einzige plattformrelevante Unterschied der gesamten Pipeline ist.</p>
+
+        <p>Das gepatchte GLB wird gemeinsam mit der Tonspur, die physisch unmittelbar neben der Modelldatei liegen muss, im Verzeichnis der Web-Anwendung abgelegt und eingecheckt. Von dort baut der Hosting-Dienst die Seite automatisch innerhalb weniger Minuten neu und liefert sie aus. Die Web-Anwendung bindet das Modell nicht über ein gebündeltes Paket ein, sondern lädt die Needle Engine zur Laufzeit über ein CDN nach und erzeugt im Browser dynamisch ein <code>&lt;needle-engine&gt;</code>-Element mit der GLB-URL als Quelle. Beim Initialisieren wird die Plattform anhand des User-Agents unterschieden: Außerhalb von iOS wird programmatisch eine <code>WebXR</code>-Komponente mit AR-Schaltfläche hinzugefügt, während unter iOS die Verantwortung an Quick Look übergeht, das aus dem GLB ein USDZ ableitet. In Produktion tritt an die Stelle der Testseite der Weg über ein Content-Management-System: Das Modell wird dort als Asset hinterlegt und auf der jeweiligen Seite referenziert, was dieselbe Render-Kette speist.</p>
+
+        <p>Am Ende der Kette steht das Endgerät. Die ausgelieferte Seite wird unter iOS in Safari, unter Android in Chrome aufgerufen; über die AR-Schaltfläche wird das Modell in den Raum projiziert und reagiert dort auf Antippen mit dem in Blender modellierten und durch das Patch-Skript funktionsfähig gemachten Interaktionsverhalten &ndash; dem Starten, Stoppen und sauberen Neustarten von Stimme und Bewegung. Damit schließt sich der Weg von der MCP-gesteuerten Modellierung in Blender über Export, Patch, Deployment und CDN-gestützte Auslieferung bis zur tatsächlichen Darstellung im Augmented-Reality-Modus des Mobilgeräts.</p>
+
+        <p style="margin-top:var(--sp-3)">
+          &rarr; <a href="../i-dentity.html">i.dentity &ndash; Regionale Identität &amp; Augmented Reality</a><br />
+          &rarr; <a href="../features.html">Alle Features der i.appear-Plattform</a><br />
+          &rarr; <a href="../stadtrundgaenge.html">Übersicht aller i.appear-Stadtrundgänge</a>
+        </p>
+
+      </div>
+
+      <div class="article__tags">
+        <a class="article__tag article__tag--dentity" href="../i-dentity.html">i.dentity</a>
+        <span class="article__tag">Augmented Reality</span>
+        <span class="article__tag">Web-AR</span>
+        <span class="article__tag">WebXR</span>
+        <span class="article__tag">iOS Quick Look</span>
+        <span class="article__tag">USDZ</span>
+        <span class="article__tag">GLB</span>
+        <span class="article__tag">Needle Engine</span>
+        <span class="article__tag">Blender</span>
+        <span class="article__tag">Progressive Web App</span>
+        <span class="article__tag">3D-Modell</span>
+        <span class="article__tag">Model Context Protocol</span>
+      </div>
+
+      <div style="margin-top:var(--sp-4);padding:var(--sp-3);background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius-card);text-align:center">
+        <p>Augmented Reality für den eigenen Ort? <a href="../kontakt.html"><strong>Sprich mit uns &rarr;</strong></a></p>
+      </div>
+
+      <p style="margin-top:var(--sp-3)"><a href="index.html" class="muted">&larr; Alle Artikel</a></p>
+    </article>
+  </main>
+
+  <footer class="footer"><div class="container">
+      <div class="social-pills">
+        <a class="social-pill" data-net="ig" href="https://www.instagram.com/i.appear.app/" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+        <a class="social-pill" data-net="li" href="https://www.linkedin.com/company/i-appear/posts/?feedView=all" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+        <a class="social-pill" data-net="fb" href="https://www.facebook.com/i.appearapp/" target="_blank" rel="noopener" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+      </div>
+      <div class="footer__bottom">
+        <small>&copy; 2026 i.appear &ndash; Digital City Tours</small>
+        <nav class="footer__legal" aria-label="Rechtliches">
+          <a href="../kontakt.html">Kontakt</a>
+          <a href="../faqs.html">FAQs</a>
+          <a href="../impressum.html">Impressum</a>
+          <a href="../datenschutz.html">Datenschutz</a>
+          <a href="../agb.html">AGB</a>
+        </nav>
+      </div>
+    </div></footer>
+
+  <a href="#" class="back-up" data-back-up aria-label="Nach oben"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" aria-hidden="true"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg></a>
+  <script src="../js/main.js"></script>
+</body>
+</html>
