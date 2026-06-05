@@ -76,6 +76,18 @@ Grep-Gegenpruefung am Ende: 0 setup-spezifische Begriffe uebrig.
   und build.py fasst nur Inhalte zwischen Markern an (Blog-Teaser + meine sitemap/llms-Eintraege
   liegen ausserhalb -> waeren sicher gewesen, aber kein Lauf erforderlich).
 
+### Nachtrag (gleiche Session): og:image entkoppelt vom Video-Poster
+
+Maggy wollte ein anderes Share-Vorschaubild. Loesung: **og:image und Video-Poster getrennt**.
+- **Video-Poster** (auf der Seite, `<video poster>`) bleibt `05-ar-hero-poster.jpg` (Baum im Wald).
+- **og:image + JSON-LD `image`** zeigen jetzt auf neues `blog/images/05-ar-og.jpg` (1280x720) -
+  ein "Making-of in Blender"-Frame (Baumgesicht + Shape-Key-Werteliste + Shader-Nodes), bei
+  Sekunde 4,5 aus demselben Video extrahiert (Frame-Suche via ffmpeg-Contact-Sheet `fps=1,tile=4x4`).
+- **Neuer Dateiname statt Byte-Tausch** (og-image-Cache-Lehre Session 42): umgeht Plattform-Scraper-
+  Cache von WhatsApp/LinkedIn, da das alte Bild bereits auf WhatsApp geteilt wurde.
+- Diagnose-Notiz: "Artikel fehlt in /blog/-Preview" war reiner Browser-Tab-Cache - `curl` auf
+  `/blog/` + `/blog/index.html` lieferte die AR-Card korrekt; Hard-Reload (Strg+Umschalt+R) loest es.
+
 ## Lehren (-> ggf. als Konvention in CLAUDE.md)
 
 - **Video-Hero fuer Blog-Artikel:** mp4 (1280 breit, CRF 27, faststart, ggf. ohne Audio) + jpg-Poster,
