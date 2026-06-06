@@ -139,3 +139,8 @@ dist
 .obsidian/
 .claude/worktrees/
 originals/
+
+# Lokale Scratch-/Render-Dateien (nur fuer Bild-Erzeugung, gehoeren nicht ins Repo)
+_tmp_pdf/
+_tmp_render/
+_render-*.html
