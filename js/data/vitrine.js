@@ -274,6 +274,18 @@ window.IAPPEAR_VITRINE = [
       titel: "Panel discussion PH Vorarlberg",
       text: "Panel discussion: digital competences in the tension between child protection and Artificial Intelligence."
     }
+  },
+  {
+    bild: "assets/images/vitrine/aufwachsen-mit-ki.png",
+    link: "blog/aufwachsen-mit-ki.html",
+    de: {
+      titel: "i.grow jetzt im OeAD-Netzwerk",
+      text: "Unser Workshop 'Aufwachsen mit KI' ist in der OeAD-Datenbank gelistet und österreichweit für Schulen buchbar: Medienethik und Künstliche Intelligenz für die Sekundarstufe."
+    },
+    en: {
+      titel: "i.grow now in the OeAD network",
+      text: "Our workshop 'Aufwachsen mit KI' is listed in the OeAD database and bookable for schools across Austria: media ethics and Artificial Intelligence for secondary level."
+    }
   }
 ];
 
