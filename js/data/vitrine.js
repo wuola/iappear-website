@@ -36,7 +36,7 @@ window.IAPPEAR_VITRINE = [
     }
   },
   {
-    bild: "assets/images/vitrine/cityx.png",
+    bild: "assets/images/vitrine/cityx.jpg",
     link: "vitrine/smart-city-dornbirn-2022.html",
     de: {
       titel: "Smart City Dornbirn 2022",
@@ -132,7 +132,7 @@ window.IAPPEAR_VITRINE = [
     }
   },
   {
-    bild: "assets/images/vitrine/kopf.png",
+    bild: "assets/images/vitrine/kopf.jpg",
     link: "vitrine/koepfe-von-morgen.html",
     de: {
       titel: "VN 'Köpfe von morgen'",
