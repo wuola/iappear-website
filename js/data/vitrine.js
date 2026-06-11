@@ -3,7 +3,7 @@
    HIER BEARBEITEN: Vitrine-Kacheln fuer die Vitrine-Seite.
    ------------------------------------------------------------
    Pro Eintrag:
-     - bild:  Pfad zum Bild relativ zum Repo-Root (z.B. assets/images/vitrine/asked.png)
+     - bild:  Pfad zum Bild relativ zum Repo-Root (z.B. assets/images/vitrine/asked.jpg)
      - link:  Pfad zum Artikel relativ zum Repo-Root (z.B. vitrine/xyz.html)
               build.py prependet automatisch "../" fuer die EN-Version.
      - de:    { titel, text }  -- deutsche Card-Texte
@@ -12,7 +12,7 @@
 
 window.IAPPEAR_VITRINE = [
   {
-    bild: "assets/images/vitrine/asked.png",
+    bild: "assets/images/vitrine/asked.jpg",
     link: "vitrine/askd-magazin-portrait-marilena-tumler.html",
     de: {
       titel: "askd:Magazin Portrait Marilena Tumler",
@@ -24,7 +24,7 @@ window.IAPPEAR_VITRINE = [
     }
   },
   {
-    bild: "assets/images/vitrine/ars.png",
+    bild: "assets/images/vitrine/ars.jpg",
     link: "vitrine/ars-electronica-2022.html",
     de: {
       titel: "ARS Electronica 2022",
@@ -48,7 +48,7 @@ window.IAPPEAR_VITRINE = [
     }
   },
   {
-    bild: "assets/images/vitrine/ars2.png",
+    bild: "assets/images/vitrine/ars2.jpg",
     link: "vitrine/ars-electronica-2021.html",
     de: {
       titel: "Ars Electronica 2021 Garden Vorarlberg",
@@ -60,7 +60,7 @@ window.IAPPEAR_VITRINE = [
     }
   },
   {
-    bild: "assets/images/vitrine/digi.png",
+    bild: "assets/images/vitrine/digi.jpg",
     link: "vitrine/digital-in-and-out.html",
     de: {
       titel: "Digital In&Out vorarlberg museum",
@@ -72,7 +72,7 @@ window.IAPPEAR_VITRINE = [
     }
   },
   {
-    bild: "assets/images/vitrine/inno.png",
+    bild: "assets/images/vitrine/inno.jpg",
     link: "vitrine/innovation-call-2025.html",
     de: {
       titel: "Re-Design dank Preisgeld",
@@ -84,7 +84,7 @@ window.IAPPEAR_VITRINE = [
     }
   },
   {
-    bild: "assets/images/vitrine/edu.png",
+    bild: "assets/images/vitrine/edu.jpg",
     link: "vitrine/iappear-in-den-klassenraeumen.html",
     de: {
       titel: "i.appear in den Klassenräumen",
@@ -96,7 +96,7 @@ window.IAPPEAR_VITRINE = [
     }
   },
   {
-    bild: "assets/images/vitrine/florenz.png",
+    bild: "assets/images/vitrine/florenz.jpg",
     link: "vitrine/florenz-2023-future-of-education.html",
     de: {
       titel: "Florenz 2023 - Future of Education",
@@ -108,7 +108,7 @@ window.IAPPEAR_VITRINE = [
     }
   },
   {
-    bild: "assets/images/vitrine/orf.png",
+    bild: "assets/images/vitrine/orf.jpg",
     link: "vitrine/orf-vorarlberg-video.html",
     de: {
       titel: "ORF Vorarlberg Video",
@@ -120,7 +120,7 @@ window.IAPPEAR_VITRINE = [
     }
   },
   {
-    bild: "assets/images/vitrine/inno2.png",
+    bild: "assets/images/vitrine/inno2.jpg",
     link: "vitrine/innovation-call-tourismus-2025.html",
     de: {
       titel: "Innovation Call Tourismus 2025",
@@ -144,7 +144,7 @@ window.IAPPEAR_VITRINE = [
     }
   },
   {
-    bild: "assets/images/vitrine/marke.png",
+    bild: "assets/images/vitrine/marke.jpg",
     link: "vitrine/marke-vorarlberg-portrait.html",
     de: {
       titel: "Marke Vorarlberg Portrait",
@@ -156,7 +156,7 @@ window.IAPPEAR_VITRINE = [
     }
   },
   {
-    bild: "assets/images/vitrine/buch.png",
+    bild: "assets/images/vitrine/buch.jpg",
     link: "vitrine/bombenabwuerfe-feldkirch.html",
     de: {
       titel: "Bombenabwürfe Feldkirch",
@@ -192,7 +192,7 @@ window.IAPPEAR_VITRINE = [
     }
   },
   {
-    bild: "assets/images/vitrine/vol.png",
+    bild: "assets/images/vitrine/vol.jpg",
     link: "vitrine/vn-oktobertag-feldkirch.html",
     de: {
       titel: "VN Oktobertag Feldkirch",
@@ -204,7 +204,7 @@ window.IAPPEAR_VITRINE = [
     }
   },
   {
-    bild: "assets/images/vitrine/ux.png",
+    bild: "assets/images/vitrine/ux.jpg",
     link: "vitrine/ux-redesign-entwicklungsprozess.html",
     de: {
       titel: "UX-Redesign Entwicklungsprozess",
@@ -216,7 +216,7 @@ window.IAPPEAR_VITRINE = [
     }
   },
   {
-    bild: "assets/images/vitrine/orf2.png",
+    bild: "assets/images/vitrine/orf2.jpg",
     link: "vitrine/erster-artikel-2022.html",
     de: {
       titel: "Erster Artikel 2022",
@@ -240,7 +240,7 @@ window.IAPPEAR_VITRINE = [
     }
   },
   {
-    bild: "assets/images/vitrine/genz.png",
+    bild: "assets/images/vitrine/genz.jpg",
     link: "vitrine/vortrag-bludenz-gen-z.html",
     de: {
       titel: "Vortrag Bludenz - 'gen Z'",
@@ -252,7 +252,7 @@ window.IAPPEAR_VITRINE = [
     }
   },
   {
-    bild: "assets/images/vitrine/schaffarei.png",
+    bild: "assets/images/vitrine/schaffarei.jpg",
     link: "vitrine/schafferei-traumjob.html",
     de: {
       titel: "Schafferei Traumjob",
@@ -264,7 +264,7 @@ window.IAPPEAR_VITRINE = [
     }
   },
   {
-    bild: "assets/images/vitrine/podium.png",
+    bild: "assets/images/vitrine/podium.jpg",
     link: "vitrine/podiumsdiskussion-ph-vorarlberg.html",
     de: {
       titel: "Podiumsdiskussion PH Vorarlberg",
