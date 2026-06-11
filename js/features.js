@@ -46,7 +46,7 @@
 
   /* Cache-Bust per Query-String: bei jedem Video-Tausch im Repo
      Datum hochzaehlen, damit Browser nicht alte Versionen cached. */
-  const VBUST = '20260502c';
+  const VBUST = '20260611a';
 
   const setActive = (key) => {
     const f = features[key];

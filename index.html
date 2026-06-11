@@ -312,7 +312,8 @@
         <a class="card card--teaser center" href="features.html">
           <div class="phone phone--mini">
             <div class="phone__screen">
-              <video src="assets/videos/features/3d.mp4" autoplay muted loop playsinline preload="metadata"></video>
+              <img src="assets/videos/features/3d.jpg" alt="" aria-hidden="true" />
+              <video data-src="assets/videos/features/3d.mp4" poster="assets/videos/features/3d.jpg" autoplay muted loop playsinline preload="none"></video>
             </div>
           </div>
           <h3>3D-Modelle</h3>
@@ -321,7 +322,8 @@
         <a class="card card--teaser center" href="features.html">
           <div class="phone phone--mini">
             <div class="phone__screen">
-              <video src="assets/videos/features/ar.mp4" autoplay muted loop playsinline preload="metadata"></video>
+              <img src="assets/videos/features/ar.jpg" alt="" aria-hidden="true" />
+              <video data-src="assets/videos/features/ar.mp4?v=20260611a" poster="assets/videos/features/ar.jpg" autoplay muted loop playsinline preload="none"></video>
             </div>
           </div>
           <h3>Augmented Reality</h3>
@@ -330,7 +332,8 @@
         <a class="card card--teaser center" href="features.html">
           <div class="phone phone--mini">
             <div class="phone__screen">
-              <video src="assets/videos/features/audio.mp4" autoplay muted loop playsinline preload="metadata"></video>
+              <img src="assets/videos/features/audio.jpg" alt="" aria-hidden="true" />
+              <video data-src="assets/videos/features/audio.mp4" poster="assets/videos/features/audio.jpg" autoplay muted loop playsinline preload="none"></video>
             </div>
           </div>
           <h3>Audio-Guide</h3>
@@ -339,7 +342,8 @@
         <a class="card card--teaser center" href="features.html">
           <div class="phone phone--mini">
             <div class="phone__screen">
-              <video src="assets/videos/features/secret.mp4" autoplay muted loop playsinline preload="metadata"></video>
+              <img src="assets/videos/features/secret.jpg" alt="" aria-hidden="true" />
+              <video data-src="assets/videos/features/secret.mp4" poster="assets/videos/features/secret.jpg" autoplay muted loop playsinline preload="none"></video>
             </div>
           </div>
           <h3>Secret Stations</h3>
@@ -518,6 +522,38 @@
   <script src="js/data/vitrine.js?v=7"></script>
   <script src="js/network.js?v=19"></script>
   <script src="js/vitrine-teaser.js?v=4"></script>
+
+  <script>
+    // Feature-Teaser-Videos erst laden, wenn sie beim Scrollen in die Naehe
+    // des Viewports kommen (300px vorher). So gehoert die Bandbreite beim
+    // Seitenstart komplett den beiden Hero-Videos oben. Bis dahin zeigt
+    // jedes Mini-Phone sein Poster-Bild (img-Layer darunter).
+    (function () {
+      var lazyVideos = document.querySelectorAll('video[data-src]');
+      function videoLaden(video) {
+        if (video.getAttribute('src')) return; // laeuft schon
+        video.src = video.getAttribute('data-src');
+        var abspielen = video.play();
+        if (abspielen && abspielen.catch) {
+          abspielen.catch(function () { /* Autoplay blockiert: Poster bleibt stehen */ });
+        }
+      }
+      if ('IntersectionObserver' in window) {
+        var beobachter = new IntersectionObserver(function (eintraege) {
+          eintraege.forEach(function (eintrag) {
+            if (eintrag.isIntersecting) {
+              videoLaden(eintrag.target);
+              beobachter.unobserve(eintrag.target);
+            }
+          });
+        }, { rootMargin: '300px 0px' });
+        lazyVideos.forEach(function (v) { beobachter.observe(v); });
+      } else {
+        // Sehr alte Browser ohne IntersectionObserver: sofort laden wie bisher
+        lazyVideos.forEach(videoLaden);
+      }
+    })();
+  </script>
 
 </body>
 </html>

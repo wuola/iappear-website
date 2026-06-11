@@ -41,7 +41,7 @@
   videoEl.preload = 'metadata';
   screen.appendChild(videoEl);
 
-  const VBUST = '20260502c';
+  const VBUST = '20260611a';
 
   const setActive = (key) => {
     const f = features[key];
