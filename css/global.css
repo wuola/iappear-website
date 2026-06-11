@@ -4,10 +4,14 @@
    ========================================================================== */
 
 /* --- Schrift selbst hosten (kein Google Fonts -> DSGVO + Performance) ---
-   Variable Font deckt alle Gewichte 100..900 in einer Datei ab. */
+   Variable Font deckt alle Gewichte 100..900 in einer Datei ab.
+   Format WOFF2 (komprimiert, ~55% kleiner) zuerst, TTF/OTF bleibt nur
+   noch als Fallback fuer sehr alte Browser. */
 @font-face {
   font-family: "Roboto";
-  src: url("../assets/fonts/Roboto-Variable.ttf") format("truetype-variations"),
+  src: url("../assets/fonts/Roboto-Variable.woff2") format("woff2-variations"),
+       url("../assets/fonts/Roboto-Variable.woff2") format("woff2"),
+       url("../assets/fonts/Roboto-Variable.ttf") format("truetype-variations"),
        url("../assets/fonts/Roboto-Variable.ttf") format("truetype");
   font-weight: 100 900;
   font-style: normal;
@@ -15,7 +19,9 @@
 }
 @font-face {
   font-family: "Roboto";
-  src: url("../assets/fonts/Roboto-Variable-Italic.ttf") format("truetype-variations"),
+  src: url("../assets/fonts/Roboto-Variable-Italic.woff2") format("woff2-variations"),
+       url("../assets/fonts/Roboto-Variable-Italic.woff2") format("woff2"),
+       url("../assets/fonts/Roboto-Variable-Italic.ttf") format("truetype-variations"),
        url("../assets/fonts/Roboto-Variable-Italic.ttf") format("truetype");
   font-weight: 100 900;
   font-style: italic;
@@ -30,28 +36,32 @@
    Mehr Schnitte siehe assets/fonts-source/ — bei Bedarf nachladen. */
 @font-face {
   font-family: "TheSerif";
-  src: url("../assets/fonts/TheSerif-HP5Plain.otf") format("opentype");
+  src: url("../assets/fonts/TheSerif-HP5Plain.woff2") format("woff2"),
+       url("../assets/fonts/TheSerif-HP5Plain.otf") format("opentype");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "TheSerif";
-  src: url("../assets/fonts/TheSerif-HP5PlainIT.otf") format("opentype");
+  src: url("../assets/fonts/TheSerif-HP5PlainIT.woff2") format("woff2"),
+       url("../assets/fonts/TheSerif-HP5PlainIT.otf") format("opentype");
   font-weight: 400;
   font-style: italic;
   font-display: swap;
 }
 @font-face {
   font-family: "TheSerif";
-  src: url("../assets/fonts/TheSerif-HP6SeBld.otf") format("opentype");
+  src: url("../assets/fonts/TheSerif-HP6SeBld.woff2") format("woff2"),
+       url("../assets/fonts/TheSerif-HP6SeBld.otf") format("opentype");
   font-weight: 600;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "TheSerif";
-  src: url("../assets/fonts/TheSerif-HP9Blk.otf") format("opentype");
+  src: url("../assets/fonts/TheSerif-HP9Blk.woff2") format("woff2"),
+       url("../assets/fonts/TheSerif-HP9Blk.otf") format("opentype");
   font-weight: 900;
   font-style: normal;
   font-display: swap;
