@@ -6,6 +6,7 @@ Naming: `YYYY-MM-DD-session-NN-thema.md`
 
 ## Sessions
 
+- 2026-06-18 - [Session 52 - Blog "125 Jahre, 125 Orte": Dornbirns Jubilaeums-Rundgang live (Recherche + Text + 3 Event-Fotos; Siedlungs-Animation per iframe aus separatem `iappear-embeds`-Repo eingebettet; volle Verdrahtung Index/Vitrine/Sitemap/llms) + Frauenspuren-Count-Fix (coming-soon -> aktiv, Dornbirn i.history 3->4)](2026-06-18-session-52-blog-125-jahre-orte-embed-count-fix.md)
 - 2026-06-11 - [Session 51 - Performance-Pass (Hero-Videos CRF 20 -42%, Feature-Teaser Lazy-Load + ar.mp4 Stream-Copy-Schnitt, alle 6 Fonts → WOFF2 + Preload auf 71 HTMLs, 21 Vitrine-PNGs → JPG q85; Startseite 16,6 → 4,9 MB Sofort-Load)](2026-06-11-session-51-performance-pass.md)
 - 2026-06-09 - [Session 50 - Rundgang-Links Dornbirn gefixt (Oberdorf/Innenstadt: leere Platzhalter + tote 404-Slugs → verifizierte App-Routen; 125-Jahre-Button temporaer auf App-Startseite; curl-Verifikation, 3 Namenssysteme dokumentiert)](2026-06-09-session-50-rundgang-links-dornbirn-fix.md)
 - 2026-06-09 - [Session 49 - Vitrine-Kachel "i.grow im OeAD-Netzwerk" (Blog-Crosspost: Kachel verlinkt direkt auf Blog-Artikel; eigenes quadratisches S/W-Thumbnail via Render-Template, Chrome --headless=old; ans Grid-Ende)](2026-06-09-session-49-vitrine-kachel-oead-blog-crosspost.md)
