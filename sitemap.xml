@@ -278,6 +278,13 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://iappear.at/blog/" />
   </url>
   <url>
+    <loc>https://iappear.at/blog/125-jahre-dornbirn.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="de" href="https://iappear.at/blog/125-jahre-dornbirn.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://iappear.at/blog/125-jahre-dornbirn.html" />
+  </url>
+  <url>
     <loc>https://iappear.at/blog/aufwachsen-mit-ki.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
