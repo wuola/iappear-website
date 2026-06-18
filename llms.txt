@@ -23,7 +23,7 @@ Die drei inhaltlichen Kategorien heissen i.history (historische Stadtrundgaenge,
 - [Ueber uns](https://iappear.at/ueber-uns.html): Das Team (Marilena Tumler, Maggy Haidacher) und Partner/Foerdergeber.
 - [Alle Stadtrundgaenge](https://iappear.at/stadtrundgaenge.html): Uebersicht aller Orte mit digitalen Stadtrundgaengen und Audioguides - mit interaktiver Karte.
 <!-- STADTRUNDGANG-LINKS:START -->
-- [Stadtrundgang Dornbirn](https://iappear.at/stadtrundgang-dornbirn.html): 10 Rundgaenge. Alle Audioguides und multimedialen Touren auf einen Blick.
+- [Stadtrundgang Dornbirn](https://iappear.at/stadtrundgang-dornbirn.html): 11 Rundgaenge. Alle Audioguides und multimedialen Touren auf einen Blick.
 - [Stadtrundgang Feldkirch](https://iappear.at/stadtrundgang-feldkirch.html): 2 Rundgaenge. Audioguides und multimediale Touren in der mittelalterlichen Alpenstadt.
 - [Stadtrundgang Hard am Bodensee](https://iappear.at/stadtrundgang-hard.html): 1 Rundgaenge. Audioguide und multimediale Tour entlang des Bodenseeufers.
 - [Stadtrundgang Au im Bregenzerwald](https://iappear.at/stadtrundgang-au.html): 1 Rundgaenge. Audioguide auf den Spuren der Vorarlberger Barockbaumeister.

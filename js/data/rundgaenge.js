@@ -38,8 +38,8 @@ window.IAPPEAR_RUNDGAENGE = {
           },
           {
             titel: "Frauenspuren",
-            kurz: "Frauen, die Dornbirn geprägt haben. (Coming soon)",
-            status: "coming-soon"
+            kurz: "Neun Frauen, die Dornbirn geprägt haben &mdash; sichtbar gemacht an den Orten ihres Wirkens.",
+            status: "aktiv"
           }
         ]
       },
