@@ -833,6 +833,88 @@ def update_llms_txt(counts: dict, staedte: dict, stadt_order: list):
 
 
 ## ===================================================================
+## TEIL 5: Redirect-Stubs fuer alte Pretty-URLs (Schraegstrich ohne .html)
+## ===================================================================
+##
+## Problem: GitHub Pages serviert "X.html" NICHT unter "/X/" -> echter 404.
+## Google hatte aus einem alten Bug-Fenster (vor Session 26, Mai 2026) die
+## Schraegstrich-Varianten unserer Seiten in der Crawl-Queue und meldet sie
+## bis heute als "Nicht gefunden (404)" in der Search Console.
+##
+## Loesung: Pro Seite legen wir eine winzige Weiterleitungs-Datei
+## "X/index.html" an, die per <link rel=canonical> + <meta refresh> +
+## JS-Redirect auf die echte "/X.html" zeigt. Aus dem 404 wird damit eine
+## saubere Weiterleitung -> Google konsolidiert die alte Adresse auf die
+## echte Seite, GSC wird gruen, und es ist permanent erledigt.
+##
+## Die Stubs sind reine Wegweiser: noindex, NICHT in der Sitemap.
+
+REDIRECT_TEMPLATE = """<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Weitergeleitet – i.appear</title>
+  <link rel="canonical" href="{target}" />
+  <meta name="robots" content="noindex, follow" />
+  <meta http-equiv="refresh" content="0; url={target}" />
+  <script>location.replace("{target}");</script>
+</head>
+<body>
+  <p>Diese Seite ist umgezogen. Weiter zu <a href="{target}">{short}</a>.</p>
+</body>
+</html>
+"""
+
+# Slugs ohne Stub: index (= "/" existiert schon), 404, alles mit "_" Prefix
+# (Build-Hilfsdateien). Verzeichnisse mit echtem Inhalt (blog/, en/) tauchen
+# hier nicht auf, weil es kein "blog.html"/"en.html" im Root gibt.
+REDIRECT_SKIP_SLUGS = {"index", "404"}
+
+
+def generate_redirect_stubs():
+    """Legt fuer jede Top-Level-Seite X.html eine Weiterleitung X/index.html an,
+    damit die alten Schraegstrich-URLs (/X/) nicht mehr ins Leere (404) laufen.
+
+    Idempotent: bereits vorhandene Stubs werden ueberschrieben (neue Ziel-URL),
+    eine evtl. vorhandene ECHTE index.html (kein Stub) wird NIE angetastet.
+    """
+    created = 0
+    skipped = 0
+    for fname in sorted(os.listdir(ROOT)):
+        if not fname.endswith(".html"):
+            continue
+        slug = fname[:-5]  # ohne ".html"
+        if slug.startswith("_") or slug in REDIRECT_SKIP_SLUGS:
+            continue
+
+        stub_dir = os.path.join(ROOT, slug)
+        stub_path = os.path.join(stub_dir, "index.html")
+
+        # Schutz: existiert dort schon eine index.html, die KEIN Redirect-Stub
+        # ist (echter Inhalt), nicht ueberschreiben.
+        if os.path.exists(stub_path):
+            with open(stub_path, encoding="utf-8") as fh:
+                existing = fh.read()
+            if 'http-equiv="refresh"' not in existing:
+                print(f"  WARN: {slug}/index.html ist KEIN Stub – uebersprungen.")
+                skipped += 1
+                continue
+
+        target = f"https://iappear.at/{slug}.html"
+        os.makedirs(stub_dir, exist_ok=True)
+        html = REDIRECT_TEMPLATE.format(target=target, short=f"iappear.at/{slug}.html")
+        with open(stub_path, "w", encoding="utf-8", newline="") as fh:
+            fh.write(html)
+        created += 1
+
+    msg = f"  {created} Redirect-Stub(s) generiert/aktualisiert"
+    if skipped:
+        msg += f", {skipped} uebersprungen"
+    print(msg + ".")
+
+
+## ===================================================================
 ## HAUPTFUNKTION: Rundgaenge + Staedte
 ## ===================================================================
 
@@ -881,6 +963,8 @@ if __name__ == "__main__":
     try:
         main()
         main_rundgaenge()
+        print("\nRedirect-Stubs (alte Schraegstrich-URLs abfangen):")
+        generate_redirect_stubs()
     except Exception as e:
         print(f"FEHLER: {e}", file=sys.stderr)
         sys.exit(1)
