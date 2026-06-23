@@ -34,6 +34,76 @@
   <link rel="stylesheet" href="css/components.css?v=20260513a" />
   <link rel="stylesheet" href="css/animations.css?v=20260428a" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+
+  <!-- Seiten-eigene Styles: OeAD-Spotlight (nur diese Seite nutzt die .oead-*-Klassen,
+       deshalb inline statt in components.css -> kein Cache-Bust ueber alle HTMLs). -->
+  <style>
+    .oead-spot {
+      position: relative; overflow: hidden; border-radius: var(--radius-card);
+      padding: clamp(1.5rem, 4vw, 2.75rem); margin-top: var(--sp-3);
+      background:
+        radial-gradient(120% 140% at 100% 0%, rgba(142,159,106,.16), transparent 60%),
+        var(--glass-bg, rgba(255,255,255,.04));
+      border: 1px solid rgba(142,159,106,.28);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.06), 0 20px 50px rgba(0,0,0,.35);
+    }
+    /* langsam wandernder Glow oben rechts */
+    .oead-spot::before {
+      content: ""; position: absolute; inset: -40% -10% auto auto;
+      width: 420px; height: 420px; pointer-events: none;
+      background: radial-gradient(circle, rgba(142,159,106,.30), transparent 70%);
+      filter: blur(20px); opacity: .7;
+      animation: oeadGlow 8s ease-in-out infinite alternate;
+    }
+    @keyframes oeadGlow { from { transform: translate(0,0) scale(1); } to { transform: translate(-30px,20px) scale(1.15); } }
+
+    .oead-spot__head { position: relative; z-index: 1; display: grid; grid-template-columns: auto 1fr; gap: clamp(1rem,3vw,2rem); align-items: start; }
+    .oead-brand { display: flex; flex-direction: column; align-items: center; gap: .9rem; }
+    .oead-imark { height: 62px; width: auto; display: block; }
+    .oead-badge { background: #fff; border-radius: 14px; padding: 1rem 1.25rem; width: 172px; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 24px rgba(0,0,0,.3); }
+    .oead-badge img { width: 100%; height: auto; display: block; }
+    .oead-eyebrow { display: inline-flex; align-items: center; gap: .55rem; margin: 0 0 .5rem; font-size: .8rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--c-grow); }
+    .oead-eyebrow::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: var(--c-grow); animation: oeadPing 2.4s ease-out infinite; }
+    @keyframes oeadPing { 0% { box-shadow: 0 0 0 0 rgba(142,159,106,.55); } 100% { box-shadow: 0 0 0 13px rgba(142,159,106,0); } }
+    .oead-spot__head h2 { margin: .1rem 0 .6rem; }
+    .oead-spot__head p { margin: 0; }
+    .oead-chips { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1rem 0 1.25rem; }
+    .oead-chip { font-size: .85rem; color: var(--c-grow); background: rgba(142,159,106,.1); border: 1px solid rgba(142,159,106,.3); border-radius: 999px; padding: .35rem .85rem; }
+    .oead-cta { display: flex; flex-wrap: wrap; gap: .75rem; }
+
+    .oead-journey { position: relative; z-index: 1; margin-top: clamp(1.75rem,4vw,2.5rem); padding-top: clamp(1.5rem,3vw,2rem); border-top: 1px solid rgba(255,255,255,.08); }
+    .oead-journey__title { margin: 0 0 1.4rem; font-weight: 600; color: var(--c-text); }
+    .oead-track { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5,1fr); gap: 1rem; position: relative; }
+    /* Verbindungslinie hinter den Knoten */
+    .oead-track::before { content: ""; position: absolute; top: 18px; left: 9%; right: 9%; height: 2px; background: linear-gradient(90deg, rgba(142,159,106,.12), rgba(142,159,106,.5), rgba(142,159,106,.12)); }
+    /* wandernder Puls entlang der Linie */
+    .oead-track::after { content: ""; position: absolute; top: 13px; left: 9%; width: 12px; height: 12px; border-radius: 50%; background: var(--c-grow); box-shadow: 0 0 12px 3px rgba(142,159,106,.7); animation: oeadFlow 6s linear infinite; }
+    @keyframes oeadFlow { 0% { left: 9%; opacity: 0; } 8% { opacity: 1; } 90% { opacity: 1; } 100% { left: 91%; opacity: 0; } }
+    .oead-step { position: relative; text-align: center; }
+    .oead-step__num { width: 38px; height: 38px; margin: 0 auto .7rem; border-radius: 50%; display: grid; place-items: center; font-weight: 700; color: var(--c-grow); background: #0d0f0c; border: 2px solid rgba(142,159,106,.5); position: relative; z-index: 1; transition: transform .2s ease, box-shadow .2s ease, background .2s ease; }
+    .oead-step:hover .oead-step__num { transform: translateY(-3px); background: rgba(142,159,106,.18); box-shadow: 0 0 18px rgba(142,159,106,.5); }
+    .oead-step__t { display: block; font-weight: 600; font-size: .95rem; margin-bottom: .2rem; }
+    .oead-step__d { font-size: .82rem; color: var(--c-text-muted); line-height: 1.35; }
+
+    .oead-arc { display: grid; grid-template-columns: repeat(3,1fr); gap: .5rem; margin-top: 1.5rem; }
+    .oead-phase { text-align: center; padding: .6rem .5rem; border-radius: 10px; font-size: .9rem; border: 1px solid rgba(142,159,106,.25); background: rgba(142,159,106,.06); }
+    .oead-phase b { display: block; margin-bottom: .15rem; font-size: .72rem; letter-spacing: .05em; text-transform: uppercase; color: var(--c-grow); }
+
+    @media (max-width: 760px) {
+      .oead-spot__head { grid-template-columns: 1fr; }
+      .oead-badge { width: 150px; }
+      .oead-track { grid-template-columns: 1fr; gap: .85rem; }
+      .oead-track::before, .oead-track::after { display: none; }
+      .oead-step { display: grid; grid-template-columns: auto 1fr; gap: .85rem; align-items: center; text-align: left; }
+      .oead-step__num { margin: 0; }
+      .oead-arc { grid-template-columns: 1fr; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .oead-spot::before, .oead-eyebrow::before { animation: none; }
+      .oead-track::after { display: none; }
+    }
+  </style>
+
   <!-- Breadcrumb strukturierte Daten -->
   <script type="application/ld+json">
   {
@@ -138,6 +208,67 @@
           <h3 class="c-grow">Bildungsinstitutionen</h3>
           <p>Kooperationen mit Pädagogischen Hochschulen, Fachhochschulen und Bildungsdirektionen zur Entwicklung neuer Formate für Medienkompetenz, Demokratiebildung und KI-Bildung im Unterricht.</p>
         </article>
+      </div>
+    </section>
+
+    <!-- OeAD-Spotlight: i.grow ist im OeAD-Netzwerk gelistet (Inhalt aus blog/aufwachsen-mit-ki.html).
+         Glasiges Panel + "Aufwachsen mit KI"-Reise statt Textkarten. Styles im <head> (.oead-*). -->
+    <section class="section container">
+      <div class="oead-spot">
+        <div class="oead-spot__head">
+          <div class="oead-brand">
+            <img class="oead-imark" src="assets/svg/logos/logo-i-gruen.svg" alt="i.appear" />
+            <div class="oead-badge">
+              <img src="assets/svg/partner/OEAD_neu.svg" alt="OeAD &ndash; Agentur für Bildung und Internationalisierung der Republik Österreich" />
+            </div>
+          </div>
+          <div>
+            <p class="oead-eyebrow">Neu im Netzwerk &middot; österreichweit buchbar</p>
+            <h2>i.grow ist jetzt im OeAD-Netzwerk</h2>
+            <p>Unser Workshop <strong>&bdquo;Aufwachsen mit KI&ldquo;</strong> ist in der Datenbank &bdquo;Angebote von Kulturschaffenden für Schulen&ldquo; des <strong>OeAD</strong> gelistet &ndash; der Agentur für Bildung und Internationalisierung der Republik Österreich. Damit ist i.grow österreichweit für Schulen sicht- und buchbar, angeschlossen an den Schwerpunkt &bdquo;More than Bytes&ldquo;.</p>
+            <div class="oead-chips">
+              <span class="oead-chip">Österreichweit buchbar</span>
+              <span class="oead-chip">More than Bytes</span>
+              <span class="oead-chip">Sekundarstufe I</span>
+              <span class="oead-chip">kostenlos &amp; ohne Anmeldung</span>
+            </div>
+            <div class="oead-cta">
+              <a class="btn btn--grow" href="https://kulturvermittlung.oead.at/de/schule/kulturvermittlung-mit-schulen/datenbanken/datenbank-angebote-von-kulturschaffenden/detail/980C70EB-614A-4DC6-B58D-035B047372AF~o" target="_blank" rel="noopener">Im OeAD-Netzwerk ansehen &#8599;</a>
+              <a class="btn" href="blog/aufwachsen-mit-ki.html">Wie der Workshop abläuft &rarr;</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="oead-journey">
+          <p class="oead-journey__title">&bdquo;Aufwachsen mit KI&ldquo; &ndash; fünf Stationen über drei Projekttage</p>
+          <ol class="oead-track">
+            <li class="oead-step">
+              <span class="oead-step__num">1</span>
+              <span><span class="oead-step__t">KI &amp; Gesellschaft</span><span class="oead-step__d">Wo uns KI im Alltag begegnet</span></span>
+            </li>
+            <li class="oead-step">
+              <span class="oead-step__num">2</span>
+              <span><span class="oead-step__t">Daten verstehen</span><span class="oead-step__d">Woraus KI lernt &ndash; samt Bias</span></span>
+            </li>
+            <li class="oead-step">
+              <span class="oead-step__num">3</span>
+              <span><span class="oead-step__t">Fake oder Fakt?</span><span class="oead-step__d">Deepfakes erkennen, kritisch prüfen</span></span>
+            </li>
+            <li class="oead-step">
+              <span class="oead-step__num">4</span>
+              <span><span class="oead-step__t">Gestalten mit &amp; ohne KI</span><span class="oead-step__d">Selbst Medien produzieren</span></span>
+            </li>
+            <li class="oead-step">
+              <span class="oead-step__num">5</span>
+              <span><span class="oead-step__t">KI &amp; Werte</span><span class="oead-step__d">Welche Zukunft wollen wir?</span></span>
+            </li>
+          </ol>
+          <div class="oead-arc">
+            <div class="oead-phase"><b>Tag 1</b>Verstehen</div>
+            <div class="oead-phase"><b>Tag 2</b>Gestalten</div>
+            <div class="oead-phase"><b>Tag 3</b>Reflektieren</div>
+          </div>
+        </div>
       </div>
     </section>
 
