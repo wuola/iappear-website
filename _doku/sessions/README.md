@@ -6,6 +6,7 @@ Naming: `YYYY-MM-DD-session-NN-thema.md`
 
 ## Sessions
 
+- 2026-06-23 - [Session 53 - Blog: Technik-Artikel "Von der Urmappe zur 3D-Datenvisualisierung" (Making-of der Siedlungs-Animation aus Geodaten: NDVI/Random-Forest/Laserscan/QGIS/Blender; Video-Hero CRF22 aus 4K-Render, Daten-Tabelle + NDVI-Formel als echtes HTML, Gebaeude-Footprints per Whiteness-Knockout; volle Verdrahtung + Forward-Link vom 125-Jahre-Artikel)](2026-06-23-session-53-blog-stadtwachstum-3d-datenvis.md)
 - 2026-06-18 - [Session 52 - Blog "125 Jahre, 125 Orte": Dornbirns Jubilaeums-Rundgang live (Recherche + Text + 3 Event-Fotos; Siedlungs-Animation per iframe aus separatem `iappear-embeds`-Repo eingebettet; volle Verdrahtung Index/Vitrine/Sitemap/llms) + Frauenspuren-Count-Fix (coming-soon -> aktiv, Dornbirn i.history 3->4)](2026-06-18-session-52-blog-125-jahre-orte-embed-count-fix.md)
 - 2026-06-11 - [Session 51 - Performance-Pass (Hero-Videos CRF 20 -42%, Feature-Teaser Lazy-Load + ar.mp4 Stream-Copy-Schnitt, alle 6 Fonts → WOFF2 + Preload auf 71 HTMLs, 21 Vitrine-PNGs → JPG q85; Startseite 16,6 → 4,9 MB Sofort-Load)](2026-06-11-session-51-performance-pass.md)
 - 2026-06-09 - [Session 50 - Rundgang-Links Dornbirn gefixt (Oberdorf/Innenstadt: leere Platzhalter + tote 404-Slugs → verifizierte App-Routen; 125-Jahre-Button temporaer auf App-Startseite; curl-Verifikation, 3 Namenssysteme dokumentiert)](2026-06-09-session-50-rundgang-links-dornbirn-fix.md)
