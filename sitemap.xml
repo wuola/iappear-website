@@ -306,6 +306,20 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://iappear.at/blog/augmented-reality-ios-android.html" />
   </url>
   <url>
+    <loc>https://iappear.at/blog/vorarlberg-auf-eigene-faust.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="de" href="https://iappear.at/blog/vorarlberg-auf-eigene-faust.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://iappear.at/blog/vorarlberg-auf-eigene-faust.html" />
+  </url>
+  <url>
+    <loc>https://iappear.at/blog/ausflugsziele-vorarlberg-mit-teenagern.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="de" href="https://iappear.at/blog/ausflugsziele-vorarlberg-mit-teenagern.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://iappear.at/blog/ausflugsziele-vorarlberg-mit-teenagern.html" />
+  </url>
+  <url>
     <loc>https://iappear.at/blog/frauenspuren-dornbirn.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
