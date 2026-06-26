@@ -352,6 +352,13 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://iappear.at/blog/frauenspuren-launch-mai-2026.html" />
   </url>
   <url>
+    <loc>https://iappear.at/blog/ausserschulische-lernorte-wandertag-vorarlberg.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="de" href="https://iappear.at/blog/ausserschulische-lernorte-wandertag-vorarlberg.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://iappear.at/blog/ausserschulische-lernorte-wandertag-vorarlberg.html" />
+  </url>
+  <url>
     <loc>https://iappear.at/blog/wie-entsteht-ein-igrow-projekt.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
