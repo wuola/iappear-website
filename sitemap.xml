@@ -306,6 +306,13 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://iappear.at/blog/augmented-reality-ios-android.html" />
   </url>
   <url>
+    <loc>https://iappear.at/blog/ki-medienkompetenz-schule.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="de" href="https://iappear.at/blog/ki-medienkompetenz-schule.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://iappear.at/blog/ki-medienkompetenz-schule.html" />
+  </url>
+  <url>
     <loc>https://iappear.at/blog/vorarlberg-auf-eigene-faust.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
