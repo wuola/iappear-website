@@ -950,6 +950,25 @@ a.card--teaser:hover h3 {
   flex-wrap: nowrap;
   gap: var(--sp-1);
 }
+/* TEST: Mockup-Bild statt Video-Phones im Hero, nur zum Anschauen. */
+.hero__phones-mockup {
+  margin-top: .5rem;
+  display: flex;
+  justify-content: center;
+}
+.hero__phones-mockup img {
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+  animation: hero-mockup-float 5s ease-in-out infinite;
+}
+@keyframes hero-mockup-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero__phones-mockup img { animation: none; }
+}
 /* CTA-Button im Hero — erbt Glassy-Look von .btn, nur Form-Overrides.
    Ueberschreibt uppercase + weites letter-spacing aus .btn, damit der
    Mixed-Case-Text "Rundgang starten" natuerlich wirkt. */
