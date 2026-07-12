@@ -1223,6 +1223,49 @@ a.card--teaser:hover h3 {
   .nw-ring { animation: none !important; opacity: .5 !important; }
 }
 
+/* --- Netzwerk v3 (Session 56): Buehne, Halos, Lichtpulse ------------------
+   Gehoert zu js/network.js (v3). Kurven statt Linien macht das JS;
+   hier stehen die neuen visuellen Ebenen. */
+
+/* Buehne: Fuehrungsringe hauchfein, nicht klickbar */
+.nw-stage { pointer-events: none; }
+.nw-guide {
+  fill: none;
+  stroke: rgba(255, 255, 255, .05);
+  stroke-width: 1;
+}
+
+/* Weicher Farbschein hinter Touren-Punkten; dimmt beim Hover anderer mit */
+.nw-tour-halo {
+  opacity: .14;
+  pointer-events: none;
+  transition: opacity .3s;
+}
+.network-viz.has-hover .nw-tour.is-visible:not(.is-active):not(.is-related) .nw-tour-halo {
+  opacity: .04;
+}
+.network-viz.has-hover .nw-tour.is-visible.is-active .nw-tour-halo {
+  opacity: .3;
+}
+
+/* Text-Halo: dunkle Kontur macht Labels auch UEBER Linien lesbar */
+.nw-station-name,
+.nw-tour-name,
+.nw-tour-tag {
+  paint-order: stroke;
+  stroke: rgba(10, 10, 10, .85);
+  stroke-width: 4px;
+  stroke-linejoin: round;
+}
+
+/* Wandernde Lichtpunkte auf Kanten geteilter Stationen */
+.nw-pulse { pointer-events: none; }
+.nw-pulses { transition: opacity .3s; }
+.network-viz.has-hover .nw-pulses { opacity: .15; }
+@media (prefers-reduced-motion: reduce) {
+  .nw-pulses { display: none; }
+}
+
 /* --- Team / Ueber uns ----------------------------------------------------- */
 .ueber__team { display: flex; flex-direction: column; gap: var(--sp-4); }
 .team-member {
