@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Wie wir mit KI arbeiten &ndash; ein Transparenz-Einblick | i.appear</title>
+  <meta name="description" content="KI als Werkzeug, nicht als Autor: wie i.appear KI einsetzt, wo bewusst nicht &ndash; und warum wir uns f&uuml;r Claude von Anthropic entschieden haben." />
+  <link rel="canonical" href="https://iappear.at/blog/wie-wir-mit-ki-arbeiten.html" />
+  <link rel="alternate" hreflang="de" href="https://iappear.at/blog/wie-wir-mit-ki-arbeiten.html" />
+  <link rel="alternate" hreflang="x-default" href="https://iappear.at/blog/wie-wir-mit-ki-arbeiten.html" />
+  <meta property="og:site_name" content="i.appear" />
+  <meta property="og:locale" content="de_AT" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Wie wir mit KI arbeiten &ndash; ein Transparenz-Einblick" />
+  <meta property="og:description" content="KI als Werkzeug, nicht als Autor: wie i.appear KI einsetzt, wo bewusst nicht &ndash; und warum wir uns f&uuml;r Claude von Anthropic entschieden haben." />
+  <meta property="og:url" content="https://iappear.at/blog/wie-wir-mit-ki-arbeiten.html" />
+  <meta property="og:image" content="https://iappear.at/blog/images/11-ki-arbeitsweise-hero.jpg" />
+  <meta property="og:image:width" content="700" />
+  <meta property="og:image:height" content="550" />
+  <meta property="article:published_time" content="2026-07-06" />
+  <meta property="article:tag" content="KI im Unternehmen" />
+  <meta property="article:tag" content="ethischer KI-Einsatz" />
+  <meta property="article:tag" content="KI-Transparenz" />
+  <meta property="article:tag" content="Claude" />
+  <meta property="article:tag" content="Anthropic" />
+  <meta property="article:tag" content="Medienethik" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Wie wir mit KI arbeiten &ndash; ein Transparenz-Einblick | i.appear" />
+  <meta name="twitter:description" content="KI als Werkzeug, nicht als Autor: wof&uuml;r wir KI einsetzen, wo bewusst nicht &ndash; und warum wir mit Claude von Anthropic arbeiten." />
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg?v=20260511a" />
+  <link rel="icon" type="image/png" sizes="192x192" href="../assets/favicon-192.png?v=20260511a" />
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png?v=20260511a" />
+
+  <link rel="preload" href="../assets/fonts/Roboto-Variable.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="../assets/fonts/TheSerif-HP6SeBld.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="../css/global.css?v=20260611a" />
+  <link rel="stylesheet" href="../css/layout.css?v=20260430a" />
+  <link rel="stylesheet" href="../css/components.css?v=20260712a" />
+  <link rel="stylesheet" href="../css/animations.css?v=20260428a" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://iappear.at/" },
+          { "@type": "ListItem", "position": 2, "name": "Vitrine", "item": "https://iappear.at/vitrine.html" },
+          { "@type": "ListItem", "position": 3, "name": "Wie wir mit KI arbeiten", "item": "https://iappear.at/blog/wie-wir-mit-ki-arbeiten.html" }
+        ]
+      },
+      {
+        "@type": "BlogPosting",
+        "headline": "Wie wir mit KI arbeiten – ein Transparenz-Einblick",
+        "description": "KI als Werkzeug, nicht als Autor: wie i.appear Künstliche Intelligenz einsetzt, wo bewusst nicht – und warum wir uns für Claude von Anthropic entschieden haben.",
+        "datePublished": "2026-07-13",
+        "author": { "@id": "https://iappear.at/#organization" },
+        "publisher": { "@id": "https://iappear.at/#organization" },
+        "url": "https://iappear.at/blog/wie-wir-mit-ki-arbeiten.html",
+        "inLanguage": "de-AT",
+        "keywords": ["KI im Unternehmen", "KI-Einsatz im Unternehmen", "ethischer KI-Einsatz", "verantwortungsvolle KI", "KI-Transparenz", "generative KI", "Claude", "Anthropic", "Constitutional AI", "human in the loop", "KI-Kompetenz", "EU AI Act", "Medienethik", "KI-Richtlinien", "KI und DSGVO", "Recherche mit KI", "KI-Automatisierung", "KI in der Medienproduktion"]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Setzt i.appear Künstliche Intelligenz ein?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Ja – als Recherche-Assistenz, für wiederholbare Prozesse wie Medienaufbereitung und CMS-Befüllung sowie für technische Qualitätssicherung. Nie als Entscheidungsinstanz, Konzept-Ersatz oder Kreativ-Autopilot: Auswahl, Deutung und Freigabe bleiben bei Menschen, und jedes Ergebnis wird geprüft, bevor es veröffentlicht wird." }
+          },
+          {
+            "@type": "Question",
+            "name": "Sind die Inhalte der i.appear-Stadtrundgänge KI-generiert?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Nein. Die Inhalte entstehen aus klassischer Quellenarbeit – Archivmaterial, Chroniken, Fachliteratur und Gesprächen. KI hilft beim Vorsortieren und Aufbereiten; was veröffentlicht wird, entscheiden und verantworten Menschen. KI-generierte Bilder, die historische Szenen vortäuschen, gibt es bei i.appear nicht – das wäre Geschichtsfälschung." }
+          },
+          {
+            "@type": "Question",
+            "name": "Warum arbeitet i.appear mit Claude von Anthropic?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Aus vier Gründen: Anthropic ist als Public Benefit Corporation rechtlich auf einen Gemeinwohl-Zweck verpflichtet, betreibt Sicherheitsforschung als Kernaufgabe (Responsible Scaling Policy), richtet das Modellverhalten mit Constitutional AI an einem veröffentlichten Prinzipienkatalog aus, und Eingaben von Geschäftskunden werden standardmässig nicht zum Training verwendet. Diese Wahl wird laufend überprüft – Werkzeugwahl ist Wertewahl." }
+          },
+          {
+            "@type": "Question",
+            "name": "Prüft ein Mensch alle KI-Ergebnisse bei i.appear?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Ja, ohne Ausnahme. KI-Ausgaben gelten als Hinweise, nicht als Belege: Fakten werden an Primärquellen verifiziert, Texte redaktionell geprüft, und nichts geht ungeprüft online. Dieses Human-in-the-loop-Prinzip ist einer der fünf KI-Grundsätze von i.appear." }
+          },
+          {
+            "@type": "Question",
+            "name": "Was verlangt der EU AI Act von Unternehmen, die KI einsetzen?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Seit 2. Februar 2025 gilt die KI-Kompetenzpflicht aus Artikel 4 der EU-KI-Verordnung: Organisationen, die KI-Systeme einsetzen, müssen sicherstellen, dass die handelnden Personen über ausreichende KI-Kompetenz verfügen. Das betrifft Unternehmen genauso wie Schulen – und heisst praktisch: klären, wofür KI eingesetzt wird, wo nicht, und die Menschen dafür schulen." }
+          },
+          {
+            "@type": "Question",
+            "name": "Bietet i.appear Fortbildungen zum verantwortungsvollen KI-Einsatz an?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Ja. i.appear vermittelt den kritisch-kompetenten Umgang mit KI in Fortbildungen für Lehrkräfte (SCHILF/SCHÜLF), im österreichweit über das OeAD-Netzwerk buchbaren Schul-Workshop 'Aufwachsen mit KI' und in Vorträgen – und unterstützt Organisationen, die ihren eigenen KI-Einsatz verantwortungsvoll aufsetzen wollen." }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header class="nav"><div class="nav__inner">
+    <a class="nav__brand" href="../index.html" aria-label="i.appear Startseite"><img src="../assets/svg/logos/logo-mark-weiss.svg?v=20260414ae" alt="i.appear" /></a>
+    <div class="nav__lang" role="group" aria-label="Sprache">
+      <a href="wie-wir-mit-ki-arbeiten.html" lang="de" aria-current="page">DE</a>
+      <span aria-hidden="true">|</span>
+      <a href="../en/blog/" lang="en" hreflang="en">EN</a>
+    </div>
+    <nav class="nav__links">
+      <a href="../stadtrundgaenge.html">Stadtrundgänge</a>
+      <a href="../features.html">Features</a>
+      <a href="../workflow.html">Leistungen</a>
+      <a href="../ueber-uns.html">Über uns</a>
+      <a href="../vitrine.html">Vitrine</a>
+      <a href="../kontakt.html">Kontakt</a>
+    </nav>
+    <button class="nav__burger" data-menu-toggle aria-label="Menü öffnen"><span></span></button>
+  </div></header>
+
+  <div id="menu" class="menu" role="dialog" aria-modal="true" aria-label="Menü">
+    <button class="menu__close" data-menu-close aria-label="Menü schliessen">&times;</button>
+    <div class="menu__group">
+      <h4 class="menu__heading">Die Plattform</h4>
+      <ul class="menu__list">
+        <li><a href="../user-guide.html">i.appear User Guide</a></li>
+        <li><a href="../i-history.html" class="c-history">i.history &ndash; Zeitreisen</a></li>
+        <li><a href="../i-dentity.html" class="c-dentity">i.dentity &ndash; Regionale Identität</a></li>
+        <li><a href="../i-grow.html" class="c-grow">i.grow &ndash; Medienbildung</a></li>
+        <li><a href="../features.html">Features</a></li>
+      </ul>
+    </div>
+    <div class="menu__group">
+      <h4 class="menu__heading">Stadtrundgänge</h4>
+      <ul class="menu__list">
+        <li><a href="../stadtrundgaenge.html">Alle Orte</a></li>
+        <li><a href="../stadtrundgang-dornbirn.html">Dornbirn</a></li>
+        <li><a href="../stadtrundgang-feldkirch.html">Feldkirch</a></li>
+        <li><a href="../stadtrundgang-hard.html">Hard am Bodensee</a></li>
+        <li><a href="../stadtrundgang-au.html">Au im Bregenzerwald</a></li>
+      </ul>
+    </div>
+    <div class="menu__group">
+      <h4 class="menu__heading">Backstage</h4>
+      <ul class="menu__list">
+        <li><a href="../workflow.html">Workflow und Leistungen</a></li>
+        <li><a href="../vitrine.html">Vitrine</a></li>
+        <li><a href="../ueber-uns.html">Über uns</a></li>
+        <li><a href="../kontakt.html">Kontakt</a></li>
+        <li><a href="../faqs.html">FAQs</a></li>
+        <li><a href="../agb.html">AGB</a></li>
+        <li><a href="../impressum.html">Impressum</a></li>
+        <li><a href="../datenschutz.html">Datenschutz</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <main>
+    <nav class="breadcrumb container" aria-label="Breadcrumb"><ol><li><a href="../index.html">Startseite</a></li><li><a href="../vitrine.html">Vitrine</a></li><li><span aria-current="page">Wie wir mit KI arbeiten</span></li></ol></nav>
+
+    <article class="section container article">
+      <header>
+        <p style="margin-bottom:var(--sp-3);font-size:.9rem"><a href="index.html" class="muted">&larr; Alle Artikel</a></p>
+        <div class="cat-tag-row" style="margin-bottom:var(--sp-2)">
+          <span class="cat-tag cat-tag--allgemein">Backstage</span>
+          <a class="cat-tag cat-tag--grow" href="../i-grow.html">i.grow</a>
+        </div>
+        <h1>Wie wir mit KI arbeiten &ndash; ein Transparenz-Einblick</h1>
+        <p class="muted" style="font-size:1.1rem;margin-top:var(--sp-2)">K&uuml;nstliche Intelligenz steckt auch in unserer Arbeit &ndash; aber anders, als viele vermuten. Wof&uuml;r wir KI einsetzen, wo wir bewusst verzichten und warum die Wahl des Anbieters f&uuml;r uns eine Werte-Entscheidung ist.</p>
+        <div class="article__meta">
+          <time datetime="2026-07-13">13. Juli 2026</time>
+          <span>9 Min. Lesezeit</span>
+        </div>
+      </header>
+
+      <div class="article__body">
+        <figure class="article__hero" style="margin:var(--sp-4) 0">
+          <img src="images/11-ki-arbeitsweise-hero.jpg" alt="Schaubild &bdquo;Werkzeug, nicht Autor&ldquo;: links die Aufgaben der KI (Recherche vorsortieren, wiederholbare Prozesse, Daten und Medien aufbereiten, Konsistenz pr&uuml;fen), rechts die Entscheidungen der Menschen (Konzepte und Ideen, Inhalte und Dramaturgie, Auswahl und Deutung, Verantwortung und Freigabe) &ndash; darunter der Grundsatz: Nichts geht ungepr&uuml;ft online." loading="lazy" style="width:100%;max-width:480px;height:auto;display:block;margin:0 auto;border-radius:var(--radius-card);background:#000" />
+        </figure>
+
+        <p>In unseren Workshops und Fortbildungen kommt fr&uuml;her oder sp&auml;ter verl&auml;sslich dieselbe Frage: <em>&bdquo;Und wie macht ihr das eigentlich selbst?&ldquo;</em> Zu Recht. Wer &uuml;ber <a href="ki-medienkompetenz-schule.html">Medienethik und KI-Kompetenz</a> spricht, sollte die eigene Praxis offenlegen k&ouml;nnen. Dieser Beitrag tut genau das: ein ehrlicher Einblick, wo K&uuml;nstliche Intelligenz bei i.appear mitarbeitet &ndash; und wo sie bewusst draussen bleibt.</p>
+
+        <p>Vorweg das Wichtigste: <strong>Wir arbeiten gern mit KI.</strong> Sie macht unsere Arbeit schneller, gr&uuml;ndlicher und hat manches &uuml;berhaupt erst m&ouml;glich gemacht. Gleichzeitig sind wir kritisch &ndash; gegen&uuml;ber den Grenzen der Technologie genauso wie gegen&uuml;ber den Unternehmen dahinter. Das ist kein Widerspruch: Begeisterung ohne Skepsis w&auml;re naiv, Skepsis ohne eigene Praxis w&auml;re wohlfeil. Ein professioneller Umgang mit KI braucht beides.</p>
+
+        <h2>Werkzeug, nicht Autor</h2>
+
+        <p>Unser Grundsatz passt in einen Satz: <strong>KI ist bei uns Assistenz, nie Instanz.</strong> Sie sortiert vor, bereitet auf, beschleunigt &ndash; aber sie entscheidet nichts, konzipiert nichts und verantwortet nichts. Man kann sie sich vorstellen wie eine sehr schnelle, sehr belesene Assistenz, deren Zuarbeit man sch&auml;tzt &ndash; und deren Aussagen man trotzdem grunds&auml;tzlich nachpr&uuml;ft.</p>
+
+        <p>Diese Rollenverteilung ist keine Bescheidenheits-Floskel, sondern hat einen handfesten Grund: Sprachmodelle k&ouml;nnen &uuml;berzeugend formulieren, was falsch ist. Sie erfinden Quellen, gl&auml;tten Widerspr&uuml;che und &uuml;bernehmen unbemerkt Verzerrungen aus ihren Trainingsdaten. F&uuml;r ein Unternehmen, das mit historischen Fakten, echten Biografien und Bildungsinhalten arbeitet, ist das keine Fussnote &ndash; es ist der Kern der Sache.</p>
+
+        <h2>Wof&uuml;r wir KI einsetzen</h2>
+
+        <p>Drei Einsatzfelder haben sich bei uns bew&auml;hrt. Alle drei haben gemeinsam, dass KI dort Zuarbeit leistet, deren Ergebnis wir pr&uuml;fen k&ouml;nnen:</p>
+
+        <ul>
+          <li><strong>Recherche-Assistenz.</strong> KI hilft uns, grosse Textmengen vorzusortieren, Literatur querzulesen und erste &Uuml;bersichten zu erstellen. Was sie liefert, behandeln wir als Hinweis, nie als Beleg: Jede Aussage, die in einen Rundgang oder einen Artikel wandert, wird an Prim&auml;rquellen gepr&uuml;ft &ndash; an Archivmaterial, Chroniken, Fachliteratur und Gespr&auml;chen mit Menschen, die es wissen m&uuml;ssen.</li>
+          <li><strong>Wiederholbare Prozesse.</strong> &Uuml;berall dort, wo derselbe Handgriff zum hundertsten Mal ansteht, automatisieren wir: Inhalte in das Content-Management-System &uuml;bertragen, Medien f&uuml;r verschiedene Ger&auml;te und Verbindungen aufbereiten, Formate konvertieren, Daten f&uuml;r Visualisierungen vorrechnen. Die Regeln daf&uuml;r definieren wir &ndash; die KI f&uuml;hrt aus. Wie viel Rechenarbeit in so einem Prozess stecken kann, zeigt unser Making-of <a href="dornbirn-stadtwachstum-3d-geodaten.html">Von der Urmappe zur 3D-Datenvisualisierung</a>.</li>
+          <li><strong>Qualit&auml;tssicherung.</strong> Konsistenz-Checks &uuml;ber viele Seiten hinweg, tote Links, fehlende Metadaten, Tippfehler: KI ist ausgezeichnet in genau der Fleissarbeit, bei der menschliche Aufmerksamkeit erm&uuml;det. Das Urteilen &ndash; ob etwas gut, fair oder richtig ist &ndash; bleibt trotzdem bei uns.</li>
+        </ul>
+
+        <h2>Wof&uuml;r wir KI bewusst nicht einsetzen</h2>
+
+        <p>Genauso wichtig wie die Einsatzfelder sind die Bereiche, die wir der KI nicht &uuml;berlassen &ndash; nicht, weil es technisch unm&ouml;glich w&auml;re, sondern weil es falsch w&auml;re:</p>
+
+        <ul>
+          <li><strong>Entscheidungen.</strong> Welche Geschichte erz&auml;hlt wird, welche Personen sichtbar werden, welcher Ort eine Station bekommt &ndash; das sind kuratorische Entscheidungen mit Wirkung. Wessen Geschichte erz&auml;hlt wird, ist immer auch eine Machtfrage, und die delegiert man nicht an ein Sprachmodell. Wie bewusst solche Auswahl-Entscheidungen fallen, zeigt exemplarisch unser Projekt <a href="frauenspuren-dornbirn.html">Frauenspuren Dornbirn</a>.</li>
+          <li><strong>Konzepte und Ideen.</strong> Die Dramaturgie eines Rundgangs, das didaktische Design eines Workshops, die Idee hinter einem Projekt &ndash; das entsteht im Gespr&auml;ch: mit Gemeinden, Schulen, Archiven und den Menschen vor Ort. KI kann Konzepte zusammenfassen. Entwickeln sollen sie Menschen mit Ortskenntnis und Haltung.</li>
+          <li><strong>&bdquo;Historisches&ldquo; Bildmaterial.</strong> Wir generieren keine KI-Bilder, die historische Szenen vort&auml;uschen. Bei i.history arbeiten wir ausschliesslich mit echten Quellen &ndash; ein KI-generiertes &bdquo;Foto von 1900&ldquo; w&auml;re keine Illustration, sondern Geschichtsf&auml;lschung.</li>
+          <li><strong>Personenbezogene Daten.</strong> Sensible und personenbezogene Daten haben in KI-Systemen nichts verloren. Punkt.</li>
+        </ul>
+
+        <h2>F&uuml;nf Grunds&auml;tze, an denen wir uns messen lassen</h2>
+
+        <p>Aus dieser Praxis haben sich f&uuml;nf Grunds&auml;tze herausgebildet. Sie h&auml;ngen bei uns nicht als Poster an der Wand &ndash; sie sind die Checkliste, durch die jedes Projekt l&auml;uft:</p>
+
+        <ol>
+          <li><strong>Menschen entscheiden, KI assistiert.</strong> Jede Auswahl, jede Deutung, jede Freigabe ist menschlich.</li>
+          <li><strong>Quellen schlagen Modelle.</strong> KI-Ausgaben sind Hinweise. Belege kommen aus Archiven, Literatur und Gespr&auml;chen.</li>
+          <li><strong>Nichts geht ungepr&uuml;ft online.</strong> Was KI mit vorbereitet hat, wird von Menschen gepr&uuml;ft, bevor es ver&ouml;ffentlicht wird &ndash; ohne Ausnahme.</li>
+          <li><strong>Daten bleiben gesch&uuml;tzt.</strong> Keine personenbezogenen oder vertraulichen Daten in KI-Systemen, Datenverarbeitung nur auf DSGVO-konformer Grundlage.</li>
+          <li><strong>Werkzeugwahl ist Wertewahl.</strong> Wer KI einsetzt, finanziert und legitimiert das Unternehmen dahinter. Deshalb schauen wir genau hin, wem wir unsere Arbeit anvertrauen.</li>
+        </ol>
+
+        <p>Der f&uuml;nfte Grundsatz f&uuml;hrt direkt zu der Frage, die uns am h&auml;ufigsten gestellt wird.</p>
+
+        <h2>Warum Claude? Unsere Anbieter-Entscheidung, transparent gemacht</h2>
+
+        <p>F&uuml;r unsere KI-gest&uuml;tzte Arbeit nutzen wir haupts&auml;chlich <strong>Claude</strong>, das KI-Modell des US-Unternehmens <strong>Anthropic</strong>. Diese Entscheidung ist uns nicht zugefallen &ndash; sie hat Gr&uuml;nde, die man nachlesen kann:</p>
+
+        <ul>
+          <li><strong>Rechtlich verankerte Gemeinwohl-Bindung.</strong> Anthropic ist als <em>Public Benefit Corporation</em> organisiert &ndash; eine Rechtsform, die das Unternehmen ausdr&uuml;cklich auf einen Gemeinwohl-Zweck verpflichtet, nicht allein auf Gewinnmaximierung. Das klingt nach Formalie, ver&auml;ndert aber, woran sich ein Unternehmen rechtlich messen lassen muss.</li>
+          <li><strong>Sicherheitsforschung als Kernaufgabe.</strong> Anthropic wurde 2021 von Forscher:innen gegr&uuml;ndet, die die Sicherheit von KI-Systemen ins Zentrum ihrer Arbeit stellen. Mit der <em>Responsible Scaling Policy</em> hat sich das Unternehmen ein ver&ouml;ffentlichtes Regelwerk mit definierten Sicherheitsstufen auferlegt, an dem sich jede neue Modellgeneration messen lassen muss.</li>
+          <li><strong>Nachlesbare Prinzipien statt Blackbox.</strong> Claude wird mit dem Ansatz <em>Constitutional AI</em> trainiert: Das Verhalten des Modells orientiert sich an einem ver&ouml;ffentlichten Katalog von Prinzipien, der sich unter anderem an der Allgemeinen Erkl&auml;rung der Menschenrechte orientiert. Man kann also nachlesen, woran sich das Modell halten soll. F&uuml;r uns, die wir Transparenz predigen, ist das ein entscheidender Punkt.</li>
+          <li><strong>Datenumgang.</strong> F&uuml;r die gesch&auml;ftliche Nutzung gilt: Eingaben werden standardm&auml;ssig nicht zum Training der Modelle verwendet, und die Auftragsverarbeitung ist DSGVO-konform vertraglich geregelt. F&uuml;r ein Unternehmen, das mit Schulen, Archiven und Gemeinden arbeitet, ist das keine K&uuml;r, sondern Voraussetzung.</li>
+        </ul>
+
+        <p>Heisst das, Anthropic sei &uuml;ber jede Kritik erhaben? Nein. Auch Anthropic ist ein gewinnorientiertes Unternehmen mitten im schnellsten Technologie-Wettlauf der Gegenwart, und ob selbst auferlegte Regeln dem kommerziellen Druck standhalten, muss sich immer wieder aufs Neue zeigen. Genau deshalb verstehen wir unsere Anbieter-Wahl nicht als einmaliges Bekenntnis, sondern als laufende Entscheidung: Wir beobachten, wir vergleichen &ndash; und wir w&uuml;rden wechseln, wenn Anspruch und Praxis auseinanderlaufen.</p>
+
+        <h2>Dieselben Fragen stellen sich &uuml;berall</h2>
+
+        <p>Der Dreischritt, der unsere Praxis ordnet &ndash; <em>Wof&uuml;r setzen wir KI ein? Wo bewusst nicht? Und wem vertrauen wir dabei?</em> &ndash; ist nicht i.appear-spezifisch. Es sind exakt die Fragen, vor denen gerade jede Organisation steht. Der EU AI Act verlangt seit Februar 2025 sogar ausdr&uuml;cklich <strong>KI-Kompetenz</strong> von allen, die KI einsetzen (Artikel 4) &ndash; das betrifft Unternehmen genauso wie Schulen.</p>
+
+        <p>Genau diese Haltung geben wir weiter: in <a href="ki-medienkompetenz-schule.html">Fortbildungen f&uuml;r Lehrkr&auml;fte</a>, im &ouml;sterreichweit &uuml;ber das OeAD-Netzwerk buchbaren Schul-Workshop <a href="aufwachsen-mit-ki.html">Aufwachsen mit KI</a> und in Vortr&auml;gen. In der Bildungsschiene <a href="../i-grow.html">i.grow</a> lernen Sch&uuml;ler:innen, KI zu verstehen, einzusetzen und zu hinterfragen &ndash; mit derselben Grundregel, die auch f&uuml;r uns gilt: erst denken, dann prompten, immer pr&uuml;fen.</p>
+
+        <p>Und wer f&uuml;r das eigene Unternehmen oder die eigene Organisation kl&auml;ren will, wo KI hilft und wo sie schadet: Die f&uuml;nf Grunds&auml;tze oben sind ein brauchbarer Startpunkt &ndash; und ein Gespr&auml;ch mit uns ein m&ouml;glicher zweiter Schritt.</p>
+
+        <h2>H&auml;ufig gestellte Fragen</h2>
+
+        <p><strong>Setzt i.appear K&uuml;nstliche Intelligenz ein?</strong><br />
+        Ja &ndash; als Recherche-Assistenz, f&uuml;r wiederholbare Prozesse wie Medienaufbereitung und CMS-Bef&uuml;llung sowie f&uuml;r technische Qualit&auml;tssicherung. Nie als Entscheidungsinstanz, Konzept-Ersatz oder Kreativ-Autopilot: Auswahl, Deutung und Freigabe bleiben bei Menschen.</p>
+
+        <p><strong>Sind die Inhalte der Stadtrundg&auml;nge KI-generiert?</strong><br />
+        Nein. Die Inhalte entstehen aus klassischer Quellenarbeit &ndash; Archivmaterial, Chroniken, Fachliteratur und Gespr&auml;chen. KI hilft beim Vorsortieren und Aufbereiten; was ver&ouml;ffentlicht wird, entscheiden und verantworten Menschen. KI-generierte Bilder, die historische Szenen vort&auml;uschen, gibt es bei uns nicht.</p>
+
+        <p><strong>Warum arbeitet i.appear mit Claude von Anthropic?</strong><br />
+        Weil Anthropic als Public Benefit Corporation rechtlich auf einen Gemeinwohl-Zweck verpflichtet ist, Sicherheitsforschung als Kernaufgabe betreibt, das Modellverhalten mit Constitutional AI an einem ver&ouml;ffentlichten Prinzipienkatalog ausrichtet &ndash; und weil Eingaben von Gesch&auml;ftskunden standardm&auml;ssig nicht zum Training verwendet werden. Wir &uuml;berpr&uuml;fen diese Wahl laufend.</p>
+
+        <p><strong>Pr&uuml;ft ein Mensch alle KI-Ergebnisse?</strong><br />
+        Ja, ohne Ausnahme. KI-Ausgaben gelten als Hinweise, nicht als Belege: Fakten werden an Prim&auml;rquellen verifiziert, Texte redaktionell gepr&uuml;ft &ndash; nichts geht ungepr&uuml;ft online.</p>
+
+        <p><strong>Was verlangt der EU AI Act von Unternehmen?</strong><br />
+        Seit 2. Februar 2025 gilt die KI-Kompetenzpflicht aus Artikel 4 der EU-KI-Verordnung: Wer KI-Systeme einsetzt, muss sicherstellen, dass die handelnden Personen &uuml;ber ausreichende KI-Kompetenz verf&uuml;gen. Das betrifft Unternehmen genauso wie Schulen &ndash; und heisst praktisch: kl&auml;ren, wof&uuml;r KI eingesetzt wird, wo nicht, und die Menschen daf&uuml;r schulen.</p>
+
+        <p><strong>Bietet i.appear Fortbildungen zum KI-Einsatz an?</strong><br />
+        Ja. Wir vermitteln den kritisch-kompetenten Umgang mit KI in Fortbildungen f&uuml;r Lehrkr&auml;fte (SCHILF/SCH&Uuml;LF), im Schul-Workshop <a href="aufwachsen-mit-ki.html">Aufwachsen mit KI</a> und in Vortr&auml;gen &ndash; und unterst&uuml;tzen Organisationen, die ihren eigenen KI-Einsatz verantwortungsvoll aufsetzen wollen.</p>
+
+        <div style="margin-top:var(--sp-4);padding:var(--sp-3);background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius-card)">
+          <p style="margin:0"><strong>Transparenz bis zum Schluss:</strong> Auch dieser Beitrag ist mit Claude als Schreib-Assistenz entstanden. Konzept, Faktenpr&uuml;fung, Redaktion und Freigabe: Mensch. So halten wir es mit allem, was wir ver&ouml;ffentlichen.</p>
+        </div>
+
+        <p style="margin-top:var(--sp-3)">
+          &rarr; Mehr zur Bildungsschiene: <a href="../i-grow.html">i.grow &ndash; Medienbildung, Demokratiebildung &amp; KI-Bildung</a><br />
+          &rarr; Der KI-Workshop f&uuml;r Schulen: <a href="aufwachsen-mit-ki.html">Aufwachsen mit KI</a><br />
+          &rarr; Fragen zum verantwortungsvollen KI-Einsatz: <a href="../kontakt.html">Kontakt aufnehmen</a>
+        </p>
+      </div>
+
+      <div class="article__tags">
+        <span class="article__tag">Backstage</span>
+        <a class="article__tag article__tag--grow" href="../i-grow.html">i.grow</a>
+        <span class="article__tag">KI im Unternehmen</span>
+        <span class="article__tag">K&uuml;nstliche Intelligenz</span>
+        <span class="article__tag">ethischer KI-Einsatz</span>
+        <span class="article__tag">verantwortungsvolle KI</span>
+        <span class="article__tag">KI-Transparenz</span>
+        <span class="article__tag">generative KI</span>
+        <span class="article__tag">Claude</span>
+        <span class="article__tag">Anthropic</span>
+        <span class="article__tag">Constitutional AI</span>
+        <span class="article__tag">human in the loop</span>
+        <span class="article__tag">KI-Kompetenz</span>
+        <span class="article__tag">EU AI Act</span>
+        <span class="article__tag">Medienethik</span>
+        <span class="article__tag">KI-Richtlinien</span>
+        <span class="article__tag">DSGVO</span>
+        <span class="article__tag">Recherche mit KI</span>
+        <span class="article__tag">KI-Automatisierung</span>
+      </div>
+
+      <div style="margin-top:var(--sp-4);padding:var(--sp-3);background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius-card);text-align:center">
+        <p>KI verantwortungsvoll einsetzen &ndash; im Unternehmen, in der Schule, im Projekt? <a href="../kontakt.html"><strong>Sprich mit uns &rarr;</strong></a></p>
+      </div>
+
+      <p style="margin-top:var(--sp-3)"><a href="index.html" class="muted">&larr; Alle Artikel</a></p>
+    </article>
+  </main>
+
+  <footer class="footer"><div class="container">
+      <div class="social-pills">
+        <a class="social-pill" data-net="ig" href="https://www.instagram.com/i.appear.app/" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+        <a class="social-pill" data-net="li" href="https://www.linkedin.com/company/i-appear/posts/?feedView=all" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+        <a class="social-pill" data-net="fb" href="https://www.facebook.com/i.appearapp/" target="_blank" rel="noopener" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+      </div>
+      <div class="footer__bottom">
+        <small>&copy; 2026 i.appear &ndash; Digital City Tours</small>
+        <nav class="footer__legal" aria-label="Rechtliches">
+          <a href="../kontakt.html">Kontakt</a>
+          <a href="../faqs.html">FAQs</a>
+          <a href="../impressum.html">Impressum</a>
+          <a href="../datenschutz.html">Datenschutz</a>
+          <a href="../agb.html">AGB</a>
+        </nav>
+      </div>
+    </div></footer>
+
+  <a href="#" class="back-up" data-back-up aria-label="Nach oben"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" aria-hidden="true"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg></a>
+  <script src="../js/main.js"></script>
+</body>
+</html>

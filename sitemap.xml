@@ -278,6 +278,13 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://iappear.at/blog/" />
   </url>
   <url>
+    <loc>https://iappear.at/blog/wie-wir-mit-ki-arbeiten.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="de" href="https://iappear.at/blog/wie-wir-mit-ki-arbeiten.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://iappear.at/blog/wie-wir-mit-ki-arbeiten.html" />
+  </url>
+  <url>
     <loc>https://iappear.at/blog/dornbirn-stadtwachstum-3d-geodaten.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
