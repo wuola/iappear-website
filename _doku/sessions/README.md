@@ -6,6 +6,7 @@ Naming: `YYYY-MM-DD-session-NN-thema.md`
 
 ## Sessions
 
+- 2026-10-05 - [Session 58 - Blog: "Daten sehen lernen" (Datenvisualisierung im Unterricht, i.grow) veroeffentlicht; interaktive Anscombe-Grafik grafik_12a; Standard-Prozess Card+Pin, Vitrine, JSON-LD, sitemap, llms.txt](2026-10-05-session-58-blog-datenvisualisierung.md)
 - 2026-07-13 - [Session 57 - Blog: "Wie wir mit KI arbeiten - ein Transparenz-Einblick" veroeffentlicht (vorbereiteter Artikel mit Datum 13.07. live; Standard-Prozess: Card+Pin "Neu" in blog/index, Vitrine-Teaser, JSON-LD, sitemap, llms.txt; zweiter vorbereiteter Artikel dornbirn-auf-eigene-faust bewusst liegengelassen)](2026-07-13-session-57-blog-ki-transparenz.md)
 - 2026-07-12 - [Session 56 - Netzwerk-Visualisierung v3 "Konstellation" LIVE (Bezier-Kurven statt gerader Linien, Text-Halos, Buehnen-Schimmer + Fuehrungsringe, Farb-Halos, SMIL-Lichtpulse auf geteilten Kanten; erst lokaler Entwurf -> Maggy-OK -> Integration in network.js?v=20 + components.css?v=20260712a auf 79 HTMLs; Lehre: Pane/Headless-Scroll-Fallen bei scroll-behavior:smooth)](2026-07-12-session-56-netzwerk-v3-entwurf.md)
 - 2026-07-02 - [Session 55 - Hero-Phones auf Landingpage: Video-Mockups durch statisches Bild-Mockup ersetzt (Maggy-Vorlage "MocupWeb SideBySide.png", sanfte Float-Animation, Cache-Bust components.css auf 78 HTMLs)](2026-07-02-session-55-hero-mockup-statisch.md)

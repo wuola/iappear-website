@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>i.appear – Tabelle oder Grafik?</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+
+  :root {
+    --c-bg: #000000;
+    --c-surface: #111111;
+    --c-border: #2a2a2a;
+    --c-text: #ffffff;
+    --c-muted: #a0a0a0;
+    --c-grow: #8E9F6A;
+    --f-sans: 'Roboto', system-ui, sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--c-bg);
+    color: var(--c-text);
+    font-family: var(--f-sans);
+    -webkit-font-smoothing: antialiased;
+    display: flex;
+    justify-content: center;
+    padding: 2rem 1rem;
+  }
+
+  .graphic { width: 100%; max-width: 720px; }
+
+  .graphic-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .graphic-logo-mark { width: 40px; height: auto; opacity: 0.85; flex-shrink: 0; }
+
+  .header-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--c-muted);
+    margin-bottom: 0.3rem;
+  }
+
+  .header-title { font-size: 1.1rem; font-weight: 300; line-height: 1.3; }
+  .header-title em { font-style: normal; color: var(--c-grow); }
+
+  .divider { height: 1px; background: var(--c-border); margin: 1.5rem 0; }
+
+  /* Umschalter */
+  .toggle {
+    display: inline-flex;
+    border: 1px solid var(--c-border);
+    border-radius: 999px;
+    padding: 3px;
+    margin-bottom: 1.5rem;
+  }
+
+  .toggle button {
+    font: inherit;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--c-muted);
+    background: transparent;
+    border: 0;
+    border-radius: 999px;
+    padding: 0.5rem 1.1rem;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .toggle button:hover { background: var(--c-surface); }
+  .toggle button[aria-pressed="true"] {
+    background: rgba(142, 159, 106, 0.18);
+    color: var(--c-text);
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.8rem;
+  }
+
+  .panel {
+    border: 1px solid var(--c-border);
+    border-radius: 6px;
+    padding: 0.8rem 0.7rem;
+    min-width: 0;
+  }
+
+  .panel-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--c-muted);
+    margin-bottom: 0.6rem;
+  }
+
+  /* Tabellen-Ansicht */
+  .stats { list-style: none; }
+  .stats li {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.72rem;
+    padding: 0.32rem 0;
+    border-bottom: 1px solid var(--c-surface);
+  }
+  .stats li:last-child { border-bottom: 0; }
+  .stats span:first-child { color: var(--c-muted); font-weight: 300; }
+  .stats span:last-child { font-weight: 500; font-variant-numeric: tabular-nums; }
+
+  /* Grafik-Ansicht */
+  svg.plot { width: 100%; height: auto; display: block; overflow: visible; }
+  .plot .axis { stroke: var(--c-border); stroke-width: 1; }
+  .plot .trend { stroke: var(--c-muted); stroke-width: 1; stroke-dasharray: 3 3; opacity: 0; transition: opacity 0.6s 0.5s; }
+  .plot .dot {
+    fill: var(--c-grow);
+    opacity: 0;
+    transform: scale(0.4);
+    transform-box: fill-box;
+    transform-origin: center;
+    transition: opacity 0.5s cubic-bezier(.2,.7,.2,1), transform 0.5s cubic-bezier(.2,.7,.2,1);
+  }
+  .shown .plot .dot { opacity: 1; transform: scale(1); }
+  .shown .plot .trend { opacity: 0.8; }
+
+  .caption {
+    font-size: 0.7rem;
+    font-weight: 300;
+    color: var(--c-muted);
+    margin-top: 0.5rem;
+    line-height: 1.4;
+  }
+
+  [hidden] { display: none !important; }
+
+  .message {
+    text-align: center;
+    font-size: 0.95rem;
+    font-weight: 300;
+    color: var(--c-muted);
+    max-width: 480px;
+    margin: 1.8rem auto 0;
+    line-height: 1.6;
+    min-height: 3.2em;
+  }
+  .message strong { color: var(--c-text); font-weight: 400; }
+
+  .source {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 0.65rem;
+    color: var(--c-muted);
+    opacity: 0.7;
+    line-height: 1.5;
+  }
+
+  .graphic-footer {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--c-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .graphic-logo { font-size: 0.85rem; font-weight: 300; letter-spacing: 0.04em; }
+  .graphic-logo .i-dot { font-weight: 500; }
+  .graphic-date { font-size: 0.7rem; color: var(--c-muted); letter-spacing: 0.04em; }
+
+  @media (max-width: 600px) {
+    .grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+  <div class="graphic">
+    <div class="graphic-top">
+      <div>
+        <div class="header-label">Anscombe-Quartett, 1973</div>
+        <div class="header-title">Gleiche Zahlen, <em>vier verschiedene Geschichten</em></div>
+      </div>
+      <svg class="graphic-logo-mark" viewBox="0 0 123.56 233.11" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M37.54,233.11v-14.79c4.75-.91,10.4-1.83,15.88-2.19v-55.86c-4.38-.73-10.59-1.46-15.88-1.83v-14.6c11.5-1.46,25.56-2.01,39.06-1.64v73.93c5.11.36,10.4,1.28,14.79,2.19v14.79h-53.85Z" fill="#fff" stroke="#fff" stroke-miterlimit="10"/>
+        <path d="M61.69,75.15c-8,0-14.37-6.37-14.37-14.19s6.37-14.01,14.37-14.01,14.55,6.18,14.55,14.01-6.55,14.19-14.55,14.19Z" fill="#fff" stroke="#fff" stroke-miterlimit="10"/>
+        <circle cx="61.78" cy="61.78" r="50.28" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="23"/>
+      </svg>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="toggle" role="group" aria-label="Ansicht wählen">
+      <button type="button" data-view="chart" aria-pressed="true">Als Grafik</button>
+      <button type="button" data-view="table" aria-pressed="false">Als Kennzahlen</button>
+    </div>
+
+    <div class="grid" id="grid"></div>
+
+    <div class="message" id="message"></div>
+
+    <div class="source">
+      Je 11 Wertepaare (x, y). Kennzahlen live aus den Daten berechnet.<br>
+      Quelle: F. J. Anscombe, Graphs in Statistical Analysis, The American Statistician 27 (1), 1973
+    </div>
+
+    <div class="graphic-footer">
+      <div class="graphic-logo"><span class="i-dot">i.</span>appear</div>
+      <div class="graphic-date">Stand Oktober 2026</div>
+    </div>
+  </div>
+
+<script>
+  var X = [10, 8, 13, 9, 11, 14, 6, 4, 12, 7, 5];
+  var SETS = [
+    { name: 'Datensatz A', x: X, y: [8.04, 6.95, 7.58, 8.81, 8.33, 9.96, 7.24, 4.26, 10.84, 4.82, 5.68],
+      note: 'Gewöhnlicher Zusammenhang' },
+    { name: 'Datensatz B', x: X, y: [9.14, 8.14, 8.74, 8.77, 9.26, 8.10, 6.13, 3.10, 9.13, 7.26, 4.74],
+      note: 'Eine Kurve, keine Gerade' },
+    { name: 'Datensatz C', x: X, y: [7.46, 6.77, 12.74, 7.11, 7.81, 8.84, 6.08, 5.39, 8.15, 6.42, 5.73],
+      note: 'Perfekte Linie, ein Ausreißer' },
+    { name: 'Datensatz D', x: [8, 8, 8, 8, 8, 8, 8, 19, 8, 8, 8], y: [6.58, 5.76, 7.71, 8.84, 8.47, 7.04, 5.25, 12.50, 5.56, 7.91, 6.89],
+      note: 'Ein einziger Punkt macht den Trend' }
+  ];
+
+  function mean(a) { return a.reduce(function (s, v) { return s + v; }, 0) / a.length; }
+  function variance(a) { var m = mean(a); return a.reduce(function (s, v) { return s + (v - m) * (v - m); }, 0) / (a.length - 1); }
+  function stats(d) {
+    var mx = mean(d.x), my = mean(d.y), cov = 0;
+    for (var i = 0; i < d.x.length; i++) cov += (d.x[i] - mx) * (d.y[i] - my);
+    cov /= (d.x.length - 1);
+    var vx = variance(d.x), vy = variance(d.y);
+    var slope = cov / vx;
+    return { mx: mx, my: my, vx: vx, vy: vy, r: cov / Math.sqrt(vx * vy), slope: slope, icpt: my - slope * mx };
+  }
+  function fmt(v, n) { return v.toFixed(n).replace('.', ','); }
+
+  // Plotbereich: x 2..20, y 2..14
+  var W = 140, H = 110, P = 6;
+  function sx(v) { return P + (v - 2) / 18 * (W - 2 * P); }
+  function sy(v) { return H - P - (v - 2) / 12 * (H - 2 * P); }
+
+  var grid = document.getElementById('grid');
+  SETS.forEach(function (d, k) {
+    var s = stats(d);
+    var panel = document.createElement('div');
+    panel.className = 'panel';
+
+    var dots = d.x.map(function (x, i) {
+      return '<circle class="dot" r="3" cx="' + sx(x).toFixed(1) + '" cy="' + sy(d.y[i]).toFixed(1) +
+        '" style="transition-delay:' + (k * 0.08 + i * 0.03).toFixed(2) + 's"/>';
+    }).join('');
+
+    panel.innerHTML =
+      '<div class="panel-label">' + d.name + '</div>' +
+      '<ul class="stats view-table">' +
+        '<li><span>Mittelwert x</span><span>' + fmt(s.mx, 1) + '</span></li>' +
+        '<li><span>Mittelwert y</span><span>' + fmt(s.my, 2) + '</span></li>' +
+        '<li><span>Varianz x</span><span>' + fmt(s.vx, 1) + '</span></li>' +
+        '<li><span>Varianz y</span><span>' + fmt(s.vy, 2) + '</span></li>' +
+        '<li><span>Korrelation</span><span>' + fmt(s.r, 2) + '</span></li>' +
+        '<li><span>Trend</span><span>y = ' + fmt(s.icpt, 1) + ' + ' + fmt(s.slope, 1) + 'x</span></li>' +
+      '</ul>' +
+      '<div class="view-chart" hidden>' +
+        '<svg class="plot" viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="Streudiagramm ' + d.name + ': ' + d.note + '">' +
+          '<line class="axis" x1="' + P + '" y1="' + (H - P) + '" x2="' + (W - P) + '" y2="' + (H - P) + '"/>' +
+          '<line class="axis" x1="' + P + '" y1="' + P + '" x2="' + P + '" y2="' + (H - P) + '"/>' +
+          '<line class="trend" x1="' + sx(3).toFixed(1) + '" y1="' + sy(s.icpt + s.slope * 3).toFixed(1) +
+            '" x2="' + sx(19).toFixed(1) + '" y2="' + sy(s.icpt + s.slope * 19).toFixed(1) + '"/>' +
+          dots +
+        '</svg>' +
+        '<div class="caption">' + d.note + '</div>' +
+      '</div>';
+    grid.appendChild(panel);
+  });
+
+  var MSG = {
+    table: '<strong>Praktisch identische Kennzahlen.</strong> Als Tabelle wirken die vier Datensätze austauschbar.',
+    chart: 'Vier Datensätze, <strong>vier völlig verschiedene Muster</strong>. Und ihre Kennzahlen?'
+  };
+
+  function setView(v) {
+    document.querySelectorAll('.toggle button').forEach(function (b) {
+      b.setAttribute('aria-pressed', String(b.dataset.view === v));
+    });
+    document.querySelectorAll('.view-table').forEach(function (el) { el.hidden = v !== 'table'; });
+    document.querySelectorAll('.view-chart').forEach(function (el) { el.hidden = v !== 'chart'; });
+    grid.classList.remove('shown');
+    if (v === 'chart') requestAnimationFrame(function () { requestAnimationFrame(function () { grid.classList.add('shown'); }); });
+    document.getElementById('message').innerHTML = MSG[v];
+  }
+
+  document.querySelectorAll('.toggle button').forEach(function (b) {
+    b.addEventListener('click', function () { setView(b.dataset.view); });
+  });
+  setView('chart');
+</script>
+</body>
+</html>
