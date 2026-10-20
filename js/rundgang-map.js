@@ -13,7 +13,7 @@
    Lazy-Load via IntersectionObserver, Tile-Requests starten erst beim Reinscrollen.
 */
 (function(){
-  if (!window.L || !window.RUNDGANG_STATIONEN) return;
+  if (!window.L || !window.RUNDGANG_STATIONEN || !window.iappearKachelUrl) return;
 
   // Kategorie -> Target-Farbe (passend zu den i.history/i.dentity/i.grow Brand-Farben)
   const KATEGORIE_FARBEN = {
@@ -58,10 +58,27 @@
       tap: false
     });
 
+    // Quellenangabe klein unten rechts — von CARTO auf jeder Karte verlangt.
+    // Dunkel + dezent gestylt, passend zur Mini-Karte (Style direkt hier statt
+    // in components.css, damit nicht alle Seiten einen Cache-Bust brauchen).
+    const attr = window.L.control.attribution({ prefix: false }).addTo(map);
+    const attrEl = attr.getContainer();
+    attrEl.style.background = 'rgba(0,0,0,.55)';
+    attrEl.style.color = 'rgba(255,255,255,.55)';
+    attrEl.style.fontSize = '9px';
+    attrEl.style.lineHeight = '1.4';
+    attrEl.style.padding = '0 5px';
+    attrEl.style.borderTopLeftRadius = '6px';
+    // Links erst einfaerben, wenn der Kachel-Layer (unten) seinen Text eingesetzt hat
+    setTimeout(function(){
+      attrEl.querySelectorAll('a').forEach(function(a){ a.style.color = 'inherit'; });
+    }, 0);
+
     // Carto dark_all mit {r} fuer Retina (schaerfere Labels).
-    window.L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+    // URL + API-Key kommen aus js/karten-key.js (muss VOR dieser Datei geladen sein).
+    window.L.tileLayer(window.iappearKachelUrl('dark_all'), {
       maxZoom: 19,
-      attribution: '',
+      attribution: window.IAPPEAR_KARTEN_ATTRIBUTION,
       subdomains: 'abcd'
     }).addTo(map);
 

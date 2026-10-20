@@ -319,6 +319,7 @@
 
   <!-- Leaflet JS -->
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+  <script src="js/karten-key.js?v=20261020a"></script>
   <script>
   (function () {
     var map = L.map('karte', {
@@ -326,8 +327,9 @@
       attributionControl: true
     }).setView([47.38, 9.75], 10);
 
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/">CARTO</a>',
+    // URL + API-Key kommen aus js/karten-key.js
+    L.tileLayer(window.iappearKachelUrl('dark_all'), {
+      attribution: window.IAPPEAR_KARTEN_ATTRIBUTION,
       subdomains: 'abcd',
       maxZoom: 17
     }).addTo(map);

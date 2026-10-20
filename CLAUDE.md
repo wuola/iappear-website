@@ -37,7 +37,7 @@ Rebuild der Website iappear.at als statisches HTML/CSS/JS-Projekt. Hauptmotivati
 - HTML5, CSS3, Vanilla JavaScript — **keine Frameworks** (kein React, kein Vue, kein Bootstrap).
 - **Kontaktformulare via Tally** (Form-ID `J98VrY`, Account `maggy@iappear.app`, Free-Plan). Belgischer Anbieter, EU-Server, DSGVO-konform. Eingebettet als iframe in workflow.html + kontakt.html, Embed-Script async im `<head>` fuer Dynamic-Height. Notifications gehen an `maggy@iappear.app`.
 - **Kein npm/webpack/vite** — einziges Build-Tool ist `build.py` (Vitrine-Statisierung + Rundgang-Counts).
-- **Leaflet** als JS-Bibliothek für Mini-Karten + Stadtrundgang-Hub-Karte. Tiles über Carto `dark_all` (kostenlos, kein API-Key).
+- **Leaflet** als JS-Bibliothek für Mini-Karten + Stadtrundgang-Hub-Karte. Tiles über Carto `dark_all` — **seit Sept. 2026 nur mit API-Key** (gratis bis 1 Mio. Abrufe/Monat). Key + Kachel-URL + Pflicht-Attribution zentral in `js/karten-key.js`; jede Karte muss „© OpenStreetMap © CARTO" zeigen (Session 59).
 - **Schriften lokal selbst gehostet** unter `assets/fonts/`: Roboto Variable (Body), TheSerif (LucasFonts: HP5 Plain, HP5 PlainIT, HP6 SemiBold, HP9 Black) für Headlines. Komplette LucasFonts-Familie (HP2-HP9 + TheSans + TheSans Mono) liegt unter `C:\Users\maggy\OneDrive\Dokumente\Promo_Iappear\NEUE_FONTS_2025\Fonts i.appear\` — bei Bedarf nachladen.
 - Tooling: GitHub Desktop, `gh` CLI, Obsidian (Vault `iappear-website`), Claude Code, ffmpeg (Asset-Optimierung).
 
