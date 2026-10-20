@@ -34,6 +34,8 @@ CARTO-Konditionen (Stand 20.10.2026, `dashboard.basemaps.carto.com/v1/plans`):
 - **Key** (Konto `maggy@iappear.app`, von Maggy selbst angefordert, kommerziell/gratis bis 1 Mio.) steht in `js/karten-key.js`. **Referer-Sperre** auf `iappear.at`, `www.iappear.at`, `wuola.github.io` — localhost lässt CARTO nur auf einem eigenen Key zu, darum lokal leere Kacheln (normal).
 - Key per `curl` mit Referer geprüft: `dark_all`, `dark_nolabels`, `light_nolabels`, `light_only_labels` liefern echte Kacheln (auch `light_only_labels`, obwohl nicht mehr in CARTOs Stil-Liste); fremder Referer → 403.
 
+- **Live (20.10.2026, nach Push `39c6b1f` + embeds `08dee96`):** Hub `stadtrundgaenge.html` 15/15 Kacheln, `i-history.html` 5 Mini-Karten / 21 Kacheln + Quellenangabe, Embed Straßennamen 30/30 (beide Layer), Ill-Karte v10 Layer „Dunkel" 15/15 — alles echte Karten, kein Wasserzeichen.
+
 ## Lehren
 
 - Kachel-Anbieter können „still" kaputtgehen: HTTP 200 + Platzhalter-Bild, keine Konsolen-Fehler. Bei „Karte zeigt komischen Text" → eine Kachel per `curl` holen und **ansehen**.
